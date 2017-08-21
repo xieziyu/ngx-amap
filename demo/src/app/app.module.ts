@@ -19,7 +19,10 @@ import { AppComponent } from './app.component';
     HttpModule,
     CodeblockModule,
     TabsModule.forRoot(),
-    NgxAmapModule
+    NgxAmapModule.forRoot({
+      apiKey: 'YOUR KEY',
+      apiVersion: '1.3'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

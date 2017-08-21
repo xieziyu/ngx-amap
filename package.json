@@ -5,10 +5,11 @@
   "scripts": {
     "link": "ngm link -p src --here",
     "build": "ngm build -p src --clean",
-    "build.watch": "ngm build -p src --watch --skip-bundles",
+    "build:watch": "ngm build -p src --watch --skip-bundles",
     "lite-server": "lite-server -c demo/server.config.js",
     "demo:build": "ng build --prod",
-    "demo": "run-s build link demo:build lite-server"
+    "demo:build:fast": "ng build",
+    "demo": "run-s build link demo:build:fast lite-server"
   },
   "private": true,
   "description": "angular 2+ component for AMap.",
