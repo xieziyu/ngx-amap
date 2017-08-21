@@ -49,6 +49,7 @@ Thumbs.db
 /demo/.vscode
 /demo/e2e/*.js
 /demo/e2e/*.map
+.tmp
 src/**/*.js
 src/**/*.map
 scripts/**/*.js
