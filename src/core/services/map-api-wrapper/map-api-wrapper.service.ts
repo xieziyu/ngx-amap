@@ -31,4 +31,26 @@ export class MapAPIWrapperService {
   get map(): Promise<AMapType.Map> {
     return this._map;
   }
+
+  setZoom(level: number): Promise<void> {
+    return this._map.then(map => map.setZoom(level));
+  }
+
+  setlabelzIndex(index: number): Promise<void> {
+    return this._map.then(map => map.setlabelzIndex(index));
+  }
+
+  setCenter(position: AMapType.LngLat | Array<number>) {
+    return this._map.then(map => map.setCenter(position));
+  }
+
+  setZoomAndCenter(zoomLevel: number, center: AMapType.LngLat | Array<number>) {
+    return this._map.then(map => map.setZoomAndCenter(zoomLevel, center));
+  }
+
+  setCity(city: string): Promise<void> {
+    return new Promise<void>(resolve => {
+      this._map.then(map => map.setCity(city, () => { resolve(); }));
+    });
+  }
 }

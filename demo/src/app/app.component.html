@@ -3,29 +3,28 @@
 </h1>
 <hr>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-12">
     <div class="well">
       <ul>
-        <li>
-          <a href="#demo1">Demo 1: Standard Map</a>
-        </li>
+        <li><a href="#demo1">Demo 1: Standard Map</a></li>
+        <li><a href="#demo1">Demo 2: Set City</a></li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-12">
     <div id="demo1" class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Demo 1: Standard Map</h3>
       </div>
       <div class="panel-body">
-        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13" (mapReady)="onMapReady($event)"></ngx-amap>
+        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>
         <hr>
         <tabset>
           <tab heading='html'>
             <codeblock language="html" theme="okaidia">
-              &lt;ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13" (mapReady)="onMapReady($event)">&lt;/ngx-amap>
+              &lt;ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">&lt;/ngx-amap>
             </codeblock>
           </tab>
           <tab heading='scss'>
@@ -35,13 +34,37 @@
               }
             </codeblock>
           </tab>
-          <tab heading='component'>
-            <codeblock language="javascript" theme="okaidia">
-              onMapReady(mapInstance: Promise&lt;any>) {{'{'}}
-                mapInstance.then(map => {{'{'}}
-                  console.log(map);
-                });
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div id="demo2" class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Demo 2: Set City</h3>
+      </div>
+      <div class="panel-body">
+        <ngx-amap class="demo-map" [city]="myCity"></ngx-amap>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html" theme="okaidia">
+              &lt;ngx-amap class="demo-map" [city]="myCity">&lt;/ngx-amap>
+            </codeblock>
+          </tab>
+          <tab heading='scss'>
+            <codeblock language="css" theme="okaidia">
+              .demo-map {{'{'}}
+                height: 400px;
               }
+            </codeblock>
+          </tab>
+          <tab heading='myCity'>
+            <codeblock language="javascript" theme="okaidia">
+              myCity = {{ myCity }}
             </codeblock>
           </tab>
         </tabset>

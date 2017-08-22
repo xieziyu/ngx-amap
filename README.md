@@ -36,7 +36,7 @@ npm install ngx-amap --save
 
       + html:
       ```html
-      <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13" (mapReady)="onMapReady($event)"></ngx-amap>
+      <ngx-amap class="demo-map"></ngx-amap>
       ```
 
       + css:
@@ -46,27 +46,64 @@ npm install ngx-amap --save
       }
       ```
 
-      + component:
-      ```typescript
-      onMapReady(mapInstance: Promise<any>) {
-        mapInstance.then(map => {
-          console.log(map);
-        });
-      }
-      ```
-
 # Components
-+ `ngx-amap`: AMap container. Use it with **pre-defined height**. 
+## `ngx-amap`
+AMap container. Use it with **pre-defined height**. 
 
-  It accepts the [MapOptions](http://lbs.amap.com/api/javascript-api/reference/map) as the `@Input()` attributes. For example: `resizeEnable`, `center`, etc.
+It accepts the [MapOptions](http://lbs.amap.com/api/javascript-api/reference/map) as the `@Input()` attributes:
++ `view`
++ `layers`
++ `zoom`
++ `center`
++ `labelzIndex`
++ `zooms`
++ `lang`
++ `cursor`
++ `crs`
++ `animateEnable`
++ `isHotspot`
++ `defaultLayer`
++ `rotateEnable`
++ `resizeEnable`
++ `showIndoorMap`
++ `indoorMap`
++ `expandZoomRange`
++ `dragEnable`
++ `zoomEnable`
++ `doubleClickZoom`
++ `keyboardEnable`
++ `jogEnable`
++ `scrollWheel`
++ `touchZoom`
++ `mapStyle`
++ `features`
++ `showBuildingBlock`
+```html
+<ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>
+```
+
+It also support extra attributes:
++ `city`: string
+```html 
+<ngx-amap class="demo-map" [city]="myCity"></ngx-amap>
+```
 
 # Events
 + `mapReady`: Emitted when AMap.Map is created.
 
+  + html
   ```html
   <ngx-amap class="demo-map" (mapReady)="onMapReady($event)"></ngx-amap>
   ```
 
+  + component
+  ```typescript
+  onMapReady(mapInstance: Promise<any>) {
+    mapInstance.then(map => {
+      console.log(map);
+    });
+  }
+  ```
 # Demo
 1. clone this repo to your working copy
 2. modify `demo/src/app/app.module.ts` to use your own KEY for ngx-amap

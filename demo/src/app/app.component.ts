@@ -7,6 +7,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
+  // demo 2: set city:
+  myCity = '上海';
 
   onMapReady(mapInstance: Promise<any>) {
     mapInstance.then(map => {

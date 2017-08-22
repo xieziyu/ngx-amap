@@ -1,6 +1,36 @@
-import { Component, ElementRef, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, OnInit, Input, OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MapAPIWrapperService } from '../../services/map-api-wrapper/map-api-wrapper.service';
 import { MapOptions } from '../../interfaces/amap.map-options';
+
+const ALL_MAP_OPTIONS = [
+  'view',
+  'layers',
+  'zoom',
+  'center',
+  'labelzIndex',
+  'zooms',
+  'lang',
+  'cursor',
+  'crs',
+  'animateEnable',
+  'isHotspot',
+  'defaultLayer',
+  'rotateEnable',
+  'resizeEnable',
+  'showIndoorMap',
+  'indoorMap',
+  'expandZoomRange',
+  'dragEnable',
+  'zoomEnable',
+  'doubleClickZoom',
+  'keyboardEnable',
+  'jogEnable',
+  'scrollWheel',
+  'touchZoom',
+  'mapStyle',
+  'features',
+  'showBuildingBlock'
+];
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,7 +38,8 @@ import { MapOptions } from '../../interfaces/amap.map-options';
   templateUrl: 'ngx-amap.component.html',
   styleUrls: ['ngx-amap.component.scss']
 })
-export class NgxAmapComponent implements OnInit, OnDestroy {
+export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
+  // These properties are supported in MapOptions:
   @Input() view: any; // TODO: View2D
   @Input() layers: Array<any>; // TODO: TileLayer
   @Input() zoom: number;
@@ -37,6 +68,10 @@ export class NgxAmapComponent implements OnInit, OnDestroy {
   @Input() features: Array<string>;
   @Input() showBuildingBlock: boolean;
 
+  // External property:
+  @Input() city: string;
+
+  // ngx-amap events:
   @Output() mapReady = new EventEmitter();
 
   constructor(private el: ElementRef, private mapAPI: MapAPIWrapperService) { }
@@ -51,47 +86,45 @@ export class NgxAmapComponent implements OnInit, OnDestroy {
     this.mapAPI.destroy();
   }
 
-  get allOptions() {
-    return [
-      'view',
-      'layers',
-      'zoom',
-      'center',
-      'labelzIndex',
-      'zooms',
-      'lang',
-      'cursor',
-      'crs',
-      'animateEnable',
-      'isHotspot',
-      'defaultLayer',
-      'rotateEnable',
-      'resizeEnable',
-      'showIndoorMap',
-      'indoorMap',
-      'expandZoomRange',
-      'dragEnable',
-      'zoomEnable',
-      'doubleClickZoom',
-      'keyboardEnable',
-      'jogEnable',
-      'scrollWheel',
-      'touchZoom',
-      'mapStyle',
-      'features',
-      'showBuildingBlock'
-    ];
+  ngOnChanges(changes: SimpleChanges) {
+    this._onMapOptionChange(changes);
+    this._onMapZoomCenterChange(changes);
   }
 
   private _getOptions() {
     const options: MapOptions = {};
 
-    this.allOptions.forEach(key => {
+    ALL_MAP_OPTIONS.forEach(key => {
       if (this[key] !== undefined) {
         options[key] = this[key];
       }
     });
 
     return options;
+  }
+
+  private _onMapOptionChange(changes: SimpleChanges) {
+    const labelzIndexChange = changes['labelzIndex'];
+    if (labelzIndexChange && !labelzIndexChange.isFirstChange()) {
+      this.mapAPI.setlabelzIndex(labelzIndexChange.currentValue);
+    }
+
+    const cityChange = changes['city'];
+    if (cityChange) {
+      this.mapAPI.setCity(cityChange.currentValue);
+    }
+  }
+
+  private _onMapZoomCenterChange(changes: SimpleChanges) {
+    const zoomChange = changes['zoom'];
+    const centerChange = changes['center'];
+
+    if (zoomChange && !centerChange && !zoomChange.isFirstChange()) {
+      this.mapAPI.setZoom(zoomChange.currentValue);
+    } else if (zoomChange && centerChange && !zoomChange.isFirstChange() && !centerChange.isFirstChange()) {
+      this.mapAPI.setZoomAndCenter(zoomChange.currentValue, centerChange.currentValue);
+    } else if (!zoomChange && centerChange && !centerChange.isFirstChange()) {
+      this.mapAPI.setCenter(centerChange.currentValue);
+    }
   }
 }
