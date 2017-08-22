@@ -20,7 +20,7 @@ import { AppComponent } from './app.component';
     CodeblockModule,
     TabsModule.forRoot(),
     NgxAmapModule.forRoot({
-      apiKey: '99df1ad748ae2a56d152b7764e35cf76',
+      apiKey: 'YOUR KEY',
       apiVersion: '1.3'
     })
   ],
