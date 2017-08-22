@@ -52,7 +52,7 @@ export class MapAPILoaderService {
     const queryParams: {[key: string]: string | Array<string>} = {
       v: this._config.apiVersion || '1.3',
       callback: callbackName,
-      key: this._config.apiKey,
+      key: this._config.apiKey
     };
     const params = Object.keys(queryParams)
       .filter((k: string) => queryParams[k] != null)

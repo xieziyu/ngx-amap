@@ -20,12 +20,28 @@
         <h3 class="panel-title">Demo 1: Standard Map</h3>
       </div>
       <div class="panel-body">
-        <ngx-amap class="demo-map"></ngx-amap>
+        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13" (mapReady)="onMapReady($event)"></ngx-amap>
         <hr>
         <tabset>
           <tab heading='html'>
             <codeblock language="html" theme="okaidia">
-              &lt;ngx-map class="demo-map">&lt;/ngx-map>
+              &lt;ngx-map class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13" (mapReady)="onMapReady($event)">&lt;/ngx-map>
+            </codeblock>
+          </tab>
+          <tab heading='scss'>
+            <codeblock language="css" theme="okaidia">
+              .demo-map {{'{'}}
+                height: 400px;
+              }
+            </codeblock>
+          </tab>
+          <tab heading='component'>
+            <codeblock language="javascript" theme="okaidia">
+              onMapReady(mapInstance: Promise&lt;any>) {{'{'}}
+                mapInstance.then(map => {{'{'}}
+                  console.log(map);
+                });
+              }
             </codeblock>
           </tab>
         </tabset>

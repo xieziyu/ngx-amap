@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "sourceMap": false,
     "noEmitHelpers": false,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "declaration": true,
     "skipLibCheck": false,
     "stripInternal": true,

@@ -7,4 +7,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
+
+  onMapReady(mapInstance: Promise<any>) {
+    mapInstance.then(map => {
+      console.log(map);
+    });
+  }
 }

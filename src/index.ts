@@ -1,8 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { NgxAmapComponent } from './components/ngx-amap/ngx-amap.component';
-import { MapAPILoaderService, MAP_API_CONFIG, IMapAPILoaderConfig } from './services';
-import { BrowserGlobalProviders } from './utils/browser-globals';
+import { NgxAmapComponent } from './core/components';
+import { MapAPILoaderService, MAP_API_CONFIG, IMapAPILoaderConfig, MapAPIWrapperService } from './core/services';
+import { BrowserGlobalProviders } from './core/utils/browser-globals';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ export class NgxAmapModule {
       providers: [
         ...BrowserGlobalProviders,
         MapAPILoaderService,
+        MapAPIWrapperService,
         { provide: MAP_API_CONFIG, useValue: mapAPILoaderConfig }
       ]
     };
