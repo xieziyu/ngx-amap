@@ -36,7 +36,8 @@ const ALL_MAP_OPTIONS = [
   // tslint:disable-next-line:component-selector
   selector: 'ngx-amap',
   templateUrl: 'ngx-amap.component.html',
-  styleUrls: ['ngx-amap.component.scss']
+  styleUrls: ['ngx-amap.component.scss'],
+  providers: [MapAPIWrapperService]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   // These properties are supported in MapOptions:

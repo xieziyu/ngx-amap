@@ -1,7 +1,8 @@
 import { LngLat } from './amap.lng-lat';
+import { MapOptions } from './amap.map-options';
 
 export interface Map {
-  new (container: string|HTMLDivElement, opts: any): Map; // TODO: MapOptions
+  new (container: string|HTMLDivElement, opts: MapOptions): Map;
   getZoom(): number;
   getLayers(): Array<any>;  // TODO: TileLayer
   getCenter(): LngLat;
