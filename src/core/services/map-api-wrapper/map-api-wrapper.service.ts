@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import * as AMapType from '../../interfaces/amap.interface';
-import { AMapClass, MapOptions } from '../../interfaces/amap.interface';
+import { AMapClass } from '../../interfaces/amap.interface';
+import { MapOptions } from '../../interfaces/amap.map-options';
 import { MapAPILoaderService } from '../map-api-loader/map-api-loader.service';
 
 declare const AMap: AMapClass;

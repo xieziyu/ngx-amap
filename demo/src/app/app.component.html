@@ -6,8 +6,9 @@
   <div class="col-12">
     <div class="well">
       <ul>
-        <li><a href="#demo1">Demo 1: Standard Map</a></li>
-        <li><a href="#demo1">Demo 2: Set City</a></li>
+        <li><a href="#demo1">ngx-amap: Standard Map</a></li>
+        <li><a href="#demo2">ngx-amap: Set City</a></li>
+        <li><a href="#demo3">amap-marker: simple example</a></li>
       </ul>
     </div>
   </div>
@@ -16,7 +17,7 @@
   <div class="col-12">
     <div id="demo1" class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">Demo 1: Standard Map</h3>
+        <h3 class="panel-title">ngx-amap: Standard Map</h3>
       </div>
       <div class="panel-body">
         <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>
@@ -44,7 +45,7 @@
   <div class="col-12">
     <div id="demo2" class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">Demo 2: Set City</h3>
+        <h3 class="panel-title">ngx-amap: Set City</h3>
       </div>
       <div class="panel-body">
         <ngx-amap class="demo-map" [city]="myCity"></ngx-amap>
@@ -65,6 +66,38 @@
           <tab heading='myCity'>
             <codeblock language="javascript" theme="okaidia">
               myCity = {{ myCity }}
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div id="demo3" class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">amap-marker: simple example</h3>
+      </div>
+      <div class="panel-body">
+        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+          <amap-marker [position]="[116.397428, 39.90923]" [draggable]="true"></amap-marker>
+        </ngx-amap>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html" theme="okaidia">
+              &lt;ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+                &lt;amap-marker [position]="[116.397428, 39.90923]" [draggable]="true">&lt;/amap-marker>
+              &lt;/ngx-amap>
+            </codeblock>
+          </tab>
+          <tab heading='scss'>
+            <codeblock language="css" theme="okaidia">
+              .demo-map {{'{'}}
+                height: 400px;
+              }
             </codeblock>
           </tab>
         </tabset>

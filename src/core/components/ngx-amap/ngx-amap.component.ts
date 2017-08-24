@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, Input, OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MapAPIWrapperService } from '../../services/map-api-wrapper/map-api-wrapper.service';
+import { MarkerManagerService, MarkerWrapperService } from '../../services/marker';
 import { MapOptions } from '../../interfaces/amap.map-options';
+import { OptionsChangeDetectorService } from '../../services/options-change-detector/options-change-detector.service';
 
 const ALL_MAP_OPTIONS = [
   'view',
@@ -37,7 +39,11 @@ const ALL_MAP_OPTIONS = [
   selector: 'ngx-amap',
   templateUrl: 'ngx-amap.component.html',
   styleUrls: ['ngx-amap.component.scss'],
-  providers: [MapAPIWrapperService]
+  providers: [
+    MapAPIWrapperService,
+    MarkerManagerService,
+    MarkerWrapperService
+  ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   // These properties are supported in MapOptions:
@@ -75,7 +81,7 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   // ngx-amap events:
   @Output() mapReady = new EventEmitter();
 
-  constructor(private el: ElementRef, private mapAPI: MapAPIWrapperService) { }
+  constructor(private el: ElementRef, private mapAPI: MapAPIWrapperService, private detector: OptionsChangeDetectorService) { }
 
   ngOnInit() {
     const container = this.el.nativeElement.querySelector('div.ngx-amap-container-inner');
@@ -105,27 +111,26 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private _onMapOptionChange(changes: SimpleChanges) {
-    const labelzIndexChange = changes['labelzIndex'];
-    if (labelzIndexChange && !labelzIndexChange.isFirstChange()) {
-      this.mapAPI.setlabelzIndex(labelzIndexChange.currentValue);
-    }
+    this.detector.scan<number>(changes, 'labelzIndex').subscribe(labelzIndex => {
+      if (!labelzIndex.isFirstChange) {
+        this.mapAPI.setlabelzIndex(labelzIndex.value);
+      }
+    });
 
-    const cityChange = changes['city'];
-    if (cityChange) {
-      this.mapAPI.setCity(cityChange.currentValue);
-    }
+    this.detector.scan<string>(changes, 'city').subscribe(city => {
+      this.mapAPI.setCity(city.value);
+    });
   }
 
   private _onMapZoomCenterChange(changes: SimpleChanges) {
-    const zoomChange = changes['zoom'];
-    const centerChange = changes['center'];
-
-    if (zoomChange && !centerChange && !zoomChange.isFirstChange()) {
-      this.mapAPI.setZoom(zoomChange.currentValue);
-    } else if (zoomChange && centerChange && !zoomChange.isFirstChange() && !centerChange.isFirstChange()) {
-      this.mapAPI.setZoomAndCenter(zoomChange.currentValue, centerChange.currentValue);
-    } else if (!zoomChange && centerChange && !centerChange.isFirstChange()) {
-      this.mapAPI.setCenter(centerChange.currentValue);
-    }
+    this.detector.scanList(changes, ['zoom', 'center']).subscribe(({ zoom, center }) => {
+      if (zoom.changed && !zoom.isFirstChange && !center.changed) {
+        this.mapAPI.setZoom(zoom.value);
+      } else if (zoom.changed && center.changed && !zoom.isFirstChange && !center.isFirstChange) {
+        this.mapAPI.setZoomAndCenter(zoom.value, center.value);
+      } else if (!zoom.changed && center.changed && !center.isFirstChange) {
+        this.mapAPI.setCenter(center.value);
+      }
+    });
   }
 }

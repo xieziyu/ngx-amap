@@ -9,6 +9,7 @@
     "lite-server": "lite-server -c demo/server.config.js",
     "demo:build": "ng build --prod",
     "demo:build:fast": "ng build",
+    "demo:build:watch": "ng build --watch",
     "demo": "run-s build link demo:build:fast lite-server"
   },
   "private": true,

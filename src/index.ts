@@ -1,15 +1,18 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { NgxAmapComponent } from './core/components';
-import { MapAPILoaderService, MAP_API_CONFIG, IMapAPILoaderConfig } from './core/services';
+import { AmapMarkerDirective } from './core/directives';
+import { MapAPILoaderService, MAP_API_CONFIG, IMapAPILoaderConfig, OptionsChangeDetectorService } from './core/services';
 import { WindowRef, DocumentRef } from './core/utils/browser-globals';
 
 @NgModule({
   declarations: [
-    NgxAmapComponent
+    NgxAmapComponent,
+    AmapMarkerDirective
   ],
   exports: [
-    NgxAmapComponent
+    NgxAmapComponent,
+    AmapMarkerDirective
   ]
 })
 export class NgxAmapModule {
@@ -20,6 +23,7 @@ export class NgxAmapModule {
         WindowRef,
         DocumentRef,
         MapAPILoaderService,
+        OptionsChangeDetectorService,
         { provide: MAP_API_CONFIG, useValue: mapAPILoaderConfig }
       ]
     };
