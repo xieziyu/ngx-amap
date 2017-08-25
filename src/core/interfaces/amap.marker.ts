@@ -1,10 +1,13 @@
 import { LngLat } from './amap.lng-lat';
 import { Map } from './amap.map';
+import { MarkerOptions } from './amap.marker-options';
+import { Pixel } from './amap.pixel';
+import { Icon } from './amap.icon';
 
 export interface Marker {
-  new (opts: any): Marker; // TODO: MarkerOptions
-  getOffset(): any; // TODO: Pixel
-  setOffset(offset: any): void; // TODO: Pixel
+  new (opts: MarkerOptions): Marker;
+  getOffset(): Pixel;
+  setOffset(offset: Pixel): void;
   setAnimation(animate: string): void;
   getAnimation(): string;
   setClickable(clickable: boolean): void;
@@ -17,8 +20,8 @@ export interface Marker {
   getAngle(): number;
   setzIndex(index: number): void;
   getzIndex(): number;
-  setIcon(content: string|any): void; // TODO: Icon
-  getIcon(): string|any;  // TODO: Icon
+  setIcon(content: string|Icon): void;
+  getIcon(): string|Icon;
   setDraggable(draggable: boolean): void;
   getDraggable(): boolean;
   hide(): void;
@@ -37,8 +40,8 @@ export interface Marker {
   getTitle(): string;
   setTop(isTop: boolean): void;
   getTop(): boolean;
-  setShadow(icon: any): void; // TODO: Icon
-  getShadow(): any; // TODO: Icon
+  setShadow(icon: Icon): void;
+  getShadow(): Icon;
   setShape(shape: any); // TODO: MarkerShape
   getShape(): any; // TODO: MarkerShape
   setExtData(ext: any): void;

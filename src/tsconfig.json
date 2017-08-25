@@ -18,7 +18,8 @@
     "lib": ["es6", "dom"]
   },
   "files": [
-    "./index.ts"
+    "./index.ts",
+    "./types.ts"
   ],
   "exclude": [
     "node_modules"

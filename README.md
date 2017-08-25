@@ -4,8 +4,8 @@ angular 2+ component for AMap (高德地图). This project is ongoing ...
 ## Table of contents 
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [Components](#components)
-4. [Events](#events)
+3. [Directives](#directives)
+4. [Types](#types)
 5. [Demo](#demo)
 
 # Installation
@@ -46,64 +46,23 @@ npm install ngx-amap --save
       }
       ```
 
-# Components
-## `ngx-amap`
-AMap container. Use it with **pre-defined height**. 
+3. use `amap-marker` to draw markers inside the map
+    + Simple example:
 
-It accepts the [MapOptions](http://lbs.amap.com/api/javascript-api/reference/map) as the `@Input()` attributes:
-+ `view`
-+ `layers`
-+ `zoom`
-+ `center`
-+ `labelzIndex`
-+ `zooms`
-+ `lang`
-+ `cursor`
-+ `crs`
-+ `animateEnable`
-+ `isHotspot`
-+ `defaultLayer`
-+ `rotateEnable`
-+ `resizeEnable`
-+ `showIndoorMap`
-+ `indoorMap`
-+ `expandZoomRange`
-+ `dragEnable`
-+ `zoomEnable`
-+ `doubleClickZoom`
-+ `keyboardEnable`
-+ `jogEnable`
-+ `scrollWheel`
-+ `touchZoom`
-+ `mapStyle`
-+ `features`
-+ `showBuildingBlock`
-```html
-<ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>
-```
+      + html:
+      ```html
+      <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]">
+        <amap-marker [position]="[116.397428, 39.90923]" (markerClick)="onMarkerClick($event)"></amap-marker>
+      </ngx-amap>
+      ```
 
-It also support extra attributes:
-+ `city`: string
-```html 
-<ngx-amap class="demo-map" [city]="myCity"></ngx-amap>
-```
+# Directives
++ `ngx-amap`: [**ngx-amap.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/ngx-amap.md)
++ `amap-marker`: [**amap-marker.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-marker.md)
 
-# Events
-+ `mapReady`: Emitted when AMap.Map is created.
+# Types
+Exported some useful type interfaces such as `Icon`, `Pixel`, etc. Please refer to [**Types.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/Types.md).
 
-  + html
-  ```html
-  <ngx-amap class="demo-map" (mapReady)="onMapReady($event)"></ngx-amap>
-  ```
-
-  + component
-  ```typescript
-  onMapReady(mapInstance: Promise<any>) {
-    mapInstance.then(map => {
-      console.log(map);
-    });
-  }
-  ```
 # Demo
 1. clone this repo to your working copy
 2. modify `demo/src/app/app.module.ts` to use your own KEY for ngx-amap

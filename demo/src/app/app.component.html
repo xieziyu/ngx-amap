@@ -1,107 +1,16 @@
 <h1>
-  ngx-amap
+  ngx-amap demo
 </h1>
 <hr>
 <div class="row">
   <div class="col-12">
     <div class="well">
       <ul>
-        <li><a href="#demo1">ngx-amap: Standard Map</a></li>
-        <li><a href="#demo2">ngx-amap: Set City</a></li>
-        <li><a href="#demo3">amap-marker: simple example</a></li>
+        <li><a routerLink="/demo1" routerLinkActive="active">ngx-amap: MapOptions example</a></li>
+        <li><a routerLink="/demo2" routerLinkActive="active">ngx-amap: Extra properties</a></li>
+        <li><a routerLink="/demo3" routerLinkActive="active">amap-marker: Simple example</a></li>
       </ul>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-12">
-    <div id="demo1" class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">ngx-amap: Standard Map</h3>
-      </div>
-      <div class="panel-body">
-        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>
-        <hr>
-        <tabset>
-          <tab heading='html'>
-            <codeblock language="html" theme="okaidia">
-              &lt;ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">&lt;/ngx-amap>
-            </codeblock>
-          </tab>
-          <tab heading='scss'>
-            <codeblock language="css" theme="okaidia">
-              .demo-map {{'{'}}
-                height: 400px;
-              }
-            </codeblock>
-          </tab>
-        </tabset>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <div id="demo2" class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">ngx-amap: Set City</h3>
-      </div>
-      <div class="panel-body">
-        <ngx-amap class="demo-map" [city]="myCity"></ngx-amap>
-        <hr>
-        <tabset>
-          <tab heading='html'>
-            <codeblock language="html" theme="okaidia">
-              &lt;ngx-amap class="demo-map" [city]="myCity">&lt;/ngx-amap>
-            </codeblock>
-          </tab>
-          <tab heading='scss'>
-            <codeblock language="css" theme="okaidia">
-              .demo-map {{'{'}}
-                height: 400px;
-              }
-            </codeblock>
-          </tab>
-          <tab heading='myCity'>
-            <codeblock language="javascript" theme="okaidia">
-              myCity = {{ myCity }}
-            </codeblock>
-          </tab>
-        </tabset>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <div id="demo3" class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">amap-marker: simple example</h3>
-      </div>
-      <div class="panel-body">
-        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
-          <amap-marker [position]="[116.397428, 39.90923]" [draggable]="true"></amap-marker>
-        </ngx-amap>
-        <hr>
-        <tabset>
-          <tab heading='html'>
-            <codeblock language="html" theme="okaidia">
-              &lt;ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
-                &lt;amap-marker [position]="[116.397428, 39.90923]" [draggable]="true">&lt;/amap-marker>
-              &lt;/ngx-amap>
-            </codeblock>
-          </tab>
-          <tab heading='scss'>
-            <codeblock language="css" theme="okaidia">
-              .demo-map {{'{'}}
-                height: 400px;
-              }
-            </codeblock>
-          </tab>
-        </tabset>
-      </div>
-    </div>
-  </div>
-</div>
+<router-outlet></router-outlet>

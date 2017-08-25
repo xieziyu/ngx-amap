@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-12">
+    <div id="demo3" class="panel panel-info">
+      <div class="panel-body">
+        <button class="btn btn-primary" (click)="toggle()">显示/隐藏 点标记</button>
+        <button class="btn btn-primary" (click)="toggleIcon()">切换自定义图标</button>
+        <button class="btn btn-primary" (click)="toggleLabel()">切换自定义文本标签</button>
+        <hr>
+        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+          <amap-marker [position]="[116.397428, 39.90923]" [hidden]="markerHidden" [icon]="customIcon" [label]="customLabel" (markerClick)="onMarkerClick($event)"></amap-marker>
+        </ngx-amap>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html">
+              &lt;ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+                &lt;amap-marker [position]="[116.397428, 39.90923]" [hidden]="markerHidden" [icon]="customIcon" [label]="customLabel" (markerClick)="onMarkerClick($event)">&lt;/amap-marker>
+              &lt;/ngx-amap>
+            </codeblock>
+          </tab>
+          <tab heading='scss'>
+            <codeblock language="css">
+              .demo-map {{'{'}}
+                height: 400px;
+              }
+            </codeblock>
+          </tab>
+          <tab heading='component'>
+            <codeblock language="javascript">
+              import {{'{'}} Component } from '@angular/core';
+              import * as AMapType from 'ngx-amap/types';
+
+              @Component({{'{'}}
+                selector: 'app-demo-3',
+                templateUrl: './demo-3.component.html',
+                styleUrls: ['./demo-3.component.scss']
+              })
+              export class Demo3Component {{'{'}}
+                markerHidden = false;
+                customIcon: AMapType.IconOptions;
+                customLabel: AMapType.LabelOptions;
+
+                onMarkerClick(event) {{'{'}}
+                  console.log('on marker click:', event);
+                }
+  
+                toggle() {{'{'}}
+                  this.markerHidden = !this.markerHidden;
+                }
+  
+                toggleIcon() {{'{'}}
+                  this.customIcon = this.customIcon ? undefined : {{'{'}}
+                    size: {{'{'}}
+                      width: 40,
+                      height: 50
+                    },  // AMapType.SizeOptions
+                    image: 'http://webapi.amap.com/theme/v1.3/images/newpc/way_btn2.png',
+                    imageOffset: {{'{'}}
+                      x: 0,
+                      y: -60
+                    } // AMapType.PixelOptions
+                  };
+                }
+  
+                toggleLabel() {{'{'}}
+                  this.customLabel = this.customLabel ? undefined : {{'{'}}
+                    offset: {{'{'}}
+                      x: 20,
+                      y: 20
+                    }, // AMapType.PixelOptions
+                    content: '我是marker的label标签'
+                  };
+                }
+              }
+            </codeblock>
+          </tab>
+          <tab heading='customIcon'>
+            <codeblock language="javascript">
+              customIcon = {{ customIcon | json }};
+            </codeblock>
+          </tab>
+          <tab heading='customLabel'>
+            <codeblock language="javascript">
+              customLabel = {{ customLabel | json }};
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

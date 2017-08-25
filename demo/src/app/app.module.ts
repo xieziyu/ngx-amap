@@ -2,16 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { CodeblockModule } from 'ng-prism';
 import { TabsModule } from 'ngx-bootstrap';
 import { NgxAmapModule } from 'ngx-amap';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Demo1Component } from './demos/demo-1/demo-1.component';
+import { Demo2Component } from './demos/demo-2/demo-2.component';
+import { Demo3Component } from './demos/demo-3/demo-3.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Demo1Component,
+    Demo2Component,
+    Demo3Component
   ],
   imports: [
     BrowserModule,
@@ -19,12 +27,16 @@ import { AppComponent } from './app.component';
     HttpModule,
     CodeblockModule,
     TabsModule.forRoot(),
+    AppRoutingModule,
     NgxAmapModule.forRoot({
       apiKey: 'YOUR KEY',
       apiVersion: '1.3'
     })
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

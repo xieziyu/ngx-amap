@@ -75,7 +75,7 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() features: Array<string>;
   @Input() showBuildingBlock: boolean;
 
-  // External property:
+  // Extra property:
   @Input() city: string;
 
   // ngx-amap events:

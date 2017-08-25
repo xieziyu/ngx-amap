@@ -1,5 +1,7 @@
 import { LngLat } from './amap.lng-lat';
 import { MapOptions } from './amap.map-options';
+import { Pixel } from './amap.pixel';
+import { Size } from './amap.size';
 
 export interface Map {
   new (container: string|HTMLDivElement, opts: MapOptions): Map;
@@ -12,7 +14,7 @@ export interface Map {
   getlabelzIndex(): number;
   getLimitBounds(): any; // TODO: Bounds
   getLang(): string;
-  getSize(): any; // TODO: Size
+  getSize(): Size;
   getRotation(): number;
   getStatus(): any;
   getDefaultCursor(): string;
@@ -45,10 +47,10 @@ export interface Map {
   addControl(obj: any): void;
   removeControl(obj: any): void;
   clearInfoWindow(): void;
-  pixelToLngLat(pixel: any, level: number): LngLat; // TODO: Pixel
-  lnglatToPixel(lngLat: LngLat|Array<number>, level: number): any; // TODO: Pixel
-  containerToLngLat(pixel: any): LngLat; // TODO: Pixel
-  lngLatToContainer(lnglat: LngLat|Array<number>): any; // TODO: Pixel
+  pixelToLngLat(pixel: Pixel, level: number): LngLat;
+  lnglatToPixel(lngLat: LngLat|Array<number>, level: number): Pixel;
+  containerToLngLat(pixel: Pixel): LngLat;
+  lngLatToContainer(lnglat: LngLat|Array<number>): Pixel;
   setMapStyle(style: string): void;
   getMapStyle(): string;
   setFeatures(feature: Array<string>): void;
