@@ -1,12 +1,15 @@
 # ngx-amap [![npm version](https://badge.fury.io/js/ngx-amap.svg)](http://badge.fury.io/js/ngx-amap) [![npm downloads](https://img.shields.io/npm/dm/ngx-amap.svg)](https://npmjs.org/ngx-amap)
-angular 2+ component for AMap (高德地图). This project is ongoing ...
+angular 2+ component for AMap (高德地图). Please refer to the [ngx-amap/demo](https://xieziyu.github.io/#/ngx-amap/demo) page.
+
+This project is ongoing ...
 
 ## Table of contents 
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [Directives](#directives)
-4. [Types](#types)
-5. [Demo](#demo)
+3. [Config](#config)
+4. [Directives](#directives)
+5. [Types](#types)
+6. [Demo](#demo)
 
 # Installation
 ```
@@ -55,6 +58,16 @@ npm install ngx-amap --save
         <amap-marker [position]="[116.397428, 39.90923]" (markerClick)="onMarkerClick($event)"></amap-marker>
       </ngx-amap>
       ```
+
+# Config
+You can setup `NgxAmapModule` by `forRoot` method. It supports following options:
+```typescript
+{
+  apiKey: string;   // *required*. Your developer key for AMap web service.
+  apiVersion: string;  // [optional]. default is '1.3'
+  urlPath: string;  // [optional]. default is 'http://webapi.amap.com/maps', You can change HTTP or HTTPS protocol by this string.
+}
+```
 
 # Directives
 + `ngx-amap`: [**ngx-amap.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/ngx-amap.md)
