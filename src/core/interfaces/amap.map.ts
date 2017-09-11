@@ -2,6 +2,7 @@ import { LngLat } from './amap.lng-lat';
 import { MapOptions } from './amap.map-options';
 import { Pixel } from './amap.pixel';
 import { Size } from './amap.size';
+import { AMapPluginType } from './amap.plugin';
 
 export interface Map {
   new (container: string|HTMLDivElement, opts: MapOptions): Map;
@@ -44,8 +45,8 @@ export interface Map {
   clearMap(): void;
   destroy(): void;
   plugin(name: string|Array<string>, callback: (result: any) => void): void;
-  addControl(obj: any): void;
-  removeControl(obj: any): void;
+  addControl(obj: AMapPluginType): void;
+  removeControl(obj: AMapPluginType): void;
   clearInfoWindow(): void;
   pixelToLngLat(pixel: Pixel, level: number): LngLat;
   lnglatToPixel(lngLat: LngLat|Array<number>, level: number): Pixel;

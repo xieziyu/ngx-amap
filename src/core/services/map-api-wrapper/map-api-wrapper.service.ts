@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import * as AMapType from '../../interfaces/amap.interface';
 import { AMapClass } from '../../interfaces/amap.interface';
 import { MapOptions } from '../../interfaces/amap.map-options';
+import { PixelOptions } from '../../interfaces/amap.pixel-options';
+import { SizeOptions } from '../../interfaces/amap.size-options';
 import { MapAPILoaderService } from '../map-api-loader/map-api-loader.service';
 
 declare const AMap: AMapClass;
@@ -23,6 +25,30 @@ export class MapAPIWrapperService {
       const map = new AMap.Map(el, mapOptions);
       this._mapResolver(map);
     });
+  }
+
+  createPixel(pixel: PixelOptions): AMapType.Pixel {
+    return new AMap.Pixel(pixel.x, pixel.y);
+  }
+
+  verifyPixel(tag: string, name: string, pixel: PixelOptions) {
+    if (typeof pixel.x !== 'number' || typeof pixel.y !== 'number') {
+      console.error(`[${tag}] '${name}' should have type {x: number, y: number}`);
+      return false;
+    }
+    return true;
+  }
+
+  createSize(size: SizeOptions): AMapType.Size {
+    return new AMap.Size(size.width, size.height);
+  }
+
+  verifySize(tag: string, name: string, size: SizeOptions) {
+    if (typeof size.width !== 'number' || typeof size.height !== 'number') {
+      console.error(`[${tag}] '${name}' should have type {width: number, height: number}`);
+      return false;
+    }
+    return true;
   }
 
   destroy() {

@@ -55,7 +55,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy {
   @Input() label: LabelOptions;
 
   // Extra property:
-  @Input() hidden =  false;
+  @Input() hidden = false;
 
   // amap-marker events:
   @Output() markerClick = new EventEmitter();

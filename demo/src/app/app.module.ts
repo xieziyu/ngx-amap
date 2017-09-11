@@ -13,13 +13,15 @@ import { AppComponent } from './app.component';
 import { Demo1Component } from './demos/demo-1/demo-1.component';
 import { Demo2Component } from './demos/demo-2/demo-2.component';
 import { Demo3Component } from './demos/demo-3/demo-3.component';
+import { Demo4Component } from './demos/demo-4/demo-4.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Demo1Component,
     Demo2Component,
-    Demo3Component
+    Demo3Component,
+    Demo4Component
   ],
   imports: [
     BrowserModule,

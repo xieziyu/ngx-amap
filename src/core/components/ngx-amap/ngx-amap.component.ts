@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Input, OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MapAPIWrapperService } from '../../services/map-api-wrapper/map-api-wrapper.service';
 import { MarkerManagerService, MarkerWrapperService } from '../../services/marker';
+import { PluginManagerService } from '../../services/plugin';
 import { MapOptions } from '../../interfaces/amap.map-options';
 import { OptionsChangeDetectorService } from '../../services/options-change-detector/options-change-detector.service';
 
@@ -42,7 +43,8 @@ const ALL_MAP_OPTIONS = [
   providers: [
     MapAPIWrapperService,
     MarkerManagerService,
-    MarkerWrapperService
+    MarkerWrapperService,
+    PluginManagerService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {

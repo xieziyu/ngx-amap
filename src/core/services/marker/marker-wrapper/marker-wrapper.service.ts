@@ -54,11 +54,11 @@ export class MarkerWrapperService {
   }
 
   convertPixel(name: string, pixel: PixelOptions): AMapType.Pixel {
-    return this.verifyPixel(name, pixel) ? this._convertPixel(pixel) : undefined;
+    return this.mapAPI.verifyPixel('amap-marker', name, pixel) ? this.mapAPI.createPixel(pixel) : undefined;
   }
 
   convertSize(name: string, size: SizeOptions): AMapType.Size {
-    return this.verifySize(name, size) ? this._convertSize(size) : undefined;
+    return this.mapAPI.verifySize('amap-marker', name, size) ? this.mapAPI.createSize(size) : undefined;
   }
 
   convertIcon(name: string, icon: string|IconOptions): string|AMapType.Icon {
@@ -101,29 +101,5 @@ export class MarkerWrapperService {
       content: label.content,
       offset: this.convertPixel('label.offset', label.offset)
     };
-  }
-
-  verifyPixel(name: string, pixel: PixelOptions) {
-    if (typeof pixel.x !== 'number' || typeof pixel.y !== 'number') {
-      console.error(`[amap-marker] '${name}' should have type {x: number, y: number}`);
-      return false;
-    }
-    return true;
-  }
-
-  verifySize(name: string, size: SizeOptions) {
-    if (typeof size.width !== 'number' || typeof size.height !== 'number') {
-      console.error(`[amap-marker] '${name}' should have type {width: number, height: number}`);
-      return false;
-    }
-    return true;
-  }
-
-  private _convertPixel(pixel: PixelOptions): AMapType.Pixel {
-    return new AMap.Pixel(pixel.x, pixel.y);
-  }
-
-  private _convertSize(size: SizeOptions): AMapType.Size {
-    return new AMap.Size(size.width, size.height);
   }
 }
