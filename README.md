@@ -4,12 +4,16 @@ angular 2+ component for AMap (高德地图). Please refer to the [ngx-amap/demo
 This project is ongoing ...
 
 ## Table of contents 
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Config](#config)
-4. [Directives](#directives)
-5. [Types](#types)
-6. [Demo](#demo)
+1. [Latest News](#latest_news)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Config](#config)
+5. [Directives](#directives)
+6. [Types](#types)
+7. [Demo](#demo)
+
+# Latest News
+2017.09.12: Support ToolBar plugin: amap-tool-bar
 
 # Installation
 ```
@@ -59,6 +63,16 @@ npm install ngx-amap --save
       </ngx-amap>
       ```
 
+4. add `amap-tool-bar` to add ToolBar plugin
+    + Simple example:
+
+      + html:
+      ```html
+      <ngx-amap class="demo-map">
+        <amap-tool-bar></amap-tool-bar>
+      </ngx-amap>
+      ```
+
 # Config
 You can setup `NgxAmapModule` by `forRoot` method. It supports following options:
 ```typescript
@@ -72,6 +86,7 @@ You can setup `NgxAmapModule` by `forRoot` method. It supports following options
 # Directives
 + `ngx-amap`: [**ngx-amap.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/ngx-amap.md)
 + `amap-marker`: [**amap-marker.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-marker.md)
++ `amap-tool-bar`: [**amap-tool-bar.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-tool-bar.md)
 
 # Types
 Exported some useful type interfaces such as `Icon`, `Pixel`, etc. Please refer to [**Types.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/Types.md).

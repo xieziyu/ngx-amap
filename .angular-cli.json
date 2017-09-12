@@ -22,7 +22,8 @@
         "styles.scss"
       ],
       "scripts": [
-        "../../node_modules/prismjs/prism.js"
+        "../../node_modules/prismjs/prism.js",
+        "../../node_modules/prismjs/components/prism-json.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

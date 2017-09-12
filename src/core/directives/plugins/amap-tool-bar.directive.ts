@@ -34,6 +34,10 @@ export class AmapToolBarDirective extends AMapPlugin implements OnInit, OnChange
   @Input() locationMarker: Marker;
   @Input() useNative: boolean;
 
+  // amap-tool-bar events:
+  @Output() zoomChanged = new EventEmitter();
+  @Output() location = new EventEmitter();
+
   constructor(private pluginMgr: PluginManagerService) {
     super();
   }
@@ -51,15 +55,33 @@ export class AmapToolBarDirective extends AMapPlugin implements OnInit, OnChange
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (!this._id) {
+      this._init();
+    } else {
+      this.pluginMgr.onToolBarOptionChange(this._id, changes);
+    }
+
+    this.pluginMgr.onPluginCommonPropertyChange(this._id, changes);
   }
 
   ngOnInit() {
     if (!this._id) {
-      this._id = this.pluginMgr.addToolBar(this, this._getOptions());
+      this._init();
     }
   }
 
   ngOnDestroy() {
     this.pluginMgr.deletePlugin(this);
+    this._unsubscribeEvents();
+  }
+
+  private _init() {
+    this._id = this.pluginMgr.addToolBar(this, this._getOptions());
+    this._observeEvents();
+  }
+
+  private _observeEvents() {
+    this._subscriptions = this.pluginMgr.observeEvent(this._id, 'zoomchanged').subscribe(e => this.zoomChanged.emit(e));
+    this._subscriptions.add(this.pluginMgr.observeEvent(this._id, 'location').subscribe(e => this.location.emit(e)));
   }
 }

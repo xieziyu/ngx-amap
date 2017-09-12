@@ -108,3 +108,11 @@ import type interfaces from `'ngx-amap/types'`. For example:
   ```
   + Refer to label of [MarkerOptions](http://lbs.amap.com/api/javascript-api/reference/overlay)
   + 点标签的`label`属性, 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/overlay)
+
++ **ToolBar**:
+  + Refer to [AMap.ToolBar](http://lbs.amap.com/api/javascript-api/reference/map-control)
+  + 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/map-control)
+
++ **ToolbarOptions**:
+  + Refer to [ToolbarOptions](http://lbs.amap.com/api/javascript-api/reference/map-control)
+  + 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/map-control)

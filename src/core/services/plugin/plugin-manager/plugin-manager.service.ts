@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, SimpleChanges } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { MapAPIWrapperService } from '../../map-api-wrapper/map-api-wrapper.service';
 import { AmapToolBarDirective } from '../../../directives/plugins/amap-tool-bar.directive';
 import { AMapPlugin } from '../../../directives/plugins/amap-plugin';
@@ -9,6 +10,7 @@ import { AMapClass } from '../../../interfaces/amap.interface';
 import { AMapPluginType } from '../../../interfaces/amap.plugin';
 import { PixelOptions } from '../../../interfaces/amap.pixel-options';
 import { KeyMap } from '../../../utils/key-map';
+import { OptionsChangeDetectorService } from '../../options-change-detector/options-change-detector.service';
 
 declare const AMap: AMapClass;
 
@@ -19,7 +21,7 @@ export class PluginManagerService {
   private _totalPlugin = 0;
   private _freePluginID = 0;
 
-  constructor(private mapAPI: MapAPIWrapperService) {
+  constructor(private mapAPI: MapAPIWrapperService, private detector: OptionsChangeDetectorService) {
     this._map = mapAPI.map;
   }
 
@@ -69,7 +71,79 @@ export class PluginManagerService {
     });
   }
 
+  observeEvent(pluginId: string, event: string): Observable<any> {
+    return Observable.create(observer => {
+      const pluginPromise = this._plugins.get(pluginId);
+
+      if (pluginPromise) {
+        let listenerPromise = pluginPromise.then(plugin => {
+          return AMap.event.addListener(plugin, event, (e) => {
+            observer.next(e);
+          }, this);
+        });
+
+        return () => {
+          listenerPromise.then(listener => {
+            AMap.event.removeListener(listener);
+            listenerPromise = null;
+          });
+        };
+      }
+    });
+  }
+
   convertPixel(name: string, pixel: PixelOptions): AMapType.Pixel {
     return this.mapAPI.verifyPixel('plugin-manager', name, pixel) ? this.mapAPI.createPixel(pixel) : undefined;
+  }
+
+  onToolBarOptionChange(pluginId: string, changes: SimpleChanges) {
+    const pluginPromise = this._plugins.get(pluginId);
+
+    if (pluginPromise) {
+      this.detector.scan<PixelOptions>(changes, 'offset').subscribe(offset => {
+        const value = this.convertPixel('offset', offset.value);
+        if (value) {
+          pluginPromise.then(plugin => plugin.setOffset(value));
+        }
+      });
+
+      this.detector.scan<boolean>(changes, 'ruler').subscribe(ruler => {
+        if (ruler.value) {
+          pluginPromise.then(plugin => plugin.showRuler());
+        } else {
+          pluginPromise.then(plugin => plugin.hideRuler());
+        }
+      });
+
+      this.detector.scan<boolean>(changes, 'direction').subscribe(direction => {
+        if (direction.value) {
+          pluginPromise.then(plugin => plugin.showDirection());
+        } else {
+          pluginPromise.then(plugin => plugin.hideDirection());
+        }
+      });
+
+      this.detector.scan<boolean>(changes, 'locate').subscribe(locate => {
+        if (locate.value) {
+          pluginPromise.then(plugin => plugin.showLocation());
+        } else {
+          pluginPromise.then(plugin => plugin.hideLocation());
+        }
+      });
+    }
+  }
+
+  onPluginCommonPropertyChange(pluginId: string, changes: SimpleChanges) {
+    const pluginPromise = this._plugins.get(pluginId);
+
+    if (pluginPromise) {
+      this.detector.scan<boolean>(changes, 'hidden').subscribe(hidden => {
+        if (hidden.value) {
+          pluginPromise.then(plugin => plugin.hide());
+        } else {
+          pluginPromise.then(plugin => plugin.show());
+        }
+      });
+    }
   }
 }
