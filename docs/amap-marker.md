@@ -43,7 +43,7 @@ amap-marker is a directive to draw `AMap.Marker` in `ngx-amap` container. Use it
 + It also support extra attributes:
   + `hidden`: boolean, use it to hide/show the marker.
   ```html
-  <ngx-amap class="demo-map" [hidden]="markerHidden"></ngx-amap>
+  <amap-marker class="demo-map" [hidden]="markerHidden"></amap-marker>
   ```
 
 # Event
