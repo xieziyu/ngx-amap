@@ -20,7 +20,7 @@ export class Demo5Component implements OnInit {
   ngOnInit() {
   }
 
-  toggleInfoWindow(e) {
+  toggleInfoWindow() {
     this.openInfoWindow = !this.openInfoWindow;
   }
 

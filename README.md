@@ -14,6 +14,7 @@ This project is ongoing ...
 
 # Latest News
 2017.09.13: Support Info Window: amap-info-window
+
 2017.09.12: Support ToolBar plugin: amap-tool-bar
 
 # Installation
