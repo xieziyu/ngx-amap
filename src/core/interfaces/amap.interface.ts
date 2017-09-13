@@ -7,6 +7,7 @@ import { Size } from './amap.size';
 import { Icon } from './amap.icon';
 import { Label } from './amap.label';
 import { ToolBar } from './amap.toolbar';
+import { InfoWindow } from './amap.info-window';
 
 export interface AMapClass {
   Map: Map;
@@ -18,6 +19,7 @@ export interface AMapClass {
   Icon: Icon;
   Label: Label;
   ToolBar: ToolBar;
+  InfoWindow: InfoWindow;
 }
 
-export { Map, LngLat, Marker, Pixel, Size, Icon, Label, ToolBar };
+export { Map, LngLat, Marker, Pixel, Size, Icon, Label, ToolBar, InfoWindow };

@@ -116,3 +116,11 @@ import type interfaces from `'ngx-amap/types'`. For example:
 + **ToolbarOptions**:
   + Refer to [ToolbarOptions](http://lbs.amap.com/api/javascript-api/reference/map-control)
   + 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/map-control)
+
++ **InfoWindow**:
+  + Refer to [InfoWindow](http://lbs.amap.com/api/javascript-api/reference/infowindow)
+  + 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/infowindow)
+
++ **InfoWindowOptions**:
+  + Refer to [InfoWindowOptions](http://lbs.amap.com/api/javascript-api/reference/infowindow)
+  + 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/infowindow)

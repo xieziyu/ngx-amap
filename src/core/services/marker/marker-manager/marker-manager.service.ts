@@ -1,7 +1,6 @@
 import { Injectable, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MarkerWrapperService } from '../marker-wrapper/marker-wrapper.service';
-import { AmapMarkerDirective } from '../../../directives/amap-marker/amap-marker.directive';
 import { KeyMap } from '../../../utils/key-map';
 import * as AMapType from '../../../interfaces/amap.interface';
 import { AMapClass } from '../../../interfaces/amap.interface';
@@ -21,15 +20,18 @@ export class MarkerManagerService {
 
   constructor(private markerWrapper: MarkerWrapperService, private detector: OptionsChangeDetectorService) { }
 
-  addMarker(marker: AmapMarkerDirective, markerOptions: MarkerOptions): string {
+  getMarker(id: string): Promise<AMapType.Marker> {
+    return this._markers.get(id);
+  }
+
+  addMarker(markerOptions: MarkerOptions): string {
     const markerPromise = this.markerWrapper.createMarker(markerOptions);
     const id = this._getFreeMarkerID();
     this._markers.set(id, markerPromise);
     return id;
   }
 
-  deleteMarker(marker: AmapMarkerDirective): Promise<void> {
-    const id = marker.id;
+  deleteMarker(id: string): Promise<void> {
     const markerPromise = this._markers.get(id);
     if (!markerPromise) {
       return Promise.resolve();

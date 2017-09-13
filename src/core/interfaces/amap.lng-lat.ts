@@ -1,4 +1,4 @@
-export interface LngLat {
+export interface LngLat extends Array<number> {
   new (lng: number, lat: number): LngLat;
   offset(w: number, s: number): LngLat;
   distance(lnglat: LngLat|Array<LngLat>): number;

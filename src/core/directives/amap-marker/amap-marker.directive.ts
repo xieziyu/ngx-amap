@@ -1,4 +1,5 @@
-import { Directive, Input, Output, OnChanges, OnDestroy, SimpleChanges, EventEmitter } from '@angular/core';
+import { Directive, Input, Output, OnChanges, OnDestroy, SimpleChanges, EventEmitter,
+  AfterContentInit, ContentChildren, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import * as AMapType from '../../interfaces/amap.interface';
 import { MarkerOptions } from '../../interfaces/amap.marker-options';
@@ -6,6 +7,7 @@ import { PixelOptions } from '../../interfaces/amap.pixel-options';
 import { IconOptions } from '../../interfaces/amap.icon-options';
 import { LabelOptions } from '../../interfaces/amap.label-options';
 import { MarkerManagerService } from '../../services/marker/marker-manager/marker-manager.service';
+import { AmapInfoWindowComponent } from '../../components/amap-info-window/amap-info-window.component';
 
 const ALL_MARKER_OPTIONS = [
   'position',
@@ -32,7 +34,7 @@ const ALL_MARKER_OPTIONS = [
 @Directive({
   selector: 'amap-marker'
 })
-export class AmapMarkerDirective implements OnChanges, OnDestroy {
+export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentInit {
   // These properties are supported in MarkerOptions:
   @Input() position: Array<number>;
   @Input() offset: PixelOptions;
@@ -56,9 +58,13 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy {
 
   // Extra property:
   @Input() hidden = false;
+  @Input() openInfoWindow = true;
 
   // amap-marker events:
   @Output() markerClick = new EventEmitter();
+
+  // amap-info-window:
+  @ContentChildren(AmapInfoWindowComponent) infoWindowComponent = new QueryList<AmapInfoWindowComponent>();
 
   private _id: string;
   private _subscriptions: Subscription;
@@ -79,7 +85,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     if (!this._id) {
-      this._id = this.markerMgr.addMarker(this, this._getOptions());
+      this._id = this.markerMgr.addMarker(this._getOptions());
       this._observeEvents();
     } else {
       this.markerMgr.onMarkerOptionChange(this._id, changes);
@@ -89,12 +95,34 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.markerMgr.deleteMarker(this);
+    this.markerMgr.deleteMarker(this._id);
     this._unsubscribeEvents();
   }
 
+  ngAfterContentInit() {
+    this._updateInfoWindow();
+    this.infoWindowComponent.changes.subscribe(() => this._updateInfoWindow());
+  }
+
+  private _updateInfoWindow() {
+    if (this.infoWindowComponent.length > 1) {
+      console.error('Expected no more than one info window.');
+      return;
+    }
+    this.infoWindowComponent.forEach(component => {
+      component.hostMarker = this.markerMgr.getMarker(this._id);
+    });
+  }
+
   private _observeEvents() {
-    this._subscriptions = this.markerMgr.observeEvent(this._id, 'click').subscribe(e => this.markerClick.emit(e));
+    this._subscriptions = this.markerMgr.observeEvent(this._id, 'click').subscribe(e => {
+      if (this.openInfoWindow) {
+        this.infoWindowComponent.forEach(component => {
+          component.open();
+        });
+      }
+      this.markerClick.emit(e);
+    });
   }
 
   private _unsubscribeEvents() {

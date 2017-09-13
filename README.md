@@ -13,6 +13,7 @@ This project is ongoing ...
 7. [Demo](#demo)
 
 # Latest News
+2017.09.13: Support Info Window: amap-info-window
 2017.09.12: Support ToolBar plugin: amap-tool-bar
 
 # Installation
@@ -87,6 +88,7 @@ You can setup `NgxAmapModule` by `forRoot` method. It supports following options
 + `ngx-amap`: [**ngx-amap.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/ngx-amap.md)
 + `amap-marker`: [**amap-marker.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-marker.md)
 + `amap-tool-bar`: [**amap-tool-bar.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-tool-bar.md)
++ `amap-info-window`: [**amap-info-window.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-info-window.md)
 
 # Types
 Exported some useful type interfaces such as `Icon`, `Pixel`, etc. Please refer to [**Types.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/Types.md).
