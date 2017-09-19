@@ -13,6 +13,8 @@ This project is ongoing ...
 7. [Demo](#demo)
 
 # Latest News
+2017.09.19: Support `ngx-amap` setFitView(); some bugfix;
+
 2017.09.13: Support Info Window: amap-info-window
 
 2017.09.12: Support ToolBar plugin: amap-tool-bar

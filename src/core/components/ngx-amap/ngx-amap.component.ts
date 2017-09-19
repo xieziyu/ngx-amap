@@ -81,6 +81,7 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
 
   // Extra property:
   @Input() city: string;
+  @Input() name: string;
 
   // ngx-amap events:
   @Output() mapReady = new EventEmitter();
@@ -136,5 +137,9 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
         this.mapAPI.setCenter(center.value);
       }
     });
+  }
+
+  setFitView(): Promise<void> {
+    return this.mapAPI.setFitView();
   }
 }

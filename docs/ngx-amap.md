@@ -4,6 +4,7 @@
 1. [Usage](#usage)
 2. [Input](#input)
 3. [Event](#event)
+4. [Method](#method)
 
 # Usage
 ngx-amap is the AMap container. Use it with **pre-defined height**.
@@ -58,6 +59,11 @@ ngx-amap is the AMap container. Use it with **pre-defined height**.
   <ngx-amap class="demo-map" [city]="myCity"></ngx-amap>
   ```
 
+  + `name`: string
+  ```html
+  <ngx-amap class="demo-map" name="myMapName"></ngx-amap>
+  ```
+
 # Event
 + `mapReady`: Emitted when AMap.Map is created.
 
@@ -72,5 +78,20 @@ ngx-amap is the AMap container. Use it with **pre-defined height**.
     mapInstance.then(map => {
       console.log(map);
     });
+  }
+  ```
+
+# Method
++ `setFitView()`: Promise<void>
+
+  + component
+  ```typescript
+  import { NgxAmapComponent } from 'ngx-amap/core/components';
+
+  @ViewChildren(NgxAmapComponent)
+  maps: QueryList<NgxAmapComponent>;
+
+  setFitView() {
+    this.maps.find(m => m.name === 'myMapName').setFitView();
   }
   ```

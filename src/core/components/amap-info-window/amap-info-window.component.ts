@@ -102,7 +102,7 @@ export class AmapInfoWindowComponent implements OnInit, OnChanges, OnDestroy {
     this._subscriptions = this.windowMgr.observeEvent(this._id, 'change').subscribe(e => this.windowChange.emit(e));
     this._subscriptions.add(this.windowMgr.observeEvent(this._id, 'open').subscribe(e => {
       this.isOpen = true;
-      this.windowClose.emit(e);
+      this.windowOpen.emit(e);
     }));
     this._subscriptions.add(this.windowMgr.observeEvent(this._id, 'close').subscribe(e => {
       this.isOpen = false;

@@ -80,4 +80,8 @@ export class MapAPIWrapperService {
       this._map.then(map => map.setCity(city, () => { resolve(); }));
     });
   }
+
+  setFitView() {
+    return this._map.then(map => map.setFitView());
+  }
 }
