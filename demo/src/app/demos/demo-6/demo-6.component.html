@@ -19,14 +19,16 @@
         <tabset>
           <tab heading='html'>
             <codeblock language="html">
-              &lt;amap-polyline
-                [path]="lineArr"
-                [strokeColor]="'#3366FF'"
-                [strokeOpacity]="1"
-                [strokeWeight]="5"
-                [strokeStyle]="'solid'"
-                [strokeDasharray]="[10, 5]">
-              &lt;/amap-polyline>
+              &lt;ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+                &lt;amap-polyline
+                  [path]="lineArr"
+                  [strokeColor]="'#3366FF'"
+                  [strokeOpacity]="1"
+                  [strokeWeight]="5"
+                  [strokeStyle]="'solid'"
+                  [strokeDasharray]="[10, 5]">
+                &lt;/amap-polyline>
+              &lt;/ngx-amap>
             </codeblock>
           </tab>
           <tab heading='scss'>
@@ -66,7 +68,9 @@
         <tabset>
           <tab heading='html'>
             <codeblock language="html">
-              &lt;amap-polyline [options]="lineOptions">&lt;/amap-polyline>
+              &lt;ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+                &lt;amap-polyline [options]="lineOptions">&lt;/amap-polyline>
+              &lt;/ngx-amap>
             </codeblock>
           </tab>
           <tab heading='scss'>
