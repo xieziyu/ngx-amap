@@ -61,7 +61,7 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
     const options: PolylineOptions = {};
 
     ALL_OPTIONS.forEach(key => {
-      if (this[key] !== undefined) {
+      if (this[key] !== undefined && this[key] !== null) {
         options[key] = this[key];
       }
     });

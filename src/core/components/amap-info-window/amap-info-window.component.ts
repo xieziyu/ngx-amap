@@ -62,7 +62,7 @@ export class AmapInfoWindowComponent implements OnInit, OnChanges, OnDestroy {
     const options: InfoWindowOptions = {};
 
     ALL_OPTIONS.forEach(key => {
-      if (this[key] !== undefined) {
+      if (this[key] !== undefined && this[key] !== null) {
         options[key] = this[key];
       }
     });

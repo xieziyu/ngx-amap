@@ -46,7 +46,7 @@ export class AmapToolBarDirective extends AMapPlugin implements OnInit, OnChange
     const options: ToolbarOptions = {};
 
     ALL_OPTIONS.forEach(key => {
-      if (this[key] !== undefined) {
+      if (this[key] !== undefined && this[key] !== null) {
         options[key] = this[key];
       }
     });

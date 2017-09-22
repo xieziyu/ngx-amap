@@ -110,7 +110,7 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
     const options: MapOptions = {};
 
     ALL_MAP_OPTIONS.forEach(key => {
-      if (this[key] !== undefined) {
+      if (this[key] !== undefined && this[key] !== null) {
         options[key] = this[key];
       }
     });

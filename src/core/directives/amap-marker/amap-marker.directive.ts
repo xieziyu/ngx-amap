@@ -78,7 +78,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
     const options: MarkerOptions = {};
 
     ALL_MARKER_OPTIONS.forEach(key => {
-      if (this[key] !== undefined) {
+      if (this[key] !== undefined && this[key] !== null) {
         options[key] = this[key];
       }
     });
