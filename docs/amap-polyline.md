@@ -77,15 +77,15 @@ amap-polyline is a directive to draw `AMap.Polyline` in `ngx-amap` container. Us
   ```
 
 # Method
-+ `getPath()`: Promise<number[][]>
-+ `getOptions()`: Promise<PolylineOptions>
-+ `getLength()`: Promise<number>
-+ `getBounds()`: Promise<any>
-+ `getExtData()`: Promise<any>
++ `getPath()`: Promise\<number[][]>
++ `getOptions()`: Promise\<PolylineOptions>
++ `getLength()`: Promise\<number>
++ `getBounds()`: Promise\<any>
++ `getExtData()`: Promise\<any>
 
   + component
   ```typescript
-  import { AmapPolylineDirective } from 'ngx-amap/core/directives';
+  import { AmapPolylineDirective } from 'ngx-amap';
 
   @ViewChild(AmapPolylineDirective)
   polyline: AmapPolylineDirective;

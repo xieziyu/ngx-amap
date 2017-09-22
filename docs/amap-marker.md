@@ -4,6 +4,7 @@
 1. [Usage](#usage)
 2. [Input](#input)
 3. [Event](#event)
+4. [Method](#method)
 
 # Usage
 amap-marker is a directive to draw `AMap.Marker` in `ngx-amap` container. Use it inside `<ngx-amap></ngx-amap>`
@@ -59,5 +60,29 @@ amap-marker is a directive to draw `AMap.Marker` in `ngx-amap` container. Use it
   ```typescript
   onMarkerClick(event) {
     console.log('on marker click:', event);
+  }
+  ```
+
+# Method
++ `getExtData()`: Promise\<any>
++ `show()`: Promise\<void>
++ `hide()`: Promise\<void>
++ `moveTo(lnglat: AMapType.LngLat|number[], speed: number, f?: (k:any)=>any)`: Promise\<any>
++ `moveAlong(path: AMapType.LngLat[]|number[][], speed: number, f?: (k:any)=>any)`: Promise\<any>
++ `stopMove()`: Promise\<void>
++ `pauseMove()`: Promise\<void>
++ `resumeMove()`: Promise\<void>
+
+  + component
+  ```typescript
+  import { AmapMarkerDirective } from 'ngx-amap';
+
+  @ViewChild(AmapMarkerDirective)
+  marker: AmapMarkerDirective;
+
+  demo() {
+    this.marker.show();
+    this.marker.hide();
+    this.marker.getExtData().then(extData => { console.log('get extData:', extData)});
   }
   ```

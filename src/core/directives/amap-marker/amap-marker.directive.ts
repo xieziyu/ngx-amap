@@ -62,6 +62,9 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
 
   // amap-marker events:
   @Output() markerClick = new EventEmitter();
+  @Output() moving = new EventEmitter();
+  @Output() moveend = new EventEmitter();
+  @Output() movealong = new EventEmitter();
 
   // amap-info-window:
   @ContentChildren(AmapInfoWindowComponent) infoWindowComponent = new QueryList<AmapInfoWindowComponent>();
@@ -123,6 +126,9 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
       }
       this.markerClick.emit(e);
     });
+    this._subscriptions.add(this.markerMgr.observeEvent(this._id, 'moving').subscribe(e => this.moving.emit(e)));
+    this._subscriptions.add(this.markerMgr.observeEvent(this._id, 'moveend').subscribe(e => this.moveend.emit(e)));
+    this._subscriptions.add(this.markerMgr.observeEvent(this._id, 'movealong').subscribe(e => this.movealong.emit(e)));
   }
 
   private _unsubscribeEvents() {
@@ -132,4 +138,37 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   get id() { return this._id; }
+
+  // Public Method
+  moveTo(lnglat: AMapType.LngLat|number[], speed: number, f?: (k:any)=>any): Promise<void> {
+    return this.markerMgr.moveTo(this._id, lnglat, speed, f);
+  }
+
+  moveAlong(path: AMapType.LngLat[]|number[][], speed: number, f?: (k:any)=>any): Promise<void> {
+    return this.markerMgr.moveAlong(this._id, path, speed, f);
+  }
+
+  stopMove(): Promise<void> {
+    return this.markerMgr.commonAction<any>(this._id, 'stopMove');
+  }
+
+  pauseMove(): Promise<void> {
+    return this.markerMgr.commonAction<any>(this._id, 'pauseMove');
+  }
+
+  resumeMove(): Promise<void> {
+    return this.markerMgr.commonAction<any>(this._id, 'resumeMove');
+  }
+
+  show(): Promise<void> {
+    return this.markerMgr.commonAction<any>(this._id, 'show');
+  }
+
+  hide(): Promise<void> {
+    return this.markerMgr.commonAction<any>(this._id, 'hide');
+  }
+
+  getExtData(): Promise<any> {
+    return this.markerMgr.commonAction<any>(this._id, 'getExtData');
+  }
 }

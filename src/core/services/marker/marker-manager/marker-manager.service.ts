@@ -133,4 +133,35 @@ export class MarkerManagerService {
       }
     });
   }
+
+  moveTo(id: string, lnglat: AMapType.LngLat|number[], speed: number, f?: (k:any)=>any): Promise<void> {
+    const markerPromise = this._markers.get(id);
+    if (markerPromise) {
+      return markerPromise.then(marker => {
+        marker.moveTo(lnglat, speed, f);
+      });
+    } else {
+      return Promise.resolve();
+    }
+  }
+
+  moveAlong(id: string, path: AMapType.LngLat[]|number[][], speed: number, f?: (k:any)=>any): Promise<void> {
+    const markerPromise = this._markers.get(id);
+    if (markerPromise) {
+      return markerPromise.then(marker => {
+        marker.moveAlong(path, speed, f);
+      });
+    } else {
+      return Promise.resolve();
+    }
+  }
+
+  commonAction<T>(id: string, action: string): Promise<T> {
+    const markerPromise = this._markers.get(id);
+    if (markerPromise) {
+      return markerPromise.then(marker => marker[action]());
+    } else {
+      return Promise.resolve(undefined);
+    }
+  }
 }

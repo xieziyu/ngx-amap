@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChildren, AfterViewInit, QueryList } from '@angular/core';
 import * as AMapType from 'ngx-amap/types';
+import { AmapMarkerDirective, NgxAmapComponent, AmapPolylineDirective } from 'ngx-amap';
 
 @Component({
   selector: 'app-demo-3',
   templateUrl: './demo-3.component.html',
   styleUrls: ['./demo-3.component.scss']
 })
-export class Demo3Component {
+export class Demo3Component implements OnInit, AfterViewInit {
   markerHidden = false;
   customIcon: AMapType.IconOptions;
   customLabel: AMapType.LabelOptions;
+  lineArr: number[][];
+  passedPath: number[][];
+  car: AmapMarkerDirective;
+
+  @ViewChildren(NgxAmapComponent) maps: QueryList<NgxAmapComponent>;
+  @ViewChildren(AmapMarkerDirective) markers: QueryList<AmapMarkerDirective>;
 
   onMarkerClick(event) {
     console.log('on marker click:', event);
@@ -41,5 +48,45 @@ export class Demo3Component {
       }, // AMapType.PixelOptions
       content: '我是marker的label标签'
     };
+  }
+
+  ngOnInit() {
+    this.lineArr = [];
+    let lngX = 116.397428, latY = 39.90923;
+    this.lineArr.push([lngX, latY]);
+    for (let i = 1; i < 4; i++) {
+        lngX = lngX + Math.random() * 0.05;
+        if (i % 2) {
+            latY = latY + Math.random() * 0.0001;
+        } else {
+            latY = latY + Math.random() * 0.06;
+        }
+        this.lineArr.push([lngX, latY]);
+    }
+  }
+
+  ngAfterViewInit() {
+    this.maps.last.setFitView();
+    this.car = this.markers.last;
+  }
+
+  onMoving(e) {
+    this.passedPath = e.passedPath;
+  }
+
+  startMove() {
+    this.car.moveAlong(this.lineArr, 500);
+  }
+
+  pauseMove() {
+    this.car.pauseMove();
+  }
+
+  resumeMove() {
+    this.car.resumeMove();
+  }
+
+  stopMove() {
+    this.car.stopMove();
   }
 }

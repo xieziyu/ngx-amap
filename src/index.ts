@@ -38,3 +38,5 @@ export class NgxAmapModule {
     };
   }
 }
+
+export { NgxAmapComponent, AmapToolBarDirective, AmapMarkerDirective, AmapInfoWindowComponent, AmapPolylineDirective };

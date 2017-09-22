@@ -29,7 +29,7 @@ export interface Marker {
   setCursor(cursor: string): void;
   setContent(html: string|HTMLElement): void;
   getContent(): string;
-  moveAlong(path: Array<number>|Array<LngLat>, speed: number, f?:(k:any)=>any, circlable?: boolean): void;
+  moveAlong(path: number[][]|Array<LngLat>, speed: number, f?:(k:any)=>any, circlable?: boolean): void;
   moveTo(lnglat: LngLat|Array<number>, speed: number, f?:(k:any)=>any): void;
   stopMove(): void;
   pauseMove(): void;
