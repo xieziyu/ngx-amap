@@ -7,17 +7,17 @@
 4. [Method](#method)
 
 # Usage
-amap-marker is a directive to draw `AMap.Marker` in `ngx-amap` container. Use it inside `<ngx-amap></ngx-amap>`
+amap-polyline is a directive to draw `AMap.Polyline` in `ngx-amap` container. Use it inside `<ngx-amap></ngx-amap>`
 
   + html
   ```html
   <ngx-amap class="demo-map">
-    <amap-marker [position]="[116.397428, 39.90923]"></amap-marker>
+    <amap-polyline></amap-polyline>
   </ngx-amap>
   ```
 
 # Input
-+ It accepts the `MarkerOptions` as the `@Input()` attributes, check `MarkerOptions` in [**Types.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/Types.md)
++ It accepts the `PolylineOptions` as the `@Input()` attributes, check `PolylineOptions` in [**Types.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/Types.md)
   + `zIndex`: number; *[Optional/可选参数]*
   + `bubble`: boolean; *[Optional]*
   + `geodesic`: boolean; *[Optional]*
