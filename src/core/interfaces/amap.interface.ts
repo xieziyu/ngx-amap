@@ -8,6 +8,7 @@ import { Icon } from './amap.icon';
 import { Label } from './amap.label';
 import { ToolBar } from './amap.toolbar';
 import { InfoWindow } from './amap.info-window';
+import { Polyline } from './amap.polyline';
 
 export interface AMapClass {
   Map: Map;
@@ -20,6 +21,7 @@ export interface AMapClass {
   Label: Label;
   ToolBar: ToolBar;
   InfoWindow: InfoWindow;
+  Polyline: Polyline;
 }
 
-export { Map, LngLat, Marker, Pixel, Size, Icon, Label, ToolBar, InfoWindow };
+export { Map, LngLat, Marker, Pixel, Size, Icon, Label, ToolBar, InfoWindow, Polyline };

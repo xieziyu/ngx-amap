@@ -44,7 +44,7 @@ amap-marker is a directive to draw `AMap.Marker` in `ngx-amap` container. Use it
   + `hidden`: boolean, default is `false`. Use it to hide/show the marker.
   + `openInfoWindow`: boolean, default is `true`. If it's true and the marker is clicked, the info window inside will be opened.
   ```html
-  <amap-marker class="demo-map" [hidden]="markerHidden"></amap-marker>
+  <amap-marker [hidden]="markerHidden"></amap-marker>
   ```
 
 # Event

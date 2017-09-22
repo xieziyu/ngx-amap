@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Input, OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MapAPIWrapperService } from '../../services/map-api-wrapper/map-api-wrapper.service';
 import { MarkerManagerService, MarkerWrapperService } from '../../services/marker';
+import { PolylineManagerService, PolylineWrapperService } from '../../services/polyline';
 import { PluginManagerService } from '../../services/plugin';
 import { InfoWindowManagerService } from '../../services/amap-info-window/info-window-manager.service';
 import { MapOptions } from '../../interfaces/amap.map-options';
@@ -46,7 +47,9 @@ const ALL_MAP_OPTIONS = [
     MarkerManagerService,
     MarkerWrapperService,
     PluginManagerService,
-    InfoWindowManagerService
+    InfoWindowManagerService,
+    PolylineManagerService,
+    PolylineWrapperService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {

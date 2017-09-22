@@ -124,3 +124,11 @@ import type interfaces from `'ngx-amap/types'`. For example:
 + **InfoWindowOptions**:
   + Refer to [InfoWindowOptions](http://lbs.amap.com/api/javascript-api/reference/infowindow)
   + 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/infowindow)
+
++ **PolylineOptions**:
+  + Refer to [PolylineOptions](http://lbs.amap.com/api/javascript-api/reference/overlay)
+  + 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/overlay)
+
++ **Polyline**:
+  + Refer to [Polyline](http://lbs.amap.com/api/javascript-api/reference/overlay)
+  + 参见[高德地图文档](http://lbs.amap.com/api/javascript-api/reference/overlay)
