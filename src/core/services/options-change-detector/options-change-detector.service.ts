@@ -12,7 +12,7 @@ export interface IDetectedChange<T> {
 @Injectable()
 export class OptionsChangeDetectorService {
 
-  scan<T>(changes: SimpleChanges, key: string): Observable<IDetectedChange<T>> {
+  scan<T>(changes: SimpleChanges, key: string, ignoreInvalid = true): Observable<IDetectedChange<T>> {
     const valueChange = changes[key];
     const result: IDetectedChange<T> = {
       changed: false,
@@ -24,13 +24,16 @@ export class OptionsChangeDetectorService {
       result.changed = true;
       result.value = valueChange.currentValue;
       result.isFirstChange = valueChange.isFirstChange();
-      return Observable.of(result);
+
+      if (!ignoreInvalid || (result.value !== undefined && result.value !== null)) {
+        return Observable.of(result);
+      }
     }
 
     return Observable.empty();
   }
 
-  scanList(changes: SimpleChanges, keys: string[]): Observable<{ [key: string]: IDetectedChange<any> }> {
+  scanList(changes: SimpleChanges, keys: string[], ignoreInvalid = true): Observable<{ [key: string]: IDetectedChange<any> }> {
     let oneChanged = false;
     const results: { [key: string]: IDetectedChange<any> } = {};
 
@@ -47,7 +50,10 @@ export class OptionsChangeDetectorService {
         result.changed = true;
         result.value = valueChange.currentValue;
         result.isFirstChange = valueChange.isFirstChange();
-        oneChanged = true;
+
+        if (!ignoreInvalid || (result.value !== undefined && result.value !== null)) {
+          oneChanged = true;
+        }
       }
 
       results[key] = result;
