@@ -51,50 +51,41 @@ export class MarkerManagerService {
     const markerPromise = this._markers.get(markerId);
 
     if (markerPromise) {
-      this.detector.scan<PixelOptions>(changes, 'offset').subscribe(offset => {
-        const value = this.markerWrapper.convertPixel('offset', offset.value);
-        if (value) {
-          markerPromise.then(marker => marker.setOffset(value));
-        }
-      });
+      markerPromise.then(marker => {
+        this.detector.scan<PixelOptions>(changes, 'offset').subscribe(offset => {
+          const value = this.markerWrapper.convertPixel('offset', offset.value);
+          if (value) {
+            marker.setOffset(value);
+          }
+        });
 
-      this.detector.scan<boolean>(changes, 'clickable').subscribe(clickable => {
-        markerPromise.then(marker => marker.setClickable(clickable.value));
-      });
+        this.detector.scan<string|IconOptions>(changes, 'icon').subscribe(icon => {
+          const value = this.markerWrapper.convertIcon('icon', icon.value);
+          if (value) {
+            marker.setIcon(value);
+          }
+        });
 
-      this.detector.scan<number[]>(changes, 'position').subscribe(position => {
-        markerPromise.then(marker => marker.setPosition(position.value));
-      });
+        this.detector.scan<IconOptions>(changes, 'shadow').subscribe(shadow => {
+          const value = <AMapType.Icon>this.markerWrapper.convertIcon('shadow', shadow.value);
+          if (value) {
+            marker.setShadow(value);
+          }
+        });
 
-      this.detector.scan<number>(changes, 'angle').subscribe(angle => {
-        markerPromise.then(marker => marker.setAngle(angle.value));
-      });
+        this.detector.scan<LabelOptions>(changes, 'label').subscribe(label => {
+          const value = this.markerWrapper.convertLabel(label.value);
+          if (value) {
+            marker.setLabel(value);
+          }
+        });
 
-      this.detector.scan<number>(changes, 'zIndex').subscribe(zIndex => {
-        markerPromise.then(marker => marker.setzIndex(zIndex.value));
-      });
-
-      this.detector.scan<string|IconOptions>(changes, 'icon').subscribe(icon => {
-        const value = this.markerWrapper.convertIcon('icon', icon.value);
-        markerPromise.then(marker => marker.setIcon(value));
-      });
-
-      this.detector.scan<any>(changes, 'content').subscribe(content => {
-        markerPromise.then(marker => marker.setContent(content.value));
-      });
-
-      this.detector.scan<string>(changes, 'title').subscribe(title => {
-        markerPromise.then(marker => marker.setTitle(title.value));
-      });
-
-      this.detector.scan<IconOptions>(changes, 'shadow').subscribe(shadow => {
-        const value = <AMapType.Icon>this.markerWrapper.convertIcon('shadow', shadow.value);
-        markerPromise.then(marker => marker.setShadow(value));
-      });
-
-      this.detector.scan<LabelOptions>(changes, 'label').subscribe(label => {
-        const value = this.markerWrapper.convertLabel(label.value);
-        markerPromise.then(marker => marker.setLabel(value));
+        this.detector.scan<boolean>(changes, 'clickable').subscribe(clickable => marker.setClickable(clickable.value));
+        this.detector.scan<number[]>(changes, 'position').subscribe(position => marker.setPosition(position.value));
+        this.detector.scan<number>(changes, 'angle').subscribe(angle => marker.setAngle(angle.value));
+        this.detector.scan<number>(changes, 'zIndex').subscribe(zIndex => marker.setzIndex(zIndex.value));
+        this.detector.scan<any>(changes, 'content').subscribe(content => marker.setContent(content.value));
+        this.detector.scan<string>(changes, 'title').subscribe(title => marker.setTitle(title.value));
       });
     }
   }
@@ -103,12 +94,14 @@ export class MarkerManagerService {
     const markerPromise = this._markers.get(markerId);
 
     if (markerPromise) {
-      this.detector.scan(changes, 'hidden').subscribe(hidden => {
-        if (hidden.value) {
-          markerPromise.then(marker => marker.hide());
-        } else {
-          markerPromise.then(marker => marker.show());
-        }
+      markerPromise.then(marker => {
+        this.detector.scan(changes, 'hidden').subscribe(hidden => {
+          if (hidden.value) {
+            marker.hide();
+          } else {
+            marker.show();
+          }
+        });
       });
     }
   }

@@ -76,23 +76,18 @@ export class InfoWindowManagerService {
     const infoWindowPromise = this._infoWindows.get(id);
 
     if (infoWindowPromise) {
-      this.detector.scan<AMapType.Size>(changes, 'size').subscribe(size => {
-        if (!size.value.getWidth) {
-          const value = this.convertSize('size', size.value);
-          if (value) {
-            infoWindowPromise.then(infoWindow => infoWindow.setSize(value));
+      infoWindowPromise.then(infoWindow => {
+        this.detector.scan<AMapType.Size>(changes, 'size').subscribe(size => {
+          if (!size.value.getWidth) {
+            const value = this.convertSize('size', size.value);
+            if (value) {
+              infoWindow.setSize(value);
+            }
           }
-        }
-      });
+        });
 
-      this.detector.scan<AMapType.LngLat>(changes, 'position').subscribe(position => {
-        const value = position.value;
-        infoWindowPromise.then(infoWindow => infoWindow.setPosition(value));
-      });
-
-      this.detector.scan<any>(changes, 'content').subscribe(content => {
-        const value = content.value;
-        infoWindowPromise.then(infoWindow => infoWindow.setContent(value));
+        this.detector.scan<AMapType.LngLat>(changes, 'position').subscribe(position => infoWindow.setPosition(position.value));
+        this.detector.scan<any>(changes, 'content').subscribe(content => infoWindow.setContent(content.value));
       });
     }
   }

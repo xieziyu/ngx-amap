@@ -100,35 +100,44 @@ export class PluginManagerService {
     const pluginPromise = this._plugins.get(pluginId);
 
     if (pluginPromise) {
-      this.detector.scan<PixelOptions>(changes, 'offset').subscribe(offset => {
-        const value = this.convertPixel('offset', offset.value);
-        if (value) {
-          pluginPromise.then(plugin => plugin.setOffset(value));
-        }
-      });
+      pluginPromise.then(plugin => {
+        this.detector.scan<PixelOptions>(changes, 'offset').subscribe(offset => {
+          const value = this.convertPixel('offset', offset.value);
+          if (value) {
+            plugin.setOffset(value);
+          }
+        });
 
-      this.detector.scan<boolean>(changes, 'ruler').subscribe(ruler => {
-        if (ruler.value) {
-          pluginPromise.then(plugin => plugin.showRuler());
-        } else {
-          pluginPromise.then(plugin => plugin.hideRuler());
-        }
-      });
+        this.detector.scan<PixelOptions>(changes, 'offset').subscribe(offset => {
+          const value = this.convertPixel('offset', offset.value);
+          if (value) {
+            plugin.setOffset(value);
+          }
+        });
 
-      this.detector.scan<boolean>(changes, 'direction').subscribe(direction => {
-        if (direction.value) {
-          pluginPromise.then(plugin => plugin.showDirection());
-        } else {
-          pluginPromise.then(plugin => plugin.hideDirection());
-        }
-      });
+        this.detector.scan<boolean>(changes, 'ruler').subscribe(ruler => {
+          if (ruler.value) {
+            plugin.showRuler();
+          } else {
+            plugin.hideRuler();
+          }
+        });
 
-      this.detector.scan<boolean>(changes, 'locate').subscribe(locate => {
-        if (locate.value) {
-          pluginPromise.then(plugin => plugin.showLocation());
-        } else {
-          pluginPromise.then(plugin => plugin.hideLocation());
-        }
+        this.detector.scan<boolean>(changes, 'direction').subscribe(direction => {
+          if (direction.value) {
+            plugin.showDirection();
+          } else {
+            plugin.hideDirection();
+          }
+        });
+
+        this.detector.scan<boolean>(changes, 'locate').subscribe(locate => {
+          if (locate.value) {
+            plugin.showLocation();
+          } else {
+            plugin.hideLocation();
+          }
+        });
       });
     }
   }
@@ -137,12 +146,14 @@ export class PluginManagerService {
     const pluginPromise = this._plugins.get(pluginId);
 
     if (pluginPromise) {
-      this.detector.scan<boolean>(changes, 'hidden').subscribe(hidden => {
-        if (hidden.value) {
-          pluginPromise.then(plugin => plugin.hide());
-        } else {
-          pluginPromise.then(plugin => plugin.show());
-        }
+      pluginPromise.then(plugin => {
+        this.detector.scan<boolean>(changes, 'hidden').subscribe(hidden => {
+          if (hidden.value) {
+            plugin.hide();
+          } else {
+            plugin.show();
+          }
+        });
       });
     }
   }

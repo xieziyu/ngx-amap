@@ -47,17 +47,12 @@ export class PolylineManagerService {
     const promise = this._polylines.get(id);
 
     if (promise) {
-      this.detector.scan<number[][]>(changes, 'path').subscribe(path => {
-        promise.then(polyline => polyline.setPath(path.value));
-      });
+      promise.then(polyline => {
+        this.detector.scan<number[][]>(changes, 'path').subscribe(path => polyline.setPath(path.value));
+        this.detector.scan<any>(changes, 'extData').subscribe(extData => polyline.setExtData(extData.value));
 
-      this.detector.scan<any>(changes, 'extData').subscribe(extData => {
-        promise.then(polyline => polyline.setExtData(extData.value));
-      });
-
-      // This should always be the last one:
-      this.detector.scan<PolylineOptions>(changes, 'options').subscribe(options => {
-        promise.then(polyline => polyline.setOptions(options.value));
+        // This should always be the last one:
+        this.detector.scan<PolylineOptions>(changes, 'options').subscribe(options => polyline.setOptions(options.value));
       });
     }
   }
@@ -66,12 +61,14 @@ export class PolylineManagerService {
     const promise = this._polylines.get(id);
 
     if (promise) {
-      this.detector.scan(changes, 'hidden').subscribe(hidden => {
-        if (hidden.value) {
-          promise.then(polyline => polyline.hide());
-        } else {
-          promise.then(polyline => polyline.show());
-        }
+      promise.then(polyline => {
+        this.detector.scan(changes, 'hidden').subscribe(hidden => {
+          if (hidden.value) {
+            polyline.hide();
+          } else {
+            polyline.show();
+          }
+        });
       });
     }
   }
