@@ -99,7 +99,7 @@ export class InfoWindowManagerService {
       if (infoWindowPromise) {
         let listenerPromise = infoWindowPromise.then(infoWindow => {
           return AMap.event.addListener(infoWindow, event, (e) => {
-            observer.next(e);
+            setTimeout(() => observer.next(e));
           }, this);
         });
 

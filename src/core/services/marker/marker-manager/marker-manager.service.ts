@@ -113,7 +113,7 @@ export class MarkerManagerService {
       if (markerPromise) {
         let listenerPromise = markerPromise.then(marker => {
           return AMap.event.addListener(marker, event, (e) => {
-            observer.next(e);
+            setTimeout(() => observer.next(e));
           }, this);
         });
 

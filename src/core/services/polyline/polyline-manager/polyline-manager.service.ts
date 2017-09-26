@@ -80,7 +80,7 @@ export class PolylineManagerService {
       if (promise) {
         let listenerPromise = promise.then(polyline => {
           return AMap.event.addListener(polyline, event, (e) => {
-            observer.next(e);
+            setTimeout(() => observer.next(e));
           }, this);
         });
 

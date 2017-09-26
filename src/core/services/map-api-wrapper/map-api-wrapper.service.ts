@@ -52,7 +52,10 @@ export class MapAPIWrapperService {
   }
 
   destroy() {
-    this._map.then(map => map.destroy());
+    this._map.then(map => {
+      map.clearMap();
+      map.destroy();
+    });
   }
 
   get map(): Promise<AMapType.Map> {

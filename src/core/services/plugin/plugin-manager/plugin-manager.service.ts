@@ -78,7 +78,7 @@ export class PluginManagerService {
       if (pluginPromise) {
         let listenerPromise = pluginPromise.then(plugin => {
           return AMap.event.addListener(plugin, event, (e) => {
-            observer.next(e);
+            setTimeout(() => observer.next(e));
           }, this);
         });
 
