@@ -1,20 +1,39 @@
 {
-  "extends": "../tsconfig.json",
+  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "../out-tsc/spec",
-    "baseUrl": "./",
+    "outDir": "../dist/out-tsc",
+    "baseUrl": ".",
     "module": "commonjs",
     "target": "es5",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
+    "paths": {
+      "ngx-amap*": [
+        "."
+      ]
+    },
     "types": [
       "jasmine",
-      "node"
+      "webpack"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
     ]
   },
-  "files": [
-    "test.ts"
-  ],
   "include": [
-    "**/*.spec.ts",
+    "../scripts/typings.d.ts",
+    "**/*.ts",
     "**/*.d.ts"
+  ],
+  "exclude": [
+    "../demo",
+    "../node_modules"
   ]
 }

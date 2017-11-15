@@ -1,0 +1,224 @@
+<div class="row">
+  <div class="col-12">
+    <div id="demo3-1" class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="panel-title">简单例子</h4>
+      </div>
+      <div class="panel-body">
+        <button class="btn btn-primary" (click)="toggle()">显示/隐藏 点标记</button>
+        <button class="btn btn-primary" (click)="toggleIcon()">切换自定义图标</button>
+        <button class="btn btn-primary" (click)="toggleLabel()">切换自定义文本标签</button>
+        <hr>
+        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+          <amap-marker [position]="[116.397428, 39.90923]" [hidden]="markerHidden" [icon]="customIcon" [label]="customLabel" (markerClick)="onMarkerClick($event)"></amap-marker>
+        </ngx-amap>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html">
+              &lt;ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+                &lt;amap-marker [position]="[116.397428, 39.90923]" [hidden]="markerHidden" [icon]="customIcon" [label]="customLabel" (markerClick)="onMarkerClick($event)">&lt;/amap-marker>
+              &lt;/ngx-amap>
+            </codeblock>
+          </tab>
+          <tab heading='scss'>
+            <codeblock language="css">
+              .demo-map {{"{"}}
+                height: 400px;
+              }
+            </codeblock>
+          </tab>
+          <tab heading='component'>
+            <codeblock language="javascript">
+              import {{"{"}} Component } from '@angular/core';
+              import * as AMapType from 'ngx-amap/types';
+
+              @Component({{"{"}}
+                selector: 'app-demo-3',
+                templateUrl: './demo-3.component.html',
+                styleUrls: ['./demo-3.component.scss']
+              })
+              export class Demo3Component {{"{"}}
+                markerHidden = false;
+                customIcon: AMapType.IconOptions;
+                customLabel: AMapType.LabelOptions;
+
+                onMarkerClick(event) {{"{"}}
+                  console.log('on marker click:', event);
+                }
+  
+                toggle() {{"{"}}
+                  this.markerHidden = !this.markerHidden;
+                }
+  
+                toggleIcon() {{"{"}}
+                  this.customIcon = this.customIcon ? undefined : {{"{"}}
+                    size: {{"{"}}
+                      width: 40,
+                      height: 50
+                    },  // AMapType.SizeOptions
+                    image: 'http://webapi.amap.com/theme/v1.3/images/newpc/way_btn2.png',
+                    imageOffset: {{"{"}}
+                      x: 0,
+                      y: -60
+                    } // AMapType.PixelOptions
+                  };
+                }
+  
+                toggleLabel() {{"{"}}
+                  this.customLabel = this.customLabel ? undefined : {{"{"}}
+                    offset: {{"{"}}
+                      x: 20,
+                      y: 20
+                    }, // AMapType.PixelOptions
+                    content: '我是marker的label标签'
+                  };
+                }
+              }
+            </codeblock>
+          </tab>
+          <tab heading='customIcon'>
+            <codeblock language="javascript">
+              customIcon = {{ customIcon | json }};
+            </codeblock>
+          </tab>
+          <tab heading='customLabel'>
+            <codeblock language="javascript">
+              customLabel = {{ customLabel | json }};
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div id="demo3-2" class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="panel-title">轨迹回放</h4>
+      </div>
+      <div class="panel-body">
+        <button class="btn btn-primary" (click)="startMove()">开始动画</button>
+        <button class="btn btn-primary" (click)="pauseMove()">暂停动画</button>
+        <button class="btn btn-primary" (click)="resumeMove()">继续动画</button>
+        <button class="btn btn-primary" (click)="stopMove()">停止动画</button>
+        <hr>
+        <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="17">
+          <amap-marker
+            [position]="[116.397428, 39.90923]"
+            icon="http://webapi.amap.com/images/car.png"
+            [offset]="{x:-26,y:-13}"
+            [autoRotation]="true"
+            (moving)="onMoving($event)">
+          </amap-marker>
+          <amap-polyline
+            [path]="lineArr"
+            [strokeColor]="'#00A'"
+            [strokeWeight]="3">
+          </amap-polyline>
+          <amap-polyline
+            [path]="passedPath"
+            [strokeColor]="'#F00'"
+            [strokeWeight]="3">
+          </amap-polyline>
+        </ngx-amap>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html">
+              &lt;ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="17">
+                &lt;amap-marker
+                  [position]="[116.397428, 39.90923]"
+                  icon="http://webapi.amap.com/images/car.png"
+                  [offset]="{{"{"}}x:-26,y:-13}"
+                  [autoRotation]="true"
+                  (moving)="onMoving($event)">
+                &lt;/amap-marker>
+                &lt;amap-polyline
+                  [path]="lineArr"
+                  [strokeColor]="'#00A'"
+                  [strokeWeight]="3">
+                &lt;/amap-polyline>
+                &lt;amap-polyline
+                  [path]="passedPath"
+                  [strokeColor]="'#F00'"
+                  [strokeWeight]="3">
+                &lt;/amap-polyline>
+              &lt;/ngx-amap>
+            </codeblock>
+          </tab>
+          <tab heading='scss'>
+            <codeblock language="css">
+              .demo-map {{"{"}}
+                height: 400px;
+              }
+            </codeblock>
+          </tab>
+          <tab heading='component'>
+            <codeblock language="javascript">
+              import {{"{"}} Component, OnInit, ViewChildren, AfterViewInit, QueryList } from '@angular/core';
+              import * as AMapType from 'ngx-amap/types';
+              import {{"{"}} AmapMarkerDirective, NgxAmapComponent, AmapPolylineDirective } from 'ngx-amap';
+              
+              @Component({{"{"}}
+                selector: 'app-demo-3',
+                templateUrl: './demo-3.component.html',
+                styleUrls: ['./demo-3.component.scss']
+              })
+              export class Demo3Component implements OnInit, AfterViewInit {{"{"}}
+                lineArr: number[][];
+                passedPath: number[][];
+                car: AmapMarkerDirective;
+              
+                @ViewChildren(NgxAmapComponent) maps: QueryList&lt;NgxAmapComponent>;
+                @ViewChildren(AmapMarkerDirective) markers: QueryList&lt;AmapMarkerDirective>;
+
+                ngOnInit() {{"{"}}
+                  this.lineArr = [];
+                  let lngX = 116.397428, latY = 39.90923;
+                  this.lineArr.push([lngX, latY]);
+                  for (let i = 1; i &lt; 4; i++) {{"{"}}
+                      lngX = lngX + Math.random() * 0.05;
+                      if (i % 2) {{"{"}}
+                          latY = latY + Math.random() * 0.0001;
+                      } else {{"{"}}
+                          latY = latY + Math.random() * 0.06;
+                      }
+                      this.lineArr.push([lngX, latY]);
+                  }
+                }
+              
+                ngAfterViewInit() {{"{"}}
+                  this.maps.last.setFitView();
+                  this.car = this.markers.last;
+                }
+              
+                onMoving(e) {{"{"}}
+                  this.passedPath = e.passedPath;
+                }
+              
+                startMove() {{"{"}}
+                  this.car.moveAlong(this.lineArr, 500);
+                }
+              
+                pauseMove() {{"{"}}
+                  this.car.pauseMove();
+                }
+              
+                resumeMove() {{"{"}}
+                  this.car.resumeMove();
+                }
+              
+                stopMove() {{"{"}}
+                  this.car.stopMove();
+                }
+              }
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

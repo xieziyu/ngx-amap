@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-12">
+    <div id="demo2-1" class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="panel-title">设置城市</h4>
+      </div>
+      <div class="panel-body">
+        <div class="form-group col-sm-6">
+          <input class="form-control" placeholder="请输入城市的名称或者AreaCode" type="text" [(ngModel)]="myCityName">
+        </div>
+        <button class="form-control" class="btn btn-primary" (click)="myCity = myCityName">到指定城市</button>
+        <hr>
+        <ngx-amap class="demo-map" [city]="myCity"></ngx-amap>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html">
+              &lt;ngx-amap class="demo-map" [city]="myCity">&lt;/ngx-amap>
+            </codeblock>
+          </tab>
+          <tab heading='scss'>
+            <codeblock language="css">
+              .demo-map {{'{'}}
+                height: 400px;
+              }
+            </codeblock>
+          </tab>
+          <tab heading='myCity'>
+            <codeblock language="javascript">
+              myCity = {{ myCity }}
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div id="demo2-2" class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="panel-title">调用地图方法</h4>
+      </div>
+      <div class="panel-body">
+        <button class="btn btn-primary" (click)="setFitView()">地图自适应显示</button>
+        <hr>
+        <ngx-amap class="demo-map" name="demo2-2" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+          <amap-marker [position]="[116.205467, 39.907761]"></amap-marker>
+          <amap-marker [position]="[116.368904, 39.913423]"></amap-marker>
+          <amap-marker [position]="[116.305467, 39.807761]"></amap-marker>
+        </ngx-amap>
+        <hr>
+        <tabset>
+          <tab heading='html'>
+            <codeblock language="html">
+              &lt;ngx-amap class="demo-map" name="demo2-2" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+                &lt;amap-marker [position]="[116.205467, 39.907761]">&lt;/amap-marker>
+                &lt;amap-marker [position]="[116.368904, 39.913423]">&lt;/amap-marker>
+                &lt;amap-marker [position]="[116.305467, 39.807761]">&lt;/amap-marker>
+              &lt;/ngx-amap>
+            </codeblock>
+          </tab>
+          <tab heading='scss'>
+            <codeblock language="css">
+              .demo-map {{'{'}}
+                height: 400px;
+              }
+            </codeblock>
+          </tab>
+          <tab heading='component'>
+            <codeblock language="javascript">
+              import {{'{'}} Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+              import {{'{'}} NgxAmapComponent } from 'ngx-amap/core/components';
+              
+              @Component({{'{'}}
+                selector: 'app-demo-2',
+                templateUrl: './demo-2.component.html',
+                styleUrls: ['./demo-2.component.scss']
+              })
+              export class Demo2Component implements OnInit {{'{'}}
+              
+                @ViewChildren(NgxAmapComponent)
+                maps: QueryList&lt;NgxAmapComponent>;
+              
+                constructor() {{'{'}} }
+              
+                ngOnInit() {{'{'}}
+                }
+              
+                setFitView() {{'{'}}
+                  this.maps.find(m => m.name === 'demo2-2').setFitView();
+                }
+              }
+            </codeblock>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
