@@ -1,11 +1,11 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-
 import { DocumentRef, WindowRef } from '../../utils/browser-globals';
 
 export interface IMapAPILoaderConfig {
   apiKey?: string;
   apiVersion?: string;
   urlPath?: string;
+  debug?: boolean;
 }
 
 export const MAP_API_CONFIG = new InjectionToken<IMapAPILoaderConfig>('ngx-amap MAP_API_CONFIG');
@@ -15,7 +15,7 @@ export class MapAPILoaderService {
   private _config: IMapAPILoaderConfig;
   private _documentRef: DocumentRef;
   private _windowRef: WindowRef;
-  private _loadingPromise: Promise<void>;
+  private _mapLoaded: Promise<void>;
 
   constructor(@Inject(MAP_API_CONFIG) config: any,
               d: DocumentRef,
@@ -26,16 +26,18 @@ export class MapAPILoaderService {
   }
 
   load() {
-    if (this._loadingPromise) { return this._loadingPromise; }
+    if (this._mapLoaded) {
+      return this._mapLoaded;
+    }
 
+    const callbackName = `ngxAMapAPILoader`;
     const script = this._documentRef.getNativeDocument().createElement('script');
     script.type = 'text/javascript';
     script.async = true;
     script.defer = true;
-    const callbackName = `ngxAMapAPILoader`;
     script.src = this.getSrcFromConfig(callbackName);
 
-    this._loadingPromise = new Promise<void>((resolve: Function, reject: Function) => {
+    this._mapLoaded = new Promise<void>((resolve: Function, reject: Function) => {
       (<any>this._windowRef.getNativeWindow())[callbackName] = () => {
         resolve();
       };
@@ -44,7 +46,7 @@ export class MapAPILoaderService {
     });
 
     this._documentRef.getNativeDocument().body.appendChild(script);
-    return this._loadingPromise;
+    return this._mapLoaded;
   }
 
   private getSrcFromConfig(callbackName: string) {

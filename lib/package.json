@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Angular directives for AMap (Gaode map).",
   "repository": "https://github.com/xieziyu/ngx-amap.git",
-  "author": "Xie, Ziyu <xieziyu@foxmail.com>",
+  "author": "Xie, Ziyu <ziyu.xie@foxmail.com>",
   "bugs": {
     "url": "https://github.com/xieziyu/ngx-amap/issues",
     "email": "xieziyu@foxmail.com"

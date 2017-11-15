@@ -1,12 +1,12 @@
 export const navigation = [
   {
-    name: 'Directives',
-    url: '/directives',
+    name: '组件',
+    url: '/',
     icon: 'fa fa-code',
     children: [
       {
         name: 'ngx-amap',
-        url: '/directives/ngx-amap',
+        url: '/ngx-amap',
         icon: 'fa fa-code'
       },
     ]

@@ -7,10 +7,12 @@ import {
   SimpleLayoutComponent
 } from './containers';
 
+import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
+
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'ngx-amap',
     pathMatch: 'full',
   },
   {
@@ -21,8 +23,11 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: './views/dashboard/dashboard.module#DashboardModule'
+        path: 'ngx-amap',
+        component: NgxAmapDemoComponent,
+        data: {
+          title: 'ngx-amap'
+        }
       },
     ]
   },

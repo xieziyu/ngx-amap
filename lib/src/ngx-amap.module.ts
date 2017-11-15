@@ -1,10 +1,17 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { MapAPILoaderService, MAP_API_CONFIG, IMapAPILoaderConfig } from './core/services/map-api-loader/map-api-loader.service';
-import { WindowRef, DocumentRef } from './core/utils/browser-globals';
+import { MapAPILoaderService, MAP_API_CONFIG, IMapAPILoaderConfig } from './services/map-api-loader/map-api-loader.service';
+import { WindowRef, DocumentRef } from './utils/browser-globals';
+import { LoggerService } from './utils/logger.service';
+import { DebugLoggerService } from './utils/debug-logger.service';
+import { NgxAmapComponent } from './components/ngx-amap/ngx-amap.component';
 
 @NgModule({
-  declarations: [],
-  exports: []
+  declarations: [
+    NgxAmapComponent
+  ],
+  exports: [
+    NgxAmapComponent
+  ]
 })
 export class NgxAmapModule {
   static forRoot(mapAPILoaderConfig?: IMapAPILoaderConfig): ModuleWithProviders {
@@ -14,7 +21,8 @@ export class NgxAmapModule {
         WindowRef,
         DocumentRef,
         MapAPILoaderService,
-        { provide: MAP_API_CONFIG, useValue: mapAPILoaderConfig }
+        { provide: MAP_API_CONFIG, useValue: mapAPILoaderConfig },
+        { provide: LoggerService, useClass: mapAPILoaderConfig.debug ? DebugLoggerService : LoggerService }
       ]
     };
   }
