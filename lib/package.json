@@ -1,0 +1,18 @@
+{
+  "name": "ngx-amap",
+  "version": "1.0.0",
+  "description": "Angular directives for AMap (Gaode map).",
+  "repository": "https://github.com/xieziyu/ngx-amap.git",
+  "author": "Xie, Ziyu <xieziyu@foxmail.com>",
+  "bugs": {
+    "url": "https://github.com/xieziyu/ngx-amap/issues",
+    "email": "xieziyu@foxmail.com"
+  },
+  "homepage": "https://github.com/xieziyu/ngx-amap#readme",
+  "keywords": [ "angular", "2", "amap", "ng", "ngx" ],
+  "peerDependencies": {
+    "@angular/common": ">=2.0.0",
+    "@angular/compiler": ">=2.0.0",
+    "@angular/core": ">=2.0.0"
+  }
+}

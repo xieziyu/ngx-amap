@@ -1,35 +1,17 @@
 {
-  "name": "ngx-amap",
+  "name": "ngx-amap-packaged",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port=8080",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:lib": "ng-packagr"
   },
   "private": true,
-  "description": "angular 2+ component for AMap.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xieziyu/ngx-amap.git"
-  },
-  "keywords": [
-    "angular",
-    "2",
-    "4",
-    "amap",
-    "ng",
-    "ng2"
-  ],
-  "bugs": {
-    "url": "https://github.com/xieziyu/ngx-amap/issues",
-    "email": "xieziyu@foxmail.com"
-  },
-  "homepage": "https://github.com/xieziyu/ngx-amap#readme",
-  "author": "Xie, Ziyu",
   "dependencies": {
     "@angular/animations": "5.0.0",
     "@angular/common": "5.0.0",
@@ -60,6 +42,7 @@
     "karma-coverage-istanbul-reporter": "1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^1.6.0",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",

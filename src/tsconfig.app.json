@@ -4,6 +4,9 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2015",
+    "paths": {
+      "ngx-amap": [ "../dist/ngx-amap" ]
+    },
     "types": []
   },
   "exclude": [
