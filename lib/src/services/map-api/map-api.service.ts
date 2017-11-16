@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 import { MapAPILoaderService } from '../map-api-loader/map-api-loader.service';
 import { MapOptions } from '../../types/interface';
 import { AMapClass, Map } from '../../types/class';
@@ -32,17 +30,7 @@ export class MapAPIService {
     });
   }
 
-  get map(): Observable<Map> {
-    return Observable.create((observer: Observer<Map>) => {
-      if (this._map) {
-        observer.next(this._map);
-        observer.complete();
-      } else {
-        this._mapPromise.then(map => {
-          observer.next(map);
-          observer.complete();
-        });
-      }
-    });
+  get map(): Promise<Map> {
+    return this._mapPromise;
   }
 }

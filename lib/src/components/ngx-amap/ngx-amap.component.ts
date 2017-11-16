@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit, Input,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-
+import { LoggerService } from '../../services/logger';
 import { MapAPIService } from '../../services/map-api/map-api.service';
 import { MapOptions } from '../../types/interface';
+import { LngLat } from '../../types/class';
 import { Utils } from '../../utils/utils';
-import { LoggerService } from '../../utils/logger.service';
+import { ChangeFilter } from '../../utils/change-filter';
 
 const ALL_OPTIONS = [
   'view',
@@ -44,7 +45,7 @@ const ALL_OPTIONS = [
     MapAPIService
   ]
 })
-export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
+export class NgxAmapComponent implements OnDestroy, OnChanges {
   TAG = 'ngx-amap';
 
   // These properties are supported in MapOptions:
@@ -83,18 +84,21 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   // ngx-amap events:
   @Output() mapReady = new EventEmitter();
 
+  private _inited = false;
+
   constructor(private el: ElementRef,
     private api: MapAPIService,
     private logger: LoggerService) { }
 
-  ngOnInit() {
-    this.logger.d(this.TAG, 'on init');
+  initMap() {
+    this.logger.d(this.TAG, 'map api initializing...');
     const container = this.el.nativeElement.querySelector('div.ngx-amap-container-inner');
     const options = Utils.getOptionsFor<MapOptions>(this, ALL_OPTIONS);
     this.api.createMap(container, options)
       .then(map => this.mapReady.emit(map))
       .then(() => this.logger.d(this.TAG, 'map is ready.'))
       .catch(() => this.logger.e(this.TAG, 'failed to load AMap script.'));
+    this._inited = true;
   }
 
   ngOnDestroy() {
@@ -103,10 +107,62 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // TODO:
+    const filter = ChangeFilter.of(changes);
+    if (!this._inited) {
+      this.initMap();
+    } else {
+      filter.notEmpty<number>('labelzIndex').subscribe(v => this.setlabelzIndex(v));
+      filter.notEmpty<number>('zoom').subscribe(v => this.setZoom(v));
+      filter.notEmpty<number[]>('center').subscribe(v => this.setCenter(v));
+    }
+
+    // Not included in OPTIONS
+    filter.notEmpty<string>('city').subscribe(v => this.setCity(v));
   }
 
+  // Setters
   setFitView() {
-    this.api.map.subscribe(map => map.setFitView());
+    return this.api.map.then(map => map.setFitView());
+  }
+
+  setZoom(level: number) {
+    return this.api.map.then(map => map.setZoom(level));
+  }
+
+  setCenter(position: LngLat|number[]) {
+    return this.api.map.then(map => map.setCenter(position));
+  }
+
+  setZoomAndCenter(zoomLevel: number, center: LngLat|number[]) {
+    return this.api.map.then(map => map.setZoomAndCenter(zoomLevel, center));
+  }
+
+  setlabelzIndex(index: number) {
+    return this.api.map.then(map => map.setlabelzIndex(index));
+  }
+
+  setCity(city: string) {
+    return this.api.map.then(map => new Promise(resolve => map.setCity(city, resolve)));
+  }
+
+  clearMap() {
+    return this.api.map.then(map => map.clearMap());
+  }
+
+  // Getters
+  getZoom() {
+    return this.api.map.then(map => map.getZoom());
+  }
+
+  getCenter() {
+    return this.api.map.then(map => map.getCenter());
+  }
+
+  getCity() {
+    return this.api.map.then(map => new Promise(resolve => map.getCity(resolve)));
+  }
+
+  getSize() {
+    return this.api.map.then(map => map.getSize());
   }
 }

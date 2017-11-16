@@ -23,7 +23,7 @@ export declare class Map {
   getRotation(): number;
   getStatus(): any;
   getDefaultCursor(): string;
-  getResolution(point?: LngLat): number;
+  getResolution(point?: LngLat|number[]): number;
   getScale(dpi: number): number;
   setZoom(level: number): void;
   setlabelzIndex(index: number): void;
@@ -31,8 +31,8 @@ export declare class Map {
   add(overlayers: Array<any>): void;  // TODO: TileLayer
   remove(overlayers: Array<any>): void; // TODO: TileLayer
   getAllOverlays(type?: string): any;
-  setCenter(position: LngLat): void;
-  setZoomAndCenter(zoomLevel: number, center: LngLat): void;
+  setCenter(position: LngLat|number[]): void;
+  setZoomAndCenter(zoomLevel: number, center: LngLat|number[]): void;
   setCity(city: string, callback?: (result: any) => void): void;
   setBounds(bound: any): void; // TODO: Bounds
   setLimitBounds(bound: any): void; // TODO: Bounds
@@ -43,7 +43,7 @@ export declare class Map {
   setDefaultCursor(cursor: string): void;
   zoomIn(): void;
   zoomOut(): void;
-  panTo(position: LngLat): void;
+  panTo(position: LngLat|number[]): void;
   panBy(x: number, y: number): void;
   setFitView(overlayList?: Array<any>): void;
   clearMap(): void;
@@ -53,9 +53,9 @@ export declare class Map {
   removeControl(obj: any): void; // TODO: AMapPluginType
   clearInfoWindow(): void;
   pixelToLngLat(pixel: Pixel, level: number): LngLat;
-  lnglatToPixel(lngLat: LngLat, level: number): Pixel;
+  lnglatToPixel(lngLat: LngLat|number[], level: number): Pixel;
   containerToLngLat(pixel: Pixel): LngLat;
-  lngLatToContainer(lnglat: LngLat): Pixel;
+  lngLatToContainer(lnglat: LngLat|number[]): Pixel;
   setMapStyle(style: string): void;
   getMapStyle(): string;
   setFeatures(feature: Array<string>): void;
