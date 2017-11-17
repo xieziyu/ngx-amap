@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit, Input,
 import { LoggerService } from '../../services/logger';
 import { MapAPIService } from '../../services/map-api/map-api.service';
 import { MapOptions } from '../../types/interface';
-import { LngLat } from '../../types/class';
+import { LngLat, Size } from '../../types/class';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
 
@@ -45,7 +45,7 @@ const ALL_OPTIONS = [
     MapAPIService
   ]
 })
-export class NgxAmapComponent implements OnDestroy, OnChanges {
+export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   TAG = 'ngx-amap';
 
   // These properties are supported in MapOptions:
@@ -90,10 +90,11 @@ export class NgxAmapComponent implements OnDestroy, OnChanges {
     private api: MapAPIService,
     private logger: LoggerService) { }
 
-  initMap() {
+  ngOnInit() {
     this.logger.d(this.TAG, 'map api initializing...');
     const container = this.el.nativeElement.querySelector('div.ngx-amap-container-inner');
     const options = Utils.getOptionsFor<MapOptions>(this, ALL_OPTIONS);
+    this.logger.d(this.TAG, 'map options:', options);
     this.api.createMap(container, options)
       .then(map => this.mapReady.emit(map))
       .then(() => this.logger.d(this.TAG, 'map is ready.'))
@@ -108,9 +109,7 @@ export class NgxAmapComponent implements OnDestroy, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const filter = ChangeFilter.of(changes);
-    if (!this._inited) {
-      this.initMap();
-    } else {
+    if (this._inited) {
       filter.notEmpty<number>('labelzIndex').subscribe(v => this.setlabelzIndex(v));
       filter.notEmpty<number>('zoom').subscribe(v => this.setZoom(v));
       filter.notEmpty<number[]>('center').subscribe(v => this.setCenter(v));

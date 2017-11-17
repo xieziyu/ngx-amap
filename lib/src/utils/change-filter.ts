@@ -18,8 +18,7 @@ export class ChangeFilter {
       if (value !== undefined && value !== null) {
         return Observable.of(value);
       }
-    } else {
-      return Observable.empty();
     }
+    return Observable.empty();
   }
 }

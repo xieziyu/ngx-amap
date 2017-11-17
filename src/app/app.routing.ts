@@ -12,14 +12,14 @@ import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.compon
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'ngx-amap',
+    redirectTo: '/component/ngx-amap',
     pathMatch: 'full',
   },
   {
-    path: '',
+    path: 'component',
     component: FullLayoutComponent,
     data: {
-      title: 'Home'
+      title: '组件'
     },
     children: [
       {

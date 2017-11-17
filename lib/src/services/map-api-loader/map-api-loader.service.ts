@@ -52,7 +52,7 @@ export class MapAPILoaderService {
   private getSrcFromConfig(callbackName: string) {
     const urlBase = this._config.urlPath || 'http://webapi.amap.com/maps';
     const queryParams: {[key: string]: string | Array<string>} = {
-      v: this._config.apiVersion || '1.3',
+      v: this._config.apiVersion || '1.4.1',
       callback: callbackName,
       key: this._config.apiKey
     };

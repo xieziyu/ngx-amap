@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { MapAPILoaderService } from '../map-api-loader/map-api-loader.service';
 import { MapOptions } from '../../types/interface';
 import { AMapClass, Map } from '../../types/class';
+import { LoggerService } from '../logger';
 
 declare const AMap: AMapClass;
 
 @Injectable()
 export class MapAPIService {
+  TAG = 'MapAPI';
   private _map: Map;
   private _mapPromise: Promise<Map>;
   private _mapResolver: (map?: Map) => void;
 
-  constructor(private loader: MapAPILoaderService) {
+  constructor(private loader: MapAPILoaderService, private logger: LoggerService) {
     this._mapPromise = new Promise(resolve => this._mapResolver = resolve);
   }
 
@@ -19,6 +21,7 @@ export class MapAPIService {
     return this.loader.load().then(() => {
       this._map = new AMap.Map(el, options);
       this._mapResolver(this._map);
+      this.logger.d(this.TAG, 'new map created');
       return this._map;
     });
   }

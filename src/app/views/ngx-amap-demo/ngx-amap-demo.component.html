@@ -1,1 +1,41 @@
-<ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>
+<div class="card card-accent-info">
+  <div class="card-header">
+    简单示例
+  </div>
+  <div class="card-body">
+    <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo1_md_html | language: 'html'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+
+<div class="card card-accent-info">
+  <div class="card-header">
+    设置城市
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="myCity = myCityName" class="mb-3">
+      <div class="form-row">
+        <div class="col-sm-4">
+          <input class="form-control" placeholder="请输入城市的名称或者行政区域代码" type="text" [(ngModel)]="myCityName" name="cityname">
+        </div>
+        <div class="col-auto">
+          <button class="form-control" class="btn btn-primary" type="submit">到指定城市</button>
+        </div>
+      </div>
+    </form>
+    <ngx-amap class="demo-map" [city]="myCity" [resizeEnable]="true"></ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo1_md_html | language: 'html'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

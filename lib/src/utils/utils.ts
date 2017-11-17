@@ -3,8 +3,8 @@ export class Utils {
     const options: any = {};
 
     keys.forEach(key => {
-      if (this[key] !== undefined && this[key] !== null) {
-        options[key] = this[key];
+      if (component[key] !== undefined && component[key] !== null) {
+        options[key] = component[key];
       }
     });
 

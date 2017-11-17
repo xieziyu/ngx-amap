@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgxAmapModule } from 'ngx-amap';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
@@ -64,20 +65,22 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { MarkdownModule } from 'ngx-markdown';
 import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     NgxAmapModule.forRoot({
-      apiKey: '66faae5ca86f7ea75824282689b34227',
-      apiVersion: '1.4.0',
+      apiKey: '99df1ad748ae2a56d152b7764e35cf76',
       urlPath: 'https://webapi.amap.com/maps',
       debug: true
-    })
+    }),
+    MarkdownModule.forRoot()
   ],
   declarations: [
     AppComponent,

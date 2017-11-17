@@ -7,7 +7,9 @@
     "paths": {
       "ngx-amap": [ "../dist/ngx-amap" ]
     },
-    "types": []
+    "types": [
+      "prismjs"
+    ]
   },
   "exclude": [
     "test.ts",
