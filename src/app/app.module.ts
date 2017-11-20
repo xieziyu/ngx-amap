@@ -76,7 +76,7 @@ import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.compon
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     NgxAmapModule.forRoot({
-      apiKey: '99df1ad748ae2a56d152b7764e35cf76',
+      apiKey: '146f101e824accd6956eeec4937c1a05',
       urlPath: 'https://webapi.amap.com/maps',
       debug: true
     }),
