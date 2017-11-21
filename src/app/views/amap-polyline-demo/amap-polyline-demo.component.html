@@ -1,0 +1,45 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    简单示例
+  </div>
+  <div class="card-body">
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-polyline
+        [path]="lineArr"
+        [strokeColor]="'#3366FF'"
+        [strokeOpacity]="1"
+        [strokeWeight]="5"
+        [strokeStyle]="'solid'"
+        [strokeDasharray]="[10, 5]">
+      </amap-polyline>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo1_md_html | language: 'html'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+
+<div class="card card-accent-info">
+  <div class="card-header">
+    利用options设置属性
+  </div>
+  <div class="card-body">
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-polyline [options]="lineOptions"></amap-polyline>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo2_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo2_md_ts | language: 'typescript'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

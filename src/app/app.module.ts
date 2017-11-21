@@ -69,6 +69,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
 import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-demo.component';
 import { AmapInfoWindowDemoComponent } from './views/amap-info-window-demo/amap-info-window-demo.component';
+import { AmapPolylineDemoComponent } from './views/amap-polyline-demo/amap-polyline-demo.component';
 
 @NgModule({
   imports: [
@@ -91,7 +92,8 @@ import { AmapInfoWindowDemoComponent } from './views/amap-info-window-demo/amap-
     ...APP_DIRECTIVES,
     NgxAmapDemoComponent,
     AmapMarkerDemoComponent,
-    AmapInfoWindowDemoComponent
+    AmapInfoWindowDemoComponent,
+    AmapPolylineDemoComponent
   ],
   providers: [{
     provide: LocationStrategy,

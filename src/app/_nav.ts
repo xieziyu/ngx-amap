@@ -26,6 +26,11 @@ export const navigation = [
         url: '/directives/amap-marker',
         icon: 'fa fa-code'
       },
+      {
+        name: 'amap-polyline',
+        url: '/directives/amap-polyline',
+        icon: 'fa fa-code'
+      },
     ]
   }
 ];

@@ -6,6 +6,7 @@ import { WindowRef, DocumentRef } from './utils/browser-globals';
 import { NgxAmapComponent } from './components/ngx-amap/ngx-amap.component';
 import { AmapMarkerDirective } from './directives/amap-marker/amap-marker.directive';
 import { AmapInfoWindowComponent } from './components/amap-info-window/amap-info-window.component';
+import { AmapPolylineDirective } from './directives/amap-polyline/amap-polyline.directive';
 import { PixelService } from './services/pixel/pixel.service';
 import { SizeService } from './services/size/size.service';
 import { IconService } from './services/icon/icon.service';
@@ -15,12 +16,14 @@ import { LabelService } from './services/label/label.service';
   declarations: [
     NgxAmapComponent,
     AmapMarkerDirective,
-    AmapInfoWindowComponent
+    AmapInfoWindowComponent,
+    AmapPolylineDirective
   ],
   exports: [
     NgxAmapComponent,
     AmapMarkerDirective,
-    AmapInfoWindowComponent
+    AmapInfoWindowComponent,
+    AmapPolylineDirective
   ]
 })
 export class NgxAmapModule {
@@ -45,5 +48,6 @@ export class NgxAmapModule {
 export {
   NgxAmapComponent,
   AmapMarkerDirective,
-  AmapInfoWindowComponent
+  AmapInfoWindowComponent,
+  AmapPolylineDirective
 };

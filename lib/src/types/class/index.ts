@@ -6,6 +6,7 @@ import { CMarker, Marker } from './amap.marker';
 import { CIcon, Icon } from './amap.icon';
 import { AMapEvent } from './amap.event';
 import { CInfoWindow, InfoWindow } from './amap.info-window';
+import { CPolyline, Polyline } from './amap.polyline';
 
 export interface AMapClass {
   Map: CMap;
@@ -16,6 +17,7 @@ export interface AMapClass {
   Icon: CIcon;
   event: AMapEvent;
   InfoWindow: CInfoWindow;
+  Polyline: CPolyline;
 }
 
-export { Map, LngLat, Pixel, Size, Marker, Icon, InfoWindow };
+export { Map, LngLat, Pixel, Size, Marker, Icon, InfoWindow, Polyline };

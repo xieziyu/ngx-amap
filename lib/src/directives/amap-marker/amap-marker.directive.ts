@@ -3,7 +3,7 @@ import { Directive, OnInit, Input, AfterContentInit, ContentChildren, QueryList,
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger';
 import { LngLat, Size, Marker, Icon, Pixel, Map } from '../../types/class';
-import { IPixel, IIcon, ILabel, MarkerOptions } from '../../types/interface';
+import { ILngLat, IPixel, IIcon, ILabel, MarkerOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
 import { MarkerService } from '../../services/marker/marker.service';
@@ -169,11 +169,11 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   // Animations
-  moveTo(position: LngLat, speed: number, f?: (k: any) => any): Promise<void> {
+  moveTo(position: ILngLat, speed: number, f?: (k: any) => any): Promise<void> {
     return this._marker.then(marker => marker.moveTo(position, speed, f));
   }
 
-  moveAlong(path: LngLat[], speed: number, f?: (k: any) => any): Promise<void> {
+  moveAlong(path: ILngLat[], speed: number, f?: (k: any) => any): Promise<void> {
     return this._marker.then(marker => marker.moveAlong(path, speed, f));
   }
 

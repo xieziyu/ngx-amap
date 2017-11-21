@@ -10,6 +10,7 @@ import {
 import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
 import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-demo.component';
 import { AmapInfoWindowDemoComponent } from './views/amap-info-window-demo/amap-info-window-demo.component';
+import { AmapPolylineDemoComponent } from './views/amap-polyline-demo/amap-polyline-demo.component';
 
 export const routes: Routes = [
   {
@@ -52,6 +53,13 @@ export const routes: Routes = [
         component: AmapMarkerDemoComponent,
         data: {
           title: 'amap-marker'
+        }
+      },
+      {
+        path: 'amap-polyline',
+        component: AmapPolylineDemoComponent,
+        data: {
+          title: 'amap-polyline'
         }
       },
     ]

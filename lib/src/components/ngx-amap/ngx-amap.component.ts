@@ -8,6 +8,7 @@ import { MapOptions } from '../../types/interface';
 import { LngLat, Size } from '../../types/class';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
+import { PolylineService } from '../../services/polyline/polyline.service';
 
 const ALL_OPTIONS = [
   'view',
@@ -46,7 +47,8 @@ const ALL_OPTIONS = [
   providers: [
     MapAPIService,
     MarkerService,
-    InfoWindowService
+    InfoWindowService,
+    PolylineService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
