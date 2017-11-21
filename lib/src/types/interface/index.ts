@@ -5,3 +5,4 @@ export * from './lng-lat.interface';
 export * from './marker-options.interface';
 export * from './icon.interface';
 export * from './label.interface';
+export * from './info-window-options.interface';

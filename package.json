@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng-packagr"
+    "build:lib": "ng-packagr",
+    "demo": "run-s build:lib start"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +49,7 @@
     "ng-packagr": "^1.6.0",
     "ngx-bootstrap": "^2.0.0-beta.8",
     "ngx-markdown": "^1.4.0",
+    "npm-run-all": "^4.1.2",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",

@@ -9,6 +9,11 @@ export const navigation = [
         url: '/component/ngx-amap',
         icon: 'fa fa-code'
       },
+      {
+        name: 'amap-info-window',
+        url: '/component/amap-info-window',
+        icon: 'fa fa-code'
+      },
     ]
   },
   {

@@ -9,6 +9,7 @@ import {
 
 import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
 import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-demo.component';
+import { AmapInfoWindowDemoComponent } from './views/amap-info-window-demo/amap-info-window-demo.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,13 @@ export const routes: Routes = [
         component: NgxAmapDemoComponent,
         data: {
           title: 'ngx-amap'
+        }
+      },
+      {
+        path: 'amap-info-window',
+        component: AmapInfoWindowDemoComponent,
+        data: {
+          title: 'amap-info-window'
         }
       },
     ]

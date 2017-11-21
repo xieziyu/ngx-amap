@@ -68,6 +68,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MarkdownModule } from 'ngx-markdown';
 import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
 import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-demo.component';
+import { AmapInfoWindowDemoComponent } from './views/amap-info-window-demo/amap-info-window-demo.component';
 
 @NgModule({
   imports: [
@@ -89,7 +90,8 @@ import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-de
     ...APP_COMPONENTS,
     ...APP_DIRECTIVES,
     NgxAmapDemoComponent,
-    AmapMarkerDemoComponent
+    AmapMarkerDemoComponent,
+    AmapInfoWindowDemoComponent
   ],
   providers: [{
     provide: LocationStrategy,

@@ -5,6 +5,7 @@ import { Size, CSize } from './amap.size';
 import { CMarker, Marker } from './amap.marker';
 import { CIcon, Icon } from './amap.icon';
 import { AMapEvent } from './amap.event';
+import { CInfoWindow, InfoWindow } from './amap.info-window';
 
 export interface AMapClass {
   Map: CMap;
@@ -14,6 +15,7 @@ export interface AMapClass {
   Marker: CMarker;
   Icon: CIcon;
   event: AMapEvent;
+  InfoWindow: CInfoWindow;
 }
 
-export { Map, LngLat, Pixel, Size, Marker, Icon };
+export { Map, LngLat, Pixel, Size, Marker, Icon, InfoWindow };

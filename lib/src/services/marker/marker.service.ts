@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { MarkerOptions, IPixel } from '../../types/interface';
 import { AMapClass, Marker, Map, Icon } from '../../types/class';
 import { LoggerService } from '../logger';
@@ -7,11 +6,12 @@ import { MapAPIService } from '../map-api/map-api.service';
 import { PixelService } from '../pixel/pixel.service';
 import { IconService } from '../icon/icon.service';
 import { LabelService } from '../label/label.service';
+import { EventBinder } from '../../utils/event-binder';
 
 declare const AMap: AMapClass;
 
 @Injectable()
-export class MarkerService {
+export class MarkerService extends EventBinder {
   TAG = 'marker-service';
   private _map: Promise<Map>;
 
@@ -22,6 +22,7 @@ export class MarkerService {
     private icon: IconService,
     private label: LabelService
   ) {
+    super();
     this._map = map.map;
   }
 
@@ -56,23 +57,6 @@ export class MarkerService {
   destroy(marker: Promise<Marker>): Promise<void> {
     return marker.then(m => {
       m.setMap(null);
-    });
-  }
-
-  bindEvent(marker: Promise<Marker>, event: string): Observable<any> {
-    return Observable.create(observer => {
-      let listenerPromise = marker.then(m => {
-        return AMap.event.addListener(m, event, e => {
-          setTimeout(() => observer.next(e));
-        }, this);
-      });
-
-      return () => {
-        listenerPromise.then(listener => {
-          AMap.event.removeListener(listener);
-          listenerPromise = null;
-        });
-      };
     });
   }
 }

@@ -5,6 +5,7 @@ import { DebugLoggerService } from './services/logger/debug-logger.service';
 import { WindowRef, DocumentRef } from './utils/browser-globals';
 import { NgxAmapComponent } from './components/ngx-amap/ngx-amap.component';
 import { AmapMarkerDirective } from './directives/amap-marker/amap-marker.directive';
+import { AmapInfoWindowComponent } from './components/amap-info-window/amap-info-window.component';
 import { PixelService } from './services/pixel/pixel.service';
 import { SizeService } from './services/size/size.service';
 import { IconService } from './services/icon/icon.service';
@@ -13,11 +14,13 @@ import { LabelService } from './services/label/label.service';
 @NgModule({
   declarations: [
     NgxAmapComponent,
-    AmapMarkerDirective
+    AmapMarkerDirective,
+    AmapInfoWindowComponent
   ],
   exports: [
     NgxAmapComponent,
-    AmapMarkerDirective
+    AmapMarkerDirective,
+    AmapInfoWindowComponent
   ]
 })
 export class NgxAmapModule {
@@ -41,5 +44,6 @@ export class NgxAmapModule {
 
 export {
   NgxAmapComponent,
-  AmapMarkerDirective
+  AmapMarkerDirective,
+  AmapInfoWindowComponent
 };

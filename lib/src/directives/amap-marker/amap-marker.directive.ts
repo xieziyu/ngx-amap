@@ -1,4 +1,4 @@
-import { Directive, OnInit, Input, AfterContentInit,
+import { Directive, OnInit, Input, AfterContentInit, ContentChildren, QueryList,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger';
@@ -10,6 +10,7 @@ import { MarkerService } from '../../services/marker/marker.service';
 import { PixelService } from '../../services/pixel/pixel.service';
 import { IconService } from '../../services/icon/icon.service';
 import { LabelService } from '../../services/label/label.service';
+import { AmapInfoWindowComponent } from '../../components/amap-info-window/amap-info-window.component';
 
 const ALL_OPTIONS = [
   'position',
@@ -73,6 +74,9 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   @Output() moveend = new EventEmitter();
   @Output() movealong = new EventEmitter();
 
+  // amap-info-window:
+  @ContentChildren(AmapInfoWindowComponent) infoWindowComponent = new QueryList<AmapInfoWindowComponent>();
+
   private _marker: Promise<Marker>;
   private _subscriptions: Subscription;
 
@@ -99,32 +103,20 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
       filter.has<string>('title').subscribe(v => this.setTitle(v));
       filter.has<any>('content').subscribe(v => this.setContent(v));
       filter.has<any>('extData').subscribe(v => this.setExtData(v));
-      filter.notEmpty<boolean>('draggable').subscribe(v => this.setDraggable(v));
+      filter.has<boolean>('clickable').subscribe(v => this.setClickable(!!v));
+      filter.has<boolean>('draggable').subscribe(v => this.setDraggable(!!v));
+      filter.has<any>('visible').subscribe(v => v ? this.show() : this.hide());
+      filter.has<string>('cursor').subscribe(v => this.setCursor(v));
+      filter.has<string>('animation').subscribe(v => this.setAnimation(v));
+      filter.has<number>('angle').subscribe(v => this.setAngle(v));
+      filter.has<number>('zIndex').subscribe(v => this.setzIndex(v));
+      filter.has<any>('shape').subscribe(v => this.setShape(v));
       filter.notEmpty<IPixel>('offset').subscribe(v => this.setOffset(v));
-      filter.notEmpty<boolean>('clickable').subscribe(v => this.setClickable(v));
       filter.notEmpty<LngLat>('position').subscribe(v => this.setPosition(v));
-      filter.notEmpty<number>('angle').subscribe(v => this.setAngle(v));
-      filter.notEmpty<number>('zIndex').subscribe(v => this.setzIndex(v));
-      filter.notEmpty<string>('cursor').subscribe(v => this.setCursor(v));
-      filter.notEmpty<any>('shape').subscribe(v => this.setShape(v));
-      filter.notEmpty<string>('animation').subscribe(v => this.setAnimation(v));
-      filter.notEmpty<any>('visible').subscribe(v => {
-        if (v) {
-          this.show();
-        } else {
-          this.hide();
-        }
-      });
     }
 
-    filter.notEmpty<boolean>('isTop').subscribe(v => this.setTop(v));
-    filter.notEmpty<boolean>('hidden').subscribe(v => {
-      if (v) {
-        this.hide();
-      } else {
-        this.show();
-      }
-    });
+    filter.has<boolean>('isTop').subscribe(v => this.setTop(!!v));
+    filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
   }
 
   ngOnDestroy() {
@@ -133,12 +125,28 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   ngAfterContentInit() {
-    // TODO: InfoWindow
+    this.updateInfoWindow();
+    this.infoWindowComponent.changes.subscribe(() => this.updateInfoWindow());
+  }
+
+  private updateInfoWindow() {
+    if (this.infoWindowComponent.length > 1) {
+      this.logger.e(this.TAG, 'Expected no more than 1 info window.');
+      return;
+    }
+
+    this.infoWindowComponent.forEach(component => {
+      component.hostMarker = this._marker;
+    });
   }
 
   private bindEvents() {
     this._subscriptions = this.markers.bindEvent(this._marker, 'click').subscribe(e => {
-      // TODO: InfoWindow
+      if (this.openInfoWindow) {
+        this.infoWindowComponent.forEach(component => {
+          component.open();
+        });
+      }
       this.markerClick.emit(e);
     });
     this._subscriptions.add(this.markers.bindEvent(this._marker, 'moving').subscribe(e => {

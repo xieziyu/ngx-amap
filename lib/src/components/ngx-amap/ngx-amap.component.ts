@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, Input,
 import { LoggerService } from '../../services/logger';
 import { MapAPIService } from '../../services/map-api/map-api.service';
 import { MarkerService } from '../../services/marker/marker.service';
+import { InfoWindowService } from '../../services/info-window/info-window.service';
 import { MapOptions } from '../../types/interface';
 import { LngLat, Size } from '../../types/class';
 import { Utils } from '../../utils/utils';
@@ -44,7 +45,8 @@ const ALL_OPTIONS = [
   styleUrls: ['ngx-amap.component.scss'],
   providers: [
     MapAPIService,
-    MarkerService
+    MarkerService,
+    InfoWindowService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
@@ -112,13 +114,12 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     const filter = ChangeFilter.of(changes);
     if (this._inited) {
-      filter.notEmpty<number>('labelzIndex').subscribe(v => this.setlabelzIndex(v));
-      filter.notEmpty<number>('zoom').subscribe(v => this.setZoom(v));
-      filter.notEmpty<number[]>('center').subscribe(v => this.setCenter(v));
+      filter.has<number>('zoom').subscribe(v => this.setZoom(v));
+      filter.has<number[]>('center').subscribe(v => this.setCenter(v));
     }
 
     // Not included in OPTIONS
-    filter.notEmpty<string>('city').subscribe(v => this.setCity(v));
+    filter.has<string>('city').subscribe(v => this.setCity(v));
   }
 
   // Setters
