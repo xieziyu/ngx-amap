@@ -8,6 +8,7 @@ import {
 } from './containers';
 
 import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
+import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-demo.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,22 @@ export const routes: Routes = [
         component: NgxAmapDemoComponent,
         data: {
           title: 'ngx-amap'
+        }
+      },
+    ]
+  },
+  {
+    path: 'directives',
+    component: FullLayoutComponent,
+    data: {
+      title: '指令'
+    },
+    children: [
+      {
+        path: 'amap-marker',
+        component: AmapMarkerDemoComponent,
+        data: {
+          title: 'amap-marker'
         }
       },
     ]

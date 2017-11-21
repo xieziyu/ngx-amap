@@ -67,6 +67,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MarkdownModule } from 'ngx-markdown';
 import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
+import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-demo.component';
 
 @NgModule({
   imports: [
@@ -87,7 +88,8 @@ import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.compon
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
     ...APP_DIRECTIVES,
-    NgxAmapDemoComponent
+    NgxAmapDemoComponent,
+    AmapMarkerDemoComponent
   ],
   providers: [{
     provide: LocationStrategy,

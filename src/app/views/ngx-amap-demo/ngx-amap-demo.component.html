@@ -33,7 +33,29 @@
     <div class="mt-3">
       <tabset>
         <tab heading="HTML">
-          <markdown [data]="demo1_md_html | language: 'html'"></markdown>
+          <markdown [data]="demo2_md_html | language: 'html'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+
+<div class="card card-accent-info">
+  <div class="card-header">
+    调用地图方法
+  </div>
+  <div class="card-body">
+    <button class="btn btn-primary" (click)="Map2.setFitView()">地图自适应显示</button>
+    <hr>
+    <ngx-amap #Map2 class="demo-map" name="demo2-2" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-marker [position]="[116.205467, 39.907761]"></amap-marker>
+      <amap-marker [position]="[116.368904, 39.913423]"></amap-marker>
+      <amap-marker [position]="[116.305467, 39.807761]"></amap-marker>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo3_md_html | language: 'html'"></markdown>
         </tab>
       </tabset>
     </div>

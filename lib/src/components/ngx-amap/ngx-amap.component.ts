@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, Input,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { LoggerService } from '../../services/logger';
 import { MapAPIService } from '../../services/map-api/map-api.service';
+import { MarkerService } from '../../services/marker/marker.service';
 import { MapOptions } from '../../types/interface';
 import { LngLat, Size } from '../../types/class';
 import { Utils } from '../../utils/utils';
@@ -42,7 +43,8 @@ const ALL_OPTIONS = [
   templateUrl: 'ngx-amap.component.html',
   styleUrls: ['ngx-amap.component.scss'],
   providers: [
-    MapAPIService
+    MapAPIService,
+    MarkerService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
@@ -50,11 +52,11 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
 
   // These properties are supported in MapOptions:
   @Input() view: any; // TODO: View2D
-  @Input() layers: Array<any>; // TODO: TileLayer
+  @Input() layers: any[]; // TODO: TileLayer
   @Input() zoom: number;
-  @Input() center: Array<number>;
+  @Input() center: LngLat;
   @Input() labelzIndex: number;
-  @Input() zooms: Array<number>;
+  @Input() zooms: number[];
   @Input() lang: string;
   @Input() cursor: string;
   @Input() crs: string;
@@ -74,7 +76,7 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() scrollWheel: boolean;
   @Input() touchZoom: boolean;
   @Input() mapStyle: string;
-  @Input() features: Array<string>;
+  @Input() features: string[];
   @Input() showBuildingBlock: boolean;
 
   // Extra property:
@@ -161,7 +163,7 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
     return this.api.map.then(map => new Promise(resolve => map.getCity(resolve)));
   }
 
-  getSize() {
+  getSize(): Promise<Size> {
     return this.api.map.then(map => map.getSize());
   }
 }

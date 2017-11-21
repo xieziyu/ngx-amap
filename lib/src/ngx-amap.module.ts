@@ -4,13 +4,20 @@ import { LoggerService } from './services/logger/logger.service';
 import { DebugLoggerService } from './services/logger/debug-logger.service';
 import { WindowRef, DocumentRef } from './utils/browser-globals';
 import { NgxAmapComponent } from './components/ngx-amap/ngx-amap.component';
+import { AmapMarkerDirective } from './directives/amap-marker/amap-marker.directive';
+import { PixelService } from './services/pixel/pixel.service';
+import { SizeService } from './services/size/size.service';
+import { IconService } from './services/icon/icon.service';
+import { LabelService } from './services/label/label.service';
 
 @NgModule({
   declarations: [
-    NgxAmapComponent
+    NgxAmapComponent,
+    AmapMarkerDirective
   ],
   exports: [
-    NgxAmapComponent
+    NgxAmapComponent,
+    AmapMarkerDirective
   ]
 })
 export class NgxAmapModule {
@@ -22,9 +29,17 @@ export class NgxAmapModule {
         DocumentRef,
         MapAPILoaderService,
         { provide: MAP_API_CONFIG, useValue: mapAPILoaderConfig },
-        { provide: LoggerService, useClass: mapAPILoaderConfig.debug ? DebugLoggerService : LoggerService }
+        { provide: LoggerService, useClass: mapAPILoaderConfig.debug ? DebugLoggerService : LoggerService },
+        PixelService,
+        SizeService,
+        IconService,
+        LabelService
       ]
     };
   }
 }
 
+export {
+  NgxAmapComponent,
+  AmapMarkerDirective
+};

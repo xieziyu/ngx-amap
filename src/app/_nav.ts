@@ -10,5 +10,17 @@ export const navigation = [
         icon: 'fa fa-code'
       },
     ]
+  },
+  {
+    name: '指令',
+    url: '/directives',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: 'amap-marker',
+        url: '/directives/amap-marker',
+        icon: 'fa fa-code'
+      },
+    ]
   }
 ];

@@ -8,7 +8,7 @@ declare const AMap: AMapClass;
 
 @Injectable()
 export class MapAPIService {
-  TAG = 'MapAPI';
+  TAG = 'map-api';
   private _map: Map;
   private _mapPromise: Promise<Map>;
   private _mapResolver: (map?: Map) => void;

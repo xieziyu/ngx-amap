@@ -21,4 +21,12 @@ export class ChangeFilter {
     }
     return Observable.empty();
   }
+
+  has<T>(key: string): Observable<T> {
+    if (this._changes[key]) {
+      let value: T = this._changes[key].currentValue;
+      return Observable.of(value);
+    }
+    return Observable.empty();
+  }
 }

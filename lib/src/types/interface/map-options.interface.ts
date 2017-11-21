@@ -2,11 +2,11 @@ import { LngLat } from '../class/amap.lng-lat';
 
 export interface MapOptions {
   view?: any; // TODO: View2D
-  layers?: Array<any>; // TODO: TileLayer
+  layers?: any[]; // TODO: TileLayer
   zoom?: number;
   center?: LngLat;
   labelzIndex?: number;
-  zooms?: Array<number>;
+  zooms?: number[];
   lang?: string;
   cursor?: string;
   crs?: string;
@@ -26,6 +26,6 @@ export interface MapOptions {
   scrollWheel?: boolean;
   touchZoom?: boolean;
   mapStyle?: string;
-  features?: Array<string>;
+  features?: string[];
   showBuildingBlock?: boolean;
 }
