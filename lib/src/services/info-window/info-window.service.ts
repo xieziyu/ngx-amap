@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { InfoWindowOptions, IPixel } from '../../types/interface';
+import { InfoWindowOptions, IPixel, ILngLat } from '../../types/interface';
 import { AMapClass, InfoWindow, Map, Icon, LngLat } from '../../types/class';
 import { LoggerService } from '../logger';
 import { MapAPIService } from '../map-api/map-api.service';
@@ -45,7 +45,7 @@ export class InfoWindowService extends EventBinder {
     });
   }
 
-  open(infoWindow: InfoWindow, position?: LngLat): Promise<void> {
+  open(infoWindow: InfoWindow, position?: ILngLat): Promise<void> {
     return this._map.then(map => {
       infoWindow.open(map, position);
     });

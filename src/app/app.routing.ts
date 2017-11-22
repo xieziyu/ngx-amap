@@ -47,6 +47,13 @@ export const routes: Routes = [
           title: 'amap-polyline'
         }
       },
+      {
+        path: 'amap-info-window',
+        loadChildren: './views/amap-info-window-demo/amap-info-window-demo.module#AmapInfoWindowDemoModule',
+        data: {
+          title: 'amap-info-window'
+        }
+      },
     ]
   },
   {

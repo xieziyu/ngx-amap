@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, Input,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger';
-import { LngLat, InfoWindow, Marker } from '../../types/class';
+import { LngLat, InfoWindow, Marker, Size } from '../../types/class';
 import { ILngLat, ISize, IPixel, InfoWindowOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -104,10 +104,14 @@ export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   // public methods:
-  open(): Promise<void> {
+  open(position?: ILngLat): Promise<void> {
     return this._infoWindow.then(infoWindow => {
       if (this.hostMarker) {
         return this.hostMarker.then(marker => this.infoWindows.open(infoWindow, marker.getPosition()));
+      } else if (position) {
+        return this.infoWindows.open(infoWindow, position);
+      } else if (this.position) {
+        return this.infoWindows.open(infoWindow, this.position);
       } else {
         return this.infoWindows.open(infoWindow);
       }
@@ -132,5 +136,22 @@ export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
       const value = this.sizes.create(size, 'size');
       infoWindow.setSize(value);
     });
+  }
+
+  // Getters:
+  getIsOpen(): Promise<boolean> {
+    return this._infoWindow.then(infoWindow => infoWindow.getIsOpen());
+  }
+
+  getContent(): Promise<string> {
+    return this._infoWindow.then(infoWindow => infoWindow.getContent());
+  }
+
+  getPosition(): Promise<LngLat> {
+    return this._infoWindow.then(infoWindow => infoWindow.getPosition());
+  }
+
+  getSize(): Promise<Size> {
+    return this._infoWindow.then(infoWindow => infoWindow.getSize());
   }
 }

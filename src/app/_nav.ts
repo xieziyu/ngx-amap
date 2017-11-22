@@ -6,7 +6,7 @@ export const navigation = [
   },
   {
     title: true,
-    name: '实例演示'
+    name: '组件示例'
   },
   {
     name: 'ngx-amap',
@@ -29,6 +29,37 @@ export const navigation = [
         icon: 'fa fa-html5'
       },
     ]
+  },
+  {
+    name: 'amap-info-window',
+    url: '/amap-info-window',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-info-window/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '用在marker内部',
+        url: '/amap-info-window/inside-marker',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '调用方法',
+        url: '/amap-info-window/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-info-window/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
+    title: true,
+    name: '指令示例'
   },
   {
     name: 'amap-marker',
