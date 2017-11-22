@@ -52,4 +52,26 @@ export const navigation = [
       },
     ]
   },
+  {
+    name: 'amap-polyline',
+    url: '/amap-polyline',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-polyline/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '调用方法',
+        url: '/amap-polyline/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-polyline/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
 ];

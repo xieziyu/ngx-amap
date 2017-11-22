@@ -58,6 +58,18 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
   // amap-polyline events:
   @Output() polylineClick = new EventEmitter();
   @Output() ready = new EventEmitter();
+  @Output() dblClick = new EventEmitter();
+  @Output() rightClick = new EventEmitter();
+  @Output() polylineHide = new EventEmitter();
+  @Output() polylineShow = new EventEmitter();
+  @Output() mouseDown = new EventEmitter();
+  @Output() mouseUp = new EventEmitter();
+  @Output() mouseOver = new EventEmitter();
+  @Output() mouseOut = new EventEmitter();
+  @Output() change = new EventEmitter();
+  @Output() touchStart = new EventEmitter();
+  @Output() touchMove = new EventEmitter();
+  @Output() touchEnd = new EventEmitter();
 
   private _polyline: Promise<Polyline>;
   private _subscriptions: Subscription;
@@ -90,7 +102,23 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
   }
 
   private bindEvents() {
-    this._subscriptions = this.polylines.bindEvent(this._polyline, 'click').subscribe(e => this.polylineClick.emit(e));
+    this._subscriptions = this.bindPolylineEvent('click').subscribe(e => this.polylineClick.emit(e));
+    this._subscriptions.add(this.bindPolylineEvent('dblclick').subscribe(e => this.dblClick.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('rightclick').subscribe(e => this.rightClick.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('hide').subscribe(e => this.polylineHide.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('show').subscribe(e => this.polylineShow.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('mousedown').subscribe(e => this.mouseDown.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('mouseup').subscribe(e => this.mouseUp.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('mouseover').subscribe(e => this.mouseOver.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('mouseout').subscribe(e => this.mouseOut.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('change').subscribe(e => this.change.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('touchstart').subscribe(e => this.touchStart.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('touchmove').subscribe(e => this.touchMove.emit(e)));
+    this._subscriptions.add(this.bindPolylineEvent('touchend').subscribe(e => this.touchEnd.emit(e)));
+  }
+
+  private bindPolylineEvent(event: string) {
+    return this.polylines.bindEvent(this._polyline, event);
   }
 
   // Public methods:

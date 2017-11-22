@@ -40,6 +40,13 @@ export const routes: Routes = [
           title: 'amap-marker'
         }
       },
+      {
+        path: 'amap-polyline',
+        loadChildren: './views/amap-polyline-demo/amap-polyline-demo.module#AmapPolylineDemoModule',
+        data: {
+          title: 'amap-polyline'
+        }
+      },
     ]
   },
   {

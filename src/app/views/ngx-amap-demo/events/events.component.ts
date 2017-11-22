@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
   demo_md_html = `\
-  <ngx-amap class="demo-map" [resizeEnable]="true"
+<ngx-amap class="demo-map" [resizeEnable]="true"
   (complete)="onMapEvent($event, 'complete')"
   (ready)="onMapEvent($event, 'ready')"
   (mapmove)="onMapEvent($event, 'mapMove')"

@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit, Input,
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger';
 import { LngLat, InfoWindow, Marker } from '../../types/class';
-import { ISize, IPixel, InfoWindowOptions } from '../../types/interface';
+import { ILngLat, ISize, IPixel, InfoWindowOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
 import { InfoWindowService } from '../../services/info-window/info-window.service';
@@ -34,7 +34,7 @@ export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
   @Input() closeWhenClickMap: boolean;
   @Input() size: ISize;
   @Input() offset: IPixel;
-  @Input() position: LngLat;
+  @Input() position: ILngLat;
   @Input() showShadow: boolean;
 
   // Extra property:
@@ -73,7 +73,7 @@ export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
     const filter = ChangeFilter.of(changes);
     filter.has<any>('content').subscribe(v => this.setContent(v));
     filter.has<boolean>('isOpen').subscribe(v => this.toggleOpen());
-    filter.notEmpty<LngLat>('position').subscribe(v => this.setPosition(v));
+    filter.notEmpty<ILngLat>('position').subscribe(v => this.setPosition(v));
     filter.notEmpty<ISize>('size').subscribe(v => this.setSize(v));
   }
 
@@ -123,7 +123,7 @@ export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
     return this._infoWindow.then(infoWindow => infoWindow.setContent(content));
   }
 
-  setPosition(position: LngLat): Promise<void> {
+  setPosition(position: ILngLat): Promise<void> {
     return this._infoWindow.then(infoWindow => infoWindow.setPosition(position));
   }
 

@@ -12,9 +12,9 @@ export class SimpleComponent implements OnInit {
   label: ILabel;
 
   demo_md_html = `\
-<button class="btn btn-primary" (click)="hidden = !hidden">显示/隐藏 点标记</button>
-<button class="btn btn-primary" (click)="toggleIcon()">切换自定义图标</button>
-<button class="btn btn-primary" (click)="toggleLabel()">切换自定义文本标签</button>
+<button class="btn btn-outline-primary" (click)="hidden = !hidden">显示/隐藏 点标记</button>
+<button class="btn btn-outline-primary" (click)="toggleIcon()">切换自定义图标</button>
+<button class="btn btn-outline-primary" (click)="toggleLabel()">切换自定义文本标签</button>
 <hr>
 <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
   <amap-marker [position]="[116.397428, 39.90923]" [hidden]="hidden" [icon]="icon" [label]="label"></amap-marker>

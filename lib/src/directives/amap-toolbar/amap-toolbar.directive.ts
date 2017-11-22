@@ -47,6 +47,8 @@ export class AmapToolBarDirective implements OnChanges, OnInit, OnDestroy {
   @Output() zoomchanged = new EventEmitter();
   @Output() location = new EventEmitter();
   @Output() ready = new EventEmitter();
+  @Output() toolbarHide = new EventEmitter();
+  @Output() toolbarShow = new EventEmitter();
 
   private _toolbar: Promise<ToolBar>;
   private _subscriptions: Subscription;
@@ -82,8 +84,14 @@ export class AmapToolBarDirective implements OnChanges, OnInit, OnDestroy {
   }
 
   private bindEvents() {
-    this._subscriptions = this.toolbars.bindEvent(this._toolbar, 'zoomchanged').subscribe(e => this.zoomchanged.emit(e));
-    this._subscriptions.add(this.toolbars.bindEvent(this._toolbar, 'location').subscribe(e => this.location.emit(e)));
+    this._subscriptions = this.bindToolBarEvent('zoomchanged').subscribe(e => this.zoomchanged.emit(e));
+    this._subscriptions.add(this.bindToolBarEvent('location').subscribe(e => this.location.emit(e)));
+    this._subscriptions.add(this.bindToolBarEvent('show').subscribe(e => this.toolbarShow.emit(e)));
+    this._subscriptions.add(this.bindToolBarEvent('hide').subscribe(e => this.toolbarHide.emit(e)));
+  }
+
+  private bindToolBarEvent(event: string) {
+    return this.toolbars.bindEvent(this._toolbar, event);
   }
 
   // Public methods:

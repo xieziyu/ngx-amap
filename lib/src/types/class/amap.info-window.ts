@@ -9,12 +9,12 @@ export interface CInfoWindow {
 
 export declare class InfoWindow {
   constructor(opts: InfoWindowOptions);
-  open(map: Map, pos?: LngLat): void;
+  open(map: Map, pos?: LngLat|number[]): void;
   close(): void;
   getIsOpen(): boolean;
   setContent(content: any): void;
   getContent(): string;
-  setPosition(lnglat: LngLat): void;
+  setPosition(lnglat: LngLat|number[]): void;
   getPosition(): LngLat;
   setSize(size: Size): void;
   getSize(): Size;

@@ -8,10 +8,10 @@ import { AmapMarkerDirective } from 'ngx-amap';
 })
 export class MethodsComponent implements OnInit, AfterViewInit {
   demo_md_html = `\
-<button class="btn btn-primary" (click)="startMove()">开始动画</button>
-<button class="btn btn-primary" (click)="pauseMove()">暂停动画</button>
-<button class="btn btn-primary" (click)="resumeMove()">继续动画</button>
-<button class="btn btn-primary" (click)="stopMove()">停止动画</button>
+<button class="btn btn-outline-primary" (click)="startMove()">开始动画</button>
+<button class="btn btn-outline-primary" (click)="pauseMove()">暂停动画</button>
+<button class="btn btn-outline-primary" (click)="resumeMove()">继续动画</button>
+<button class="btn btn-outline-primary" (click)="stopMove()">停止动画</button>
 <hr>
 <ngx-amap #map class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="17">
   <amap-marker
