@@ -1,0 +1,53 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    简单示例
+  </div>
+  <div class="card-body">
+    <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo1_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="支持的Input">
+          <markdown>
+            ```typescript
+            // MapOptions:
+            view: any;
+            layers: any[];
+            zoom: number;
+            center: LngLat;
+            labelzIndex: number;
+            zooms: number[];
+            lang: string;
+            cursor: string;
+            crs: string;
+            animateEnable: boolean;
+            isHotspot: boolean;
+            defaultLayer: any;
+            rotateEnable: boolean;
+            resizeEnable: boolean;
+            showIndoorMap: boolean;
+            indoorMap: any;
+            expandZoomRange: boolean;
+            dragEnable: boolean;
+            zoomEnable: boolean;
+            doubleClickZoom: boolean;
+            keyboardEnable: boolean;
+            jogEnable: boolean;
+            scrollWheel: boolean;
+            touchZoom: boolean;
+            mapStyle: string;
+            features: string[];
+            showBuildingBlock: boolean;
+            
+            // Extra Options:
+            city: string;
+            name: string;
+            ```
+          </markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

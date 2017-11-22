@@ -101,7 +101,7 @@ Exported some useful type interfaces such as `Icon`, `Pixel`, etc. Please refer 
 
 # Demo
 1. clone this repo to your working copy
-2. modify `demo/src/app/app.module.ts` to use your own KEY for ngx-amap
+2. modify `src/app/views/shared/shared.module.ts` to use your own KEY for ngx-amap
 3. launch the demo page in your local machine:
 ```
 npm install

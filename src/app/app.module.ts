@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgxAmapModule } from 'ngx-amap';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -66,10 +65,7 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MarkdownModule } from 'ngx-markdown';
-import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
-import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-demo.component';
-import { AmapInfoWindowDemoComponent } from './views/amap-info-window-demo/amap-info-window-demo.component';
-import { AmapPolylineDemoComponent } from './views/amap-polyline-demo/amap-polyline-demo.component';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
   imports: [
@@ -78,11 +74,6 @@ import { AmapPolylineDemoComponent } from './views/amap-polyline-demo/amap-polyl
     FormsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    NgxAmapModule.forRoot({
-      apiKey: '146f101e824accd6956eeec4937c1a05',
-      urlPath: 'https://webapi.amap.com/maps',
-      debug: true
-    }),
     MarkdownModule.forRoot()
   ],
   declarations: [
@@ -90,10 +81,7 @@ import { AmapPolylineDemoComponent } from './views/amap-polyline-demo/amap-polyl
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
     ...APP_DIRECTIVES,
-    NgxAmapDemoComponent,
-    AmapMarkerDemoComponent,
-    AmapInfoWindowDemoComponent,
-    AmapPolylineDemoComponent
+    HomeComponent
   ],
   providers: [{
     provide: LocationStrategy,

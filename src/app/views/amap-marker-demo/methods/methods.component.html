@@ -1,0 +1,87 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    调用方法示例：轨迹回放
+  </div>
+  <div class="card-body">
+    <button class="btn btn-primary" (click)="startMove()">开始动画</button>
+    <button class="btn btn-primary" (click)="pauseMove()">暂停动画</button>
+    <button class="btn btn-primary" (click)="resumeMove()">继续动画</button>
+    <button class="btn btn-primary" (click)="stopMove()">停止动画</button>
+    <hr>
+    <ngx-amap #map class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="17">
+      <amap-marker
+        [position]="[116.397428, 39.90923]"
+        icon="http://webapi.amap.com/images/car.png"
+        [offset]="{x:-26,y:-13}"
+        [autoRotation]="true"
+        (moving)="passedPath = $event.passedPath"
+        (ready)="onMarkerReady(map)">
+      </amap-marker>
+      <amap-polyline
+        [path]="lineArr"
+        [strokeColor]="'#00A'"
+        [strokeWeight]="3">
+      </amap-polyline>
+      <amap-polyline
+        [path]="passedPath"
+        [strokeColor]="'#F00'"
+        [strokeWeight]="3">
+      </amap-polyline>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+        </tab>
+        <tab heading="支持的方法">
+          <markdown>
+          ```typescript
+          show()
+          hide()
+          moveTo(position: ILngLat, speed: number, f?: (k: any) => any)
+          moveAlong(path: ILngLat[], speed: number, f?: (k: any) => any)
+          stopMove()
+          pauseMove()
+          resumeMove()
+          setOffset(offset: IPixel)
+          setIcon(icon: string|IIcon)
+          setShadow(shadow: IIcon)
+          setLabel(label: ILabel)
+          setDraggable(draggable: boolean)
+          setClickable(clickable: boolean)
+          setPosition(position: LngLat)
+          setAngle(angle: number)
+          setzIndex(zIndex: number)
+          setContent(content: any)
+          setTitle(title: string)
+          setCursor(cursor: string)
+          setTop(isTop: boolean)
+          setExtData(data: any)
+          setShape(shape: any)
+          setAnimation(animation: string)
+          getOffset()
+          getPosition()
+          getLabel()
+          getAngle()
+          getzIndex()
+          getIcon()
+          getContent()
+          getTitle()
+          getTop()
+          getShadow()
+          getShape()
+          getExtData()
+          getMap()
+          getAnimation()
+          getClickable()
+          getDraggable()
+          ```
+          </markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

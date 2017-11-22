@@ -1,0 +1,39 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    调用地图方法
+  </div>
+  <div class="card-body">
+    <button class="btn btn-primary" (click)="map.setFitView()">地图自适应显示</button>
+    <hr>
+    <ngx-amap #map class="demo-map" name="demo" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-marker [position]="[116.205467, 39.907761]"></amap-marker>
+      <amap-marker [position]="[116.368904, 39.913423]"></amap-marker>
+      <amap-marker [position]="[116.305467, 39.807761]"></amap-marker>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="支持的方法">
+          <markdown>
+            ```typescript
+            // 返回值都是Promise
+            setFitView()
+            setZoom(level: number)
+            setCenter(position: LngLat|number[])
+            setZoomAndCenter(zoomLevel: number, center: LngLat|number[])
+            setlabelzIndex(index: number)
+            setCity(city: string)
+            clearMap()
+            getZoom()
+            getCenter()
+            getCity()
+            getSize()
+            ```
+          </markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

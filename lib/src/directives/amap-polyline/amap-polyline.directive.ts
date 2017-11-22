@@ -57,12 +57,15 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
 
   // amap-polyline events:
   @Output() polylineClick = new EventEmitter();
-  @Output() polylineReady = new EventEmitter();
+  @Output() ready = new EventEmitter();
 
   private _polyline: Promise<Polyline>;
   private _subscriptions: Subscription;
 
-  constructor(private polylines: PolylineService) {}
+  constructor(
+    private logger: LoggerService,
+    private polylines: PolylineService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     const filter = ChangeFilter.of(changes);
@@ -71,7 +74,7 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
       const options = this.options || Utils.getOptionsFor<PolylineOptions>(this, ALL_OPTIONS);
       this._polyline = this.polylines.create(options);
       this.bindEvents();
-      this._polyline.then(p => this.polylineReady.emit(p));
+      this._polyline.then(p => this.ready.emit(p));
     } else {
       filter.has<number[][]>('path').subscribe(v => this.setPath(v));
       filter.has<PolylineOptions>('options').subscribe(v => this.setOptions(v || {}));

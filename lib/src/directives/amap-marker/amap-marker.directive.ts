@@ -41,7 +41,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   TAG = 'amap-marker';
 
   // These properties are supported in MarkerOptions:
-  @Input() position: LngLat;
+  @Input() position: ILngLat;
   @Input() offset: IPixel;
   @Input() icon: string|IIcon;
   @Input() content: any;
@@ -68,8 +68,21 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   @Input() openInfoWindow = true;
 
   // amap-marker events:
-  @Output() markerReady = new EventEmitter();
+  @Output() ready = new EventEmitter();
   @Output() markerClick = new EventEmitter();
+  @Output() dblClick = new EventEmitter();
+  @Output() rightClick = new EventEmitter();
+  @Output() mouseMove = new EventEmitter();
+  @Output() mouseOver = new EventEmitter();
+  @Output() mouseOut = new EventEmitter();
+  @Output() mouseDown = new EventEmitter();
+  @Output() mouseUp = new EventEmitter();
+  @Output() dragStart = new EventEmitter();
+  @Output() dragging = new EventEmitter();
+  @Output() dragEnd = new EventEmitter();
+  @Output() touchStart = new EventEmitter();
+  @Output() touchMove = new EventEmitter();
+  @Output() touchEnd = new EventEmitter();
   @Output() moving = new EventEmitter();
   @Output() moveend = new EventEmitter();
   @Output() movealong = new EventEmitter();
@@ -95,7 +108,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
       const options = Utils.getOptionsFor<MarkerOptions>(this, ALL_OPTIONS);
       this._marker = this.markers.create(options);
       this.bindEvents();
-      this._marker.then(marker => this.markerReady.emit(marker));
+      this._marker.then(marker => this.ready.emit(marker));
     } else {
       filter.has<string|IIcon>('icon').subscribe(v => this.setIcon(v));
       filter.has<IIcon>('shadow').subscribe(v => this.setShadow(v));
@@ -141,7 +154,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   private bindEvents() {
-    this._subscriptions = this.markers.bindEvent(this._marker, 'click').subscribe(e => {
+    this._subscriptions = this.bindMarkerEvent('click').subscribe(e => {
       if (this.openInfoWindow) {
         this.infoWindowComponent.forEach(component => {
           component.open();
@@ -149,15 +162,26 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
       }
       this.markerClick.emit(e);
     });
-    this._subscriptions.add(this.markers.bindEvent(this._marker, 'moving').subscribe(e => {
-      this.moving.emit(e);
-    }));
-    this._subscriptions.add(this.markers.bindEvent(this._marker, 'moveend').subscribe(e => {
-      this.moveend.emit(e);
-    }));
-    this._subscriptions.add(this.markers.bindEvent(this._marker, 'movealong').subscribe(e => {
-      this.movealong.emit(e);
-    }));
+    this._subscriptions.add(this.bindMarkerEvent('dblclick').subscribe(e => this.dblClick.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('rightclick').subscribe(e => this.rightClick.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('mousemove').subscribe(e => this.mouseMove.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('mouseover').subscribe(e => this.mouseOver.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('mouseout').subscribe(e => this.mouseOut.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('mousedown').subscribe(e => this.mouseDown.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('mouseup').subscribe(e => this.mouseUp.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('dragstart').subscribe(e => this.dragStart.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('dragging').subscribe(e => this.dragging.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('dragend').subscribe(e => this.dragEnd.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('touchstart').subscribe(e => this.touchStart.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('touchmove').subscribe(e => this.touchMove.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('touchend').subscribe(e => this.touchEnd.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('moving').subscribe(e => this.moving.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('moveend').subscribe(e => this.moveend.emit(e)));
+    this._subscriptions.add(this.bindMarkerEvent('movealong').subscribe(e => this.movealong.emit(e)));
+  }
+
+  private bindMarkerEvent(event: string) {
+    return this.markers.bindEvent(this._marker, event);
   }
 
   show(): Promise<void> {

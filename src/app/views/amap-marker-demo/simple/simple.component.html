@@ -1,0 +1,56 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    简单示例
+  </div>
+  <div class="card-body">
+    <button class="btn btn-primary" (click)="hidden = !hidden">显示/隐藏 点标记</button>
+    <button class="btn btn-primary" (click)="toggleIcon()">切换自定义图标</button>
+    <button class="btn btn-primary" (click)="toggleLabel()">切换自定义文本标签</button>
+    <hr>
+    <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-marker [position]="[116.397428, 39.90923]" [hidden]="hidden" [icon]="icon" [label]="label"></amap-marker>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+        </tab>
+        <tab heading="支持的Input">
+            <markdown>
+              ```typescript
+              // MarkerOptions:
+              position: LngLat;
+              offset: IPixel;
+              icon: string|IIcon;
+              content: any;
+              topWhenClick: boolean;
+              bubble: boolean;
+              draggable: boolean;
+              raiseOnDrag: boolean;
+              cursor: string;
+              visible: boolean;
+              zIndex: number;
+              angle: number;
+              autoRotation: boolean;
+              shadow: IIcon;
+              title: string;
+              clickable: boolean;
+              shape: any;
+              extData: any;
+              label: ILabel;
+              
+              // Extra Options:
+              isTop: boolean;
+              animation: string;
+              hidden: boolean;
+              openInfoWindow: boolean;
+              ```
+            </markdown>
+          </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

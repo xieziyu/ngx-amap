@@ -7,59 +7,37 @@ import {
   SimpleLayoutComponent
 } from './containers';
 
-import { NgxAmapDemoComponent } from './views/ngx-amap-demo/ngx-amap-demo.component';
-import { AmapMarkerDemoComponent } from './views/amap-marker-demo/amap-marker-demo.component';
-import { AmapInfoWindowDemoComponent } from './views/amap-info-window-demo/amap-info-window-demo.component';
-import { AmapPolylineDemoComponent } from './views/amap-polyline-demo/amap-polyline-demo.component';
+import { HomeComponent } from './views/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/component/ngx-amap',
+    redirectTo: '/home',
     pathMatch: 'full',
   },
   {
-    path: 'component',
+    path: '',
     component: FullLayoutComponent,
     data: {
-      title: '组件'
+      title: '首页'
     },
     children: [
       {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
         path: 'ngx-amap',
-        component: NgxAmapDemoComponent,
+        loadChildren: './views/ngx-amap-demo/ngx-amap-demo.module#NgxAmapDemoModule',
         data: {
           title: 'ngx-amap'
         }
       },
       {
-        path: 'amap-info-window',
-        component: AmapInfoWindowDemoComponent,
-        data: {
-          title: 'amap-info-window'
-        }
-      },
-    ]
-  },
-  {
-    path: 'directives',
-    component: FullLayoutComponent,
-    data: {
-      title: '指令'
-    },
-    children: [
-      {
         path: 'amap-marker',
-        component: AmapMarkerDemoComponent,
+        loadChildren: './views/amap-marker-demo/amap-marker-demo.module#AmapMarkerDemoModule',
         data: {
           title: 'amap-marker'
-        }
-      },
-      {
-        path: 'amap-polyline',
-        component: AmapPolylineDemoComponent,
-        data: {
-          title: 'amap-polyline'
         }
       },
     ]

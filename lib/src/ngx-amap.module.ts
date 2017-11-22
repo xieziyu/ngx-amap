@@ -7,6 +7,7 @@ import { NgxAmapComponent } from './components/ngx-amap/ngx-amap.component';
 import { AmapMarkerDirective } from './directives/amap-marker/amap-marker.directive';
 import { AmapInfoWindowComponent } from './components/amap-info-window/amap-info-window.component';
 import { AmapPolylineDirective } from './directives/amap-polyline/amap-polyline.directive';
+import { AmapToolBarDirective } from './directives/amap-toolbar/amap-toolbar.directive';
 import { PixelService } from './services/pixel/pixel.service';
 import { SizeService } from './services/size/size.service';
 import { IconService } from './services/icon/icon.service';
@@ -17,13 +18,15 @@ import { LabelService } from './services/label/label.service';
     NgxAmapComponent,
     AmapMarkerDirective,
     AmapInfoWindowComponent,
-    AmapPolylineDirective
+    AmapPolylineDirective,
+    AmapToolBarDirective
   ],
   exports: [
     NgxAmapComponent,
     AmapMarkerDirective,
     AmapInfoWindowComponent,
-    AmapPolylineDirective
+    AmapPolylineDirective,
+    AmapToolBarDirective
   ]
 })
 export class NgxAmapModule {
@@ -49,5 +52,6 @@ export {
   NgxAmapComponent,
   AmapMarkerDirective,
   AmapInfoWindowComponent,
-  AmapPolylineDirective
+  AmapPolylineDirective,
+  AmapToolBarDirective
 };

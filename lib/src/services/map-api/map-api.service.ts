@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { MapAPILoaderService } from '../map-api-loader/map-api-loader.service';
 import { MapOptions } from '../../types/interface';
 import { AMapClass, Map } from '../../types/class';
 import { LoggerService } from '../logger';
+import { EventBinder } from '../../utils/event-binder';
 
 declare const AMap: AMapClass;
 
 @Injectable()
-export class MapAPIService {
+export class MapAPIService extends EventBinder {
   TAG = 'map-api';
   private _map: Map;
   private _mapPromise: Promise<Map>;
   private _mapResolver: (map?: Map) => void;
 
   constructor(private loader: MapAPILoaderService, private logger: LoggerService) {
+    super();
     this._mapPromise = new Promise(resolve => this._mapResolver = resolve);
   }
 
@@ -35,5 +38,9 @@ export class MapAPIService {
 
   get map(): Promise<Map> {
     return this._mapPromise;
+  }
+
+  bindMapEvents(event: string): Observable<any> {
+    return this.bindEvent(this._mapPromise, event);
   }
 }

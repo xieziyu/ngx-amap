@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Input,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger';
 import { MapAPIService } from '../../services/map-api/map-api.service';
 import { MarkerService } from '../../services/marker/marker.service';
@@ -9,6 +10,7 @@ import { LngLat, Size } from '../../types/class';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
 import { PolylineService } from '../../services/polyline/polyline.service';
+import { ToolBarService } from '../../services/toolbar/toolbar.service';
 
 const ALL_OPTIONS = [
   'view',
@@ -48,7 +50,8 @@ const ALL_OPTIONS = [
     MapAPIService,
     MarkerService,
     InfoWindowService,
-    PolylineService
+    PolylineService,
+    ToolBarService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
@@ -88,9 +91,36 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() name: string;
 
   // ngx-amap events:
-  @Output() mapReady = new EventEmitter();
+  @Output() ready = new EventEmitter();
+  @Output() mapClick = new EventEmitter();
+  @Output() dblClick = new EventEmitter();
+  @Output() complete = new EventEmitter();
+  @Output() mapmove = new EventEmitter();
+  @Output() movestart = new EventEmitter();
+  @Output() moveend = new EventEmitter();
+  @Output() zoomchange = new EventEmitter();
+  @Output() zoomstart = new EventEmitter();
+  @Output() zoomend = new EventEmitter();
+  @Output() resize = new EventEmitter();
+  @Output() rightClick = new EventEmitter();
+  @Output() mouseMove = new EventEmitter();
+  @Output() mouseOver = new EventEmitter();
+  @Output() mouseWheel = new EventEmitter();
+  @Output() mouseOut = new EventEmitter();
+  @Output() mouseUp = new EventEmitter();
+  @Output() mouseDown = new EventEmitter();
+  @Output() touchStart = new EventEmitter();
+  @Output() touchMove = new EventEmitter();
+  @Output() touchEnd = new EventEmitter();
+  @Output() hotspotClick = new EventEmitter();
+  @Output() hotspotOver = new EventEmitter();
+  @Output() hotspotOut = new EventEmitter();
+  @Output() dragStart = new EventEmitter();
+  @Output() dragging = new EventEmitter();
+  @Output() dragEnd = new EventEmitter();
 
   private _inited = false;
+  private _subscriptions: Subscription;
 
   constructor(private el: ElementRef,
     private api: MapAPIService,
@@ -102,13 +132,15 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
     const options = Utils.getOptionsFor<MapOptions>(this, ALL_OPTIONS);
     this.logger.d(this.TAG, 'map options:', options);
     this.api.createMap(container, options)
-      .then(map => this.mapReady.emit(map))
+      .then(map => this.ready.emit(map))
       .then(() => this.logger.d(this.TAG, 'map is ready.'))
       .catch(() => this.logger.e(this.TAG, 'failed to load AMap script.'));
+    this.bindEvents();
     this._inited = true;
   }
 
   ngOnDestroy() {
+    this._subscriptions.unsubscribe();
     this.api.destroyMap();
     this.logger.d(this.TAG, 'map api destroyed.');
   }
@@ -122,6 +154,35 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
 
     // Not included in OPTIONS
     filter.has<string>('city').subscribe(v => this.setCity(v));
+  }
+
+  private bindEvents() {
+    this._subscriptions = this.api.bindMapEvents('complete').subscribe(e => this.complete.emit(e));
+    this._subscriptions.add(this.api.bindMapEvents('mapmove').subscribe(e => this.mapmove.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('movestart').subscribe(e => this.movestart.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('moveend').subscribe(e => this.moveend.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('zoomchange').subscribe(e => this.zoomchange.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('zoomstart').subscribe(e => this.zoomstart.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('zoomend').subscribe(e => this.zoomend.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('resize').subscribe(e => this.resize.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('click').subscribe(e => this.mapClick.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('dblclick').subscribe(e => this.dblClick.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('rightclick').subscribe(e => this.rightClick.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('mousemove').subscribe(e => this.mouseMove.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('mouseover').subscribe(e => this.mouseOver.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('mousewheel').subscribe(e => this.mouseWheel.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('mouseup').subscribe(e => this.mouseUp.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('mouseout').subscribe(e => this.mouseOut.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('mousedown').subscribe(e => this.mouseDown.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('touchstart').subscribe(e => this.touchStart.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('touchmove').subscribe(e => this.touchMove.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('touchend').subscribe(e => this.touchEnd.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('hotspotclick').subscribe(e => this.hotspotClick.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('hotspotover').subscribe(e => this.hotspotOver.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('hotspotout').subscribe(e => this.hotspotOut.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('dragstart').subscribe(e => this.dragStart.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('dragging').subscribe(e => this.dragging.emit(e)));
+    this._subscriptions.add(this.api.bindMapEvents('dragend').subscribe(e => this.dragEnd.emit(e)));
   }
 
   // Setters

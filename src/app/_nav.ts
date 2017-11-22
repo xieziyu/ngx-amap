@@ -1,36 +1,55 @@
 export const navigation = [
   {
-    name: '组件',
-    url: '/component',
+    name: '首页',
+    url: '/home',
+    icon: 'fa fa-home',
+  },
+  {
+    title: true,
+    name: '实例演示'
+  },
+  {
+    name: 'ngx-amap',
+    url: '/ngx-amap',
     icon: 'fa fa-code',
     children: [
       {
-        name: 'ngx-amap',
-        url: '/component/ngx-amap',
-        icon: 'fa fa-code'
+        name: '简单示例',
+        url: '/ngx-amap/simple',
+        icon: 'fa fa-html5'
       },
       {
-        name: 'amap-info-window',
-        url: '/component/amap-info-window',
-        icon: 'fa fa-code'
+        name: '调用方法',
+        url: '/ngx-amap/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/ngx-amap/events',
+        icon: 'fa fa-html5'
       },
     ]
   },
   {
-    name: '指令',
-    url: '/directives',
+    name: 'amap-marker',
+    url: '/amap-marker',
     icon: 'fa fa-code',
     children: [
       {
-        name: 'amap-marker',
-        url: '/directives/amap-marker',
-        icon: 'fa fa-code'
+        name: '简单示例',
+        url: '/amap-marker/simple',
+        icon: 'fa fa-html5'
       },
       {
-        name: 'amap-polyline',
-        url: '/directives/amap-polyline',
-        icon: 'fa fa-code'
+        name: '调用方法',
+        url: '/amap-marker/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-marker/events',
+        icon: 'fa fa-html5'
       },
     ]
-  }
+  },
 ];
