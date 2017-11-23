@@ -1,0 +1,39 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    调用方法示例 (请查看console输出)
+  </div>
+  <div class="card-body">
+    <button type="button" class="btn btn-outline-primary" (click)="getMethods(infoWindow)">调用Getter方法</button>
+    <hr>
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]">
+      <amap-info-window #infoWindow [isOpen]="true" [position]="[116.397428, 39.90923]">
+        我还是一个简单的信息窗体
+      </amap-info-window>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+        </tab>
+        <tab heading="支持的方法">
+          <markdown>
+            ```typescript
+            open(position?: ILngLat)
+            close()
+            setContent(content: any)
+            setPosition(position: ILngLat)
+            setSize(size: ISize)
+            getIsOpen()
+            getContent()
+            getPosition()
+            getSize()
+            ```
+          </markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

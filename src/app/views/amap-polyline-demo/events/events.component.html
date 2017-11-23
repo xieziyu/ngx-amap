@@ -1,0 +1,37 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    折线事件 (请查看console输出)
+  </div>
+  <div class="card-body">
+    <button type="button" class="btn btn-outline-primary" (click)="hide = !hide">触发显示隐藏事件</button>
+    <hr>
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-polyline [options]="lineOptions" [hidden]="hide"
+        (polylineClick)="onPolylineEvent($event, 'polylineClick')"
+        (ready)="onPolylineEvent($event, 'ready')"
+        (dblClick)="onPolylineEvent($event, 'dblClick')"
+        (rightClick)="onPolylineEvent($event, 'rightClick')"
+        (polylineHide)="onPolylineEvent($event, 'polylineHide')"
+        (polylineShow)="onPolylineEvent($event, 'polylineShow')"
+        (mouseDown)="onPolylineEvent($event, 'mouseDown')"
+        (mouseUp)="onPolylineEvent($event, 'mouseUp')"
+        (mouseOver)="onPolylineEvent($event, 'mouseOver')"
+        (mouseOut)="onPolylineEvent($event, 'mouseOut')"
+        (change)="onPolylineEvent($event, 'change')"
+        (touchStart)="onPolylineEvent($event, 'touchStart')"
+        (touchMove)="onPolylineEvent($event, 'touchMove')"
+        (touchEnd)="onPolylineEvent($event, 'touchEnd')"
+      ></amap-polyline>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

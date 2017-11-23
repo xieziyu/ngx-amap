@@ -1,0 +1,48 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    简单示例
+  </div>
+  <div class="card-body">
+    <button class="btn btn-primary" (click)="windowOpen = !windowOpen">显示/隐藏 信息窗体</button>
+    <hr>
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]">
+      <amap-info-window 
+        [(isOpen)]="windowOpen"
+        [position]="[116.397428, 39.90923]"
+        (windowChange)="onWindowChange($event)"
+        (windowOpen)="onWindowOpen($event)"
+        (windowClose)="onWindowClose($event)">
+        我是一个简单的信息窗体
+      </amap-info-window>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo1_md_html | language: 'html'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+
+<div class="card card-accent-info">
+  <div class="card-header">
+    与 amap-marker 点击联动
+  </div>
+  <div class="card-body">
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-marker *ngFor="let marker of markers; index as i" [position]="marker">
+        <amap-info-window [offset]="infoWindowOffset">
+          我是第 <span class="text-danger">{{i+1}}</span> 个marker
+        </amap-info-window>
+      </amap-marker>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo2_md_html | language: 'html'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

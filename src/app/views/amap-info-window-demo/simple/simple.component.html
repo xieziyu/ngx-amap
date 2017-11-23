@@ -1,0 +1,21 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    简单示例
+  </div>
+  <div class="card-body">
+    <button class="btn btn-outline-primary" (click)="open = !open">显示/隐藏 信息窗体</button>
+    <hr>
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]">
+      <amap-info-window [(isOpen)]="open" [position]="[116.397428, 39.90923]">
+        我是一个简单的信息窗体
+      </amap-info-window>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    简单示例
+  </div>
+  <div class="card-body">
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-polyline
+        [path]="lineArr"
+        [strokeColor]="'#3366FF'"
+        [strokeOpacity]="1"
+        [strokeWeight]="5"
+        [strokeStyle]="'solid'"
+        [strokeDasharray]="[10, 5]">
+      </amap-polyline>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+        </tab>
+        <tab heading="支持的Input">
+          <markdown>
+            ```typescript
+            // PolylineOptions:
+            zIndex: number;
+            bubble: boolean;
+            geodesic: boolean;
+            isOutline: boolean;
+            borderWeight: number;
+            outlineColor: string;
+            path: number[][];
+            strokeColor: string;
+            strokeOpacity: number;
+            strokeWeight: number;
+            strokeStyle: string;
+            strokeDasharray: number[];
+            lineJoin: string;
+            extData: any;
+            showDir: boolean;
+
+            // This options property will override other property:
+            options: PolylineOptions;
+            
+            // Extra Options:
+            hidden: boolean;
+            ```
+          </markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
