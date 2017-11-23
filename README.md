@@ -1,5 +1,6 @@
 # ngx-amap [![npm version](https://badge.fury.io/js/ngx-amap.svg)](http://badge.fury.io/js/ngx-amap) [![npm downloads](https://img.shields.io/npm/dm/ngx-amap.svg)](https://npmjs.org/ngx-amap)
-演示文档：https://xieziyu.github.io/ngx-amap
+演示：https://xieziyu.github.io/ngx-amap
+文档：https://xieziyu.github.io/ngx-amap/api-doc
 
 ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高德地图**Javascript API而构建的组件集合
 

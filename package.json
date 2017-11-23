@@ -1,5 +1,5 @@
 {
-  "name": "ngx-amap-packaged",
+  "name": "ngx-amap",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
@@ -13,9 +13,10 @@
     "rm:link": "rimraf node_modules/ngx-amap",
     "link:lib": "cpr dist/ngx-amap node_modules/ngx-amap",
     "update:md": "cpr README.md dist/ngx-amap/README.md -o",
-    "release": "run-s build:lib update:md",
+    "release": "run-s build:lib update:md rm:link link:lib build compodoc",
     "demo": "run-s build:lib rm:link link:lib start",
-    "build:demo": "run-s build:lib rm:link link:lib build"
+    "build:demo": "run-s build:lib rm:link link:lib build",
+    "compodoc": "compodoc -p lib/src/tsconfig.lib.json -d docs/api-doc --theme readthedocs"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +38,7 @@
     "@angular/cli": "1.5.3",
     "@angular/compiler-cli": "5.0.2",
     "@angular/language-service": "5.0.2",
+    "@compodoc/compodoc": "^1.0.4",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
