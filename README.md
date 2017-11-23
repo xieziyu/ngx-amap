@@ -1,34 +1,28 @@
 # ngx-amap [![npm version](https://badge.fury.io/js/ngx-amap.svg)](http://badge.fury.io/js/ngx-amap) [![npm downloads](https://img.shields.io/npm/dm/ngx-amap.svg)](https://npmjs.org/ngx-amap)
-angular 2+ component for AMap (高德地图). Please refer to the [ngx-amap/demo](https://xieziyu.github.io/#/ngx-amap/demo) page.
+ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高德地图**Javascript API而构建的组件集合
 
-This project is ongoing ...
+## 目录
+1. [最新进度](#最新进度)
+2. [安装](#安装)
+3. [使用](#使用)
+4. [配置](#配置)
+5. [指令](#指令)
+6. [类型声明](#类型声明)
+7. [演示示例](#演示示例)
 
-## Table of contents 
-1. [Latest News](#latest_news)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Config](#config)
-5. [Directives](#directives)
-6. [Types](#types)
-7. [Demo](#demo)
+# 最新进度
+2017.11.23: 重写了各个组件，尽可能齐全地为每个组件提供了public方法和output事件，以适配高德原生API
 
-# Latest News
-2017.09.22: Support AMap.Polyline: `amap-polyline`;
-
-2017.09.19: Support `ngx-amap` setFitView(); some bugfix;
-
-2017.09.13: Support AMap.InfoWindow: `amap-info-window`
-
-2017.09.12: Support plugin AMap.ToolBar: `amap-tool-bar`
-
-# Installation
-```
-npm install ngx-amap --save
+# 安装
+```bash
+$ npm install ngx-amap --save
+# or
+$ yarn add ngx-amap --save
 ```
 
-# Usage
-1. import `NgxAmapModule` in your app module (or any other proper angular module).
-    + app.module:
+# 使用
+1. import `NgxAmapModule`
+    + Example:
       ```typescript
       import { NgxAmapModule } from 'ngx-amap';
 
@@ -44,8 +38,8 @@ npm install ngx-amap --save
       export class AppModule { }
       ```
 
-2. use `ngx-amap` component with **pre-defined height**.
-    + Simple example:
+2. 使用 `ngx-amap` 组件时必须**给定高度**.
+    + 简单示例:
 
       + html:
       ```html
@@ -59,8 +53,8 @@ npm install ngx-amap --save
       }
       ```
 
-3. use `amap-marker` to draw markers inside the map
-    + Simple example:
+3. 可以配合使用其他指令和组件。例如 `amap-marker` 可以在地图中画覆盖物：点标记。
+    + 简单示例:
 
       + html:
       ```html
@@ -69,8 +63,8 @@ npm install ngx-amap --save
       </ngx-amap>
       ```
 
-4. add `amap-tool-bar` to add ToolBar plugin
-    + Simple example:
+4. 加入地图控件的方法也很简单，例如：`amap-tool-bar`
+    + 简单示例:
 
       + html:
       ```html
@@ -79,31 +73,46 @@ npm install ngx-amap --save
       </ngx-amap>
       ```
 
-# Config
-You can setup `NgxAmapModule` by `forRoot` method. It supports following options:
+更多用法和事件，请参看演示示例。
+
+# 配置
+你可以通过`NgxAmapModule`的`forRoot()`方法设置`ngx-amap`. 它可以接受以下参数传入：
 ```typescript
 {
-  apiKey: string;   // *required*. Your developer key for AMap web service.
-  apiVersion: string;  // [optional]. default is '1.3'
-  urlPath: string;  // [optional]. default is 'http://webapi.amap.com/maps', You can change HTTP or HTTPS protocol by this string.
+  apiKey: string;   // *必须， 高德地图的开发者license key
+  apiVersion: string;  // [可选]，默认是'1.4.1'
+  urlPath: string;  // [可选]， 默认是 'http://webapi.amap.com/maps', 可以用它设置HTTPS或者HTTP协议
 }
 ```
 
-# Directives
-+ `ngx-amap`: [**ngx-amap.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/ngx-amap.md)
-+ `amap-marker`: [**amap-marker.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-marker.md)
-+ `amap-tool-bar`: [**amap-tool-bar.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-tool-bar.md)
-+ `amap-info-window`: [**amap-info-window.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-info-window.md)
-+ `amap-polyline`: [**amap-polyline.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/amap-polyline.md)
+# 指令
++ `ngx-amap`: 组件：地图容器
++ `amap-marker`: 指令：点标记
++ `amap-polyline`: 指令：折线
++ `amap-tool-bar`: 指令：地图控件
++ `amap-info-window`: 组件：信息窗体
 
-# Types
-Exported some useful type interfaces such as `Icon`, `Pixel`, etc. Please refer to [**Types.md**](https://github.com/xieziyu/ngx-amap/blob/master/docs/Types.md).
+# 类型声明
+可以从`ngx-amap/types/class`中import对AMap类的声明：
 
-# Demo
-1. clone this repo to your working copy
-2. modify `src/app/views/shared/shared.module.ts` to use your own KEY for ngx-amap
-3. launch the demo page in your local machine:
+```typescript
+  import { Map, Marker, LngLat, Icon } from 'ngx-amap/types/class';
 ```
+
+可以从`ngx-amap/types/interface`中import对`ngx-amap`所使用的Input类型需要的声明：
+
+```typescript
+  import { MarkerOptions, IPixel, IIcon } from 'ngx-amap/types/class';
+```
+
+# 演示示例
+1. clone 当前 repo 到本地
+2. 修改 `src/app/views/shared/shared.module.ts` 以使用自己的的高德API key
+3. 启动demo
+```bash
 npm install
 npm run demo
+# or
+yarn install
+yarn demo
 ```

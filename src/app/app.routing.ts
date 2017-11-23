@@ -54,6 +54,13 @@ export const routes: Routes = [
           title: 'amap-info-window'
         }
       },
+      {
+        path: 'amap-tool-bar',
+        loadChildren: './views/amap-toolbar-demo/amap-toolbar-demo.module#AmapToolbarDemoModule',
+        data: {
+          title: 'amap-tool-bar'
+        }
+      },
     ]
   },
   {
