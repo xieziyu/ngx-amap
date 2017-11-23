@@ -5,11 +5,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=8080",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:lib": "ng-packagr",
+    "update:doc": "cpr README.md dist/ngx-amap/README.md -o",
+    "release": "run-s build:lib update:doc",
     "demo": "run-s build:lib start"
   },
   "private": true,
@@ -38,6 +40,7 @@
     "@types/prismjs": "^1.6.5",
     "bootstrap": "4.0.0-beta.2",
     "codelyzer": "~3.2.0",
+    "cpr": "^3.0.1",
     "font-awesome": "^4.7.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
