@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MarkerOptions, IPixel } from '../../types/interface';
 import { AMapClass, Marker, Map, Icon } from '../../types/class';
-import { LoggerService } from '../logger';
+import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { PixelService } from '../pixel/pixel.service';
 import { IconService } from '../icon/icon.service';

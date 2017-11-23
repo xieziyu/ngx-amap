@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IPixel } from '../../types/interface';
 import { AMapClass, Pixel } from '../../types/class';
-import { LoggerService } from '../logger';
+import { LoggerService } from '../logger/logger.service';
 
 declare const AMap: AMapClass;
 

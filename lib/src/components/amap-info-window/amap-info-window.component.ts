@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Input,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { LoggerService } from '../../services/logger';
+import { LoggerService } from '../../services/logger/logger.service';
 import { LngLat, InfoWindow, Marker, Size } from '../../types/class';
 import { ILngLat, ISize, IPixel, InfoWindowOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { InfoWindowOptions, IPixel, ILngLat } from '../../types/interface';
 import { AMapClass, InfoWindow, Map, Icon, LngLat } from '../../types/class';
-import { LoggerService } from '../logger';
+import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { PixelService } from '../pixel/pixel.service';
 import { SizeService } from '../size/size.service';

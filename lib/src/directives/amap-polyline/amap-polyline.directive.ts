@@ -1,7 +1,7 @@
 import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { LoggerService } from '../../services/logger';
+import { LoggerService } from '../../services/logger/logger.service';
 import { Polyline, Map } from '../../types/class';
 import { PolylineOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';

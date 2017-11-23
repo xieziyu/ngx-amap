@@ -4,10 +4,6 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2015",
-    "paths": {
-      "ngx-amap": [ "../dist/ngx-amap" ],
-      "ngx-amap/types/interface": [ "../dist/ngx-amap/types/interface" ]
-    },
     "types": [
       "prismjs"
     ]

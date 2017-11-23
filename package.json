@@ -10,9 +10,12 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:lib": "ng-packagr",
-    "update:doc": "cpr README.md dist/ngx-amap/README.md -o",
-    "release": "run-s build:lib update:doc",
-    "demo": "run-s build:lib start"
+    "rm:link": "rimraf node_modules/ngx-amap",
+    "link:lib": "cpr dist/ngx-amap node_modules/ngx-amap",
+    "update:md": "cpr README.md dist/ngx-amap/README.md -o",
+    "release": "run-s build:lib update:md",
+    "demo": "run-s build:lib rm:link link:lib start",
+    "build:demo": "run-s build:lib rm:link link:lib build"
   },
   "private": true,
   "dependencies": {
@@ -55,6 +58,7 @@
     "ngx-markdown": "^1.4.0",
     "npm-run-all": "^4.1.2",
     "protractor": "~5.1.2",
+    "rimraf": "^2.6.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AMapClass, ToolBar, Map } from '../../types/class';
-import { LoggerService } from '../logger';
+import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { EventBinder } from '../../utils/event-binder';
 import { ToolbarOptions } from '../../types/interface';

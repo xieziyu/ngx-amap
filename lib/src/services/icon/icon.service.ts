@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IIcon } from '../../types/interface';
 import { AMapClass, Icon } from '../../types/class';
-import { LoggerService } from '../logger';
+import { LoggerService } from '../logger/logger.service';
 import { PixelService } from '../pixel/pixel.service';
 import { SizeService } from '../size/size.service';
 

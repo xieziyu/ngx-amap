@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ISize } from '../../types/interface';
 import { AMapClass, Size } from '../../types/class';
-import { LoggerService } from '../logger';
+import { LoggerService } from '../logger/logger.service';
 
 declare const AMap: AMapClass;
 

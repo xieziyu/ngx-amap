@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { MapAPILoaderService } from '../map-api-loader/map-api-loader.service';
 import { MapOptions } from '../../types/interface';
 import { AMapClass, Map } from '../../types/class';
-import { LoggerService } from '../logger';
+import { LoggerService } from '../logger/logger.service';
 import { EventBinder } from '../../utils/event-binder';
 
 declare const AMap: AMapClass;

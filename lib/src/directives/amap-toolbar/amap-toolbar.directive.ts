@@ -1,7 +1,7 @@
 import { Directive, Input, Output, OnDestroy, OnInit,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { LoggerService } from '../../services/logger';
+import { LoggerService } from '../../services/logger/logger.service';
 import { ToolBar, Marker, Pixel, LngLat } from '../../types/class';
 import { ToolbarOptions, IPixel } from '../../types/interface';
 import { Utils } from '../../utils/utils';
