@@ -15,7 +15,7 @@
     "release": "run-s build:lib update:md link:lib build:doc",
     "demo": "run-s build:lib link:lib start",
     "build:doc": "run-s build compodoc",
-    "compodoc": "compodoc -p lib/src/tsconfig.lib.json -d dist/docs/api-doc --theme Stripe"
+    "compodoc": "compodoc -p lib/src/tsconfig.lib.json -d dist/docs/api-doc --theme stripe"
   },
   "private": true,
   "dependencies": {
