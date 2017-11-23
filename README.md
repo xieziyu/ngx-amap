@@ -115,7 +115,7 @@ $ yarn add ngx-amap --save
 # 演示示例
 1. clone 当前 repo 到本地
 2. 修改 `src/app/views/shared/shared.module.ts` 以使用自己的的高德API key
-3. 启动demo
+3. 启动demo，浏览器打开: `localhost:8080`
 ```bash
 npm install
 npm run demo
