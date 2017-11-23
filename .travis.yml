@@ -3,3 +3,10 @@ node_js:
     - "8"
 cache: yarn
 script: yarn release
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: dist/docs
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: gh-pages

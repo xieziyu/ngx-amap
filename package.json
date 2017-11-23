@@ -10,13 +10,12 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:lib": "ng-packagr",
-    "rm:link": "rimraf node_modules/ngx-amap",
-    "link:lib": "cpr dist/ngx-amap node_modules/ngx-amap",
+    "link:lib": "rimraf node_modules/ngx-amap && cpr dist/ngx-amap node_modules/ngx-amap",
     "update:md": "cpr README.md dist/ngx-amap/README.md -o",
-    "release": "run-s build:lib update:md rm:link link:lib build compodoc",
-    "demo": "run-s build:lib rm:link link:lib start",
-    "build:demo": "run-s build:lib rm:link link:lib build",
-    "compodoc": "compodoc -p lib/src/tsconfig.lib.json -d docs/api-doc --theme readthedocs"
+    "release": "run-s build:lib update:md link:lib build:doc",
+    "demo": "run-s build:lib link:lib start",
+    "build:doc": "run-s build compodoc",
+    "compodoc": "compodoc -p lib/src/tsconfig.lib.json -d dist/docs/api-doc --theme Stripe"
   },
   "private": true,
   "dependencies": {
