@@ -8,5 +8,4 @@ deploy:
   skip_cleanup: true
   local_dir: dist/docs
   github_token: $GITHUB_TOKEN
-  on:
-    branch: gh-pages
+  target_branch: gh-pages
