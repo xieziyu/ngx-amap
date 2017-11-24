@@ -13,8 +13,7 @@ export class CustomStyleComponent implements OnInit {
     <amap-marker *ngFor="let marker of markers"
       [inCluster]="true"
       [position]="marker"
-      [offset]="{x:-15, y:-15}"
-      [content]="markerContent">
+      [offset]="{x:-15, y:-15}">
     </amap-marker>
   </amap-marker-clusterer>
 </ngx-amap>`;

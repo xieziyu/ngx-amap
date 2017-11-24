@@ -15,13 +15,13 @@ export class SimpleComponent implements OnInit {
     <amap-marker *ngFor="let marker of markers"
       [inCluster]="true"
       [position]="marker"
-      [offset]="{x:-15, y:-15}"
-      [content]="markerContent">
+      [offset]="{x:-15, y:-15}">
     </amap-marker>
   </amap-marker-clusterer>
 </ngx-amap>`;
   demo_md_ts = `\
 import { Component, OnInit } from '@angular/core';
+import { POINTS } from '../points';
 
 @Component({
   selector: 'app-simple',
@@ -30,10 +30,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimpleComponent implements OnInit {
   markers = POINTS;
-  markerContent = \`<div style="background-color: hsla(180, 100%, 50%, 0.7);
-  height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%);
-  border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;">
-</div>\`;
 
   constructor() { }
 
