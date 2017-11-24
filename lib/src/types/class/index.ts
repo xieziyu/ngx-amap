@@ -8,6 +8,8 @@ import { AMapEvent } from './amap.event';
 import { CInfoWindow, InfoWindow } from './amap.info-window';
 import { CPolyline, Polyline } from './amap.polyline';
 import { CToolBar, ToolBar } from './amap.toolbar';
+import { CMarkerClusterer, MarkerClusterer } from './amap.marker-clusterer';
+import { ClusterStyle } from './cluster-style';
 
 export interface AMapClass {
   Map: CMap;
@@ -20,6 +22,11 @@ export interface AMapClass {
   InfoWindow: CInfoWindow;
   Polyline: CPolyline;
   ToolBar: CToolBar;
+  MarkerClusterer: CMarkerClusterer;
 }
 
-export { Map, LngLat, Pixel, Size, Marker, Icon, InfoWindow, Polyline, ToolBar };
+export {
+  Map, LngLat, Pixel, Size, Marker, Icon,
+  InfoWindow, Polyline, ToolBar, MarkerClusterer,
+  ClusterStyle
+};

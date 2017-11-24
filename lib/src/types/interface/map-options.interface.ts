@@ -28,4 +28,9 @@ export interface MapOptions {
   mapStyle?: string;
   features?: string[];
   showBuildingBlock?: boolean;
+  viewMode?: string;
+  pitch?: number;
+  pitchEnable?: boolean;
+  buildingAnimation?: boolean;
+  skyColor?: string;
 }

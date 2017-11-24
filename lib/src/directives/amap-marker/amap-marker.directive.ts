@@ -1,5 +1,5 @@
 import { Directive, OnInit, Input, AfterContentInit, ContentChildren, QueryList,
-  OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+  OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges, Optional } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
 import { LngLat, Size, Marker, Icon, Pixel, Map } from '../../types/class';
@@ -66,6 +66,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   @Input() animation: string;
   @Input() hidden = false;
   @Input() openInfoWindow = true;
+  @Input() inCluster = false;
 
   // amap-marker events:
   @Output() ready = new EventEmitter();
@@ -106,7 +107,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
 
     if (!this._marker) {
       const options = Utils.getOptionsFor<MarkerOptions>(this, ALL_OPTIONS);
-      this._marker = this.markers.create(options);
+      this._marker = this.markers.create(options, !this.inCluster);
       this.bindEvents();
       this._marker.then(marker => this.ready.emit(marker));
     } else {
@@ -182,6 +183,10 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
 
   private bindMarkerEvent(event: string) {
     return this.markers.bindEvent(this._marker, event);
+  }
+
+  get marker(): Promise<Marker> {
+    return this._marker;
   }
 
   show(): Promise<void> {

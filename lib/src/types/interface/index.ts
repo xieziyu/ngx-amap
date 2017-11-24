@@ -8,3 +8,5 @@ export * from './label.interface';
 export * from './info-window-options.interface';
 export * from './polyline-options.interface';
 export * from './toolbar-options.interface';
+export * from './marker-cluster-options.interface';
+export * from  './cluster-style.interface';

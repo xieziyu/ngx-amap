@@ -61,6 +61,13 @@ export const routes: Routes = [
           title: 'amap-tool-bar'
         }
       },
+      {
+        path: 'amap-marker-clusterer',
+        loadChildren: './views/amap-marker-clusterer-demo/amap-marker-clusterer-demo.module#AmapMarkerClustererDemoModule',
+        data: {
+          title: 'marker-clusterer'
+        }
+      },
     ]
   },
   {

@@ -46,3 +46,4 @@ Thumbs.db
 # ignore build and dist for now
 .ng_build
 .ng_pkg_build
+documentation

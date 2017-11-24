@@ -8,6 +8,7 @@ import { AmapMarkerDirective } from './directives/amap-marker/amap-marker.direct
 import { AmapInfoWindowComponent } from './components/amap-info-window/amap-info-window.component';
 import { AmapPolylineDirective } from './directives/amap-polyline/amap-polyline.directive';
 import { AmapToolBarDirective } from './directives/amap-toolbar/amap-toolbar.directive';
+import { AmapMarkerClustererDirective } from './directives/amap-marker-clusterer/amap-marker-clusterer.directive';
 import { PixelService } from './services/pixel/pixel.service';
 import { SizeService } from './services/size/size.service';
 import { IconService } from './services/icon/icon.service';
@@ -19,14 +20,16 @@ import { LabelService } from './services/label/label.service';
     AmapMarkerDirective,
     AmapInfoWindowComponent,
     AmapPolylineDirective,
-    AmapToolBarDirective
+    AmapToolBarDirective,
+    AmapMarkerClustererDirective
   ],
   exports: [
     NgxAmapComponent,
     AmapMarkerDirective,
     AmapInfoWindowComponent,
     AmapPolylineDirective,
-    AmapToolBarDirective
+    AmapToolBarDirective,
+    AmapMarkerClustererDirective
   ]
 })
 export class NgxAmapModule {
@@ -53,5 +56,6 @@ export {
   AmapMarkerDirective,
   AmapInfoWindowComponent,
   AmapPolylineDirective,
-  AmapToolBarDirective
+  AmapToolBarDirective,
+  AmapMarkerClustererDirective
 };

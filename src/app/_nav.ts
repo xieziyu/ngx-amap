@@ -127,4 +127,31 @@ export const navigation = [
       },
     ]
   },
+  {
+    name: 'amap-marker-clusterer',
+    url: '/amap-marker-clusterer',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-marker-clusterer/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '自定义样式',
+        url: '/amap-marker-clusterer/custom-style',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '调用方法',
+        url: '/amap-marker-clusterer/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-marker-clusterer/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
 ];

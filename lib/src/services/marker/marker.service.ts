@@ -26,7 +26,7 @@ export class MarkerService extends EventBinder {
     this._map = map.map;
   }
 
-  create(options: MarkerOptions): Promise<Marker> {
+  create(options: MarkerOptions, addToMap = true): Promise<Marker> {
     return this._map.then(map => {
       if (options.offset) {
         options.offset = this.pixel.create(options.offset, 'offset');
@@ -49,7 +49,9 @@ export class MarkerService extends EventBinder {
       if (!options.shadow)  { delete options.shadow; }
       if (!options.label)   { delete options.label; }
 
-      options.map = map;
+      if (addToMap) {
+        options.map = map;
+      }
       return new AMap.Marker(options);
     });
   }

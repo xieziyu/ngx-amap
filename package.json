@@ -12,10 +12,12 @@
     "build:lib": "ng-packagr",
     "link:lib": "rimraf node_modules/ngx-amap && cpr dist/ngx-amap node_modules/ngx-amap",
     "update:md": "cpr README.md dist/ngx-amap/README.md -o",
+    "dist": "run-s build:lib update:md",
     "release": "run-s build:lib update:md link:lib build:doc",
     "demo": "run-s build:lib link:lib start",
     "build:doc": "run-s build compodoc",
-    "compodoc": "compodoc -p lib/src/tsconfig.lib.json -d dist/docs/api-doc --theme stripe"
+    "compodoc": "compodoc -p lib/src/tsconfig.lib.json -d dist/docs/api-doc --theme stripe",
+    "serve:doc": "compodoc -p lib/src/tsconfig.lib.json -s"
   },
   "private": true,
   "dependencies": {

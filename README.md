@@ -1,5 +1,5 @@
 # ngx-amap 
-[![npm version](https://badge.fury.io/js/ngx-amap.svg)](http://badge.fury.io/js/ngx-amap)
+[![npm version](https://badge.fury.io/js/ngx-amap.svg)](https://badge.fury.io/js/ngx-amap)
 [![npm downloads](https://img.shields.io/npm/dm/ngx-amap.svg)](https://npmjs.org/ngx-amap)
 [![Build Status](https://travis-ci.org/basvandenberg/ng-select.svg?branch=master)](https://travis-ci.org/basvandenberg/ng-select)
 
@@ -18,13 +18,15 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 7. [演示示例](#演示示例)
 
 # 最新进度
+2017.11.24: 新增点聚合指令：amap-marker-clusterer
+
 2017.11.23: 重写了各个组件，尽可能齐全地为每个组件提供了public方法和output事件，以适配高德原生API
 
 # 安装
 ```bash
 $ npm install ngx-amap --save
 # or
-$ yarn add ngx-amap --save
+$ yarn add ngx-amap
 ```
 
 # 使用
@@ -98,6 +100,7 @@ $ yarn add ngx-amap --save
 + `amap-polyline`: 指令：折线
 + `amap-tool-bar`: 指令：地图控件
 + `amap-info-window`: 组件：信息窗体
++ `amap-marker-clusterer`: 指令：点聚合
 
 # 类型声明
 可以从`ngx-amap/types/class`中import对AMap类的声明：
@@ -111,6 +114,8 @@ $ yarn add ngx-amap --save
 ```typescript
   import { MarkerOptions, IPixel, IIcon } from 'ngx-amap/types/class';
 ```
+
+更多类型，请参看[在线文档](https://xieziyu.github.io/ngx-amap/api-doc)
 
 # 演示示例
 1. clone 当前 repo 到本地
