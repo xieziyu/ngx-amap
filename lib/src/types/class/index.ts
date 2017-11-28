@@ -12,6 +12,7 @@ import { CMarkerClusterer, MarkerClusterer } from './amap.marker-clusterer';
 import { ClusterStyle } from './cluster-style';
 import { CGeocoder, Geocoder } from './geocoder/amap.geocoder';
 import { CAutocomplete, Autocomplete } from './autocomplete/amap.autocomplete';
+import { CPlaceSearch, PlaceSearch } from './place-search/amap.place-search';
 
 export interface AMapClass {
   Map: CMap;
@@ -27,14 +28,15 @@ export interface AMapClass {
   MarkerClusterer: CMarkerClusterer;
   Geocoder: CGeocoder;
   Autocomplete: CAutocomplete;
+  PlaceSearch: CPlaceSearch;
 
-  plugin(name: string|Array<string>, callback: (result: any) => void): void;
+  plugin(name: string|string[], callback: (result: any) => void): void;
 }
 
 export {
   Map, LngLat, Pixel, Size, Marker, Icon,
   InfoWindow, Polyline, ToolBar, MarkerClusterer,
-  ClusterStyle, Geocoder, Autocomplete
+  ClusterStyle, Geocoder, Autocomplete, PlaceSearch
 };
 
 // Geocoder
@@ -52,3 +54,16 @@ export * from './geocoder/road';
 // Autocomplete
 export * from './autocomplete/autocomplete-result';
 export * from './autocomplete/tip';
+
+// PlaceSearch
+export * from './place-search/cinema';
+export * from './place-search/city-info';
+export * from './place-search/dining';
+export * from './place-search/discount';
+export * from './place-search/groupbuy';
+export * from './place-search/hotel';
+export * from './place-search/photo';
+export * from './place-search/poi-list';
+export * from './place-search/poi';
+export * from './place-search/scenic';
+export * from './place-search/search-result';
