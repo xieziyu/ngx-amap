@@ -68,6 +68,13 @@ export const routes: Routes = [
           title: 'marker-clusterer'
         }
       },
+      {
+        path: 'AmapGeocoderService',
+        loadChildren: './views/amap-geocoder-service-demo/amap-geocoder-service-demo.module#AmapGeocoderServiceDemoModule',
+        data: {
+          title: 'AmapGeocoderService'
+        }
+      },
     ]
   },
   {

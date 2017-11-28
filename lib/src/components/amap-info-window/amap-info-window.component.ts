@@ -98,12 +98,12 @@ export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
     }));
   }
 
-  private toggleOpen() {
+  // public methods:
+  toggleOpen() {
     this.logger.d(this.TAG, 'toggle open');
     this.isOpen ? this.open() : this.close();
   }
 
-  // public methods:
   open(position?: ILngLat): Promise<void> {
     return this._infoWindow.then(infoWindow => {
       if (this.hostMarker) {

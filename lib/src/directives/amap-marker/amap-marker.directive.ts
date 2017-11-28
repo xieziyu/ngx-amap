@@ -106,10 +106,14 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
     const filter = ChangeFilter.of(changes);
 
     if (!this._marker) {
+      // do not draw marker when no poistion defined.
+      if (!this.position) { return; }
       const options = Utils.getOptionsFor<MarkerOptions>(this, ALL_OPTIONS);
       this._marker = this.markers.create(options, !this.inCluster);
       this.bindEvents();
       this._marker.then(marker => this.ready.emit(marker));
+      this.updateInfoWindow();
+      this.updateInfoWindowPosition();
     } else {
       filter.has<string|IIcon>('icon').subscribe(v => this.setIcon(v));
       filter.has<IIcon>('shadow').subscribe(v => this.setShadow(v));
@@ -128,14 +132,15 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
       filter.notEmpty<IPixel>('offset').subscribe(v => this.setOffset(v));
       filter.notEmpty<LngLat>('position').subscribe(v => this.setPosition(v));
     }
-
     filter.has<boolean>('isTop').subscribe(v => this.setTop(!!v));
     filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
   }
 
   ngOnDestroy() {
-    this._subscriptions.unsubscribe();
-    this.markers.destroy(this._marker);
+    if (this._marker) {
+      this._subscriptions.unsubscribe();
+      this.markers.destroy(this._marker);
+    }
   }
 
   ngAfterContentInit() {
@@ -144,14 +149,24 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   private updateInfoWindow() {
-    if (this.infoWindowComponent.length > 1) {
-      this.logger.e(this.TAG, 'Expected no more than 1 info window.');
-      return;
-    }
+    if (this.infoWindowComponent && this._marker) {
+      if (this.infoWindowComponent.length > 1) {
+        this.logger.e(this.TAG, 'Expected no more than 1 info window.');
+        return;
+      }
 
-    this.infoWindowComponent.forEach(component => {
-      component.hostMarker = this._marker;
-    });
+      this.infoWindowComponent.forEach(component => {
+        component.hostMarker = this._marker;
+      });
+    }
+  }
+
+  private updateInfoWindowPosition() {
+    if (this.infoWindowComponent && this._marker) {
+      this.infoWindowComponent.forEach(component => {
+        component.toggleOpen();
+      });
+    }
   }
 
   private bindEvents() {
@@ -258,7 +273,10 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   setPosition(position: LngLat): Promise<void> {
-    return this._marker.then(marker => marker.setPosition(position));
+    return this._marker.then(marker => {
+      marker.setPosition(position);
+      this.updateInfoWindowPosition();
+    });
   }
 
   setAngle(angle: number): Promise<void> {

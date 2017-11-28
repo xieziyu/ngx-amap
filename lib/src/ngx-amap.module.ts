@@ -13,6 +13,8 @@ import { PixelService } from './services/pixel/pixel.service';
 import { SizeService } from './services/size/size.service';
 import { IconService } from './services/icon/icon.service';
 import { LabelService } from './services/label/label.service';
+import { AmapGeocoderService, AmapGeocoderWrapper } from './services/amap-geocoder/amap-geocoder.service';
+import { PluginLoaderService } from './services/plugin-loader/plugin-loader.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ export class NgxAmapModule {
         PixelService,
         SizeService,
         IconService,
-        LabelService
+        LabelService,
+        AmapGeocoderService,
+        PluginLoaderService
       ]
     };
   }
@@ -57,5 +61,7 @@ export {
   AmapInfoWindowComponent,
   AmapPolylineDirective,
   AmapToolBarDirective,
-  AmapMarkerClustererDirective
+  AmapMarkerClustererDirective,
+  AmapGeocoderService,
+  AmapGeocoderWrapper
 };

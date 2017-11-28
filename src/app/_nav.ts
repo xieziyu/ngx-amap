@@ -154,4 +154,25 @@ export const navigation = [
       },
     ]
   },
+  {
+    title: true,
+    name: '服务示例'
+  },
+  {
+    name: 'AmapGeocoderService',
+    url: '/AmapGeocoderService',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '正地理编码',
+        url: '/AmapGeocoderService/encode',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '逆地理编码',
+        url: '/AmapGeocoderService/decode',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
 ];

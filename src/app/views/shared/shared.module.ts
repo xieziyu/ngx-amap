@@ -7,13 +7,9 @@ import { NgxAmapModule } from 'ngx-amap';
 @NgModule({
   imports: [
     CommonModule,
-    NgxAmapModule.forRoot({
-      apiKey: '146f101e824accd6956eeec4937c1a05',
-      urlPath: 'https://webapi.amap.com/maps',
-      debug: false
-    }),
-    TabsModule.forRoot(),
-    MarkdownModule.forRoot()
+    NgxAmapModule,
+    TabsModule,
+    MarkdownModule
   ],
   exports: [
     NgxAmapModule,

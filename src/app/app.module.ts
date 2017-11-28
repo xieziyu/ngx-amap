@@ -66,6 +66,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MarkdownModule } from 'ngx-markdown';
 import { HomeComponent } from './views/home/home.component';
+import { NgxAmapModule } from 'ngx-amap';
 
 @NgModule({
   imports: [
@@ -74,7 +75,12 @@ import { HomeComponent } from './views/home/home.component';
     FormsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    NgxAmapModule.forRoot({
+      apiKey: '146f101e824accd6956eeec4937c1a05',
+      urlPath: 'https://webapi.amap.com/maps',
+      debug: true
+    }),
   ],
   declarations: [
     AppComponent,

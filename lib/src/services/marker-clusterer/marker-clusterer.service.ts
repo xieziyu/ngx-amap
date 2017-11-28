@@ -6,6 +6,7 @@ import { MapAPIService } from '../map-api/map-api.service';
 import { PixelService } from '../pixel/pixel.service';
 import { SizeService } from '../size/size.service';
 import { EventBinder } from '../../utils/event-binder';
+import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
 
 declare const AMap: AMapClass;
 
@@ -13,29 +14,31 @@ declare const AMap: AMapClass;
 export class MarkerClustererService extends EventBinder {
   TAG = 'marker-clusterer-service';
   private _map: Promise<Map>;
+  private _plugin: Promise<any>;
 
   constructor(
     private map: MapAPIService,
     private logger: LoggerService,
     private pixel: PixelService,
-    private size: SizeService
+    private size: SizeService,
+    private plugins: PluginLoaderService
   ) {
     super();
     this._map = map.map;
   }
 
   create(options: MarkerClustererOptions): Promise<MarkerClusterer> {
-    return new Promise<MarkerClusterer>(resolve => {
-      this._map.then(map => {
-        map.plugin('AMap.MarkerClusterer', () => {
-          if (options.styles) {
-            options.styles = options.styles.map(style => this.createStyle(style));
-          }
+    if (!this._plugin) {
+      this._plugin = this.plugins.load('AMap.MarkerClusterer');
+    }
 
-          resolve(new AMap.MarkerClusterer(map, [], options));
-        });
+    return this._plugin.then(() => this._map)
+      .then(map => {
+        if (options.styles) {
+          options.styles = options.styles.map(style => this.createStyle(style));
+        }
+        return new AMap.MarkerClusterer(map, [], options);
       });
-    });
   }
 
   destroy(cluster: Promise<MarkerClusterer>) {

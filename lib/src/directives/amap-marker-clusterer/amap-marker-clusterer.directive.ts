@@ -6,10 +6,6 @@ import { MarkerClustererOptions, IClusterStyle, RenderObject } from '../../types
 import { MarkerClusterer, Marker, ClusterStyle, Map } from '../../types/class';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
-import { MarkerService } from '../../services/marker/marker.service';
-import { PixelService } from '../../services/pixel/pixel.service';
-import { IconService } from '../../services/icon/icon.service';
-import { LabelService } from '../../services/label/label.service';
 import { AmapMarkerDirective } from '../../directives/amap-marker/amap-marker.directive';
 import { MarkerClustererService } from '../../services/marker-clusterer/marker-clusterer.service';
 
