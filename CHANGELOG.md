@@ -1,3 +1,10 @@
+## 1.0.0 (2017-11-29)
+
+#### New
++ 新增支持AMap.PlaceSearch的搜索服务：AmapPlaceSearchService
+
+----
+
 ## 1.0.0-beta.4 (2017-11-28)
 
 #### New

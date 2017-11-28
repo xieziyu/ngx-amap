@@ -1,6 +1,6 @@
 {
   "name": "ngx-amap",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0",
   "description": "Angular directives for AMap (Gaode map).",
   "repository": "https://github.com/xieziyu/ngx-amap.git",
   "author": "Xie, Ziyu <ziyu.xie@foxmail.com>",

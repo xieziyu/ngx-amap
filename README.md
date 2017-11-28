@@ -18,6 +18,9 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 7. [演示示例](#演示示例)
 
 # 最新进度
+2017.11.29: Release 1.0.0
+  + 新增支持AMap.PlaceSearch的搜索服务：AmapPlaceSearchService
+
 2017.11.28: 1.0.0-beta.4
   + 新增支持AMap.Geocoder的地理服务：AmapGeocoderService
   + 新增支持AMap.Autocomplete的搜索服务和指令：AmapAutocompleteService, AmapAutocompleteDirective
@@ -110,6 +113,7 @@ $ yarn add ngx-amap
 + `AmapGeocoderService`: 服务：地理编码
 + `AmapAutocompleteService`: 服务：搜索服务，输入提示
 + `input [amapAutocomplete]`: 指令：input扩展，搜索服务的输入提示
++ `AmapPlaceSearchService`: 服务：搜索服务，地点关键字搜索
 
 
 # 类型声明
