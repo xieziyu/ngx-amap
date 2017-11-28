@@ -16,6 +16,7 @@ import { LabelService } from './services/label/label.service';
 import { AmapGeocoderService, AmapGeocoderWrapper } from './services/amap-geocoder/amap-geocoder.service';
 import { PluginLoaderService } from './services/plugin-loader/plugin-loader.service';
 import { AmapAutocompleteService, AmapAutocompleteWrapper } from './services/amap-autocomplete/amap-autocomplete.service';
+import { AmapAutocompleteDirective } from './directives/amap-autocomplete/amap-autocomplete.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AmapAutocompleteService, AmapAutocompleteWrapper } from './services/ama
     AmapInfoWindowComponent,
     AmapPolylineDirective,
     AmapToolBarDirective,
-    AmapMarkerClustererDirective
+    AmapMarkerClustererDirective,
+    AmapAutocompleteDirective
   ],
   exports: [
     NgxAmapComponent,
@@ -32,7 +34,8 @@ import { AmapAutocompleteService, AmapAutocompleteWrapper } from './services/ama
     AmapInfoWindowComponent,
     AmapPolylineDirective,
     AmapToolBarDirective,
-    AmapMarkerClustererDirective
+    AmapMarkerClustererDirective,
+    AmapAutocompleteDirective
   ]
 })
 export class NgxAmapModule {
@@ -67,5 +70,6 @@ export {
   AmapGeocoderService,
   AmapGeocoderWrapper,
   AmapAutocompleteService,
-  AmapAutocompleteWrapper
+  AmapAutocompleteWrapper,
+  AmapAutocompleteDirective
 };

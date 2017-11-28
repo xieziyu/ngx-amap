@@ -82,6 +82,13 @@ export const routes: Routes = [
           title: 'AmapAutocompleteService'
         }
       },
+      {
+        path: 'amap-autocomplete',
+        loadChildren: './views/amap-autocomplete-demo/amap-autocomplete-demo.module#AmapAutocompleteDemoModule',
+        data: {
+          title: 'input[amapAutocomplete]'
+        }
+      },
     ]
   },
   {

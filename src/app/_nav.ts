@@ -155,6 +155,23 @@ export const navigation = [
     ]
   },
   {
+    name: 'input [amapAutocomplete]',
+    url: '/amap-autocomplete',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-autocomplete/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-autocomplete/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     title: true,
     name: '服务示例'
   },

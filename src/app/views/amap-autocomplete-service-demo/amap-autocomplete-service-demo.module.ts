@@ -13,6 +13,9 @@ import { EventsComponent } from './events/events.component';
     AmapAutocompleteServiceDemoRoutingModule,
     SharedModule
   ],
-  declarations: [SearchComponent, EventsComponent]
+  declarations: [
+    SearchComponent,
+    EventsComponent
+  ]
 })
 export class AmapAutocompleteServiceDemoModule { }
