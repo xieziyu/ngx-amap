@@ -18,7 +18,13 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 7. [演示示例](#演示示例)
 
 # 最新进度
-2017.11.24: 新增点聚合指令：amap-marker-clusterer
+2017.11.28: 1.0.0-beta.4
+  + 新增支持AMap.Geocoder的地理服务：AmapGeocoderService
+  + 新增支持AMap.Autocomplete的搜索服务和指令：AmapAutocompleteService, AmapAutocompleteDirective
+  + 逻辑变更：marker在没有position的时候不再绘制于默认位置
+  + 逻辑变更：info-window现在会跟随它的hostMarker改变位置
+
+2017.11.24: 新增支持AMap.MakerClusterer点聚合：amap-marker-clusterer
 
 2017.11.23: 重写了各个组件，尽可能齐全地为每个组件提供了public方法和output事件，以适配高德原生API
 
@@ -101,6 +107,10 @@ $ yarn add ngx-amap
 + `amap-tool-bar`: 指令：地图控件
 + `amap-info-window`: 组件：信息窗体
 + `amap-marker-clusterer`: 指令：点聚合
++ `AmapGeocoderService`: 服务：地理编码
++ `AmapAutocompleteService`: 服务：搜索服务，输入提示
++ `input [amapAutocomplete]`: 指令：input扩展，搜索服务的输入提示
+
 
 # 类型声明
 可以从`ngx-amap/types/class`中import对AMap类的声明：
