@@ -209,4 +209,21 @@ export const navigation = [
       },
     ]
   },
+  {
+    name: 'AmapPlaceSearchService',
+    url: '/AmapPlaceSearchService',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '简单示例',
+        url: '/AmapPlaceSearchService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/AmapPlaceSearchService/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
 ];

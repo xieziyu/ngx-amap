@@ -79,7 +79,7 @@ import { NgxAmapModule } from 'ngx-amap';
     NgxAmapModule.forRoot({
       apiKey: '146f101e824accd6956eeec4937c1a05',
       urlPath: 'https://webapi.amap.com/maps',
-      debug: true
+      debug: false
     }),
   ],
   declarations: [

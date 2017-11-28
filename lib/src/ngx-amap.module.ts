@@ -17,6 +17,7 @@ import { AmapGeocoderService, AmapGeocoderWrapper } from './services/amap-geocod
 import { PluginLoaderService } from './services/plugin-loader/plugin-loader.service';
 import { AmapAutocompleteService, AmapAutocompleteWrapper } from './services/amap-autocomplete/amap-autocomplete.service';
 import { AmapAutocompleteDirective } from './directives/amap-autocomplete/amap-autocomplete.directive';
+import { AmapPlaceSearchService, AmapPlaceSearchWrapper } from './services/amap-place-search/amap-place-search.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ export class NgxAmapModule {
         LabelService,
         AmapGeocoderService,
         PluginLoaderService,
-        AmapAutocompleteService
+        AmapAutocompleteService,
+        AmapPlaceSearchService
       ]
     };
   }
@@ -71,5 +73,7 @@ export {
   AmapGeocoderWrapper,
   AmapAutocompleteService,
   AmapAutocompleteWrapper,
-  AmapAutocompleteDirective
+  AmapAutocompleteDirective,
+  AmapPlaceSearchService,
+  AmapPlaceSearchWrapper
 };

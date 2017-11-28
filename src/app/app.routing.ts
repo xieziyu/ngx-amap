@@ -89,6 +89,13 @@ export const routes: Routes = [
           title: 'input[amapAutocomplete]'
         }
       },
+      {
+        path: 'AmapPlaceSearchService',
+        loadChildren: './views/amap-place-search-service-demo/amap-place-search-service-demo.module#AmapPlaceSearchServiceDemoModule',
+        data: {
+          title: 'AmapPlaceSearchService'
+        }
+      },
     ]
   },
   {
