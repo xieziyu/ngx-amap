@@ -75,6 +75,13 @@ export const routes: Routes = [
           title: 'AmapGeocoderService'
         }
       },
+      {
+        path: 'AmapAutocompleteService',
+        loadChildren: './views/amap-autocomplete-service-demo/amap-autocomplete-service-demo.module#AmapAutocompleteServiceDemoModule',
+        data: {
+          title: 'AmapAutocompleteService'
+        }
+      },
     ]
   },
   {

@@ -1,25 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { MapAPILoaderService } from '../map-api-loader/map-api-loader.service';
 import { AMapClass, Geocoder } from '../../types/class';
 import { LoggerService } from '../logger/logger.service';
 import { GeocoderOptions, ILngLat } from '../../types/interface';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
+import { RawEventBinder } from '../../utils/event-binder';
 
 declare const AMap: AMapClass;
 
 /**
  * AmapGeocoderWrapper对象将高德原生的Geocoder对象提供的方法封装成Promise的实现，更方便回调
  */
-export class AmapGeocoderWrapper {
+export class AmapGeocoderWrapper extends RawEventBinder {
   private _geocoder: Geocoder;
 
   constructor(opts?: GeocoderOptions) {
+    super();
     this._geocoder = new AMap.Geocoder(opts);
   }
 
   get native(): Geocoder {
     return this._geocoder;
+  }
+
+  /**
+   * 用于侦听Geocoder事件，返回可以被subscribe的Observable对象
+   * @param {string} event
+   * @returns {Observable<any>}
+   */
+  on(event: string): Observable<any> {
+    return this.bindEvent<Geocoder>(this._geocoder, event);
   }
 
   getLocation(address: string): Promise<{status: string, result: any}> {

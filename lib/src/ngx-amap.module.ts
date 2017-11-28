@@ -15,6 +15,7 @@ import { IconService } from './services/icon/icon.service';
 import { LabelService } from './services/label/label.service';
 import { AmapGeocoderService, AmapGeocoderWrapper } from './services/amap-geocoder/amap-geocoder.service';
 import { PluginLoaderService } from './services/plugin-loader/plugin-loader.service';
+import { AmapAutocompleteService, AmapAutocompleteWrapper } from './services/amap-autocomplete/amap-autocomplete.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ export class NgxAmapModule {
         IconService,
         LabelService,
         AmapGeocoderService,
-        PluginLoaderService
+        PluginLoaderService,
+        AmapAutocompleteService
       ]
     };
   }
@@ -63,5 +65,7 @@ export {
   AmapToolBarDirective,
   AmapMarkerClustererDirective,
   AmapGeocoderService,
-  AmapGeocoderWrapper
+  AmapGeocoderWrapper,
+  AmapAutocompleteService,
+  AmapAutocompleteWrapper
 };

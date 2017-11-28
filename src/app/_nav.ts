@@ -175,4 +175,21 @@ export const navigation = [
       },
     ]
   },
+  {
+    name: 'AmapAutocompleteService',
+    url: '/AmapAutocompleteService',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '搜索提示',
+        url: '/AmapAutocompleteService/search',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/AmapAutocompleteService/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
 ];

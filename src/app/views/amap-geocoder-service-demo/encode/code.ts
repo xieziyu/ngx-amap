@@ -11,18 +11,18 @@ export class EncodeComponent implements OnInit {
   address: string;
   point: any;
   locationInfo: string;
-  private geoPromise: Promise<AmapGeocoderWrapper>;
+  private plugin: Promise<AmapGeocoderWrapper>;
 
   constructor(private AmapGeocoder: AmapGeocoderService) {
     // 使用 AmapGeocoderService 创建 promise wrapper
-    this.geoPromise = AmapGeocoder.of();
+    this.plugin = AmapGeocoder.of();
   }
 
   ngOnInit() {}
 
   query() {
     if (this.address) {
-      this.geoPromise.then(geocoder => geocoder.getLocation(this.address))
+      this.plugin.then(geocoder => geocoder.getLocation(this.address))
         .then(data => {
           console.log('get location of address:', this.address);
           console.log('status:', data.status);

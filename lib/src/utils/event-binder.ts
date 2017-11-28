@@ -22,3 +22,18 @@ export class EventBinder {
   }
 
 }
+
+export class RawEventBinder {
+  bindEvent<T>(target: T, event: string): Observable<any> {
+    return Observable.create(observer => {
+      let listener = AMap.event.addListener(target, event, e => {
+          setTimeout(() => observer.next(e));
+      }, this);
+
+      return () => {
+        AMap.event.removeListener(listener);
+        listener = null;
+      };
+    });
+  }
+}

@@ -11,3 +11,4 @@ export * from './toolbar-options.interface';
 export * from './marker-cluster-options.interface';
 export * from  './cluster-style.interface';
 export * from './geocoder-options.interface';
+export * from './autocomplete-options.interface';
