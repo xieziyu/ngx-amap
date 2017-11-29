@@ -68,8 +68,8 @@ export class AmapAutocompleteDirective implements OnChanges, OnInit, OnDestroy {
 
   private bindEvents(wrapper: AmapAutocompleteWrapper) {
     this._subscription = wrapper.on('complete').subscribe(e => this.complete.emit(e));
-    this._subscription.add(wrapper.on('error').subscribe(e => this.complete.emit(e)));
-    this._subscription.add(wrapper.on('select').subscribe(e => this.complete.emit(e)));
-    this._subscription.add(wrapper.on('choose').subscribe(e => this.complete.emit(e)));
+    this._subscription.add(wrapper.on('error').subscribe(e => this.error.emit(e)));
+    this._subscription.add(wrapper.on('select').subscribe(e => this.select.emit(e)));
+    this._subscription.add(wrapper.on('choose').subscribe(e => this.choose.emit(e)));
   }
 }
