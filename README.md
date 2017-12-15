@@ -129,7 +129,7 @@ $ yarn add ngx-amap
 可以从`ngx-amap/types/interface`中import对`ngx-amap`所使用的Input类型需要的声明：
 
 ```typescript
-  import { MarkerOptions, IPixel, IIcon } from 'ngx-amap/types/class';
+  import { MarkerOptions, IPixel, IIcon } from 'ngx-amap/types/interface';
 ```
 
 更多类型，请参看[在线文档](https://xieziyu.github.io/ngx-amap/api-doc)
