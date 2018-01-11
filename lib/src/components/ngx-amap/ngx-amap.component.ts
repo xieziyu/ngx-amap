@@ -1,5 +1,7 @@
-import { Component, ElementRef, OnInit, Input,
-  OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component, ElementRef, OnInit, Input,
+  OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges
+} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
 import { MapAPIService } from '../../services/map-api/map-api.service';
@@ -12,6 +14,7 @@ import { ChangeFilter } from '../../utils/change-filter';
 import { PolylineService } from '../../services/polyline/polyline.service';
 import { ToolBarService } from '../../services/toolbar/toolbar.service';
 import { MarkerClustererService } from '../../services/marker-clusterer/marker-clusterer.service';
+import { ImageLayerService } from '../../services/image-layer/image-layer.service';
 
 const ALL_OPTIONS = [
   'view',
@@ -62,7 +65,8 @@ const ALL_OPTIONS = [
     InfoWindowService,
     PolylineService,
     ToolBarService,
-    MarkerClustererService
+    MarkerClustererService,
+    ImageLayerService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
@@ -242,11 +246,11 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
     return this.api.map.then(map => map.setZoom(level));
   }
 
-  setCenter(position: LngLat|number[]) {
+  setCenter(position: LngLat | number[]) {
     return this.api.map.then(map => map.setCenter(position));
   }
 
-  setZoomAndCenter(zoomLevel: number, center: LngLat|number[]) {
+  setZoomAndCenter(zoomLevel: number, center: LngLat | number[]) {
     return this.api.map.then(map => map.setZoomAndCenter(zoomLevel, center));
   }
 
