@@ -14,6 +14,10 @@ import { CGeocoder, Geocoder } from './geocoder/amap.geocoder';
 import { CAutocomplete, Autocomplete } from './autocomplete/amap.autocomplete';
 import { CPlaceSearch, PlaceSearch } from './place-search/amap.place-search';
 
+import { ImageLayer, CImageLayer } from './amap.image-layer';
+import { CBounds, Bounds } from 'lib/ngx-amap/types/class/amap.bounds';
+
+
 export interface AMapClass {
   Map: CMap;
   LngLat: CLngLat;
@@ -29,14 +33,17 @@ export interface AMapClass {
   Geocoder: CGeocoder;
   Autocomplete: CAutocomplete;
   PlaceSearch: CPlaceSearch;
+  ImageLayer: CImageLayer;
+  Bounds: CBounds;
 
-  plugin(name: string|string[], callback: (result: any) => void): void;
+  plugin(name: string | string[], callback: (result: any) => void): void;
 }
 
 export {
   Map, LngLat, Pixel, Size, Marker, Icon,
   InfoWindow, Polyline, ToolBar, MarkerClusterer,
-  ClusterStyle, Geocoder, Autocomplete, PlaceSearch
+  ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
+  ImageLayer, Bounds
 };
 
 // Geocoder
@@ -67,3 +74,4 @@ export * from './place-search/poi-list';
 export * from './place-search/poi';
 export * from './place-search/scenic';
 export * from './place-search/search-result';
+
