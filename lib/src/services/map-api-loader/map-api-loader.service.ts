@@ -15,6 +15,8 @@ export const MAP_API_CONFIG = new InjectionToken<IMapAPILoaderConfig>('ngx-amap 
 export class MapAPILoaderService {
   TAG = 'map-api-loader';
 
+  private _defaultUrl = 'https://webapi.amap.com/maps';
+  private _defaultVersion = '1.4.3';
   private _config: IMapAPILoaderConfig;
   private _documentRef: DocumentRef;
   private _windowRef: WindowRef;
@@ -56,9 +58,9 @@ export class MapAPILoaderService {
   }
 
   private getSrcFromConfig(callbackName: string) {
-    const urlBase = this._config.urlPath || 'http://webapi.amap.com/maps';
+    const urlBase = this._config.urlPath || this._defaultUrl;
     const queryParams: {[key: string]: string | Array<string>} = {
-      v: this._config.apiVersion || '1.4.1',
+      v: this._config.apiVersion || this._defaultVersion,
       callback: callbackName,
       key: this._config.apiKey
     };
