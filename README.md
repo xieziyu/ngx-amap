@@ -18,6 +18,9 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 7. [演示示例](#演示示例)
 
 # 最新进度
+2018.02.05: v1.1.1
+  + 新增支持覆盖物AMap.CircleMarker的指令：amap-circle-marker (需要高德API-v1.4.3支持)
+
 2018.02.05: v1.1.0
   + 新增支持覆盖物AMap.Circle的指令：amap-circle
   + 默认高德API的baseUrl调整为https协议

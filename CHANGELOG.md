@@ -1,3 +1,8 @@
+## 1.1.1 (2018-02-05)
+
+#### New
++ 新增支持覆盖物AMap.CircleMarker的指令：amap-circle-marker (需要高德API-v1.4.3支持)
+
 ## 1.1.0 (2018-02-05)
 
 #### New
