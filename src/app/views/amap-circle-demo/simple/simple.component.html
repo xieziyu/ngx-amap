@@ -1,0 +1,31 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    简单示例
+  </div>
+  <div class="card-body">
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-circle
+        [center]="[116.403322, 39.920255]"
+        [radius]="1000"
+        [strokeColor]="'#F33'"
+        [strokeOpacity]="1"
+        [strokeWeight]="3"
+        [fillColor]="'#ee2200'"
+        [fillOpacity]="0.35">
+      </amap-circle>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+        </tab>
+        <tab heading="支持的Input">
+          <a href="api-doc/directives/AmapCircleDirective.html" target="_blank">查看在线文档</a>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

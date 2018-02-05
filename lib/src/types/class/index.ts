@@ -13,6 +13,7 @@ import { ClusterStyle } from './cluster-style';
 import { CGeocoder, Geocoder } from './geocoder/amap.geocoder';
 import { CAutocomplete, Autocomplete } from './autocomplete/amap.autocomplete';
 import { CPlaceSearch, PlaceSearch } from './place-search/amap.place-search';
+import { CCircle, Circle } from './amap.circle';
 
 export interface AMapClass {
   Map: CMap;
@@ -29,6 +30,7 @@ export interface AMapClass {
   Geocoder: CGeocoder;
   Autocomplete: CAutocomplete;
   PlaceSearch: CPlaceSearch;
+  Circle: CCircle;
 
   plugin(name: string|string[], callback: (result: any) => void): void;
 }
@@ -36,7 +38,8 @@ export interface AMapClass {
 export {
   Map, LngLat, Pixel, Size, Marker, Icon,
   InfoWindow, Polyline, ToolBar, MarkerClusterer,
-  ClusterStyle, Geocoder, Autocomplete, PlaceSearch
+  ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
+  Circle
 };
 
 // Geocoder

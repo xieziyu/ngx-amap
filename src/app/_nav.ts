@@ -106,6 +106,28 @@ export const navigation = [
     ]
   },
   {
+    name: 'amap-circle',
+    url: '/amap-circle',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-circle/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '调用方法',
+        url: '/amap-circle/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-circle/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     name: 'amap-tool-bar',
     url: '/amap-tool-bar',
     icon: 'fa fa-code',

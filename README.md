@@ -18,6 +18,11 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 7. [演示示例](#演示示例)
 
 # 最新进度
+2018.02.05: v1.1.0
+  + 新增支持覆盖物AMap.Circle的指令：amap-circle
+  + 默认高德API的baseUrl调整为https协议
+  + 默认高德API的版本调整为1.4.3
+
 2017.11.29: v1.0.1
   + 修复 input[Autocomplete] 指令事件错误的问题
 

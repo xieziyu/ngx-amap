@@ -7,7 +7,7 @@ import { EventsComponent } from './events/events.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/amap-marker/simple',
+    redirectTo: '/amap-circle/simple',
     pathMatch: 'full',
   },
   {
@@ -37,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AmapMarkerDemoRoutingModule { }
+export class AmapCircleDemoRoutingModule { }

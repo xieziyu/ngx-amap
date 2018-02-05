@@ -1,3 +1,12 @@
+## 1.0.2 (2018-02-05)
+
+#### New
++ 新增支持覆盖物AMap.Circle的指令：amap-circle
+
+#### Changes
++ 默认高德API的baseUrl调整为https协议
++ 默认高德API的版本调整为1.4.3
+
 ## 1.0.1 (2017-11-29)
 
 #### Bugfix
