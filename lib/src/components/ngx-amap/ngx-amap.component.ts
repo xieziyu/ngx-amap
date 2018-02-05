@@ -13,6 +13,7 @@ import { PolylineService } from '../../services/polyline/polyline.service';
 import { ToolBarService } from '../../services/toolbar/toolbar.service';
 import { MarkerClustererService } from '../../services/marker-clusterer/marker-clusterer.service';
 import { CircleService } from '../../services/circle/circle.service';
+import { CircleMarkerService } from '../../services/circle-marker/circle-marker.service';
 
 const ALL_OPTIONS = [
   'view',
@@ -64,7 +65,8 @@ const ALL_OPTIONS = [
     PolylineService,
     ToolBarService,
     MarkerClustererService,
-    CircleService
+    CircleService,
+    CircleMarkerService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {

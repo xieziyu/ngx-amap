@@ -1,0 +1,36 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    调用方法示例 (请查看console输出)
+  </div>
+  <div class="card-body">
+    <button type="button" class="btn btn-outline-primary" (click)="getMethods()">调用Getter方法</button>
+    <hr>
+    <ngx-amap class="demo-map" [center]="[116.407394, 39.904211]" [zoom]="8">
+      <amap-circle-marker
+        [center]="[116.407394, 39.904211]"
+        [radius]="12"
+        [strokeColor]="'white'"
+        [strokeOpacity]="0.5"
+        [strokeWeight]="2"
+        [fillColor]="'rgba(0,0,255,1)'"
+        [fillOpacity]="0.5"
+        [zIndex]="10"
+        [bubble]="true"
+        [cursor]="'pointer'">
+      </amap-circle-marker>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+        </tab>
+        <tab heading="支持的方法">
+          <a href="api-doc/directives/AmapCircleMarkerDirective.html" target="_blank">查看在线文档</a>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

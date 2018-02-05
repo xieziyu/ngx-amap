@@ -15,3 +15,4 @@ export * from './autocomplete-options.interface';
 export * from './place-search-options.interface';
 export * from './callback.type';
 export * from './circle-options.interface';
+export * from './circle-marker-options.interface';

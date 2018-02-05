@@ -55,6 +55,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'amap-circle-marker',
+        loadChildren: './views/amap-circle-marker-demo/amap-circle-marker-demo.module#AmapCircleMarkerDemoModule',
+        data: {
+          title: 'amap-circle-marker'
+        }
+      },
+      {
         path: 'amap-info-window',
         loadChildren: './views/amap-info-window-demo/amap-info-window-demo.module#AmapInfoWindowDemoModule',
         data: {
