@@ -48,6 +48,7 @@ const ALL_OPTIONS = [
   'pitchEnable',
   'buildingAnimation',
   'skyColor',
+  'gridMapForeign'
 ];
 
 /**
@@ -136,6 +137,8 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() buildingAnimation: boolean;
   /** 调整天空颜色，配合自定义地图，3D视图有效，如'#ff0000' (amap v1.4.0)*/
   @Input() skyColor: string;
+  /** 显示国外的地图细节 */
+  @Input() gridMapForeign: boolean;
 
   /** 额外：设置城市 */
   @Input() city: string;

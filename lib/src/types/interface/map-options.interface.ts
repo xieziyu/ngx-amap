@@ -33,4 +33,5 @@ export interface MapOptions {
   pitchEnable?: boolean;
   buildingAnimation?: boolean;
   skyColor?: string;
+  gridMapForeign?: boolean;
 }
