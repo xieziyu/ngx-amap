@@ -20,6 +20,7 @@ import { AmapAutocompleteDirective } from './directives/amap-autocomplete/amap-a
 import { AmapPlaceSearchService, AmapPlaceSearchWrapper } from './services/amap-place-search/amap-place-search.service';
 import { AmapCircleDirective } from './directives/amap-circle/amap-circle.directive';
 import { AmapCircleMarkerDirective } from './directives/amap-circle-marker/amap-circle-marker.directive';
+import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mouse-tool/amap-mouse-tool.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ export class NgxAmapModule {
         AmapGeocoderService,
         PluginLoaderService,
         AmapAutocompleteService,
+        AmapMouseToolService,
         AmapPlaceSearchService
       ]
     };
@@ -82,6 +84,8 @@ export {
   AmapAutocompleteDirective,
   AmapPlaceSearchService,
   AmapPlaceSearchWrapper,
+  AmapMouseToolService,
+  AmapMouseToolWrapper,
   AmapCircleDirective,
   AmapCircleMarkerDirective
 };

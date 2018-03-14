@@ -270,4 +270,21 @@ export const navigation = [
       },
     ]
   },
+  {
+    name: 'AmapMouseToolService',
+    url: '/AmapMouseToolService',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '简单示例',
+        url: '/AmapMouseToolService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/AmapMouseToolService/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
 ];
