@@ -110,6 +110,13 @@ export const routes: Routes = [
           title: 'AmapPlaceSearchService'
         }
       },
+      {
+        path: 'AmapMouseToolService',
+        loadChildren: './views/amap-mouse-tool-service-demo/amap-mouse-tool-service-demo.module#AmapMouseToolServiceDemoModule',
+        data: {
+          title: 'AmapMouseToolService'
+        }
+      },
     ]
   },
   {

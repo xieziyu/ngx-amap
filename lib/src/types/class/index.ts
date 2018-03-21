@@ -7,6 +7,7 @@ import { CIcon, Icon } from './amap.icon';
 import { AMapEvent } from './amap.event';
 import { CInfoWindow, InfoWindow } from './amap.info-window';
 import { CPolyline, Polyline } from './amap.polyline';
+import { CPolygon, Polygon } from './amap.polygon';
 import { CToolBar, ToolBar } from './amap.toolbar';
 import { CMarkerClusterer, MarkerClusterer } from './amap.marker-clusterer';
 import { ClusterStyle } from './cluster-style';
@@ -15,6 +16,7 @@ import { CAutocomplete, Autocomplete } from './autocomplete/amap.autocomplete';
 import { CPlaceSearch, PlaceSearch } from './place-search/amap.place-search';
 import { CCircle, Circle } from './amap.circle';
 import { CCircleMarker, CircleMarker } from './amap.circle-marker';
+import { CMouseTool, MouseTool } from './amap.mouse-tool';
 
 export interface AMapClass {
   Map: CMap;
@@ -26,11 +28,13 @@ export interface AMapClass {
   event: AMapEvent;
   InfoWindow: CInfoWindow;
   Polyline: CPolyline;
+  Polygon: CPolygon;
   ToolBar: CToolBar;
   MarkerClusterer: CMarkerClusterer;
   Geocoder: CGeocoder;
   Autocomplete: CAutocomplete;
   PlaceSearch: CPlaceSearch;
+  MouseTool: CMouseTool;
   Circle: CCircle;
   CircleMarker: CCircleMarker;
 
@@ -39,9 +43,9 @@ export interface AMapClass {
 
 export {
   Map, LngLat, Pixel, Size, Marker, Icon,
-  InfoWindow, Polyline, ToolBar, MarkerClusterer,
+  InfoWindow, Polyline, Polygon, ToolBar, MarkerClusterer,
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
-  Circle, CircleMarker
+  Circle, CircleMarker, MouseTool
 };
 
 // Geocoder

@@ -128,6 +128,7 @@ $ yarn add ngx-amap
 + `AmapAutocompleteService`: 服务：搜索服务，输入提示
 + `input [amapAutocomplete]`: 指令：input扩展，搜索服务的输入提示
 + `AmapPlaceSearchService`: 服务：搜索服务，地点关键字搜索
++ `AmapMouseToolService`: 服务：鼠标工具
 
 
 # 类型声明
