@@ -13,11 +13,14 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 2. [安装](#安装)
 3. [使用](#使用)
 4. [配置](#配置)
-5. [指令](#指令)
+5. [指令和服务](#指令和服务)
 6. [类型声明](#类型声明)
-7. [演示示例](#演示示例)
+7. [本地演示](#本地演示)
 
 # 最新进度
+2018.03.21: v1.2.0
+  + 新增支持AMap.MouseTool鼠标工具插件：AmapMouseToolService (感谢: [noob9527](https://github.com/noob9527))
+
 2018.02.28: v1.1.2
   + ngx-amap支持gridMapForeign选项，以显示国外的地图细节
 
@@ -117,19 +120,21 @@ $ yarn add ngx-amap
 }
 ```
 
-# 指令
-+ `ngx-amap`: 组件：地图容器
-+ `amap-marker`: 指令：点标记
-+ `amap-polyline`: 指令：折线
-+ `amap-tool-bar`: 指令：地图控件
-+ `amap-info-window`: 组件：信息窗体
-+ `amap-marker-clusterer`: 指令：点聚合
-+ `AmapGeocoderService`: 服务：地理编码
-+ `AmapAutocompleteService`: 服务：搜索服务，输入提示
-+ `input [amapAutocomplete]`: 指令：input扩展，搜索服务的输入提示
-+ `AmapPlaceSearchService`: 服务：搜索服务，地点关键字搜索
-+ `AmapMouseToolService`: 服务：鼠标工具
-
+# 指令和服务
+| NGX-AMAP | 类型 | 高德地图 | 类 | 演示示例 |
+| -------- | --- |------- | -- | -------- |
+|`ngx-amap`                 | `Component` | 地图             | **AMap.Map**        | [demo](https://xieziyu.github.io/ngx-amap/#/ngx-amap/simple)         |
+|`amap-marker`              | `Directive` | 覆盖物：点标记    | **AMap.Marker**     | [demo](https://xieziyu.github.io/ngx-amap/#/amap-marker/simple)      |
+|`amap-polyline`            | `Directive` | 覆盖物：折线      | **AMap.Polyline**   | [demo](https://xieziyu.github.io/ngx-amap/#/amap-polyline/simple)    |
+|`amap-circle`              | `Directive` | 覆盖物：圆        | **AMap.Circle**     | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle/simple)      |
+|`amap-circle-marker`       | `Directive` | 覆盖物：圆点标记 | **AMap.CircleMarker** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle-marker/simple) |
+|`amap-info-window`         | `Component` | 信息窗体          | **AMap.InfoWindow** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-info-window/simple) |
+|`amap-tool-bar`            | `Directive` | 工具条插件        | **AMap.ToolBar**    | [demo](https://xieziyu.github.io/ngx-amap/#/amap-tool-bar/simple)    |
+|`amap-marker-clusterer`    | `Directive` | 点聚合插件   | **AMap.MarkerClusterer** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-marker-clusterer/simple) |
+|`AmapGeocoderService`      | `Service`   | 地理编码服务   | **AMap.Geocoder** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapGeocoderService/encode) |
+|`AmapAutocompleteService`  | `Service`   | 关键字提示服务 | **AMap.Autocomplete** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapAutocompleteService/search) |
+|`AmapPlaceSearchService`   | `Service`   | 地点搜索服务 | **AMap.PlaceSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapPlaceSearchService/simple) |
+|`AmapMouseToolService`     | `Service`   | 鼠标工具插件 | **AMap.MouseTool** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapMouseToolService/simple) |
 
 # 类型声明
 可以从`ngx-amap/types/class`中import对AMap类的声明：
@@ -146,7 +151,7 @@ $ yarn add ngx-amap
 
 更多类型，请参看[在线文档](https://xieziyu.github.io/ngx-amap/api-doc)
 
-# 演示示例
+# 本地演示
 1. clone 当前 repo 到本地
 2. 修改 `src/app/app.module.ts` 以使用自己的的高德API key
 3. 启动demo，浏览器打开: `localhost:8080`
