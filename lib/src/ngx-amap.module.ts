@@ -22,6 +22,8 @@ import { AmapPlaceSearchService, AmapPlaceSearchWrapper } from './services/amap-
 import { AmapCircleDirective } from './directives/amap-circle/amap-circle.directive';
 import { AmapCircleMarkerDirective } from './directives/amap-circle-marker/amap-circle-marker.directive';
 import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mouse-tool/amap-mouse-tool.service';
+import { AmapTextDirective } from './directives/amap-text/amap-text.directive';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mous
     AmapAutocompleteDirective,
     AmapCircleDirective,
     AmapCircleMarkerDirective,
-    AmapPolygonDirective
+    AmapPolygonDirective,
+    AmapTextDirective
   ],
   exports: [
     NgxAmapComponent,
@@ -46,7 +49,8 @@ import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mous
     AmapAutocompleteDirective,
     AmapCircleDirective,
     AmapCircleMarkerDirective,
-    AmapPolygonDirective
+    AmapPolygonDirective,
+    AmapTextDirective
   ]
 })
 export class NgxAmapModule {
@@ -91,5 +95,6 @@ export {
   AmapMouseToolWrapper,
   AmapCircleDirective,
   AmapCircleMarkerDirective,
-  AmapPolygonDirective
+  AmapPolygonDirective,
+  AmapTextDirective
 };

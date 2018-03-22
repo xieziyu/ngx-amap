@@ -41,6 +41,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'amap-text',
+        loadChildren: './views/amap-text-demo/amap-text-demo.module#AmapTextDemoModule',
+        data: {
+          title: 'amap-text'
+        }
+      },
+      {
         path: 'amap-polyline',
         loadChildren: './views/amap-polyline-demo/amap-polyline-demo.module#AmapPolylineDemoModule',
         data: {

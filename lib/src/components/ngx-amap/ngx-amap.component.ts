@@ -15,6 +15,7 @@ import { ToolBarService } from '../../services/toolbar/toolbar.service';
 import { MarkerClustererService } from '../../services/marker-clusterer/marker-clusterer.service';
 import { CircleService } from '../../services/circle/circle.service';
 import { CircleMarkerService } from '../../services/circle-marker/circle-marker.service';
+import { TextService } from '../../services/text/text.service';
 
 const ALL_OPTIONS = [
   'view',
@@ -70,7 +71,8 @@ const ALL_OPTIONS = [
     MarkerClustererService,
     CircleService,
     CircleMarkerService,
-    PolygonService
+    PolygonService,
+    TextService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {

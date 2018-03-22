@@ -84,6 +84,23 @@ export const navigation = [
     ]
   },
   {
+    name: 'amap-text',
+    url: '/amap-text',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-text/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-text/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     name: 'amap-polyline',
     url: '/amap-polyline',
     icon: 'fa fa-code',

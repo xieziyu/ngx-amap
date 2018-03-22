@@ -20,6 +20,7 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 # 最新进度
 2018.03.22: v1.3.0
   + 新增支持覆盖物AMap.Polygon指令：amap-polygon
+  + 新增支持覆盖物AMap.Text指令：amap-text
 
 2018.03.21: v1.2.0
   + 新增支持AMap.MouseTool鼠标工具插件：AmapMouseToolService (感谢: [noob9527](https://github.com/noob9527))
@@ -128,6 +129,7 @@ $ yarn add ngx-amap
 | -------- | --- |------- | -- | -------- |
 |`ngx-amap`                 | `Component` | 地图 | **AMap.Map** | [demo](https://xieziyu.github.io/ngx-amap/#/ngx-amap/simple) |
 |`amap-marker`              | `Directive` | 覆盖物：点标记 | **AMap.Marker** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-marker/simple) |
+|`amap-text`                | `Directive` | 覆盖物：文本标记 | **AMap.Text** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-text/simple) |
 |`amap-polyline`            | `Directive` | 覆盖物：折线 | **AMap.Polyline** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-polyline/simple) |
 |`amap-polygon`             | `Directive` | 覆盖物：多边线 | **AMap.Polygon** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-polygon/simple) |
 |`amap-circle`              | `Directive` | 覆盖物：圆 | **AMap.Circle** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle/simple) |
