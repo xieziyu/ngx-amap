@@ -1,6 +1,7 @@
 import { Map } from './amap.map';
 import { PolygonOptions } from '../interface';
 import { LngLat } from './amap.lng-lat';
+import { Bounds } from './amap.bounds';
 
 export interface CPolygon {
   new (opts: PolygonOptions): Polygon;
@@ -14,7 +15,7 @@ export declare class Polygon {
   getPath(): number[][];
   setOptions(opt: PolygonOptions): void;
   getOptions(): PolygonOptions;
-  getBounds(): any; // TODO: Bounds
+  getBounds(): Bounds;
   getArea(): number;
   hide(): void;
   show(): void;

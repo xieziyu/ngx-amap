@@ -2,7 +2,7 @@ import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { Map, LngLat } from '../../types/class';
+import { Map, LngLat, Bounds } from '../../types/class';
 import { Polygon, PolygonPath } from '../../types/class/amap.polygon';
 import { PolygonOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
@@ -150,7 +150,7 @@ export class AmapPolygonDirective implements OnChanges, OnDestroy {
     return this._polygon.then(p => p.getOptions());
   }
 
-  getBounds(): Promise<any> {
+  getBounds(): Promise<Bounds> {
     return this._polygon.then(p => p.getBounds());
   }
 

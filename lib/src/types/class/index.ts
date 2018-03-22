@@ -17,6 +17,7 @@ import { CPlaceSearch, PlaceSearch } from './place-search/amap.place-search';
 import { CCircle, Circle } from './amap.circle';
 import { CCircleMarker, CircleMarker } from './amap.circle-marker';
 import { CMouseTool, MouseTool } from './amap.mouse-tool';
+import { Bounds, CBounds } from './amap.bounds';
 
 export interface AMapClass {
   Map: CMap;
@@ -37,6 +38,7 @@ export interface AMapClass {
   MouseTool: CMouseTool;
   Circle: CCircle;
   CircleMarker: CCircleMarker;
+  Bounds: CBounds;
 
   plugin(name: string|string[], callback: (result: any) => void): void;
 }
@@ -45,7 +47,7 @@ export {
   Map, LngLat, Pixel, Size, Marker, Icon,
   InfoWindow, Polyline, Polygon, ToolBar, MarkerClusterer,
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
-  Circle, CircleMarker, MouseTool
+  Circle, CircleMarker, MouseTool, Bounds
 };
 
 // Geocoder

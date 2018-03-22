@@ -2,6 +2,8 @@ import { PlaceSearchOptions } from '../../interface/place-search-options.interfa
 import { ILngLat } from '../../interface/lng-lat.interface';
 import { callbackFn } from '../../interface/callback.type';
 import { SearchResult } from './search-result';
+import { Bounds } from '../amap.bounds';
+import { Polygon } from '../amap.polygon';
 
 export interface CPlaceSearch {
   new (opts?: PlaceSearchOptions): PlaceSearch;
@@ -11,7 +13,7 @@ export declare class PlaceSearch {
   constructor(opts?: PlaceSearchOptions);
   search(keyword: string, callback: callbackFn<SearchResult>);
   searchNearBy(keyword: string, center: ILngLat, radius: number, callback: callbackFn<SearchResult>);
-  searchInBounds(keyword: string, bounds: any, callback: callbackFn<SearchResult>); // TODO: Bounds, Polygon
+  searchInBounds(keyword: string, bounds: Bounds|Polygon, callback: callbackFn<SearchResult>);
   getDetails(POIID: string, callback: callbackFn<SearchResult>);
   setType(type: string);
   setCityLimit(limit: boolean);

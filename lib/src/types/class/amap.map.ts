@@ -1,6 +1,7 @@
 import { LngLat } from './amap.lng-lat';
 import { Pixel } from './amap.pixel';
 import { Size } from './amap.size';
+import { Bounds } from './amap.bounds';
 import { MapOptions } from '../interface/map-options.interface';
 
 export interface CMap {
@@ -14,9 +15,9 @@ export declare class Map {
   getCenter(): LngLat;
   getContainer(): HTMLDivElement;
   getCity(callback: (result: any) => void): void; // TODO: city property
-  getBounds(): any; // TODO: Bounds
+  getBounds(): Bounds;
   getlabelzIndex(): number;
-  getLimitBounds(): any; // TODO: Bounds
+  getLimitBounds(): Bounds;
   getLang(): string;
   getSize(): Size;
   getRotation(): number;
@@ -33,8 +34,8 @@ export declare class Map {
   setCenter(position: LngLat|number[]): void;
   setZoomAndCenter(zoomLevel: number, center: LngLat|number[]): void;
   setCity(city: string, callback?: (result: any) => void): void;
-  setBounds(bound: any): void; // TODO: Bounds
-  setLimitBounds(bound: any): void; // TODO: Bounds
+  setBounds(bound: Bounds): void;
+  setLimitBounds(bound: Bounds): void;
   clearLimitBounds(): void;
   setLang(lang: string): string;
   setRotation(rotation: number): number;

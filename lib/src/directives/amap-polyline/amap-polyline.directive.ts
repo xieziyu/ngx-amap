@@ -2,7 +2,7 @@ import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { Polyline, Map } from '../../types/class';
+import { Polyline, Map, Bounds } from '../../types/class';
 import { PolylineOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -157,7 +157,7 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
     return this._polyline.then(p => p.getLength());
   }
 
-  getBounds(): Promise<any> {
+  getBounds(): Promise<Bounds> {
     return this._polyline.then(p => p.getBounds());
   }
 

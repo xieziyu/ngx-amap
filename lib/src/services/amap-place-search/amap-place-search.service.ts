@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AMapClass, PlaceSearch } from '../../types/class';
+import { AMapClass, PlaceSearch, Bounds, Polygon } from '../../types/class';
 import { PlaceSearchOptions, ILngLat } from '../../types/interface';
 import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
@@ -64,7 +64,7 @@ export class AmapPlaceSearchWrapper extends RawEventBinder {
     }));
   }
 
-  searchInBounds(keyword: string, bounds: any): Promise<{status: string, result: any}> {
+  searchInBounds(keyword: string, bounds: Bounds|Polygon): Promise<{status: string, result: any}> {
     return new Promise(resolve => this._placeSearch.searchInBounds(keyword, bounds, (status, result) => {
       resolve({status, result});
     }));

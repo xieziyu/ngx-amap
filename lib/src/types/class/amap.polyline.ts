@@ -1,4 +1,5 @@
 import { Map } from './amap.map';
+import { Bounds } from './amap.bounds';
 import { PolylineOptions } from '../interface/polyline-options.interface';
 
 export interface CPolyline {
@@ -12,7 +13,7 @@ export declare class Polyline {
   setOptions(opt: PolylineOptions): void;
   getOptions(): PolylineOptions;
   getLength(): number;
-  getBounds(): any; // TODO: Bounds
+  getBounds(): Bounds;
   hide(): void;
   show(): void;
   setMap(map: Map): void;
