@@ -27,7 +27,8 @@ const ALL_OPTIONS = [
 ];
 
 @Directive({
-  selector: 'amap-polyline'
+  selector: 'amap-polyline',
+  exportAs: 'polyline'
 })
 export class AmapPolylineDirective implements OnChanges, OnDestroy {
   TAG = 'amap-polyline';

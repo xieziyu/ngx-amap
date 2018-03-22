@@ -30,7 +30,8 @@ const ALL_OPTIONS = [
  * </ngx-amap>
  */
 @Directive({
-  selector: 'amap-marker-clusterer'
+  selector: 'amap-marker-clusterer',
+  exportAs: 'marker-clusterer'
 })
 export class AmapMarkerClustererDirective implements OnInit, OnChanges, OnDestroy, AfterContentInit {
   TAG = 'amap-marker-clusterer';

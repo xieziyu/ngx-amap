@@ -23,7 +23,8 @@ const ALL_OPTIONS = [
 @Component({
   selector: 'amap-info-window',
   templateUrl: 'amap-info-window.component.html',
-  styleUrls: ['amap-info-window.component.scss']
+  styleUrls: ['amap-info-window.component.scss'],
+  exportAs: 'info-window'
 })
 export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
   TAG = 'amap-info-window';

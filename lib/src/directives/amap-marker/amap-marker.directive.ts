@@ -35,7 +35,8 @@ const ALL_OPTIONS = [
 ];
 
 @Directive({
-  selector: 'amap-marker'
+  selector: 'amap-marker',
+  exportAs: 'marker'
 })
 export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentInit {
   TAG = 'amap-marker';

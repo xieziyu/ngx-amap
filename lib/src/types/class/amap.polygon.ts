@@ -6,9 +6,11 @@ export interface CPolygon {
   new (opts: PolygonOptions): Polygon;
 }
 
+export type PolygonPath = Array<LngLat>|Array<Array<LngLat>>|Array<number[]>|Array<Array<number[]>>;
+
 export declare class Polygon {
   constructor(opts: PolygonOptions);
-  setPath(path: number[][]): void;
+  setPath(path: PolygonPath): void;
   getPath(): number[][];
   setOptions(opt: PolygonOptions): void;
   getOptions(): PolygonOptions;

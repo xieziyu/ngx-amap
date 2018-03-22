@@ -1,0 +1,37 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    多边形事件 (请查看console输出)
+  </div>
+  <div class="card-body">
+    <button type="button" class="btn btn-outline-primary" (click)="hide = !hide">触发显示隐藏事件</button>
+    <hr>
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-polygon [options]="options" [hidden]="hide"
+        (polygonClick)="onEvent($event, 'polygonClick')"
+        (ready)="onEvent($event, 'ready')"
+        (dblClick)="onEvent($event, 'dblClick')"
+        (rightClick)="onEvent($event, 'rightClick')"
+        (polygonHide)="onEvent($event, 'polygonHide')"
+        (polygonShow)="onEvent($event, 'polygonShow')"
+        (mouseDown)="onEvent($event, 'mouseDown')"
+        (mouseUp)="onEvent($event, 'mouseUp')"
+        (mouseOver)="onEvent($event, 'mouseOver')"
+        (mouseOut)="onEvent($event, 'mouseOut')"
+        (change)="onEvent($event, 'change')"
+        (touchStart)="onEvent($event, 'touchStart')"
+        (touchMove)="onEvent($event, 'touchMove')"
+        (touchEnd)="onEvent($event, 'touchEnd')"
+      ></amap-polygon>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="code_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="code_ts | language: 'typescript'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

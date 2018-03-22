@@ -23,7 +23,8 @@ const ALL_OPTIONS = [
 ];
 
 @Directive({
-  selector: 'amap-circle-marker'
+  selector: 'amap-circle-marker',
+  exportAs: 'circle-marker'
 })
 export class AmapCircleMarkerDirective implements OnChanges, OnDestroy {
   TAG = 'amap-circle-marker';

@@ -15,4 +15,5 @@ export interface PolygonOptions {
   strokeStyle?: string;
   strokeDasharray?: number[];
   extData?: any;
+  draggable?: boolean;
 }

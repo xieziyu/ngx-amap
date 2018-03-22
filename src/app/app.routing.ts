@@ -48,6 +48,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'amap-polygon',
+        loadChildren: './views/amap-polygon-demo/amap-polygon-demo.module#AmapPolygonDemoModule',
+        data: {
+          title: 'amap-polygon'
+        }
+      },
+      {
         path: 'amap-circle',
         loadChildren: './views/amap-circle-demo/amap-circle-demo.module#AmapCircleDemoModule',
         data: {

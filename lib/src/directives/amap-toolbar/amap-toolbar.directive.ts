@@ -23,7 +23,8 @@ const ALL_OPTIONS = [
 ];
 
 @Directive({
-  selector: 'amap-tool-bar'
+  selector: 'amap-tool-bar',
+  exportAs: 'toolbar'
 })
 export class AmapToolBarDirective implements OnChanges, OnInit, OnDestroy {
   TAG = 'amap-tool-bar';
