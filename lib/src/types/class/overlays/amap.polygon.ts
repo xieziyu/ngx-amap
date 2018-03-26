@@ -1,7 +1,7 @@
-import { Map } from './amap.map';
-import { PolygonOptions, ILngLat } from '../interface';
-import { LngLat } from './amap.lng-lat';
-import { Bounds } from './amap.bounds';
+import { Map } from '../amap.map';
+import { PolygonOptions, ILngLat } from '../../interface';
+import { LngLat } from '../amap.lng-lat';
+import { Bounds } from '../amap.bounds';
 
 export interface CPolygon {
   new (opts: PolygonOptions): Polygon;

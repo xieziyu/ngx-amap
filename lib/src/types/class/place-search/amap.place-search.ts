@@ -3,7 +3,7 @@ import { ILngLat } from '../../interface/lng-lat.interface';
 import { callbackFn } from '../../interface/callback.type';
 import { SearchResult } from './search-result';
 import { Bounds } from '../amap.bounds';
-import { Polygon } from '../amap.polygon';
+import { Polygon } from '../overlays/amap.polygon';
 
 export interface CPlaceSearch {
   new (opts?: PlaceSearchOptions): PlaceSearch;

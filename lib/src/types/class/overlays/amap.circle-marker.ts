@@ -1,6 +1,6 @@
-import { Map } from './amap.map';
-import { LngLat } from './amap.lng-lat';
-import { CircleMarkerOptions } from '../interface/circle-marker-options.interface';
+import { Map } from '../amap.map';
+import { LngLat } from '../amap.lng-lat';
+import { CircleMarkerOptions } from '../../interface/overlays/circle-marker-options.interface';
 
 export interface CCircleMarker {
   new (opts: CircleMarkerOptions): CircleMarker;

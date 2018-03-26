@@ -3,7 +3,7 @@ import { Directive, Input, Output, OnDestroy,
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
 import { Map, LngLat, Bounds } from '../../types/class';
-import { Polygon, PolygonPath } from '../../types/class/amap.polygon';
+import { Polygon, PolygonPath } from '../../types/class/overlays/amap.polygon';
 import { PolygonOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';

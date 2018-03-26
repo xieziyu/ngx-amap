@@ -1,5 +1,5 @@
-import { Map } from '../class/amap.map';
-import { LngLat } from '../class/amap.lng-lat';
+import { Map } from '../../class/amap.map';
+import { LngLat } from '../../class/amap.lng-lat';
 
 export interface CircleMarkerOptions {
   map?: Map;

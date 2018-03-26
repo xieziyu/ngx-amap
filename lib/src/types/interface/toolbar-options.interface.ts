@@ -1,5 +1,5 @@
 import { Map } from '../class/amap.map';
-import { Marker } from '../class/amap.marker';
+import { Marker } from '../class/overlays/amap.marker';
 import { IPixel } from '../interface/pixel.interface';
 
 export interface ToolbarOptions {

@@ -1,4 +1,4 @@
-import { Map } from '../class/amap.map';
+import { Map } from '../../class/amap.map';
 
 export interface PolylineOptions {
   map?: Map;

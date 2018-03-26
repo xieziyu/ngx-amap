@@ -1,7 +1,7 @@
-import { Map } from './amap.map';
-import { LngLat } from './amap.lng-lat';
-import { Bounds } from './amap.bounds';
-import { CircleOptions } from '../interface/circle-options.interface';
+import { Map } from '../amap.map';
+import { LngLat } from '../amap.lng-lat';
+import { Bounds } from '../amap.bounds';
+import { CircleOptions } from '../../interface/overlays/circle-options.interface';
 
 export interface CCircle {
   new (opts: CircleOptions): Circle;

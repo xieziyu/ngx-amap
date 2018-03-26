@@ -1,4 +1,4 @@
-import { Marker } from '../class/amap.marker';
+import { Marker } from '../class/overlays/amap.marker';
 import { IClusterStyle } from './cluster-style.interface';
 
 export interface MarkerClustererOptions {

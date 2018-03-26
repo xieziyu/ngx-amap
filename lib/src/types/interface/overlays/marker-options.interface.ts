@@ -1,8 +1,8 @@
-import { ILabel } from './label.interface';
-import { Map } from '../class/amap.map';
-import { LngLat } from '../class/amap.lng-lat';
-import { Icon } from '../class/amap.icon';
-import { Pixel } from '../class/amap.pixel';
+import { ILabel } from '../label.interface';
+import { Map } from '../../class/amap.map';
+import { LngLat } from '../../class/amap.lng-lat';
+import { Icon } from '../../class/amap.icon';
+import { Pixel } from '../../class/amap.pixel';
 
 export interface MarkerOptions {
   map?: Map;

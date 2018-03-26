@@ -1,6 +1,6 @@
-import { Map } from './amap.map';
-import { Bounds } from './amap.bounds';
-import { PolylineOptions } from '../interface/polyline-options.interface';
+import { Map } from '../amap.map';
+import { Bounds } from '../amap.bounds';
+import { PolylineOptions } from '../../interface/overlays/polyline-options.interface';
 
 export interface CPolyline {
   new (opts: PolylineOptions): Polyline;

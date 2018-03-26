@@ -1,12 +1,13 @@
-import { Map } from '../class/amap.map';
-import { LngLat } from '../class/amap.lng-lat';
+import { Map } from '../../class/amap.map';
+import { LngLat } from '../../class/amap.lng-lat';
 
-export interface PolygonOptions {
+export interface CircleOptions {
   map?: Map;
   zIndex?: number;
-  path?: LngLat[] | LngLat[][];
+  center?: LngLat;
   bubble?: boolean;
   cursor?: string;
+  radius?: number;
   strokeColor?: string;
   strokeOpacity?: number;
   strokeWeight?: number;
@@ -15,5 +16,4 @@ export interface PolygonOptions {
   strokeStyle?: string;
   strokeDasharray?: number[];
   extData?: any;
-  draggable?: boolean;
 }

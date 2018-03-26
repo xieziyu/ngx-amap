@@ -1,8 +1,8 @@
-import { LngLat } from './amap.lng-lat';
-import { Map } from './amap.map';
-import { Pixel } from './amap.pixel';
-import { Icon } from './amap.icon';
-import { MarkerOptions } from '../interface/marker-options.interface';
+import { LngLat } from '../amap.lng-lat';
+import { Map } from '../amap.map';
+import { Pixel } from '../amap.pixel';
+import { Icon } from '../amap.icon';
+import { MarkerOptions } from '../../interface/overlays/marker-options.interface';
 
 export interface CMarker {
   new (opts: MarkerOptions): Marker;
