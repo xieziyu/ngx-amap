@@ -3,6 +3,7 @@
 #### New
 + AMap.Circle对象支持AMap.CircleEditor编辑功能：amap-circle `[editor]="true"`
 + AMap.Polyline对象支持AMap.PolyEditor编辑功能：amap-polyline `[editor]="true"`
++ AMap.Polygon对象支持AMap.PolyEditor编辑功能：amap-polygon `[editor]="true"`
 
 ----
 

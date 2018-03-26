@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AmapPolylineDirective } from 'ngx-amap';
+import { Component, OnInit } from '@angular/core';
 import { TS, HTML } from './code';
 
 @Component({

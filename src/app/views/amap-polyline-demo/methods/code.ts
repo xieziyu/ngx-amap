@@ -1,6 +1,5 @@
 export const TS = `\
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AmapPolylineDirective } from 'ngx-amap';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-methods',
