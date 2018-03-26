@@ -2,7 +2,7 @@ import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { Polyline, Map, Bounds } from '../../types/class';
+import { Polyline, Map, Bounds, PolyEditor } from '../../types/class';
 import { PolylineOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -55,6 +55,7 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
 
   // Extra property:
   @Input() hidden = false;
+  @Input() editor = false;
 
   // amap-polyline events:
   @Output() polylineClick = new EventEmitter();
@@ -74,6 +75,8 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
 
   private _polyline: Promise<Polyline>;
   private _subscriptions: Subscription;
+
+  private _editor: PolyEditor;
 
   constructor(
     private logger: LoggerService,
@@ -95,6 +98,7 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
     }
 
     filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
+    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
   }
 
   ngOnDestroy() {
@@ -123,6 +127,28 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
   }
 
   // Public methods:
+  toggleEditor(v: boolean): Promise<void> {
+    if (v && !this._editor) {
+      return this.polylines.loadEditor()
+        .then(() => this._polyline)
+        .then(c => this.polylines.createEditor(c))
+        .then(editor => {
+          this._editor = editor;
+          editor.open();
+        });
+    }
+
+    if (this._editor) {
+      if (v) {
+        this._editor.open();
+      } else {
+        this._editor.close();
+      }
+    }
+
+    return Promise.resolve();
+  }
+
   show(): Promise<void> {
     return this._polyline.then(p => p.show());
   }

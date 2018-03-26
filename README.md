@@ -18,7 +18,11 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 7. [本地演示](#本地演示)
 
 # 最新进度
-2018.03.26: v1.3.0
+2018.03.26: v1.3.1：覆盖物编辑功能
+  + AMap.Circle对象支持AMap.CircleEditor编辑功能：amap-circle `[editor]="true"`
+  + AMap.Polyline对象支持AMap.PolyEditor编辑功能：amap-polyline `[editor]="true"`
+
+2018.03.26: v1.3.0: 覆盖物
   + 新增支持覆盖物AMap.Polygon指令：amap-polygon
   + 新增支持覆盖物AMap.Text指令：amap-text
   + 新增支持覆盖物AMap.BezierCurve指令：amap-bezier-curve

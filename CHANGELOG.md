@@ -1,3 +1,11 @@
+## 1.3.1 (2018-03-26)
+
+#### New
++ AMap.Circle对象支持AMap.CircleEditor编辑功能：amap-circle `[editor]="true"`
++ AMap.Polyline对象支持AMap.PolyEditor编辑功能：amap-polyline `[editor]="true"`
+
+----
+
 ## 1.3.0 (2018-03-26)
 
 #### New
