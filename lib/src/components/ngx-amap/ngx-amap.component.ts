@@ -17,6 +17,7 @@ import { CircleService } from '../../services/circle/circle.service';
 import { CircleMarkerService } from '../../services/circle-marker/circle-marker.service';
 import { TextService } from '../../services/text/text.service';
 import { BezierCurveService } from '../../services/bezier-curve/bezier-curve.service';
+import { EllipseService } from '../../services/ellipse/ellipse.service';
 
 const ALL_OPTIONS = [
   'view',
@@ -74,7 +75,8 @@ const ALL_OPTIONS = [
     CircleMarkerService,
     PolygonService,
     TextService,
-    BezierCurveService
+    BezierCurveService,
+    EllipseService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {

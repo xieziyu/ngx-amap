@@ -69,6 +69,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'amap-ellipse',
+        loadChildren: './views/amap-ellipse-demo/amap-ellipse-demo.module#AmapEllipseDemoModule',
+        data: {
+          title: 'amap-ellipse'
+        }
+      },
+      {
         path: 'amap-circle',
         loadChildren: './views/amap-circle-demo/amap-circle-demo.module#AmapCircleDemoModule',
         data: {

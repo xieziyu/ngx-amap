@@ -20,6 +20,7 @@ import { CMouseTool, MouseTool } from './amap.mouse-tool';
 import { Bounds, CBounds } from './amap.bounds';
 import { Text, CText } from './overlays/amap.text';
 import { BezierCurve, CBezierCurve } from './overlays/amap.bezier-curve';
+import { Ellipse, CEllipse } from './overlays/amap.ellipse';
 
 export interface AMapClass {
   Map: CMap;
@@ -43,6 +44,7 @@ export interface AMapClass {
   Bounds: CBounds;
   Text: CText;
   BezierCurve: CBezierCurve;
+  Ellipse: CEllipse;
 
   plugin(name: string|string[], callback: (result: any) => void): void;
 }
@@ -51,7 +53,8 @@ export {
   Map, LngLat, Pixel, Size, Marker, Icon,
   InfoWindow, Polyline, Polygon, ToolBar, MarkerClusterer,
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
-  Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve
+  Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
+  Ellipse
 };
 
 // Geocoder
