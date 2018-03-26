@@ -2,7 +2,7 @@ import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { Map, LngLat, Bounds } from '../../types/class';
+import { Map, LngLat, Bounds, PolyEditor } from '../../types/class';
 import { Polygon, PolygonPath } from '../../types/class/overlays/amap.polygon';
 import { PolygonOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
@@ -52,6 +52,7 @@ export class AmapPolygonDirective implements OnChanges, OnDestroy {
 
   // Extra property:
   @Input() hidden = false;
+  @Input() editor = false;
 
   // amap-polygon events:
   @Output() polygonClick = new EventEmitter();
@@ -71,6 +72,8 @@ export class AmapPolygonDirective implements OnChanges, OnDestroy {
 
   private _polygon: Promise<Polygon>;
   private _subscriptions: Subscription;
+
+  private _editor: PolyEditor;
 
   constructor(
     private logger: LoggerService,
@@ -92,6 +95,7 @@ export class AmapPolygonDirective implements OnChanges, OnDestroy {
     }
 
     filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
+    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
   }
 
   ngOnDestroy() {
@@ -120,6 +124,28 @@ export class AmapPolygonDirective implements OnChanges, OnDestroy {
   }
 
   // Public methods:
+  toggleEditor(v: boolean): Promise<void> {
+    if (v && !this._editor) {
+      return this.polygons.loadEditor()
+        .then(() => this._polygon)
+        .then(c => this.polygons.createEditor(c))
+        .then(editor => {
+          this._editor = editor;
+          editor.open();
+        });
+    }
+
+    if (this._editor) {
+      if (v) {
+        this._editor.open();
+      } else {
+        this._editor.close();
+      }
+    }
+
+    return Promise.resolve();
+  }
+
   show(): Promise<void> {
     return this._polygon.then(p => p.show());
   }

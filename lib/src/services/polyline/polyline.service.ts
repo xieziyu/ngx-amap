@@ -44,7 +44,7 @@ export class PolylineService extends EventBinder {
     return this._editorPlugin;
   }
 
-  createEditor(c: Polyline): Promise<PolyEditor> {
-    return this._map.then(map => new AMap.PolyEditor(map, c));
+  createEditor(p: Polyline): Promise<PolyEditor> {
+    return this._map.then(map => new AMap.PolyEditor(map, p));
   }
 }
