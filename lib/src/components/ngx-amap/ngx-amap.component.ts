@@ -10,10 +10,15 @@ import { LngLat, Size } from '../../types/class';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
 import { PolylineService } from '../../services/polyline/polyline.service';
+import { PolygonService } from '../../services/polygon/polygon.service';
 import { ToolBarService } from '../../services/toolbar/toolbar.service';
 import { MarkerClustererService } from '../../services/marker-clusterer/marker-clusterer.service';
 import { CircleService } from '../../services/circle/circle.service';
 import { CircleMarkerService } from '../../services/circle-marker/circle-marker.service';
+import { TextService } from '../../services/text/text.service';
+import { BezierCurveService } from '../../services/bezier-curve/bezier-curve.service';
+import { EllipseService } from '../../services/ellipse/ellipse.service';
+import { RectangleService } from '../../services/rectangle/rectangle.service';
 
 const ALL_OPTIONS = [
   'view',
@@ -57,6 +62,7 @@ const ALL_OPTIONS = [
  */
 @Component({
   selector: 'ngx-amap',
+  exportAs: 'amap',
   templateUrl: 'ngx-amap.component.html',
   styleUrls: ['ngx-amap.component.scss'],
   providers: [
@@ -67,7 +73,12 @@ const ALL_OPTIONS = [
     ToolBarService,
     MarkerClustererService,
     CircleService,
-    CircleMarkerService
+    CircleMarkerService,
+    PolygonService,
+    TextService,
+    BezierCurveService,
+    EllipseService,
+    RectangleService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {

@@ -84,6 +84,23 @@ export const navigation = [
     ]
   },
   {
+    name: 'amap-text',
+    url: '/amap-text',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-text/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-text/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     name: 'amap-polyline',
     url: '/amap-polyline',
     icon: 'fa fa-code',
@@ -101,6 +118,62 @@ export const navigation = [
       {
         name: '事件',
         url: '/amap-polyline/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
+    name: 'amap-polygon',
+    url: '/amap-polygon',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-polygon/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '调用方法',
+        url: '/amap-polygon/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-polygon/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
+    name: 'amap-bezier-curve',
+    url: '/amap-bezier-curve',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '调用方法',
+        url: '/amap-bezier-curve/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-bezier-curve/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
+    name: 'amap-rectangle',
+    url: '/amap-rectangle',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '调用方法',
+        url: '/amap-rectangle/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-rectangle/events',
         icon: 'fa fa-html5'
       },
     ]
@@ -145,6 +218,23 @@ export const navigation = [
       {
         name: '事件',
         url: '/amap-circle-marker/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
+    name: 'amap-ellipse',
+    url: '/amap-ellipse',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '调用方法',
+        url: '/amap-ellipse/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-ellipse/events',
         icon: 'fa fa-html5'
       },
     ]

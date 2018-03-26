@@ -2,7 +2,7 @@ import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { Circle, Map, LngLat } from '../../types/class';
+import { Circle, Map, LngLat, Bounds } from '../../types/class';
 import { CircleOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -25,7 +25,8 @@ const ALL_OPTIONS = [
 ];
 
 @Directive({
-  selector: 'amap-circle'
+  selector: 'amap-circle',
+  exportAs: 'circle'
 })
 export class AmapCircleDirective implements OnChanges, OnDestroy {
   TAG = 'amap-circle';
@@ -161,7 +162,7 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
     return this._circle.then(c => c.getOptions());
   }
 
-  getBounds(): Promise<any> {
+  getBounds(): Promise<Bounds> {
     return this._circle.then(c => c.getBounds());
   }
 

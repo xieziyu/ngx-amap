@@ -7,6 +7,7 @@ import { NgxAmapComponent } from './components/ngx-amap/ngx-amap.component';
 import { AmapMarkerDirective } from './directives/amap-marker/amap-marker.directive';
 import { AmapInfoWindowComponent } from './components/amap-info-window/amap-info-window.component';
 import { AmapPolylineDirective } from './directives/amap-polyline/amap-polyline.directive';
+import { AmapPolygonDirective } from './directives/amap-polygon/amap-polygon.directive';
 import { AmapToolBarDirective } from './directives/amap-toolbar/amap-toolbar.directive';
 import { AmapMarkerClustererDirective } from './directives/amap-marker-clusterer/amap-marker-clusterer.directive';
 import { PixelService } from './services/pixel/pixel.service';
@@ -21,6 +22,10 @@ import { AmapPlaceSearchService, AmapPlaceSearchWrapper } from './services/amap-
 import { AmapCircleDirective } from './directives/amap-circle/amap-circle.directive';
 import { AmapCircleMarkerDirective } from './directives/amap-circle-marker/amap-circle-marker.directive';
 import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mouse-tool/amap-mouse-tool.service';
+import { AmapTextDirective } from './directives/amap-text/amap-text.directive';
+import { AmapBezierCurveDirective } from './directives/amap-bezier-curve/amap-bezier-curve.directive';
+import { AmapEllipseDirective } from './directives/amap-ellipse/amap-ellipse.directive';
+import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectangle.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,12 @@ import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mous
     AmapMarkerClustererDirective,
     AmapAutocompleteDirective,
     AmapCircleDirective,
-    AmapCircleMarkerDirective
+    AmapCircleMarkerDirective,
+    AmapPolygonDirective,
+    AmapTextDirective,
+    AmapBezierCurveDirective,
+    AmapEllipseDirective,
+    AmapRectangleDirective
   ],
   exports: [
     NgxAmapComponent,
@@ -43,7 +53,12 @@ import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mous
     AmapMarkerClustererDirective,
     AmapAutocompleteDirective,
     AmapCircleDirective,
-    AmapCircleMarkerDirective
+    AmapCircleMarkerDirective,
+    AmapPolygonDirective,
+    AmapTextDirective,
+    AmapBezierCurveDirective,
+    AmapEllipseDirective,
+    AmapRectangleDirective
   ]
 })
 export class NgxAmapModule {
@@ -87,5 +102,10 @@ export {
   AmapMouseToolService,
   AmapMouseToolWrapper,
   AmapCircleDirective,
-  AmapCircleMarkerDirective
+  AmapCircleMarkerDirective,
+  AmapPolygonDirective,
+  AmapTextDirective,
+  AmapBezierCurveDirective,
+  AmapEllipseDirective,
+  AmapRectangleDirective
 };

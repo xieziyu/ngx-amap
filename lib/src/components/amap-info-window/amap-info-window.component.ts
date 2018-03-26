@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, Input,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { LngLat, InfoWindow, Marker, Size } from '../../types/class';
+import { LngLat, InfoWindow, Marker, Size, Text } from '../../types/class';
 import { ILngLat, ISize, IPixel, InfoWindowOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -23,7 +23,8 @@ const ALL_OPTIONS = [
 @Component({
   selector: 'amap-info-window',
   templateUrl: 'amap-info-window.component.html',
-  styleUrls: ['amap-info-window.component.scss']
+  styleUrls: ['amap-info-window.component.scss'],
+  exportAs: 'info-window'
 })
 export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
   TAG = 'amap-info-window';
@@ -47,7 +48,7 @@ export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
   @Output() windowChange = new EventEmitter();
 
   content: any;
-  hostMarker: Promise<Marker>;
+  hostMarker: Promise<Marker|Text>;
   private _infoWindow: Promise<InfoWindow>;
   private _subscriptions: Subscription;
 

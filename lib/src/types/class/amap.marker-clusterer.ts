@@ -1,6 +1,6 @@
 import { MarkerClustererOptions } from '../interface/marker-cluster-options.interface';
 import { ClusterStyle } from './cluster-style';
-import { Marker } from './amap.marker';
+import { Marker } from './overlays/amap.marker';
 import { Map } from './amap.map';
 
 export interface CMarkerClusterer {

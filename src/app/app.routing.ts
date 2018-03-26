@@ -41,10 +41,45 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'amap-text',
+        loadChildren: './views/amap-text-demo/amap-text-demo.module#AmapTextDemoModule',
+        data: {
+          title: 'amap-text'
+        }
+      },
+      {
         path: 'amap-polyline',
         loadChildren: './views/amap-polyline-demo/amap-polyline-demo.module#AmapPolylineDemoModule',
         data: {
           title: 'amap-polyline'
+        }
+      },
+      {
+        path: 'amap-polygon',
+        loadChildren: './views/amap-polygon-demo/amap-polygon-demo.module#AmapPolygonDemoModule',
+        data: {
+          title: 'amap-polygon'
+        }
+      },
+      {
+        path: 'amap-rectangle',
+        loadChildren: './views/amap-rectangle-demo/amap-rectangle-demo.module#AmapRectangleDemoModule',
+        data: {
+          title: 'amap-rectangle'
+        }
+      },
+      {
+        path: 'amap-bezier-curve',
+        loadChildren: './views/amap-bezier-curve-demo/amap-bezier-curve-demo.module#AmapBezierCurveDemoModule',
+        data: {
+          title: 'amap-bezier-curve'
+        }
+      },
+      {
+        path: 'amap-ellipse',
+        loadChildren: './views/amap-ellipse-demo/amap-ellipse-demo.module#AmapEllipseDemoModule',
+        data: {
+          title: 'amap-ellipse'
         }
       },
       {

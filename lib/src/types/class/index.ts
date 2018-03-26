@@ -2,21 +2,26 @@ import { Map, CMap } from './amap.map';
 import { LngLat, CLngLat } from './amap.lng-lat';
 import { Pixel, CPixel } from './amap.pixel';
 import { Size, CSize } from './amap.size';
-import { CMarker, Marker } from './amap.marker';
 import { CIcon, Icon } from './amap.icon';
 import { AMapEvent } from './amap.event';
 import { CInfoWindow, InfoWindow } from './amap.info-window';
-import { CPolyline, Polyline } from './amap.polyline';
-import { CPolygon, Polygon } from './amap.polygon';
 import { CToolBar, ToolBar } from './amap.toolbar';
-import { CMarkerClusterer, MarkerClusterer } from './amap.marker-clusterer';
 import { ClusterStyle } from './cluster-style';
 import { CGeocoder, Geocoder } from './geocoder/amap.geocoder';
 import { CAutocomplete, Autocomplete } from './autocomplete/amap.autocomplete';
 import { CPlaceSearch, PlaceSearch } from './place-search/amap.place-search';
-import { CCircle, Circle } from './amap.circle';
-import { CCircleMarker, CircleMarker } from './amap.circle-marker';
 import { CMouseTool, MouseTool } from './amap.mouse-tool';
+import { Bounds, CBounds } from './amap.bounds';
+import { CMarker, Marker } from './overlays/amap.marker';
+import { CPolyline, Polyline } from './overlays/amap.polyline';
+import { CPolygon, Polygon } from './overlays/amap.polygon';
+import { CCircle, Circle } from './overlays/amap.circle';
+import { CCircleMarker, CircleMarker } from './overlays/amap.circle-marker';
+import { Text, CText } from './overlays/amap.text';
+import { CMarkerClusterer, MarkerClusterer } from './amap.marker-clusterer';
+import { BezierCurve, CBezierCurve } from './overlays/amap.bezier-curve';
+import { Ellipse, CEllipse } from './overlays/amap.ellipse';
+import { Rectangle, CRectangle } from './overlays/amap.rectangle';
 
 export interface AMapClass {
   Map: CMap;
@@ -37,6 +42,11 @@ export interface AMapClass {
   MouseTool: CMouseTool;
   Circle: CCircle;
   CircleMarker: CCircleMarker;
+  Bounds: CBounds;
+  Text: CText;
+  BezierCurve: CBezierCurve;
+  Ellipse: CEllipse;
+  Rectangle: CRectangle;
 
   plugin(name: string|string[], callback: (result: any) => void): void;
 }
@@ -45,7 +55,8 @@ export {
   Map, LngLat, Pixel, Size, Marker, Icon,
   InfoWindow, Polyline, Polygon, ToolBar, MarkerClusterer,
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
-  Circle, CircleMarker, MouseTool
+  Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
+  Ellipse, Rectangle
 };
 
 // Geocoder
