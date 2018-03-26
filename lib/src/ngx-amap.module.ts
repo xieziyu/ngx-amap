@@ -23,7 +23,7 @@ import { AmapCircleDirective } from './directives/amap-circle/amap-circle.direct
 import { AmapCircleMarkerDirective } from './directives/amap-circle-marker/amap-circle-marker.directive';
 import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mouse-tool/amap-mouse-tool.service';
 import { AmapTextDirective } from './directives/amap-text/amap-text.directive';
-
+import { AmapBezierCurveDirective } from './directives/amap-bezier-curve/amap-bezier-curve.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { AmapTextDirective } from './directives/amap-text/amap-text.directive';
     AmapCircleDirective,
     AmapCircleMarkerDirective,
     AmapPolygonDirective,
-    AmapTextDirective
+    AmapTextDirective,
+    AmapBezierCurveDirective
   ],
   exports: [
     NgxAmapComponent,
@@ -50,7 +51,8 @@ import { AmapTextDirective } from './directives/amap-text/amap-text.directive';
     AmapCircleDirective,
     AmapCircleMarkerDirective,
     AmapPolygonDirective,
-    AmapTextDirective
+    AmapTextDirective,
+    AmapBezierCurveDirective
   ]
 })
 export class NgxAmapModule {
@@ -96,5 +98,6 @@ export {
   AmapCircleDirective,
   AmapCircleMarkerDirective,
   AmapPolygonDirective,
-  AmapTextDirective
+  AmapTextDirective,
+  AmapBezierCurveDirective
 };

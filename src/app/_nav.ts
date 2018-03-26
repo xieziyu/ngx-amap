@@ -145,6 +145,28 @@ export const navigation = [
     ]
   },
   {
+    name: 'amap-bezier-curve',
+    url: '/amap-bezier-curve',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-bezier-curve/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '调用方法',
+        url: '/amap-bezier-curve/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-bezier-curve/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     name: 'amap-circle',
     url: '/amap-circle',
     icon: 'fa fa-code',

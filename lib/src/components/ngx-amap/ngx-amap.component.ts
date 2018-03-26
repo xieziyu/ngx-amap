@@ -16,6 +16,7 @@ import { MarkerClustererService } from '../../services/marker-clusterer/marker-c
 import { CircleService } from '../../services/circle/circle.service';
 import { CircleMarkerService } from '../../services/circle-marker/circle-marker.service';
 import { TextService } from '../../services/text/text.service';
+import { BezierCurveService } from '../../services/bezier-curve/bezier-curve.service';
 
 const ALL_OPTIONS = [
   'view',
@@ -72,7 +73,8 @@ const ALL_OPTIONS = [
     CircleService,
     CircleMarkerService,
     PolygonService,
-    TextService
+    TextService,
+    BezierCurveService
   ]
 })
 export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {

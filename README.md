@@ -18,9 +18,10 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 7. [本地演示](#本地演示)
 
 # 最新进度
-2018.03.22: v1.3.0
+2018.03.26: v1.3.0
   + 新增支持覆盖物AMap.Polygon指令：amap-polygon
   + 新增支持覆盖物AMap.Text指令：amap-text
+  + 新增支持覆盖物AMap.BezierCurve指令：amap-bezier-curve
 
 2018.03.21: v1.2.0
   + 新增支持AMap.MouseTool鼠标工具插件：AmapMouseToolService (感谢: [noob9527](https://github.com/noob9527))

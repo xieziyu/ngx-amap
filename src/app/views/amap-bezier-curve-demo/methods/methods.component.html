@@ -1,0 +1,31 @@
+<div class="card card-accent-info">
+  <div class="card-header">
+    调用方法示例 (请查看console输出)
+  </div>
+  <div class="card-body">
+    <button type="button" class="btn btn-outline-primary" (click)="getMethods(myCurve)">调用Getter方法</button>
+    <hr>
+    <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+      <amap-bezier-curve #myCurve="bezier-curve"
+        [path]="lineArr"
+        [strokeColor]="'#FF33FF'"
+        [strokeOpacity]="1"
+        [strokeWeight]="3"
+        strokeStyle="solid">
+      </amap-bezier-curve>
+    </ngx-amap>
+    <div class="mt-3">
+      <tabset>
+        <tab heading="HTML">
+          <markdown [data]="code_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="code_ts | language: 'typescript'"></markdown>
+        </tab>
+        <tab heading="支持的方法">
+          <a href="api-doc/directives/AmapBezierCurveDirective.html" target="_blank">查看在线文档</a>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

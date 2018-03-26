@@ -1,8 +1,9 @@
-## 1.3.0 (2018-03-22)
+## 1.3.0 (2018-03-26)
 
 #### New
 + 新增支持覆盖物AMap.Polygon指令：amap-polygon
 + 新增支持覆盖物AMap.Text指令：amap-text
++ 新增支持覆盖物AMap.BezierCurve指令：amap-bezier-curve
 
 #### Changes
 + 对大部分指令和组件增加exportAs，方便在模板中引用指令实例
