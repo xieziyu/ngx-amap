@@ -1,5 +1,5 @@
 import { Map } from './amap.map';
-import { PolygonOptions } from '../interface';
+import { PolygonOptions, ILngLat } from '../interface';
 import { LngLat } from './amap.lng-lat';
 import { Bounds } from './amap.bounds';
 
@@ -22,5 +22,5 @@ export declare class Polygon {
   setMap(map: Map): void;
   setExtData(ext: any): void;
   getExtData(): any;
-  contains(point: LngLat): boolean;
+  contains(point: LngLat|ILngLat): boolean;
 }

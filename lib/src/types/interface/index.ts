@@ -20,3 +20,4 @@ export * from './circle-marker-options.interface';
 export * from './overlays/text-options.interface';
 export * from './overlays/bezier-curve-options.interface';
 export * from './overlays/ellipse-options.interface';
+export * from './overlays/rectangle-options.interface';

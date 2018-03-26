@@ -128,6 +128,10 @@ export class AmapPolygonDirective implements OnChanges, OnDestroy {
     return this._polygon.then(p => p.hide());
   }
 
+  contains(point: LngLat|ILngLat): Promise<boolean> {
+    return this._polygon.then(p => p.contains(point));
+  }
+
   // Setters:
   setPath(path: PolygonPath): Promise<void> {
     return this._polygon.then(p => p.setPath(path));

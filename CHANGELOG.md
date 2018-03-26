@@ -5,6 +5,7 @@
 + 新增支持覆盖物AMap.Text指令：amap-text
 + 新增支持覆盖物AMap.BezierCurve指令：amap-bezier-curve
 + 新增支持覆盖物AMap.Ellipse指令：amap-ellipse
++ 新增支持覆盖物AMap.Rectangle指令：amap-rectangle
 
 #### Changes
 + 对大部分指令和组件增加exportAs，方便在模板中引用指令实例

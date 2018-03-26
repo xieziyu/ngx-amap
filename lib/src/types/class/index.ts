@@ -21,6 +21,7 @@ import { Bounds, CBounds } from './amap.bounds';
 import { Text, CText } from './overlays/amap.text';
 import { BezierCurve, CBezierCurve } from './overlays/amap.bezier-curve';
 import { Ellipse, CEllipse } from './overlays/amap.ellipse';
+import { Rectangle, CRectangle } from './overlays/amap.rectangle';
 
 export interface AMapClass {
   Map: CMap;
@@ -45,6 +46,7 @@ export interface AMapClass {
   Text: CText;
   BezierCurve: CBezierCurve;
   Ellipse: CEllipse;
+  Rectangle: CRectangle;
 
   plugin(name: string|string[], callback: (result: any) => void): void;
 }
@@ -54,7 +56,7 @@ export {
   InfoWindow, Polyline, Polygon, ToolBar, MarkerClusterer,
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
-  Ellipse
+  Ellipse, Rectangle
 };
 
 // Geocoder

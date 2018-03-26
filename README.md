@@ -23,6 +23,7 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
   + 新增支持覆盖物AMap.Text指令：amap-text
   + 新增支持覆盖物AMap.BezierCurve指令：amap-bezier-curve
   + 新增支持覆盖物AMap.Ellipse指令：amap-ellipse
+  + 新增支持覆盖物AMap.Rectangle指令：amap-rectangle
 
 2018.03.21: v1.2.0
   + 新增支持AMap.MouseTool鼠标工具插件：AmapMouseToolService (感谢: [noob9527](https://github.com/noob9527))
@@ -138,6 +139,7 @@ $ yarn add ngx-amap
 |`amap-ellipse`             | `Directive` | 覆盖物：椭圆 | **AMap.Ellipse** | [demo](#/amap-ellipse/methods) |
 |`amap-circle`              | `Directive` | 覆盖物：圆 | **AMap.Circle** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle/simple) |
 |`amap-circle-marker`       | `Directive` | 覆盖物：圆点标记 | **AMap.CircleMarker** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle-marker/simple) |
+|`amap-rectangle`           | `Directive` | 覆盖物：矩形 | **AMap.Rectangle** | [demo](#/amap-rectangle/methods) |
 |`amap-info-window`         | `Component` | 信息窗体 | **AMap.InfoWindow** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-info-window/simple) |
 |`amap-tool-bar`            | `Directive` | 工具条插件 | **AMap.ToolBar** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-tool-bar/simple) |
 |`amap-marker-clusterer`    | `Directive` | 点聚合插件 | **AMap.MarkerClusterer** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-marker-clusterer/simple) |

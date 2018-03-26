@@ -62,6 +62,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'amap-rectangle',
+        loadChildren: './views/amap-rectangle-demo/amap-rectangle-demo.module#AmapRectangleDemoModule',
+        data: {
+          title: 'amap-rectangle'
+        }
+      },
+      {
         path: 'amap-bezier-curve',
         loadChildren: './views/amap-bezier-curve-demo/amap-bezier-curve-demo.module#AmapBezierCurveDemoModule',
         data: {

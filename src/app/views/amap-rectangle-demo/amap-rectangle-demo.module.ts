@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { AmapBezierCurveDemoRoutingModule } from './amap-bezier-curve-demo-routing.module';
-import { EventsComponent } from './events/events.component';
+import { AmapRectangleDemoRoutingModule } from './amap-rectangle-demo-routing.module';
 import { MethodsComponent } from './methods/methods.component';
+import { EventsComponent } from './events/events.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    AmapBezierCurveDemoRoutingModule,
+    AmapRectangleDemoRoutingModule,
     SharedModule
   ],
   declarations: [
-    EventsComponent,
-    MethodsComponent
+    MethodsComponent,
+    EventsComponent
   ]
 })
-export class AmapBezierCurveDemoModule { }
+export class AmapRectangleDemoModule { }

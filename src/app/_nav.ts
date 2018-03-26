@@ -150,11 +150,6 @@ export const navigation = [
     icon: 'fa fa-code',
     children: [
       {
-        name: '简单示例',
-        url: '/amap-bezier-curve/simple',
-        icon: 'fa fa-html5'
-      },
-      {
         name: '调用方法',
         url: '/amap-bezier-curve/methods',
         icon: 'fa fa-html5'
@@ -167,18 +162,18 @@ export const navigation = [
     ]
   },
   {
-    name: 'amap-ellipse',
-    url: '/amap-ellipse',
+    name: 'amap-rectangle',
+    url: '/amap-rectangle',
     icon: 'fa fa-code',
     children: [
       {
         name: '调用方法',
-        url: '/amap-ellipse/methods',
+        url: '/amap-rectangle/methods',
         icon: 'fa fa-html5'
       },
       {
         name: '事件',
-        url: '/amap-ellipse/events',
+        url: '/amap-rectangle/events',
         icon: 'fa fa-html5'
       },
     ]
@@ -223,6 +218,23 @@ export const navigation = [
       {
         name: '事件',
         url: '/amap-circle-marker/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
+    name: 'amap-ellipse',
+    url: '/amap-ellipse',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '调用方法',
+        url: '/amap-ellipse/methods',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/amap-ellipse/events',
         icon: 'fa fa-html5'
       },
     ]

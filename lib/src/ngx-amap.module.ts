@@ -25,6 +25,7 @@ import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mous
 import { AmapTextDirective } from './directives/amap-text/amap-text.directive';
 import { AmapBezierCurveDirective } from './directives/amap-bezier-curve/amap-bezier-curve.directive';
 import { AmapEllipseDirective } from './directives/amap-ellipse/amap-ellipse.directive';
+import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectangle.directive';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AmapEllipseDirective } from './directives/amap-ellipse/amap-ellipse.dir
     AmapPolygonDirective,
     AmapTextDirective,
     AmapBezierCurveDirective,
-    AmapEllipseDirective
+    AmapEllipseDirective,
+    AmapRectangleDirective
   ],
   exports: [
     NgxAmapComponent,
@@ -55,7 +57,8 @@ import { AmapEllipseDirective } from './directives/amap-ellipse/amap-ellipse.dir
     AmapPolygonDirective,
     AmapTextDirective,
     AmapBezierCurveDirective,
-    AmapEllipseDirective
+    AmapEllipseDirective,
+    AmapRectangleDirective
   ]
 })
 export class NgxAmapModule {
@@ -103,5 +106,6 @@ export {
   AmapPolygonDirective,
   AmapTextDirective,
   AmapBezierCurveDirective,
-  AmapEllipseDirective
+  AmapEllipseDirective,
+  AmapRectangleDirective
 };
