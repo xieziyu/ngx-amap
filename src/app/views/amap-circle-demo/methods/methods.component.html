@@ -3,11 +3,13 @@
     调用方法示例 (请查看console输出)
   </div>
   <div class="card-body">
-    <button type="button" class="btn btn-outline-primary" (click)="getMethods()">调用Getter方法</button>
-    <button type="button" class="btn btn-outline-primary" (click)="checkContains()">判断contains方法</button>
+    <button type="button" class="btn btn-outline-primary" (click)="getMethods(myCircle)">调用Getter方法</button>
+    <button type="button" class="btn btn-outline-primary" (click)="checkContains(myCircle)">判断contains方法</button>
+    <button type="button" class="btn btn-outline-primary" (click)="editor = !editor">打开/关闭编辑功能</button>
     <hr>
     <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
-      <amap-circle
+      <amap-circle #myCircle="circle"
+        [editor]="editor"
         [center]="[116.403322, 39.920255]"
         [radius]="1000"
         [strokeColor]="'#F33'"
@@ -22,10 +24,10 @@
     <div class="mt-3">
       <tabset>
         <tab heading="HTML">
-          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+          <markdown [data]="code_html | language: 'html'"></markdown>
         </tab>
         <tab heading="Component">
-          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+          <markdown [data]="code_ts | language: 'typescript'"></markdown>
         </tab>
         <tab heading="支持的方法">
           <a href="api-doc/directives/AmapCircleDirective.html" target="_blank">查看在线文档</a>

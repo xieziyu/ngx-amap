@@ -2,7 +2,7 @@ import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { Circle, Map, LngLat, Bounds } from '../../types/class';
+import { Circle, Map, LngLat, Bounds, CircleEditor } from '../../types/class';
 import { CircleOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -51,6 +51,7 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
 
   // Extra property:
   @Input() hidden = false;
+  @Input() editor = false;
 
   // amap-circle events:
   @Output() circleClick = new EventEmitter();
@@ -70,6 +71,8 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
 
   private _circle: Promise<Circle>;
   private _subscriptions: Subscription;
+
+  private _editor: CircleEditor;
 
   constructor(
     private logger: LoggerService,
@@ -92,6 +95,7 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
     }
 
     filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
+    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
   }
 
   ngOnDestroy() {
@@ -120,6 +124,28 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
   }
 
   // Public methods:
+  toggleEditor(v: boolean): Promise<void> {
+    if (v && !this._editor) {
+      return this.circles.loadEditor()
+        .then(() => this._circle)
+        .then(c => this.circles.createEditor(c))
+        .then(editor => {
+          this._editor = editor;
+          editor.open();
+        });
+    }
+
+    if (this._editor) {
+      if (v) {
+        this._editor.open();
+      } else {
+        this._editor.close();
+      }
+    }
+
+    return Promise.resolve();
+  }
+
   show(): Promise<void> {
     return this._circle.then(c => c.show());
   }
