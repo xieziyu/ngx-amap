@@ -2,7 +2,7 @@ import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { Map, LngLat, Bounds } from '../../types/class';
+import { Map, LngLat, Bounds, RectangleEditor } from '../../types/class';
 import { Rectangle } from '../../types/class';
 import { RectangleOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
@@ -52,6 +52,7 @@ export class AmapRectangleDirective implements OnChanges, OnDestroy {
 
   // Extra property:
   @Input() hidden = false;
+  @Input() editor = false;
 
   // amap-rectangle events:
   @Output() rectangleClick = new EventEmitter();
@@ -69,8 +70,14 @@ export class AmapRectangleDirective implements OnChanges, OnDestroy {
   @Output() touchMove = new EventEmitter();
   @Output() touchEnd = new EventEmitter();
 
+  // editor events:
+  @Output() editorAdjust = new EventEmitter();
+  @Output() editorEnd = new EventEmitter();
+
   private _rectangle: Promise<Rectangle>;
   private _subscriptions: Subscription;
+
+  private _editor: RectangleEditor;
 
   constructor(
     private logger: LoggerService,
@@ -87,6 +94,7 @@ export class AmapRectangleDirective implements OnChanges, OnDestroy {
       this._rectangle = this.rectangles.create(options);
       this.bindEvents();
       this._rectangle.then(p => this.ready.emit(p));
+      this.toggleEditor(this.editor);
     } else {
       filter.has<RectangleOptions>('options').subscribe(v => this.setOptions(v || {}));
       filter.has<any>('extData').subscribe(v => this.setExtData(v));
@@ -94,6 +102,7 @@ export class AmapRectangleDirective implements OnChanges, OnDestroy {
     }
 
     filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
+    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
   }
 
   ngOnDestroy() {
@@ -121,7 +130,36 @@ export class AmapRectangleDirective implements OnChanges, OnDestroy {
     return this.rectangles.bindEvent(this._rectangle, event);
   }
 
+  private bindEditorEvents(event: string) {
+    return this.rectangles.bindEvent(this._editor, event);
+  }
+
   // Public methods:
+  toggleEditor(v: boolean): Promise<void> {
+    if (v && !this._editor) {
+      return this.rectangles.loadEditor()
+        .then(() => this._rectangle)
+        .then(c => this.rectangles.createEditor(c))
+        .then(editor => {
+          this._editor = editor;
+          // Bind events:
+          this._subscriptions.add(this.bindEditorEvents('adjust').subscribe(e => this.editorAdjust.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('end').subscribe(e => this.editorEnd.emit(e)));
+          editor.open();
+        });
+    }
+
+    if (this._editor) {
+      if (v) {
+        this._editor.open();
+      } else {
+        this._editor.close();
+      }
+    }
+
+    return Promise.resolve();
+  }
+
   show(): Promise<void> {
     return this._rectangle.then(r => r.show());
   }

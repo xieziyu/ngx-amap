@@ -35,13 +35,15 @@ export class EventsComponent implements OnInit {
       fillColor: 'blue',
       fillOpacity: 0.5,
       zIndex: 10,
-      bubble: true,
-      cursor: 'pointer',
-      draggable: true
+      bubble: true
     };
   }
 
   onEvent(event: any, type: string) {
-    console.log('ellipse event:', type, event);
+    console.log('rectangle event:', type, event);
+  }
+
+  onEditorEvent(event: any, type: string) {
+    console.log('rectangle editor event:', type, event);
   }
 }

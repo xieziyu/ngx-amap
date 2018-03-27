@@ -2,7 +2,7 @@ export const CODE_HTML = `\
 <button type="button" class="btn btn-outline-primary" (click)="hide = !hide">触发显示隐藏事件</button>
 <hr>
 <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
-  <amap-circle [options]="options" [hidden]="hide"
+  <amap-circle [options]="options" [hidden]="hide" [editor]="true"
     (circleClick)="onEvent($event, 'circleClick')"
     (ready)="onEvent($event, 'ready')"
     (dblClick)="onEvent($event, 'dblClick')"
@@ -17,6 +17,9 @@ export const CODE_HTML = `\
     (touchStart)="onEvent($event, 'touchStart')"
     (touchMove)="onEvent($event, 'touchMove')"
     (touchEnd)="onEvent($event, 'touchEnd')"
+    (editorMove)="onEditorEvent($event, 'editorMove')"
+    (editorAdjust)="onEditorEvent($event, 'editorAdjust')"
+    (editorEnd)="onEditorEvent($event, 'editorEnd')"
   ></amap-circle>
 </ngx-amap>
 `;
@@ -48,5 +51,9 @@ export class EventsComponent implements OnInit {
 
   onEvent(event: any, type: string) {
     console.log('circle event:', type, event);
+  }
+
+  onEditorEvent(event: any, type: string) {
+    console.log('circle editor event:', type, event);
   }
 }`;

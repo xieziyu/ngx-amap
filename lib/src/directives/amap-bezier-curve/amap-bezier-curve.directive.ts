@@ -8,6 +8,7 @@ import { CurvePath } from '../../types/interface/overlays/bezier-curve-options.i
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
 import { BezierCurveService } from '../../services/bezier-curve/bezier-curve.service';
+import { BezierCurveEditor, BezierCurveEditorOptions } from '../../types/class/amap.editor';
 
 const ALL_OPTIONS = [
   'path',
@@ -53,8 +54,10 @@ export class AmapBezierCurveDirective implements OnChanges, OnDestroy {
 
   // Extra property:
   @Input() hidden = false;
+  @Input() editor = false;
+  @Input() editorOptions: BezierCurveEditorOptions;
 
-  // amap-bezierCurve events:
+  // amap-bezier-curve events:
   @Output() bezierCurveClick = new EventEmitter();
   @Output() ready = new EventEmitter();
   @Output() dblClick = new EventEmitter();
@@ -70,8 +73,16 @@ export class AmapBezierCurveDirective implements OnChanges, OnDestroy {
   @Output() touchMove = new EventEmitter();
   @Output() touchEnd = new EventEmitter();
 
+  // editor events:
+  @Output() editorAddnode = new EventEmitter();
+  @Output() editorRemovenode = new EventEmitter();
+  @Output() editorAdjust = new EventEmitter();
+  @Output() editorEnd = new EventEmitter();
+
   private _bezierCurve: Promise<BezierCurve>;
   private _subscriptions: Subscription;
+
+  private _editor: BezierCurveEditor;
 
   constructor(
     private logger: LoggerService,
@@ -93,6 +104,7 @@ export class AmapBezierCurveDirective implements OnChanges, OnDestroy {
     }
 
     filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
+    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
   }
 
   ngOnDestroy() {
@@ -120,7 +132,38 @@ export class AmapBezierCurveDirective implements OnChanges, OnDestroy {
     return this.bezierCurves.bindEvent(this._bezierCurve, event);
   }
 
+  private bindEditorEvents(event: string) {
+    return this.bezierCurves.bindEvent(this._editor, event);
+  }
+
   // Public methods:
+  toggleEditor(v: boolean): Promise<void> {
+    if (v && !this._editor) {
+      return this.bezierCurves.loadEditor()
+        .then(() => this._bezierCurve)
+        .then(c => this.bezierCurves.createEditor(c, this.editorOptions))
+        .then(editor => {
+          this._editor = editor;
+          // Bind events:
+          this._subscriptions.add(this.bindEditorEvents('addnode').subscribe(e => this.editorAddnode.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('adjust').subscribe(e => this.editorAdjust.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('removenode').subscribe(e => this.editorRemovenode.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('end').subscribe(e => this.editorEnd.emit(e)));
+          editor.open();
+        });
+    }
+
+    if (this._editor) {
+      if (v) {
+        this._editor.open();
+      } else {
+        this._editor.close();
+      }
+    }
+
+    return Promise.resolve();
+  }
+
   show(): Promise<void> {
     return this._bezierCurve.then(p => p.show());
   }

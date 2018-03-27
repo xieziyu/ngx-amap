@@ -11,6 +11,7 @@ export class MethodsComponent implements OnInit {
   code_html = HTML;
 
   polygonArr = [];
+  editor = false;
 
   constructor() { }
 

@@ -31,13 +31,17 @@ export class EventsComponent implements OnInit {
   onEvent(event: any, type: string) {
     console.log('polygon event:', type, event);
   }
+
+  onEditorEvent(event: any, type: string) {
+    console.log('polygon editor event:', type, event);
+  }
 }`;
 
 export const HTML = `\
 <button type="button" class="btn btn-outline-primary" (click)="hide = !hide">触发显示隐藏事件</button>
 <hr>
 <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
-  <amap-polygon [options]="options" [hidden]="hide"
+  <amap-polygon [options]="options" [hidden]="hide" [editor]="true"
     (polygonClick)="onEvent($event, 'polygonClick')"
     (ready)="onEvent($event, 'ready')"
     (dblClick)="onEvent($event, 'dblClick')"
@@ -52,5 +56,9 @@ export const HTML = `\
     (touchStart)="onEvent($event, 'touchStart')"
     (touchMove)="onEvent($event, 'touchMove')"
     (touchEnd)="onEvent($event, 'touchEnd')"
+    (editorAddnode)="onEditorEvent($event, 'editorAddnode')"
+    (editorRemovenode)="onEditorEvent($event, 'editorRemovenode')"
+    (editorAdjust)="onEditorEvent($event, 'editorAdjust')"
+    (editorEnd)="onEditorEvent($event, 'editorEnd')"
   ></amap-polygon>
 </ngx-amap>`;

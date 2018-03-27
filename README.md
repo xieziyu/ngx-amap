@@ -18,7 +18,15 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 7. [本地演示](#本地演示)
 
 # 最新进度
-2018.03.26: v1.3.0
+2018.03.27: v1.3.1：覆盖物编辑功能 ([传送门：高德开放平台API](https://lbs.amap.com/api/javascript-api/reference/plugin))
+  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle/methods) AMap.CircleEditor编辑功能：amap-circle `[editor]="true"`
+  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-polyline/methods) AMap.PolyEditor编辑功能：amap-polyline, amap-polygon `[editor]="true"`
+  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-bezier-curve/methods) AMap.BezierCurveEditor编辑功能：amap-bezier-curve `[editor]="true" [editorOptions]="editorOptions"`
+  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-ellipse/methods) AMap.EllipseEditor编辑功能：amap-ellipse `[editor]="true"`
+  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-rectangle/methods) AMap.RectangleEditor编辑功能：amap-rectangle `[editor]="true"`
+  + 添加editor相关事件emitter，例如：`(editorAddnode)`, `(editorAdjust)`等，详见示例
+
+2018.03.26: v1.3.0: 覆盖物
   + 新增支持覆盖物AMap.Polygon指令：amap-polygon
   + 新增支持覆盖物AMap.Text指令：amap-text
   + 新增支持覆盖物AMap.BezierCurve指令：amap-bezier-curve
@@ -135,11 +143,11 @@ $ yarn add ngx-amap
 |`amap-text`                | `Directive` | 覆盖物：文本标记 | **AMap.Text** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-text/simple) |
 |`amap-polyline`            | `Directive` | 覆盖物：折线 | **AMap.Polyline** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-polyline/simple) |
 |`amap-polygon`             | `Directive` | 覆盖物：多边线 | **AMap.Polygon** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-polygon/simple) |
-|`amap-bezier-curve`        | `Directive` | 覆盖物：贝塞尔曲线 | **AMap.BezierCurve** | [demo](#/amap-bezier-curve/simple) |
-|`amap-ellipse`             | `Directive` | 覆盖物：椭圆 | **AMap.Ellipse** | [demo](#/amap-ellipse/methods) |
+|`amap-bezier-curve`        | `Directive` | 覆盖物：贝塞尔曲线 | **AMap.BezierCurve** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-bezier-curve/methods) |
+|`amap-ellipse`             | `Directive` | 覆盖物：椭圆 | **AMap.Ellipse** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-ellipse/methods) |
 |`amap-circle`              | `Directive` | 覆盖物：圆 | **AMap.Circle** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle/simple) |
 |`amap-circle-marker`       | `Directive` | 覆盖物：圆点标记 | **AMap.CircleMarker** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle-marker/simple) |
-|`amap-rectangle`           | `Directive` | 覆盖物：矩形 | **AMap.Rectangle** | [demo](#/amap-rectangle/methods) |
+|`amap-rectangle`           | `Directive` | 覆盖物：矩形 | **AMap.Rectangle** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-rectangle/methods) |
 |`amap-info-window`         | `Component` | 信息窗体 | **AMap.InfoWindow** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-info-window/simple) |
 |`amap-tool-bar`            | `Directive` | 工具条插件 | **AMap.ToolBar** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-tool-bar/simple) |
 |`amap-marker-clusterer`    | `Directive` | 点聚合插件 | **AMap.MarkerClusterer** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-marker-clusterer/simple) |

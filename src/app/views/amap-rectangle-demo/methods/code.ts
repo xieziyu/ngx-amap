@@ -15,6 +15,8 @@ export class MethodsComponent implements OnInit {
   marker1 = [116.403322, 39.920255];
   marker2 = [116.382122, 39.901176];
 
+  editor = false;
+
   constructor() { }
 
   ngOnInit() {
@@ -45,9 +47,11 @@ export class MethodsComponent implements OnInit {
 export const HTML = `\
 <button type="button" class="btn btn-outline-primary" (click)="getMethods(myRectangle)">调用Getter方法</button>
 <button type="button" class="btn btn-outline-primary" (click)="checkContains(myRectangle)">判断contains方法</button>
+<button type="button" class="btn btn-outline-primary" (click)="editor = !editor">打开/关闭编辑功能</button>
 <hr>
 <ngx-amap #myMap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13" (ready)="onMapReady()">
   <amap-rectangle #myRectangle="rectangle"
+    [editor]="editor"
     [bounds]="bounds"
     [strokeColor]="'#F33'"
     [strokeOpacity]="1"

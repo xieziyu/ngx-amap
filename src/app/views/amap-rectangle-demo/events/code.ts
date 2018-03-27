@@ -39,7 +39,11 @@ export class EventsComponent implements OnInit {
   }
 
   onEvent(event: any, type: string) {
-    console.log('ellipse event:', type, event);
+    console.log('rectangle event:', type, event);
+  }
+
+  onEditorEvent(event: any, type: string) {
+    console.log('rectangle editor event:', type, event);
   }
 }`;
 
@@ -47,7 +51,7 @@ export const HTML = `\
 <button type="button" class="btn btn-outline-primary" (click)="hide = !hide">触发显示隐藏事件</button>
 <hr>
 <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13" (ready)="onMapReady()">
-  <amap-rectangle [options]="options" [hidden]="hide"
+  <amap-rectangle [options]="options" [hidden]="hide" [editor]="true"
     (rectangleClick)="onEvent($event, 'rectangleClick')"
     (ready)="onEvent($event, 'ready')"
     (dblClick)="onEvent($event, 'dblClick')"
@@ -62,5 +66,7 @@ export const HTML = `\
     (touchStart)="onEvent($event, 'touchStart')"
     (touchMove)="onEvent($event, 'touchMove')"
     (touchEnd)="onEvent($event, 'touchEnd')"
+    (editorAdjust)="onEditorEvent($event, 'editorAdjust')"
+    (editorEnd)="onEditorEvent($event, 'editorEnd')"
   ></amap-rectangle>
 </ngx-amap>`;

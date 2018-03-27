@@ -29,4 +29,8 @@ export class EventsComponent implements OnInit {
   onEvent(event: any, type: string) {
     console.log('circle event:', type, event);
   }
+
+  onEditorEvent(event: any, type: string) {
+    console.log('circle editor event:', type, event);
+  }
 }

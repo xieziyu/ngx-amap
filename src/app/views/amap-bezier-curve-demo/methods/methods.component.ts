@@ -30,6 +30,20 @@ export class MethodsComponent implements OnInit {
     // 第四段弧线，每段最多两控制点
     [116.423857, 39.889498, 116.422312, 39.899639, 116.425273, 39.902273]
   ];
+  editor = false;
+  editorOptions = {
+    'getCtrlLineOptions': function() {
+      // 自定义控制线的样式
+      return {
+        'lineCap': 'round',
+        'strokeDasharray': [10, 10],
+        'strokeColor': 'blue', // 线颜色
+        'strokeOpacity': 0.5, // 线透明度
+        'strokeWeight': 3, // 线宽
+        'strokeStyle': 'dashed' // 线样式
+      };
+    }
+  };
 
   constructor() { }
 

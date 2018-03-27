@@ -3,10 +3,12 @@
     调用方法示例 (请查看console输出)
   </div>
   <div class="card-body">
-    <button type="button" class="btn btn-outline-primary" (click)="getMethods()">调用Getter方法</button>
+    <button type="button" class="btn btn-outline-primary" (click)="getMethods(myPolyline)">调用Getter方法</button>
+    <button type="button" class="btn btn-outline-primary" (click)="editor = !editor">打开/关闭编辑功能</button>
     <hr>
     <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
-      <amap-polyline
+      <amap-polyline #myPolyline="polyline"
+        [editor]="editor"
         [path]="lineArr"
         [strokeColor]="'#3366FF'"
         [strokeOpacity]="1"
@@ -18,10 +20,10 @@
     <div class="mt-3">
       <tabset>
         <tab heading="HTML">
-          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+          <markdown [data]="code_html | language: 'html'"></markdown>
         </tab>
         <tab heading="Component">
-          <markdown [data]="demo_md_ts | language: 'typescript'"></markdown>
+          <markdown [data]="code_ts | language: 'typescript'"></markdown>
         </tab>
         <tab heading="支持的方法">
           <a href="api-doc/directives/AmapPolylineDirective.html" target="_blank">查看在线文档</a>

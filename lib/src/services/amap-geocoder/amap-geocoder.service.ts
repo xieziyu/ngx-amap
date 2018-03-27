@@ -4,14 +4,14 @@ import { AMapClass, Geocoder } from '../../types/class';
 import { LoggerService } from '../logger/logger.service';
 import { GeocoderOptions, ILngLat } from '../../types/interface';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
-import { RawEventBinder } from '../../utils/event-binder';
+import { EventBinder } from '../../utils/event-binder';
 
 declare const AMap: AMapClass;
 
 /**
  * AmapGeocoderWrapper对象将高德原生的Geocoder对象提供的方法封装成Promise的实现，更方便回调
  */
-export class AmapGeocoderWrapper extends RawEventBinder {
+export class AmapGeocoderWrapper extends EventBinder {
   private _geocoder: Geocoder;
 
   constructor(opts?: GeocoderOptions) {

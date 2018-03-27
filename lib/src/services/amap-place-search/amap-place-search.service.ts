@@ -4,7 +4,7 @@ import { AMapClass, PlaceSearch, Bounds, Polygon } from '../../types/class';
 import { PlaceSearchOptions, ILngLat } from '../../types/interface';
 import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
-import { RawEventBinder } from '../../utils/event-binder';
+import { EventBinder } from '../../utils/event-binder';
 
 declare const AMap: AMapClass;
 
@@ -31,7 +31,7 @@ export class AmapPlaceSearchService {
 /**
  * AmapPlaceSearchWrapper对象将高德原生的PlaceSearch对象提供的方法封装成Promise的实现，更方便回调
  */
-export class AmapPlaceSearchWrapper extends RawEventBinder {
+export class AmapPlaceSearchWrapper extends EventBinder {
   private _placeSearch: PlaceSearch;
 
   constructor(opts?: PlaceSearchOptions) {
