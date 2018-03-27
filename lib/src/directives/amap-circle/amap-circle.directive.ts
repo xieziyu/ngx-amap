@@ -69,6 +69,11 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
   @Output() touchMove = new EventEmitter();
   @Output() touchEnd = new EventEmitter();
 
+  // editor events:
+  @Output() editorMove = new EventEmitter();
+  @Output() editorAdjust = new EventEmitter();
+  @Output() editorEnd = new EventEmitter();
+
   private _circle: Promise<Circle>;
   private _subscriptions: Subscription;
 
@@ -123,6 +128,10 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
     return this.circles.bindEvent(this._circle, event);
   }
 
+  private bindEditorEvents(event: string) {
+    return this.circles.bindEvent(this._editor, event);
+  }
+
   // Public methods:
   toggleEditor(v: boolean): Promise<void> {
     if (v && !this._editor) {
@@ -131,6 +140,10 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
         .then(c => this.circles.createEditor(c))
         .then(editor => {
           this._editor = editor;
+          // Bind events:
+          this._subscriptions.add(this.bindEditorEvents('move').subscribe(e => this.editorMove.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('adjust').subscribe(e => this.editorAdjust.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('end').subscribe(e => this.editorEnd.emit(e)));
           editor.open();
         });
     }

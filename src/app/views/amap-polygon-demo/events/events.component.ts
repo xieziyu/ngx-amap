@@ -34,4 +34,8 @@ export class EventsComponent implements OnInit {
   onEvent(event: any, type: string) {
     console.log('polygon event:', type, event);
   }
+
+  onEditorEvent(event: any, type: string) {
+    console.log('polygon editor event:', type, event);
+  }
 }

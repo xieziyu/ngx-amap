@@ -36,7 +36,6 @@ export class CircleService extends EventBinder {
     });
   }
 
-
   loadEditor(): Promise<void> {
     if (!this._editorPlugin) {
       this._editorPlugin = this.plugins.load('AMap.CircleEditor');

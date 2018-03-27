@@ -4,7 +4,7 @@ import { AMapClass, Autocomplete } from '../../types/class';
 import { AutocompleteOptions } from '../../types/interface';
 import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
-import { RawEventBinder } from '../../utils/event-binder';
+import { EventBinder } from '../../utils/event-binder';
 
 declare const AMap: AMapClass;
 
@@ -31,7 +31,7 @@ export class AmapAutocompleteService {
 /**
  * AmapAutocompleteWrapper对象将高德原生的Autocomplete对象提供的方法封装成Promise的实现，更方便回调
  */
-export class AmapAutocompleteWrapper extends RawEventBinder {
+export class AmapAutocompleteWrapper extends EventBinder {
   private _autocomplete: Autocomplete;
 
   constructor(opts?: AutocompleteOptions) {

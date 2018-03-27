@@ -48,4 +48,8 @@ export class EventsComponent implements OnInit {
   onEvent(event: any, type: string) {
     console.log('bezier curve event:', type, event);
   }
+
+  onEditorEvent(event: any, type: string) {
+    console.log('bezier curve editor event:', type, event);
+  }
 }

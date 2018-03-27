@@ -5,9 +5,11 @@
   <div class="card-body">
     <button type="button" class="btn btn-outline-primary" (click)="getMethods(myRectangle)">调用Getter方法</button>
     <button type="button" class="btn btn-outline-primary" (click)="checkContains(myRectangle)">判断contains方法</button>
+    <button type="button" class="btn btn-outline-primary" (click)="editor = !editor">打开/关闭编辑功能</button>
     <hr>
     <ngx-amap #myMap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13" (ready)="onMapReady()">
       <amap-rectangle #myRectangle="rectangle"
+        [editor]="editor"
         [bounds]="bounds"
         [strokeColor]="'#F33'"
         [strokeOpacity]="1"

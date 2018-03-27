@@ -27,6 +27,20 @@ export class MethodsComponent implements OnInit {
     // 第四段弧线，每段最多两控制点
     [116.423857, 39.889498, 116.422312, 39.899639, 116.425273, 39.902273]
   ];
+  editor = false;
+  editorOptions = {
+    'getCtrlLineOptions': function() {
+      // 自定义控制线的样式
+      return {
+        'lineCap': 'round',
+        'strokeDasharray': [10, 10],
+        'strokeColor': 'blue', // 线颜色
+        'strokeOpacity': 0.5, // 线透明度
+        'strokeWeight': 3, // 线宽
+        'strokeStyle': 'dashed' // 线样式
+      };
+    }
+  };
 
   constructor() { }
 
@@ -46,9 +60,12 @@ export class MethodsComponent implements OnInit {
 
 export const HTML = `\
 <button type="button" class="btn btn-outline-primary" (click)="getMethods(myCurve)">调用Getter方法</button>
+<button type="button" class="btn btn-outline-primary" (click)="editor = !editor">打开/关闭编辑功能</button>
 <hr>
 <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
   <amap-bezier-curve #myCurve="bezier-curve"
+    [editor]="editor"
+    [editorOptions]="editorOptions"
     [path]="lineArr"
     [strokeColor]="'#FF33FF'"
     [strokeOpacity]="1"

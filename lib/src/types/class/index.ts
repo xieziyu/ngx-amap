@@ -24,6 +24,9 @@ import { Ellipse, CEllipse } from './overlays/amap.ellipse';
 import { Rectangle, CRectangle } from './overlays/amap.rectangle';
 import { CircleEditor, CCircleEditor } from './amap.editor';
 import { PolyEditor, CPolyEditor } from './amap.editor';
+import { BezierCurveEditor, CBezierCurveEditor } from './amap.editor';
+import { EllipseEditor, CEllipseEditor } from './amap.editor';
+import { RectangleEditor, CRectangleEditor } from './amap.editor';
 
 export interface AMapClass {
   Map: CMap;
@@ -51,6 +54,9 @@ export interface AMapClass {
   Rectangle: CRectangle;
   CircleEditor: CCircleEditor;
   PolyEditor: CPolyEditor;
+  BezierCurveEditor: CBezierCurveEditor;
+  EllipseEditor: CEllipseEditor;
+  RectangleEditor: CRectangleEditor;
 
   plugin(name: string|string[], callback: (result: any) => void): void;
 }
@@ -60,7 +66,8 @@ export {
   InfoWindow, Polyline, Polygon, ToolBar, MarkerClusterer,
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
-  Ellipse, Rectangle, CircleEditor, PolyEditor
+  Ellipse, Rectangle, CircleEditor, PolyEditor, BezierCurveEditor,
+  EllipseEditor, RectangleEditor
 };
 
 // Geocoder

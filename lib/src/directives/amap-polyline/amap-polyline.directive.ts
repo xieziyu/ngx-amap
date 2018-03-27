@@ -73,6 +73,12 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
   @Output() touchMove = new EventEmitter();
   @Output() touchEnd = new EventEmitter();
 
+  // editor events:
+  @Output() editorAddnode = new EventEmitter();
+  @Output() editorRemovenode = new EventEmitter();
+  @Output() editorAdjust = new EventEmitter();
+  @Output() editorEnd = new EventEmitter();
+
   private _polyline: Promise<Polyline>;
   private _subscriptions: Subscription;
 
@@ -126,6 +132,10 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
     return this.polylines.bindEvent(this._polyline, event);
   }
 
+  private bindEditorEvents(event: string) {
+    return this.polylines.bindEvent(this._editor, event);
+  }
+
   // Public methods:
   toggleEditor(v: boolean): Promise<void> {
     if (v && !this._editor) {
@@ -134,6 +144,11 @@ export class AmapPolylineDirective implements OnChanges, OnDestroy {
         .then(c => this.polylines.createEditor(c))
         .then(editor => {
           this._editor = editor;
+          // Bind events:
+          this._subscriptions.add(this.bindEditorEvents('addnode').subscribe(e => this.editorAddnode.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('adjust').subscribe(e => this.editorAdjust.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('removenode').subscribe(e => this.editorRemovenode.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('end').subscribe(e => this.editorEnd.emit(e)));
           editor.open();
         });
     }

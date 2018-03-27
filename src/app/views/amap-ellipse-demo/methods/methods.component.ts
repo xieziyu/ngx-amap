@@ -12,6 +12,7 @@ export class MethodsComponent implements OnInit {
 
   marker1 = [116.403322, 39.920255];
   marker2 = [116.382122, 39.901176];
+  editor = false;
 
   constructor() { }
 

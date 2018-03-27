@@ -29,4 +29,8 @@ export class EventsComponent implements OnInit {
   onEvent(event: any, type: string) {
     console.log('ellipse event:', type, event);
   }
+
+  onEditorEvent(event: any, type: string) {
+    console.log('ellipse editor event:', type, event);
+  }
 }

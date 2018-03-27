@@ -2,7 +2,7 @@ import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { Ellipse, Map, LngLat, Bounds } from '../../types/class';
+import { Ellipse, Map, LngLat, Bounds, EllipseEditor } from '../../types/class';
 import { EllipseOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -51,6 +51,7 @@ export class AmapEllipseDirective implements OnChanges, OnDestroy {
 
   // Extra property:
   @Input() hidden = false;
+  @Input() editor = false;
 
   // amap-ellipse events:
   @Output() ellipseClick = new EventEmitter();
@@ -68,8 +69,15 @@ export class AmapEllipseDirective implements OnChanges, OnDestroy {
   @Output() touchMove = new EventEmitter();
   @Output() touchEnd = new EventEmitter();
 
+  // editor events:
+  @Output() editorMove = new EventEmitter();
+  @Output() editorAdjust = new EventEmitter();
+  @Output() editorEnd = new EventEmitter();
+
   private _ellipse: Promise<Ellipse>;
   private _subscriptions: Subscription;
+
+  private _editor: EllipseEditor;
 
   constructor(
     private logger: LoggerService,
@@ -91,6 +99,7 @@ export class AmapEllipseDirective implements OnChanges, OnDestroy {
     }
 
     filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
+    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
   }
 
   ngOnDestroy() {
@@ -118,7 +127,37 @@ export class AmapEllipseDirective implements OnChanges, OnDestroy {
     return this.ellipses.bindEvent(this._ellipse, event);
   }
 
+  private bindEditorEvents(event: string) {
+    return this.ellipses.bindEvent(this._editor, event);
+  }
+
   // Public methods:
+  toggleEditor(v: boolean): Promise<void> {
+    if (v && !this._editor) {
+      return this.ellipses.loadEditor()
+        .then(() => this._ellipse)
+        .then(c => this.ellipses.createEditor(c))
+        .then(editor => {
+          this._editor = editor;
+          // Bind events:
+          this._subscriptions.add(this.bindEditorEvents('move').subscribe(e => this.editorMove.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('adjust').subscribe(e => this.editorAdjust.emit(e)));
+          this._subscriptions.add(this.bindEditorEvents('end').subscribe(e => this.editorEnd.emit(e)));
+          editor.open();
+        });
+    }
+
+    if (this._editor) {
+      if (v) {
+        this._editor.open();
+      } else {
+        this._editor.close();
+      }
+    }
+
+    return Promise.resolve();
+  }
+
   show(): Promise<void> {
     return this._ellipse.then(c => c.show());
   }

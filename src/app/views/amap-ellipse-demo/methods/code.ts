@@ -9,6 +9,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class MethodsComponent implements OnInit {
   marker1 = [116.403322, 39.920255];
   marker2 = [116.382122, 39.901176];
+  editor = false;
 
   constructor() { }
 
@@ -36,9 +37,11 @@ export class MethodsComponent implements OnInit {
 export const HTML = `\
 <button type="button" class="btn btn-outline-primary" (click)="getMethods(myEllipse)">调用Getter方法</button>
 <button type="button" class="btn btn-outline-primary" (click)="checkContains(myEllipse)">判断contains方法</button>
+<button type="button" class="btn btn-outline-primary" (click)="editor = !editor">打开/关闭编辑功能</button>
 <hr>
 <ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
   <amap-ellipse #myEllipse="ellipse"
+    [editor]="editor"
     [center]="[116.403322, 39.920255]"
     [radius]="[2000, 1000]"
     [strokeColor]="'#F33'"
