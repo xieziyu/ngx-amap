@@ -361,6 +361,23 @@ export const navigation = [
     ]
   },
   {
+    name: 'AmapDistrictSearchService',
+    url: '/AmapDistrictSearchService',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '简单示例',
+        url: '/AmapDistrictSearchService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/AmapDistrictSearchService/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     name: 'AmapMouseToolService',
     url: '/AmapMouseToolService',
     icon: 'fa fa-cogs',

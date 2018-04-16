@@ -1,10 +1,10 @@
 import { Map } from '../../class/amap.map';
-import { LngLat } from '../../class/amap.lng-lat';
+import { PolygonPath } from '../../class/overlays/amap.polygon';
 
 export interface PolygonOptions {
   map?: Map;
   zIndex?: number;
-  path?: LngLat[] | LngLat[][];
+  path?: PolygonPath;
   bubble?: boolean;
   cursor?: string;
   strokeColor?: string;

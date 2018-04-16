@@ -154,6 +154,7 @@ $ yarn add ngx-amap
 |`AmapGeocoderService`      | `Service`   | 地理编码服务 | **AMap.Geocoder** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapGeocoderService/encode) |
 |`AmapAutocompleteService`  | `Service`   | 关键字提示服务 | **AMap.Autocomplete** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapAutocompleteService/search) |
 |`AmapPlaceSearchService`   | `Service`   | 地点搜索服务 | **AMap.PlaceSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapPlaceSearchService/simple) |
+|`AmapDistrictSearchService`| `Service`   | 行政区搜索服务 | **AMap.DistrictSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDistrictSearchService/simple) |
 |`AmapMouseToolService`     | `Service`   | 鼠标工具插件 | **AMap.MouseTool** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapMouseToolService/simple) |
 
 # 类型声明

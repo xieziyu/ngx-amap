@@ -146,6 +146,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'AmapDistrictSearchService',
+        loadChildren: './views/amap-district-search-service-demo/amap-district-search-service-demo.module#AmapDistrictSearchServiceDemoModule',
+        data: {
+          title: 'AmapDistrictSearchService'
+        }
+      },
+      {
         path: 'AmapMouseToolService',
         loadChildren: './views/amap-mouse-tool-service-demo/amap-mouse-tool-service-demo.module#AmapMouseToolServiceDemoModule',
         data: {
@@ -172,7 +179,8 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

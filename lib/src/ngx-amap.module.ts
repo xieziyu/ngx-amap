@@ -19,6 +19,7 @@ import { PluginLoaderService } from './services/plugin-loader/plugin-loader.serv
 import { AmapAutocompleteService, AmapAutocompleteWrapper } from './services/amap-autocomplete/amap-autocomplete.service';
 import { AmapAutocompleteDirective } from './directives/amap-autocomplete/amap-autocomplete.directive';
 import { AmapPlaceSearchService, AmapPlaceSearchWrapper } from './services/amap-place-search/amap-place-search.service';
+import { AmapDistrictSearchService, AmapDistrictSearchWrapper } from './services/amap-district-search/amap-district-search.service';
 import { AmapCircleDirective } from './directives/amap-circle/amap-circle.directive';
 import { AmapCircleMarkerDirective } from './directives/amap-circle-marker/amap-circle-marker.directive';
 import { AmapMouseToolService, AmapMouseToolWrapper } from './services/amap-mouse-tool/amap-mouse-tool.service';
@@ -79,7 +80,8 @@ export class NgxAmapModule {
         PluginLoaderService,
         AmapAutocompleteService,
         AmapMouseToolService,
-        AmapPlaceSearchService
+        AmapPlaceSearchService,
+        AmapDistrictSearchService
       ]
     };
   }
@@ -99,6 +101,8 @@ export {
   AmapAutocompleteDirective,
   AmapPlaceSearchService,
   AmapPlaceSearchWrapper,
+  AmapDistrictSearchService,
+  AmapDistrictSearchWrapper,
   AmapMouseToolService,
   AmapMouseToolWrapper,
   AmapCircleDirective,
