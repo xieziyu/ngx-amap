@@ -1,3 +1,10 @@
+## 1.3.2 (2018-04-17)
+
+#### New
++ 新增支持AMap.DistrictSearch行政区查询服务：AmapDistrictSearchService (感谢: [noob9527](https://github.com/noob9527))
+
+----
+
 ## 1.3.1 (2018-03-27)
 
 #### New
