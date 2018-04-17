@@ -10,6 +10,7 @@ import { ClusterStyle } from './cluster-style';
 import { CGeocoder, Geocoder } from './geocoder/amap.geocoder';
 import { CAutocomplete, Autocomplete } from './autocomplete/amap.autocomplete';
 import { CPlaceSearch, PlaceSearch } from './place-search/amap.place-search';
+import { CDistrictSearch, DistrictSearch } from './district-search/amap.district-search';
 import { CMouseTool, MouseTool } from './amap.mouse-tool';
 import { Bounds, CBounds } from './amap.bounds';
 import { CMarker, Marker } from './overlays/amap.marker';
@@ -44,6 +45,7 @@ export interface AMapClass {
   Geocoder: CGeocoder;
   Autocomplete: CAutocomplete;
   PlaceSearch: CPlaceSearch;
+  DistrictSearch: CDistrictSearch;
   MouseTool: CMouseTool;
   Circle: CCircle;
   CircleMarker: CCircleMarker;
@@ -58,13 +60,13 @@ export interface AMapClass {
   EllipseEditor: CEllipseEditor;
   RectangleEditor: CRectangleEditor;
 
-  plugin(name: string|string[], callback: (result: any) => void): void;
+  plugin(name: string | string[], callback: (result: any) => void): void;
 }
 
 export {
   Map, LngLat, Pixel, Size, Marker, Icon,
   InfoWindow, Polyline, Polygon, ToolBar, MarkerClusterer,
-  ClusterStyle, Geocoder, Autocomplete, PlaceSearch,
+  ClusterStyle, Geocoder, Autocomplete, PlaceSearch, DistrictSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
   Ellipse, Rectangle, CircleEditor, PolyEditor, BezierCurveEditor,
   EllipseEditor, RectangleEditor
@@ -98,3 +100,7 @@ export * from './place-search/poi-list';
 export * from './place-search/poi';
 export * from './place-search/scenic';
 export * from './place-search/search-result';
+
+// DistrictSearch
+export * from './district-search/district-search-result';
+export * from './district-search/district';

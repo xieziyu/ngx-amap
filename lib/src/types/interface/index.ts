@@ -11,6 +11,7 @@ export * from './cluster-style.interface';
 export * from './geocoder-options.interface';
 export * from './autocomplete-options.interface';
 export * from './place-search-options.interface';
+export * from './district-search-options.interface';
 export * from './callback.type';
 export * from './overlays/marker-options.interface';
 export * from './overlays/polyline-options.interface';
