@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AMapClass, Bounds, Map } from 'ngx-amap/types/class';
+import { AMapClass } from 'ngx-amap/types/class';
 import { TS, HTML } from './code';
 
 declare const AMap: AMapClass;
@@ -22,9 +22,9 @@ export class EventsComponent implements OnInit {
   }
 
   onMapReady() {
-    let southWest = new AMap.LngLat(116.376533, 39.907878);
-    let northEast = new AMap.LngLat(116.414124, 39.940799);
-    let bounds = new AMap.Bounds(southWest, northEast);
+    const southWest = new AMap.LngLat(116.376533, 39.907878);
+    const northEast = new AMap.LngLat(116.414124, 39.940799);
+    const bounds = new AMap.Bounds(southWest, northEast);
     this.options = {
       bounds: bounds,
       strokeColor: 'red',

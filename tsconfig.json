@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -14,6 +15,17 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-amap": [
+        "dist/ngx-amap"
+      ],
+      "ngx-amap/types/class": [
+        "dist/ngx-amap/types/class"
+      ],
+      "ngx-amap/types/interface": [
+        "dist/ngx-amap/types/interface"
+      ]
+    }
   }
 }

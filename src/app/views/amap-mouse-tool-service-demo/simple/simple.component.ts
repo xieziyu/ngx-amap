@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { AmapMouseToolService, AmapMouseToolWrapper, NgxAmapComponent } from 'ngx-amap';
-import 'rxjs/add/operator/take';
+import { take } from 'rxjs/operators';
 import { CODE_HTML, CODE_TS } from './code';
 import { Map } from 'ngx-amap/types/class';
 
@@ -24,7 +24,7 @@ export class SimpleComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.plugin = this.mapComponent.ready
-      .take(1)
+      .pipe(take(1))
       .toPromise()
       .then((map: Map) => this.mouseToolService.of(map));
   }

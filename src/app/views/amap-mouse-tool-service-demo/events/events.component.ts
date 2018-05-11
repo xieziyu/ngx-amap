@@ -1,5 +1,6 @@
 import { Component, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { CODE_HTML, CODE_TS } from './code';
 import { AmapMouseToolService, AmapMouseToolWrapper, NgxAmapComponent } from 'ngx-amap';
 import { Map } from 'ngx-amap/types/class';
@@ -26,7 +27,7 @@ export class EventsComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.plugin = this.mapComponent.ready
-      .take(1)
+      .pipe(take(1))
       .toPromise()
       .then((map: Map) => this.mouseToolService.of(map));
 
