@@ -29,6 +29,9 @@ Github branches:
 
 
 # 最新进度
+2018.05.24: v2.1.0:
+  + 新增支持图层AMap.Heatmap指令：amap-heatmap
+
 2018.05.11: v2.0.0: 支持 Angular 6
 
 2018.04.17: v1.3.2：行政区查询
@@ -172,6 +175,7 @@ $ yarn add ngx-amap
 |`AmapPlaceSearchService`   | `Service`   | 地点搜索服务 | **AMap.PlaceSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapPlaceSearchService/simple) |
 |`AmapDistrictSearchService`| `Service`   | 行政区搜索服务 | **AMap.DistrictSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDistrictSearchService/simple) |
 |`AmapMouseToolService`     | `Service`   | 鼠标工具插件 | **AMap.MouseTool** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapMouseToolService/simple) |
+|`amap-heatmap`             | `Directive` | 图层：热力图 | **AMap.Heatmap** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-heatmap/simple) |
 
 # 类型声明
 可以从`ngx-amap/types/class`中import对AMap类的声明：
@@ -196,6 +200,6 @@ $ yarn add ngx-amap
 npm install
 npm run demo
 # or
-yarn install
+yarn
 yarn demo
 ```

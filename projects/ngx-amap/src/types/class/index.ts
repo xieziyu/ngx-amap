@@ -28,6 +28,7 @@ import { PolyEditor, CPolyEditor } from './amap.editor';
 import { BezierCurveEditor, CBezierCurveEditor } from './amap.editor';
 import { EllipseEditor, CEllipseEditor } from './amap.editor';
 import { RectangleEditor, CRectangleEditor } from './amap.editor';
+import { Heatmap, CHeatmap } from './layers/amap.heatmap';
 
 export interface AMapClass {
   Map: CMap;
@@ -59,6 +60,7 @@ export interface AMapClass {
   BezierCurveEditor: CBezierCurveEditor;
   EllipseEditor: CEllipseEditor;
   RectangleEditor: CRectangleEditor;
+  Heatmap: CHeatmap;
 
   plugin(name: string | string[], callback: (result: any) => void): void;
 }
@@ -104,4 +106,7 @@ export * from './place-search/search-result';
 // DistrictSearch
 export * from './district-search/district-search-result';
 export * from './district-search/district';
+
+// Layers
+export * from './layers/amap.heatmap';
 

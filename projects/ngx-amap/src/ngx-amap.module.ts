@@ -27,6 +27,7 @@ import { AmapTextDirective } from './directives/amap-text/amap-text.directive';
 import { AmapBezierCurveDirective } from './directives/amap-bezier-curve/amap-bezier-curve.directive';
 import { AmapEllipseDirective } from './directives/amap-ellipse/amap-ellipse.directive';
 import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectangle.directive';
+import { AmapHeatmapDirective } from './directives/amap-heatmap/amap-heatmap.directive';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectang
     AmapTextDirective,
     AmapBezierCurveDirective,
     AmapEllipseDirective,
-    AmapRectangleDirective
+    AmapRectangleDirective,
+    AmapHeatmapDirective
   ],
   exports: [
     NgxAmapComponent,
@@ -59,7 +61,8 @@ import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectang
     AmapTextDirective,
     AmapBezierCurveDirective,
     AmapEllipseDirective,
-    AmapRectangleDirective
+    AmapRectangleDirective,
+    AmapHeatmapDirective
   ]
 })
 export class NgxAmapModule {
@@ -111,5 +114,6 @@ export {
   AmapTextDirective,
   AmapBezierCurveDirective,
   AmapEllipseDirective,
-  AmapRectangleDirective
+  AmapRectangleDirective,
+  AmapHeatmapDirective
 };

@@ -306,6 +306,18 @@ export const navigation = [
     ]
   },
   {
+    name: 'amap-heatmap',
+    url: '/amap-heatmap',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-heatmap/simple',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     title: true,
     name: '服务示例'
   },

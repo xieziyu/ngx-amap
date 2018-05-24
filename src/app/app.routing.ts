@@ -147,6 +147,7 @@ export const routes: Routes = [
       },
       {
         path: 'AmapDistrictSearchService',
+        // tslint:disable-next-line:max-line-length
         loadChildren: './views/amap-district-search-service-demo/amap-district-search-service-demo.module#AmapDistrictSearchServiceDemoModule',
         data: {
           title: 'AmapDistrictSearchService'
@@ -157,6 +158,13 @@ export const routes: Routes = [
         loadChildren: './views/amap-mouse-tool-service-demo/amap-mouse-tool-service-demo.module#AmapMouseToolServiceDemoModule',
         data: {
           title: 'AmapMouseToolService'
+        }
+      },
+      {
+        path: 'amap-heatmap',
+        loadChildren: './views/amap-heatmap-demo/amap-heatmap-demo.module#AmapHeatmapDemoModule',
+        data: {
+          title: 'amap-heatmap'
         }
       },
     ]
