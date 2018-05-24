@@ -20,7 +20,7 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 
 # 版本信息
 @npm:
-+ `v2.0.0` for Angular >= 6
++ `v2.1.0` for Angular >= 6
 + `v1.3.2` for Angular < 6
 
 Github branches:
