@@ -6,9 +6,17 @@
   <button class="navbar-toggler d-md-down-none" type="button" appSidebarToggler>
     <span class="navbar-toggler-icon"></span>
   </button>
+  <ul class="nav nav-bar">
+  </ul>
   <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item">
+      <app-search-box (search)="search($event)"></app-search-box>
+    </li>
     <li class="nav-item d-md-down-none">
-      <a class="nav-link" href="https://github.com/xieziyu/ngx-amap" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+      <a class="nav-link" href="https://github.com/xieziyu/ngx-amap" target="_blank">
+        <i class="fa fa-github fa-2x"></i>
+      </a>
     </li>
   </ul>
+  <app-search-results [results]="searchResults$ | async" [show]="showResults" (resultClick)="showResults = false"></app-search-results>
 </header>
