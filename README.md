@@ -9,15 +9,34 @@
 ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高德地图**Javascript API而构建的组件集合
 
 ## 目录
-1. [最新进度](#最新进度)
-2. [安装](#安装)
-3. [使用](#使用)
-4. [配置](#配置)
-5. [指令和服务](#指令和服务)
-6. [类型声明](#类型声明)
-7. [本地演示](#本地演示)
+1. [版本信息](#版本信息)
+2. [最新进度](#最新进度)
+3. [安装](#安装)
+4. [使用](#使用)
+5. [配置](#配置)
+6. [指令和服务](#指令和服务)
+7. [类型声明](#类型声明)
+8. [本地演示](#本地演示)
+
+# 版本信息
+@npm:
++ `v2.1.1` for Angular >= 6
++ `v1.3.3` for Angular < 6
+
+Github branches:
++ `master` for Angular >= 6
++ `v1.x` for Angular < 6
+
 
 # 最新进度
+2018.06.22: v2.1.1 & v1.3.3:
+  + Bugfix：[amapAutocomplete] 切换city时不起作用 [issue#23](https://github.com/xieziyu/ngx-amap/issues/23)
+
+2018.05.24: v2.1.0:
+  + 新增支持图层AMap.Heatmap指令：amap-heatmap
+
+2018.05.11: v2.0.0: 支持 Angular 6
+
 2018.04.17: v1.3.2：行政区查询
   + 新增支持AMap.DistrictSearch行政区查询服务：AmapDistrictSearchService (感谢: [noob9527](https://github.com/noob9527))
 
@@ -159,6 +178,7 @@ $ yarn add ngx-amap
 |`AmapPlaceSearchService`   | `Service`   | 地点搜索服务 | **AMap.PlaceSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapPlaceSearchService/simple) |
 |`AmapDistrictSearchService`| `Service`   | 行政区搜索服务 | **AMap.DistrictSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDistrictSearchService/simple) |
 |`AmapMouseToolService`     | `Service`   | 鼠标工具插件 | **AMap.MouseTool** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapMouseToolService/simple) |
+|`amap-heatmap`             | `Directive` | 图层：热力图 | **AMap.Heatmap** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-heatmap/simple) |
 
 # 类型声明
 可以从`ngx-amap/types/class`中import对AMap类的声明：
@@ -183,6 +203,6 @@ $ yarn add ngx-amap
 npm install
 npm run demo
 # or
-yarn install
+yarn
 yarn demo
 ```
