@@ -1,3 +1,10 @@
+## 2.1.1 & 1.3.3 (2018-06-22)
+
+#### Bugfix
++ [amapAutocomplete] 切换city时不起作用 [issue#23](https://github.com/xieziyu/ngx-amap/issues/23)
+
+----
+
 ## 2.1.0 (2018-05-24)
 
 #### New

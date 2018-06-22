@@ -3,15 +3,40 @@
     简单示例：搜索提示
   </div>
   <div class="card-body">
-    <form class="form-inline">
+    <form class="form">
       <div class="form-group">
-        <input amapAutocomplete type="text" class="form-control" placeholder="请输入地址关键字...">
+        <!-- [amapAutocomplete] directive -->
+        <input amapAutocomplete type="text" class="form-control" placeholder="请输入地址关键字..." [city]="myCity">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">限制城市     [city]={{myCity|json}}</label>
+        <div class="col-form-label">
+          <div class="form-check ml-3">
+            <input id="noLimit" class="form-check-input" type="radio" name="city" [(ngModel)]="myCity" value="">
+            <label for="noLimit" class="form-check-label">无限制</label>
+          </div>
+          <div class="form-check ml-3">
+            <input id="beijing" class="form-check-input" type="radio" name="city" [(ngModel)]="myCity" value="北京">
+            <label for="beijing" class="form-check-label">北京</label>
+          </div>
+          <div class="form-check ml-3">
+            <input id="shanghai" class="form-check-input" type="radio" name="city" [(ngModel)]="myCity" value="上海">
+            <label for="shanghai" class="form-check-label">上海</label>
+          </div>
+          <div class="form-check ml-3">
+            <input id="shenzhen" class="form-check-input" type="radio" name="city" [(ngModel)]="myCity" value="深圳">
+            <label for="shenzhen" class="form-check-label">深圳</label>
+          </div>
+        </div>
       </div>
     </form>
     <div class="mt-3">
       <tabset>
         <tab heading="HTML">
-          <markdown [data]="demo_md_html | language: 'html'"></markdown>
+          <markdown [data]="demo_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="Component">
+          <markdown [data]="demo_ts | language: 'typescript'"></markdown>
         </tab>
         <tab heading="支持的Input">
           <a href="api-doc/directives/AmapAutocomplete.html" target="_blank">查看在线文档</a>

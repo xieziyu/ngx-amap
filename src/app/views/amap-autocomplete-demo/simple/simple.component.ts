@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CODE_HTML } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-simple',
@@ -7,7 +8,10 @@ import { CODE_HTML } from './code';
   styleUrls: ['./simple.component.scss']
 })
 export class SimpleComponent implements OnInit {
-  demo_md_html = CODE_HTML;
+  demo_html = require('!!html-loader!./simple.component.html');
+  demo_ts = require('!!raw-loader!./simple.component.ts');
+
+  myCity = '';
 
   constructor() { }
 

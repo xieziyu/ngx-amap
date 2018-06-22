@@ -20,8 +20,8 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 
 # 版本信息
 @npm:
-+ `v2.1.0` for Angular >= 6
-+ `v1.3.2` for Angular < 6
++ `v2.1.1` for Angular >= 6
++ `v1.3.3` for Angular < 6
 
 Github branches:
 + `master` for Angular >= 6
@@ -29,6 +29,9 @@ Github branches:
 
 
 # 最新进度
+2018.06.22: v2.1.1 & v1.3.3:
+  + Bugfix：[amapAutocomplete] 切换city时不起作用 [issue#23](https://github.com/xieziyu/ngx-amap/issues/23)
+
 2018.05.24: v2.1.0:
   + 新增支持图层AMap.Heatmap指令：amap-heatmap
 
