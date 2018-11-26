@@ -1,0 +1,24 @@
+<div class="card card-accent-info">
+    <div class="card-header">
+      事件
+    </div>
+    <div class="card-body">
+      <div class="alert alert-info mb-3">请查看console输出</div>
+      <div class="relative">
+        <ngx-amap class="demo-map-lg" [resizeEnable]="true" [center]="[116.397428, 39.90923]" (ready)="onMapReady($event)"></ngx-amap>
+      </div>
+      <div class="mt-3">
+        <tabset>
+          <tab heading="HTML">
+            <markdown [data]="demo_html | language: 'html'"></markdown>
+          </tab>
+          <tab heading="Component">
+            <markdown [data]="demo_ts | language: 'typescript'"></markdown>
+          </tab>
+          <tab heading="API">
+            <a href="api-doc/injectables/AmapDrivingService.html" target="_blank">查看在线文档</a>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>

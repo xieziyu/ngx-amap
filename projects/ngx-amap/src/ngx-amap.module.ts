@@ -28,6 +28,7 @@ import { AmapBezierCurveDirective } from './directives/amap-bezier-curve/amap-be
 import { AmapEllipseDirective } from './directives/amap-ellipse/amap-ellipse.directive';
 import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectangle.directive';
 import { AmapHeatmapDirective } from './directives/amap-heatmap/amap-heatmap.directive';
+import { AmapDrivingService, AmapDrivingWrapper } from './services/amap-driving/amap-driving.service';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ export class NgxAmapModule {
         AmapAutocompleteService,
         AmapMouseToolService,
         AmapPlaceSearchService,
-        AmapDistrictSearchService
+        AmapDistrictSearchService,
+        AmapDrivingService
       ]
     };
   }
@@ -115,5 +117,7 @@ export {
   AmapBezierCurveDirective,
   AmapEllipseDirective,
   AmapRectangleDirective,
-  AmapHeatmapDirective
+  AmapHeatmapDirective,
+  AmapDrivingService,
+  AmapDrivingWrapper
 };

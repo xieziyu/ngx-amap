@@ -29,6 +29,8 @@ import { BezierCurveEditor, CBezierCurveEditor } from './amap.editor';
 import { EllipseEditor, CEllipseEditor } from './amap.editor';
 import { RectangleEditor, CRectangleEditor } from './amap.editor';
 import { Heatmap, CHeatmap } from './layers/amap.heatmap';
+import { Driving, CDriving } from './driving/amap.driving';
+import { DrivingPolicy } from './driving/amap.driving-policy';
 
 export interface AMapClass {
   Map: CMap;
@@ -61,6 +63,8 @@ export interface AMapClass {
   EllipseEditor: CEllipseEditor;
   RectangleEditor: CRectangleEditor;
   Heatmap: CHeatmap;
+  Driving: CDriving;
+  DrivingPolicy: DrivingPolicy;
 
   plugin(name: string | string[], callback: (result: any) => void): void;
 }
@@ -71,7 +75,7 @@ export {
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch, DistrictSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
   Ellipse, Rectangle, CircleEditor, PolyEditor, BezierCurveEditor,
-  EllipseEditor, RectangleEditor
+  EllipseEditor, RectangleEditor, Heatmap, Driving
 };
 
 // Geocoder
@@ -110,3 +114,9 @@ export * from './district-search/district';
 // Layers
 export * from './layers/amap.heatmap';
 
+// Driving
+export * from './driving/amap.driving';
+export * from './driving/amap.driving-policy';
+export * from './driving/drive-route';
+export * from './driving/drive-step';
+export * from './driving/driving-result';

@@ -161,6 +161,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'AmapDrivingService',
+        loadChildren: './views/amap-driving-demo/amap-driving-demo.module#AmapDrivingDemoModule',
+        data: {
+          title: 'AmapDrivingService'
+        }
+      },
+      {
         path: 'amap-heatmap',
         loadChildren: './views/amap-heatmap-demo/amap-heatmap-demo.module#AmapHeatmapDemoModule',
         data: {

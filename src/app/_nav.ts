@@ -406,4 +406,21 @@ export const navigation = [
       },
     ]
   },
+  {
+    name: 'AmapDrivingService',
+    url: '/AmapDrivingService',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '简单示例',
+        url: '/AmapDrivingService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '事件',
+        url: '/AmapDrivingService/events',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
 ];

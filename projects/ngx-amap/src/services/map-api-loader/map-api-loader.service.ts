@@ -16,7 +16,7 @@ export class MapAPILoaderService {
   TAG = 'map-api-loader';
 
   private _defaultUrl = 'https://webapi.amap.com/maps';
-  private _defaultVersion = '1.4.3';
+  private _defaultVersion = '1.4.11';
   private _config: IMapAPILoaderConfig;
   private _documentRef: DocumentRef;
   private _windowRef: WindowRef;

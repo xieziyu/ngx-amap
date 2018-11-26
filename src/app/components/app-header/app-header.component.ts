@@ -37,7 +37,8 @@ export class AppHeaderComponent implements OnInit {
 
       // switch to new search observable each time the term changes
       switchMap((term: string) => {
-        const regx = new RegExp(term.trim().split('').join('.*'));
+        const regx = new RegExp(term.toLowerCase().trim().split('').join('.*'));
+        const regxCN = new RegExp(term.trim().split(' ').join('.*'));
         const result = {
           component: [],
           directive: [],
@@ -47,7 +48,8 @@ export class AppHeaderComponent implements OnInit {
         // tslint:disable-next-line:prefer-const
         for (let item of SEARCH_ITEMS) {
           if (regx.test(item.name.toLowerCase())
-            || regx.test(item.name.toUpperCase())) {
+            || regx.test(item.name.toUpperCase())
+            || regxCN.test(item.zhCN)) {
             result[item.type].push(item);
           }
         }
