@@ -5,14 +5,14 @@ import { SimpleComponent } from './simple/simple.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/AmapDrivingService/simple',
+    redirectTo: '/AmapTransferService/simple',
     pathMatch: 'full',
   },
   {
     path: 'simple',
     component: SimpleComponent,
     data: {
-      title: 'AmapDrivingService'
+      title: 'AmapTransferService'
     },
   }
 ];
@@ -21,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AmapDrivingDemoRoutingModule { }
+export class AmapTransferDemoRoutingModule { }

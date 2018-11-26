@@ -1,7 +1,9 @@
 ## 2.2.0 (2018-11-26)
 
 #### New
-+ 新增支持AMap.Driving驾车路线规划服务：AmapDrivingService
++ 支持路径规划：
+  + AMap.Driving 驾车路线规划服务：AmapDrivingService
+  + AMap.Transfer 公交换乘路线规划服务：AmapTransferService
 
 ----
 

@@ -29,6 +29,7 @@ import { AmapEllipseDirective } from './directives/amap-ellipse/amap-ellipse.dir
 import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectangle.directive';
 import { AmapHeatmapDirective } from './directives/amap-heatmap/amap-heatmap.directive';
 import { AmapDrivingService, AmapDrivingWrapper } from './services/amap-driving/amap-driving.service';
+import { AmapTransferService, AmapTransferWrapper } from './services/amap-transfer/amap-transfer.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ export class NgxAmapModule {
         AmapMouseToolService,
         AmapPlaceSearchService,
         AmapDistrictSearchService,
-        AmapDrivingService
+        AmapDrivingService,
+        AmapTransferService
       ]
     };
   }
@@ -119,5 +121,7 @@ export {
   AmapRectangleDirective,
   AmapHeatmapDirective,
   AmapDrivingService,
-  AmapDrivingWrapper
+  AmapDrivingWrapper,
+  AmapTransferService,
+  AmapTransferWrapper
 };

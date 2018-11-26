@@ -30,7 +30,7 @@ import { EllipseEditor, CEllipseEditor } from './amap.editor';
 import { RectangleEditor, CRectangleEditor } from './amap.editor';
 import { Heatmap, CHeatmap } from './layers/amap.heatmap';
 import { Driving, CDriving } from './driving/amap.driving';
-import { DrivingPolicy } from './driving/amap.driving-policy';
+import { Transfer, CTransfer } from './transfer/amap.transfer';
 
 export interface AMapClass {
   Map: CMap;
@@ -64,7 +64,7 @@ export interface AMapClass {
   RectangleEditor: CRectangleEditor;
   Heatmap: CHeatmap;
   Driving: CDriving;
-  DrivingPolicy: DrivingPolicy;
+  Transfer: CTransfer;
 
   plugin(name: string | string[], callback: (result: any) => void): void;
 }
@@ -75,7 +75,7 @@ export {
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch, DistrictSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
   Ellipse, Rectangle, CircleEditor, PolyEditor, BezierCurveEditor,
-  EllipseEditor, RectangleEditor, Heatmap, Driving
+  EllipseEditor, RectangleEditor, Heatmap, Driving, Transfer
 };
 
 // Geocoder
@@ -120,3 +120,10 @@ export * from './driving/amap.driving-policy';
 export * from './driving/drive-route';
 export * from './driving/drive-step';
 export * from './driving/driving-result';
+
+// Transfer
+export * from './transfer/amap.transfer';
+export * from './transfer/amap.transfer-policy';
+export * from './transfer/transfer-result';
+export * from './transfer/transfer-plan';
+export * from './transfer/segment';

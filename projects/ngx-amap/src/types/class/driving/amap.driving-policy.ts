@@ -1,6 +1,6 @@
-export interface DrivingPolicy {
-  LEAST_TIME: any;
-  LEAST_FEE: any;
-  LEAST_DISTANCE: any;
-  REAL_TRAFFIC: any;
-}
+export const DrivingPolicy = {
+  LEAST_TIME: 0,
+  LEAST_FEE: 1,
+  LEAST_DISTANCE: 2,
+  REAL_TRAFFIC: 4
+};

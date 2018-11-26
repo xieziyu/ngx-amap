@@ -24,3 +24,4 @@ export * from './overlays/ellipse-options.interface';
 export * from './overlays/rectangle-options.interface';
 export * from './layers/heatmap-options.interface';
 export * from './driving/driving-options.interface';
+export * from './transfer/transfer-options.interface';

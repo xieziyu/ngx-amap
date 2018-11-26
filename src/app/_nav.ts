@@ -322,6 +322,23 @@ export const navigation = [
     name: '服务示例'
   },
   {
+    name: '路径规划服务',
+    url: '/',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '驾车路线',
+        url: '/AmapDrivingService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '公交换乘路线',
+        url: '/AmapTransferService/simple',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     name: 'AmapGeocoderService',
     url: '/AmapGeocoderService',
     icon: 'fa fa-cogs',
@@ -402,23 +419,6 @@ export const navigation = [
       {
         name: '事件',
         url: '/AmapMouseToolService/events',
-        icon: 'fa fa-html5'
-      },
-    ]
-  },
-  {
-    name: 'AmapDrivingService',
-    url: '/AmapDrivingService',
-    icon: 'fa fa-cogs',
-    children: [
-      {
-        name: '简单示例',
-        url: '/AmapDrivingService/simple',
-        icon: 'fa fa-html5'
-      },
-      {
-        name: '事件',
-        url: '/AmapDrivingService/events',
         icon: 'fa fa-html5'
       },
     ]

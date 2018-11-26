@@ -10,7 +10,7 @@ import { DrivingResult } from '../../types/class/driving/driving-result';
 declare const AMap: AMapClass;
 
 /**
- * 路径规划服务
+ * 驾车路线规划服务
  */
 @Injectable()
 export class AmapDrivingService {
@@ -99,5 +99,9 @@ export class AmapDrivingWrapper extends EventBinder {
 
   setProvinceAndNumber(province: string, number: string) {
     this._driving.setProvinceAndNumber(province, number);
+  }
+
+  searchOnAMAP(obj: any) {
+    this._driving.searchOnAMAP(obj);
   }
 }

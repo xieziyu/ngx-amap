@@ -164,7 +164,14 @@ export const routes: Routes = [
         path: 'AmapDrivingService',
         loadChildren: './views/amap-driving-demo/amap-driving-demo.module#AmapDrivingDemoModule',
         data: {
-          title: 'AmapDrivingService'
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapTransferService',
+        loadChildren: './views/amap-transfer-demo/amap-transfer-demo.module#AmapTransferDemoModule',
+        data: {
+          title: '路径规划服务'
         }
       },
       {

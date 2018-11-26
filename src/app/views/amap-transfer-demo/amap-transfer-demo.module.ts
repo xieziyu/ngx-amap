@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { AmapDrivingDemoRoutingModule } from './amap-driving-demo-routing.module';
+import { AmapTransferDemoRoutingModule } from './amap-transfer-demo-routing.module';
 import { SimpleComponent } from './simple/simple.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    AmapDrivingDemoRoutingModule
+    AmapTransferDemoRoutingModule
   ],
   declarations: [
     SimpleComponent
   ]
 })
-export class AmapDrivingDemoModule { }
+export class AmapTransferDemoModule { }

@@ -134,5 +134,11 @@ export const SEARCH_ITEMS = [
     name: 'AmapDrivingService',
     zhCN: '驾车路线规划服务'
   },
+  {
+    type: ITEM_TYPE.SERVICE,
+    link: '/AmapTransferService/simple',
+    name: 'AmapTransferService',
+    zhCN: '换乘路线规划服务'
+  },
 ];
 
