@@ -116,14 +116,12 @@ export * from './layers/amap.heatmap';
 
 // Driving
 export * from './driving/amap.driving';
-export * from './driving/amap.driving-policy';
 export * from './driving/drive-route';
 export * from './driving/drive-step';
 export * from './driving/driving-result';
 
 // Transfer
 export * from './transfer/amap.transfer';
-export * from './transfer/amap.transfer-policy';
 export * from './transfer/transfer-result';
 export * from './transfer/transfer-plan';
 export * from './transfer/segment';

@@ -21,12 +21,16 @@ export class AmapDrivingService {
   constructor(private logger: LoggerService, private plugins: PluginLoaderService) {
   }
 
-  of(opts?: DrivingOptions): Promise<AmapDrivingWrapper> {
+  get loaded(): Promise<void> {
     if (!this._plugin) {
       this._plugin = this.plugins.load('AMap.Driving');
     }
 
-    return this._plugin.then(() => new AmapDrivingWrapper(opts));
+    return this._plugin;
+  }
+
+  of(opts?: DrivingOptions): Promise<AmapDrivingWrapper> {
+    return this.loaded.then(() => new AmapDrivingWrapper(opts));
   }
 }
 

@@ -21,12 +21,16 @@ export class AmapTransferService {
   constructor(private logger: LoggerService, private plugins: PluginLoaderService) {
   }
 
-  of(opts?: TransferOptions): Promise<AmapTransferWrapper> {
+  get loaded(): Promise<void> {
     if (!this._plugin) {
       this._plugin = this.plugins.load('AMap.Transfer');
     }
 
-    return this._plugin.then(() => new AmapTransferWrapper(opts));
+    return this._plugin;
+  }
+
+  of(opts?: TransferOptions): Promise<AmapTransferWrapper> {
+    return this.loaded.then(() => new AmapTransferWrapper(opts));
   }
 }
 

@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AmapTransferService, TransferPolicy, TransferOptions } from 'ngx-amap';
+import { AmapTransferService, TransferOptions } from 'ngx-amap';
 
 declare const require: any;
+declare const AMap: any;
 
 @Component({
   selector: 'app-simple',
@@ -21,11 +22,14 @@ export class SimpleComponent implements OnInit, OnDestroy {
   }
 
   async onMapReady(map) {
+    // 懒加载AMap.Transfer插件，只有加载完后才可使用AMap.TransferPolicy
+    await this.ts.loaded;
+
     const transferOption: TransferOptions = {
       map: map,
       city: '北京市',
       panel: 'panel',
-      policy: TransferPolicy.LEAST_TIME
+      policy: AMap.TransferPolicy.LEAST_TIME
     };
 
     // 使用of方法构造AMap.Transfer插件的Wrapper
