@@ -175,6 +175,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'AmapWalkingService',
+        loadChildren: './views/amap-walking-demo/amap-walking-demo.module#AmapWalkingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
         path: 'amap-heatmap',
         loadChildren: './views/amap-heatmap-demo/amap-heatmap-demo.module#AmapHeatmapDemoModule',
         data: {

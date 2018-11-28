@@ -29,10 +29,11 @@ Github branches:
 
 
 # 最新进度
-2018.11.26: v2.2.0
+2018.11.28: v2.2.0
   + 新增支持路径规划：
     + AMap.Driving 驾车路线规划服务：AmapDrivingService
     + AMap.Transfer 公交换乘路线规划服务：AmapTransferService
+    + AMap.Walking 步行路线规划服务：AmapWalkingService
 
 2018.06.22: v2.1.1 & v1.3.3
   + Bugfix：[amapAutocomplete] 切换city时不起作用 [issue#23](https://github.com/xieziyu/ngx-amap/issues/23)
@@ -149,6 +150,7 @@ $ yarn add ngx-amap
 |`amap-heatmap`             | `Directive` | 图层：热力图 | **AMap.Heatmap** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-heatmap/simple) |
 |`AmapDrivingService`       | `Service`   | 驾车路线规划服务 | **AMap.Driving** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDrivingService/simple) |
 |`AmapTransferService`      | `Service`   | 换乘路线规划服务 | **AMap.Transfer** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapTransferService/simple) |
+|`AmapWalkingService`       | `Service`   | 步行路线规划服务 | **AMap.Walking** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapWalkingService/simple) |
 
 
 # 类型声明
