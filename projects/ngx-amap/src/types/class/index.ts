@@ -31,6 +31,7 @@ import { RectangleEditor, CRectangleEditor } from './amap.editor';
 import { Heatmap, CHeatmap } from './layers/amap.heatmap';
 import { Driving, CDriving } from './driving/amap.driving';
 import { Transfer, CTransfer } from './transfer/amap.transfer';
+import { Walking, CWalking } from './walking/amap.walking';
 
 export interface AMapClass {
   Map: CMap;
@@ -65,6 +66,7 @@ export interface AMapClass {
   Heatmap: CHeatmap;
   Driving: CDriving;
   Transfer: CTransfer;
+  Walking: CWalking;
 
   plugin(name: string | string[], callback: (result: any) => void): void;
 }
@@ -75,7 +77,7 @@ export {
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch, DistrictSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
   Ellipse, Rectangle, CircleEditor, PolyEditor, BezierCurveEditor,
-  EllipseEditor, RectangleEditor, Heatmap, Driving, Transfer
+  EllipseEditor, RectangleEditor, Heatmap, Driving, Transfer, Walking
 };
 
 // Geocoder
@@ -125,3 +127,9 @@ export * from './transfer/amap.transfer';
 export * from './transfer/transfer-result';
 export * from './transfer/transfer-plan';
 export * from './transfer/segment';
+
+// Walking
+export * from './walking/amap.walking';
+export * from './walking/walk-route';
+export * from './walking/walk-step';
+export * from './walking/walking-result';

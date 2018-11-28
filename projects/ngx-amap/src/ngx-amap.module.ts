@@ -30,6 +30,7 @@ import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectang
 import { AmapHeatmapDirective } from './directives/amap-heatmap/amap-heatmap.directive';
 import { AmapDrivingService, AmapDrivingWrapper } from './services/amap-driving/amap-driving.service';
 import { AmapTransferService, AmapTransferWrapper } from './services/amap-transfer/amap-transfer.service';
+import { AmapWalkingService, AmapWalkingWrapper } from './services/amap-walking/amap-walking.service';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ export class NgxAmapModule {
         AmapPlaceSearchService,
         AmapDistrictSearchService,
         AmapDrivingService,
-        AmapTransferService
+        AmapTransferService,
+        AmapWalkingService
       ]
     };
   }
@@ -123,5 +125,7 @@ export {
   AmapDrivingService,
   AmapDrivingWrapper,
   AmapTransferService,
-  AmapTransferWrapper
+  AmapTransferWrapper,
+  AmapWalkingService,
+  AmapWalkingWrapper
 };
