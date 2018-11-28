@@ -161,6 +161,41 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'AmapDrivingService',
+        loadChildren: './views/amap-driving-demo/amap-driving-demo.module#AmapDrivingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapTruckDrivingService',
+        loadChildren: './views/amap-truck-driving-demo/amap-truck-driving-demo.module#AmapTruckDrivingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapTransferService',
+        loadChildren: './views/amap-transfer-demo/amap-transfer-demo.module#AmapTransferDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapWalkingService',
+        loadChildren: './views/amap-walking-demo/amap-walking-demo.module#AmapWalkingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapRidingService',
+        loadChildren: './views/amap-riding-demo/amap-riding-demo.module#AmapRidingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
         path: 'amap-heatmap',
         loadChildren: './views/amap-heatmap-demo/amap-heatmap-demo.module#AmapHeatmapDemoModule',
         data: {

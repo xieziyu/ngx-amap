@@ -28,6 +28,11 @@ import { AmapBezierCurveDirective } from './directives/amap-bezier-curve/amap-be
 import { AmapEllipseDirective } from './directives/amap-ellipse/amap-ellipse.directive';
 import { AmapRectangleDirective } from './directives/amap-rectangle/amap-rectangle.directive';
 import { AmapHeatmapDirective } from './directives/amap-heatmap/amap-heatmap.directive';
+import { AmapDrivingService, AmapDrivingWrapper } from './services/amap-driving/amap-driving.service';
+import { AmapTruckDrivingService, AmapTruckDrivingWrapper } from './services/amap-truck-driving/amap-truck-driving.service';
+import { AmapTransferService, AmapTransferWrapper } from './services/amap-transfer/amap-transfer.service';
+import { AmapWalkingService, AmapWalkingWrapper } from './services/amap-walking/amap-walking.service';
+import { AmapRidingService, AmapRidingWrapper } from './services/amap-riding/amap-riding.service';
 
 @NgModule({
   declarations: [
@@ -84,7 +89,12 @@ export class NgxAmapModule {
         AmapAutocompleteService,
         AmapMouseToolService,
         AmapPlaceSearchService,
-        AmapDistrictSearchService
+        AmapDistrictSearchService,
+        AmapDrivingService,
+        AmapTransferService,
+        AmapWalkingService,
+        AmapRidingService,
+        AmapTruckDrivingService
       ]
     };
   }
@@ -115,5 +125,15 @@ export {
   AmapBezierCurveDirective,
   AmapEllipseDirective,
   AmapRectangleDirective,
-  AmapHeatmapDirective
+  AmapHeatmapDirective,
+  AmapDrivingService,
+  AmapDrivingWrapper,
+  AmapTransferService,
+  AmapTransferWrapper,
+  AmapWalkingService,
+  AmapWalkingWrapper,
+  AmapRidingService,
+  AmapRidingWrapper,
+  AmapTruckDrivingService,
+  AmapTruckDrivingWrapper
 };

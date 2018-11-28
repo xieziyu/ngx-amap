@@ -4,4 +4,3 @@ export interface DistrictSearchResult {
   info: string;
   districtList: District[];
 }
-

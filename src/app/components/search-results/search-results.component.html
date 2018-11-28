@@ -3,7 +3,7 @@
     <h4>组件</h4>
     <ul>
       <li *ngFor="let item of results?.component">
-        <a [routerLink]="item.link" (click)="resultClicked()">{{ item.name }}</a>
+        <a [routerLink]="item.link" (click)="resultClicked()">{{ item.name }} | {{ item.zhCN }}</a>
       </li>
     </ul>
   </div>
@@ -11,7 +11,7 @@
     <h4>指令</h4>
     <ul>
       <li *ngFor="let item of results?.directive">
-        <a [routerLink]="item.link" (click)="resultClicked()">{{ item.name }}</a>
+        <a [routerLink]="item.link" (click)="resultClicked()">{{ item.name }} | {{ item.zhCN }}</a>
       </li>
     </ul>
   </div>
@@ -19,7 +19,7 @@
     <h4>服务</h4>
     <ul>
       <li *ngFor="let item of results?.service">
-        <a [routerLink]="item.link" (click)="resultClicked()">{{ item.name }}</a>
+        <a [routerLink]="item.link" (click)="resultClicked()">{{ item.name }} | {{ item.zhCN }}</a>
       </li>
     </ul>
   </div>

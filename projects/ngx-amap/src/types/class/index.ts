@@ -29,6 +29,11 @@ import { BezierCurveEditor, CBezierCurveEditor } from './amap.editor';
 import { EllipseEditor, CEllipseEditor } from './amap.editor';
 import { RectangleEditor, CRectangleEditor } from './amap.editor';
 import { Heatmap, CHeatmap } from './layers/amap.heatmap';
+import { Driving, CDriving } from './driving/amap.driving';
+import { TruckDriving, CTruckDriving } from './driving/amap.truck-driving';
+import { Transfer, CTransfer } from './transfer/amap.transfer';
+import { Walking, CWalking } from './walking/amap.walking';
+import { Riding, CRiding } from './riding/amap.riding';
 
 export interface AMapClass {
   Map: CMap;
@@ -61,6 +66,11 @@ export interface AMapClass {
   EllipseEditor: CEllipseEditor;
   RectangleEditor: CRectangleEditor;
   Heatmap: CHeatmap;
+  Driving: CDriving;
+  Transfer: CTransfer;
+  Walking: CWalking;
+  Riding: CRiding;
+  TruckDriving: CTruckDriving;
 
   plugin(name: string | string[], callback: (result: any) => void): void;
 }
@@ -71,7 +81,8 @@ export {
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch, DistrictSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
   Ellipse, Rectangle, CircleEditor, PolyEditor, BezierCurveEditor,
-  EllipseEditor, RectangleEditor
+  EllipseEditor, RectangleEditor, Heatmap, Driving, Transfer, Walking,
+  Riding, TruckDriving
 };
 
 // Geocoder
@@ -110,3 +121,27 @@ export * from './district-search/district';
 // Layers
 export * from './layers/amap.heatmap';
 
+// Driving
+export * from './driving/amap.driving';
+export * from './driving/amap.truck-driving';
+export * from './driving/drive-route';
+export * from './driving/drive-step';
+export * from './driving/driving-result';
+
+// Transfer
+export * from './transfer/amap.transfer';
+export * from './transfer/transfer-result';
+export * from './transfer/transfer-plan';
+export * from './transfer/segment';
+
+// Walking
+export * from './walking/amap.walking';
+export * from './walking/walk-route';
+export * from './walking/walk-step';
+export * from './walking/walking-result';
+
+// Riding
+export * from './riding/amap.riding';
+export * from './riding/ride-route';
+export * from './riding/ride-step';
+export * from './riding/riding-result';
