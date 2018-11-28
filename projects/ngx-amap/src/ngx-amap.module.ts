@@ -31,6 +31,7 @@ import { AmapHeatmapDirective } from './directives/amap-heatmap/amap-heatmap.dir
 import { AmapDrivingService, AmapDrivingWrapper } from './services/amap-driving/amap-driving.service';
 import { AmapTransferService, AmapTransferWrapper } from './services/amap-transfer/amap-transfer.service';
 import { AmapWalkingService, AmapWalkingWrapper } from './services/amap-walking/amap-walking.service';
+import { AmapRidingService, AmapRidingWrapper } from './services/amap-riding/amap-riding.service';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ export class NgxAmapModule {
         AmapDistrictSearchService,
         AmapDrivingService,
         AmapTransferService,
-        AmapWalkingService
+        AmapWalkingService,
+        AmapRidingService
       ]
     };
   }
@@ -127,5 +129,7 @@ export {
   AmapTransferService,
   AmapTransferWrapper,
   AmapWalkingService,
-  AmapWalkingWrapper
+  AmapWalkingWrapper,
+  AmapRidingService,
+  AmapRidingWrapper
 };

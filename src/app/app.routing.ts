@@ -182,6 +182,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'AmapRidingService',
+        loadChildren: './views/amap-riding-demo/amap-riding-demo.module#AmapRidingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
         path: 'amap-heatmap',
         loadChildren: './views/amap-heatmap-demo/amap-heatmap-demo.module#AmapHeatmapDemoModule',
         data: {

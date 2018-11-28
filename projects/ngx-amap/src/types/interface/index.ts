@@ -26,3 +26,4 @@ export * from './layers/heatmap-options.interface';
 export * from './driving/driving-options.interface';
 export * from './transfer/transfer-options.interface';
 export * from './walking/walking-options.interface';
+export * from './riding/riding-options.interface';

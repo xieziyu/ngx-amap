@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AMapClass, Walking, LngLat } from '../../types/class';
+import { AMapClass, Walking } from '../../types/class';
 import { WalkingOptions, ILngLat } from '../../types/interface';
 import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';

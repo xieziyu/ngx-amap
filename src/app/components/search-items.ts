@@ -146,5 +146,11 @@ export const SEARCH_ITEMS = [
     name: 'AmapWalkingService',
     zhCN: '步行路线规划服务'
   },
+  {
+    type: ITEM_TYPE.SERVICE,
+    link: '/AmapRidingService/simple',
+    name: 'AmapRidingService',
+    zhCN: '骑行路线规划服务'
+  },
 ];
 

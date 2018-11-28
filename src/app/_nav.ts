@@ -341,6 +341,11 @@ export const navigation = [
         url: '/AmapWalkingService/simple',
         icon: 'fa fa-html5'
       },
+      {
+        name: '骑行路线',
+        url: '/AmapRidingService/simple',
+        icon: 'fa fa-html5'
+      },
     ]
   },
   {

@@ -34,6 +34,7 @@ Github branches:
     + AMap.Driving 驾车路线规划服务：AmapDrivingService
     + AMap.Transfer 公交换乘路线规划服务：AmapTransferService
     + AMap.Walking 步行路线规划服务：AmapWalkingService
+    + AMap.Riding 骑行路线规划服务：AmapRidingService
 
 2018.06.22: v2.1.1 & v1.3.3
   + Bugfix：[amapAutocomplete] 切换city时不起作用 [issue#23](https://github.com/xieziyu/ngx-amap/issues/23)
@@ -151,6 +152,7 @@ $ yarn add ngx-amap
 |`AmapDrivingService`       | `Service`   | 驾车路线规划服务 | **AMap.Driving** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDrivingService/simple) |
 |`AmapTransferService`      | `Service`   | 换乘路线规划服务 | **AMap.Transfer** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapTransferService/simple) |
 |`AmapWalkingService`       | `Service`   | 步行路线规划服务 | **AMap.Walking** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapWalkingService/simple) |
+|`AmapRidingService`        | `Service`   | 骑行路线规划服务 | **AMap.Riding** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapRidingService/simple) |
 
 
 # 类型声明

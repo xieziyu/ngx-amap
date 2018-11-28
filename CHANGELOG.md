@@ -5,6 +5,7 @@
   + AMap.Driving 驾车路线规划服务：AmapDrivingService
   + AMap.Transfer 公交换乘路线规划服务：AmapTransferService
   + AMap.Walking 步行路线规划服务：AmapWalkingService
+  + AMap.Riding 骑行路线规划服务：AmapRidingService
 
 ----
 

@@ -32,6 +32,7 @@ import { Heatmap, CHeatmap } from './layers/amap.heatmap';
 import { Driving, CDriving } from './driving/amap.driving';
 import { Transfer, CTransfer } from './transfer/amap.transfer';
 import { Walking, CWalking } from './walking/amap.walking';
+import { Riding, CRiding } from './riding/amap.riding';
 
 export interface AMapClass {
   Map: CMap;
@@ -67,6 +68,7 @@ export interface AMapClass {
   Driving: CDriving;
   Transfer: CTransfer;
   Walking: CWalking;
+  Riding: CRiding;
 
   plugin(name: string | string[], callback: (result: any) => void): void;
 }
@@ -77,7 +79,8 @@ export {
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch, DistrictSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
   Ellipse, Rectangle, CircleEditor, PolyEditor, BezierCurveEditor,
-  EllipseEditor, RectangleEditor, Heatmap, Driving, Transfer, Walking
+  EllipseEditor, RectangleEditor, Heatmap, Driving, Transfer, Walking,
+  Riding
 };
 
 // Geocoder
@@ -133,3 +136,9 @@ export * from './walking/amap.walking';
 export * from './walking/walk-route';
 export * from './walking/walk-step';
 export * from './walking/walking-result';
+
+// Riding
+export * from './riding/amap.riding';
+export * from './riding/ride-route';
+export * from './riding/ride-step';
+export * from './riding/riding-result';
