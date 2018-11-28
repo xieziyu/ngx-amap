@@ -32,6 +32,7 @@ Github branches:
 2018.11.28: v2.2.0
   + 新增支持路径规划：
     + AMap.Driving 驾车路线规划服务：AmapDrivingService
+    + AMap.TruckDriving 货车路线规划服务：AmapTruckDrivingService
     + AMap.Transfer 公交换乘路线规划服务：AmapTransferService
     + AMap.Walking 步行路线规划服务：AmapWalkingService
     + AMap.Riding 骑行路线规划服务：AmapRidingService
@@ -150,6 +151,7 @@ $ yarn add ngx-amap
 |`AmapMouseToolService`     | `Service`   | 鼠标工具插件 | **AMap.MouseTool** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapMouseToolService/simple) |
 |`amap-heatmap`             | `Directive` | 图层：热力图 | **AMap.Heatmap** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-heatmap/simple) |
 |`AmapDrivingService`       | `Service`   | 驾车路线规划服务 | **AMap.Driving** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDrivingService/simple) |
+|`AmapTruckDrivingService`  | `Service`   | 货车路线规划服务 | **AMap.TruckDriving** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapTruckDrivingService/simple) |
 |`AmapTransferService`      | `Service`   | 换乘路线规划服务 | **AMap.Transfer** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapTransferService/simple) |
 |`AmapWalkingService`       | `Service`   | 步行路线规划服务 | **AMap.Walking** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapWalkingService/simple) |
 |`AmapRidingService`        | `Service`   | 骑行路线规划服务 | **AMap.Riding** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapRidingService/simple) |

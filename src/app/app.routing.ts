@@ -168,6 +168,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'AmapTruckDrivingService',
+        loadChildren: './views/amap-truck-driving-demo/amap-truck-driving-demo.module#AmapTruckDrivingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
         path: 'AmapTransferService',
         loadChildren: './views/amap-transfer-demo/amap-transfer-demo.module#AmapTransferDemoModule',
         data: {

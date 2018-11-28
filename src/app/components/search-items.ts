@@ -136,6 +136,12 @@ export const SEARCH_ITEMS = [
   },
   {
     type: ITEM_TYPE.SERVICE,
+    link: '/AmapTruckDrivingService/simple',
+    name: 'AmapTruckDrivingService',
+    zhCN: '货车路线规划服务'
+  },
+  {
+    type: ITEM_TYPE.SERVICE,
     link: '/AmapTransferService/simple',
     name: 'AmapTransferService',
     zhCN: '换乘路线规划服务'

@@ -30,6 +30,7 @@ import { EllipseEditor, CEllipseEditor } from './amap.editor';
 import { RectangleEditor, CRectangleEditor } from './amap.editor';
 import { Heatmap, CHeatmap } from './layers/amap.heatmap';
 import { Driving, CDriving } from './driving/amap.driving';
+import { TruckDriving, CTruckDriving } from './driving/amap.truck-driving';
 import { Transfer, CTransfer } from './transfer/amap.transfer';
 import { Walking, CWalking } from './walking/amap.walking';
 import { Riding, CRiding } from './riding/amap.riding';
@@ -69,6 +70,7 @@ export interface AMapClass {
   Transfer: CTransfer;
   Walking: CWalking;
   Riding: CRiding;
+  TruckDriving: CTruckDriving;
 
   plugin(name: string | string[], callback: (result: any) => void): void;
 }
@@ -80,7 +82,7 @@ export {
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,
   Ellipse, Rectangle, CircleEditor, PolyEditor, BezierCurveEditor,
   EllipseEditor, RectangleEditor, Heatmap, Driving, Transfer, Walking,
-  Riding
+  Riding, TruckDriving
 };
 
 // Geocoder
@@ -121,6 +123,7 @@ export * from './layers/amap.heatmap';
 
 // Driving
 export * from './driving/amap.driving';
+export * from './driving/amap.truck-driving';
 export * from './driving/drive-route';
 export * from './driving/drive-step';
 export * from './driving/driving-result';

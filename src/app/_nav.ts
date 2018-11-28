@@ -332,6 +332,11 @@ export const navigation = [
         icon: 'fa fa-html5'
       },
       {
+        name: '货车路线',
+        url: '/AmapTruckDrivingService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
         name: '公交换乘路线',
         url: '/AmapTransferService/simple',
         icon: 'fa fa-html5'
