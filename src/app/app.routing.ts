@@ -147,6 +147,7 @@ export const routes: Routes = [
       },
       {
         path: 'AmapDistrictSearchService',
+        // tslint:disable-next-line:max-line-length
         loadChildren: './views/amap-district-search-service-demo/amap-district-search-service-demo.module#AmapDistrictSearchServiceDemoModule',
         data: {
           title: 'AmapDistrictSearchService'
@@ -157,6 +158,48 @@ export const routes: Routes = [
         loadChildren: './views/amap-mouse-tool-service-demo/amap-mouse-tool-service-demo.module#AmapMouseToolServiceDemoModule',
         data: {
           title: 'AmapMouseToolService'
+        }
+      },
+      {
+        path: 'AmapDrivingService',
+        loadChildren: './views/amap-driving-demo/amap-driving-demo.module#AmapDrivingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapTruckDrivingService',
+        loadChildren: './views/amap-truck-driving-demo/amap-truck-driving-demo.module#AmapTruckDrivingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapTransferService',
+        loadChildren: './views/amap-transfer-demo/amap-transfer-demo.module#AmapTransferDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapWalkingService',
+        loadChildren: './views/amap-walking-demo/amap-walking-demo.module#AmapWalkingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'AmapRidingService',
+        loadChildren: './views/amap-riding-demo/amap-riding-demo.module#AmapRidingDemoModule',
+        data: {
+          title: '路径规划服务'
+        }
+      },
+      {
+        path: 'amap-heatmap',
+        loadChildren: './views/amap-heatmap-demo/amap-heatmap-demo.module#AmapHeatmapDemoModule',
+        data: {
+          title: 'amap-heatmap'
         }
       },
     ]

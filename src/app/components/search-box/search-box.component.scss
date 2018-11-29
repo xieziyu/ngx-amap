@@ -1,0 +1,23 @@
+$search-box-color: #A4B7C1;
+
+.search-container {
+  border-radius: 100px;
+  padding: 3px 10px;
+  background-color: #fff;
+
+  input {
+    border: none;
+    transition: width .4s ease-in-out;
+    width: 160px;
+
+    &:focus {
+      width: 240px;
+      outline: none;
+    }
+  }
+
+  .prepend {
+    color: $search-box-color;
+    padding-right: 5px;
+  }
+}

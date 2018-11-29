@@ -306,8 +306,52 @@ export const navigation = [
     ]
   },
   {
+    name: 'amap-heatmap',
+    url: '/amap-heatmap',
+    icon: 'fa fa-code',
+    children: [
+      {
+        name: '简单示例',
+        url: '/amap-heatmap/simple',
+        icon: 'fa fa-html5'
+      },
+    ]
+  },
+  {
     title: true,
     name: '服务示例'
+  },
+  {
+    name: '路径规划服务',
+    url: '/',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '驾车路线',
+        url: '/AmapDrivingService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '货车路线',
+        url: '/AmapTruckDrivingService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '公交换乘路线',
+        url: '/AmapTransferService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '步行路线',
+        url: '/AmapWalkingService/simple',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: '骑行路线',
+        url: '/AmapRidingService/simple',
+        icon: 'fa fa-html5'
+      },
+    ]
   },
   {
     name: 'AmapGeocoderService',
