@@ -21,7 +21,7 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 # 版本信息
 @npm:
 + `v2.x` for Angular >= 6
-+ `v1.3.3` for Angular < 6
++ `v1.4.0` for Angular < 6
 
 Github branches:
 + `master` for Angular >= 6
@@ -29,7 +29,7 @@ Github branches:
 
 
 # 最新进度
-2018.11.28: v2.2.0
+2018.11.29: v2.2.0 & v1.4.0
   + 新增支持路径规划：
     + AMap.Driving 驾车路线规划服务：AmapDrivingService
     + AMap.TruckDriving 货车路线规划服务：AmapTruckDrivingService
