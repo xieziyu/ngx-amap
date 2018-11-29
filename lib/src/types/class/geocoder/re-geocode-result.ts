@@ -1,6 +1,6 @@
 import { ReGeocode } from './re-geocode';
 
-export declare class ReGeocodeResult {
+export interface ReGeocodeResult {
   info: string;
   regeocode: ReGeocode;
 }

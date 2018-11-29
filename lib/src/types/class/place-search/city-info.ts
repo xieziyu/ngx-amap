@@ -1,4 +1,4 @@
-export declare class CityInfo {
+export interface CityInfo {
   name: string;
   citycode: string;
   adcode: string;

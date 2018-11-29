@@ -1,7 +1,7 @@
 import { Size } from './amap.size';
 import { Pixel } from './amap.pixel';
 
-export declare class ClusterStyle {
+export interface ClusterStyle {
   url: string;
   size: Size;
   offset?: Pixel;

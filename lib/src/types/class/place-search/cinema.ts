@@ -1,6 +1,6 @@
 import { Photo } from './photo';
 
-export declare class Cinema {
+export interface Cinema {
   intro: string;
   rating: string;
   deep_src: string;

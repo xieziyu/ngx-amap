@@ -8,8 +8,7 @@ export interface CEllipse {
   new (opts: EllipseOptions): Ellipse;
 }
 
-export declare class Ellipse {
-  constructor(opts: EllipseOptions);
+export interface Ellipse {
   setOptions(opt: EllipseOptions);
   getOptions(): EllipseOptions;
   getCenter(): LngLat;

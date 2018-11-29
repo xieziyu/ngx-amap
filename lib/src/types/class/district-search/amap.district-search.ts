@@ -6,8 +6,7 @@ export interface CDistrictSearch {
   new (opts?: DistrictSearchOptions): DistrictSearch;
 }
 
-export declare class DistrictSearch {
-  constructor(opts?: DistrictSearchOptions);
+export interface DistrictSearch {
   search(
     keyword: string,
     callback: callbackFn<DistrictSearchResult>,

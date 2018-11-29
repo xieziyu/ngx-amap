@@ -1,4 +1,4 @@
-export declare class Photo {
+export interface Photo {
   title: string;
   url: string;
 }

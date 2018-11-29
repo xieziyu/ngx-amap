@@ -1,7 +1,7 @@
 # ngx-amap 
-[![npm version](https://badge.fury.io/js/ngx-amap.svg)](https://badge.fury.io/js/ngx-amap)
-[![npm downloads](https://img.shields.io/npm/dm/ngx-amap.svg)](https://npmjs.org/ngx-amap)
-[![Build Status](https://travis-ci.org/xieziyu/ngx-amap.svg?branch=master)](https://travis-ci.org/xieziyu/ngx-amap)
+[![npm](https://img.shields.io/npm/v/ngx-amap.svg)][npm-badge-url]
+[![npm](https://img.shields.io/npm/dm/ngx-amap.svg)][npm-badge-url]
+[![Build Status](https://travis-ci.org/xieziyu/ngx-amap.svg?branch=master)][ci-url]
 
 + [在线演示](https://xieziyu.github.io/ngx-amap)
 + [模块文档](https://xieziyu.github.io/ngx-amap/api-doc)
@@ -20,7 +20,7 @@ ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高�
 
 # 版本信息
 @npm:
-+ `v2.1.1` for Angular >= 6
++ `v2.x` for Angular >= 6
 + `v1.3.3` for Angular < 6
 
 Github branches:
@@ -29,10 +29,18 @@ Github branches:
 
 
 # 最新进度
-2018.06.22: v2.1.1 & v1.3.3:
+2018.11.28: v2.2.0 & v1.4.0
+  + 新增支持路径规划：
+    + AMap.Driving 驾车路线规划服务：AmapDrivingService
+    + AMap.TruckDriving 货车路线规划服务：AmapTruckDrivingService
+    + AMap.Transfer 公交换乘路线规划服务：AmapTransferService
+    + AMap.Walking 步行路线规划服务：AmapWalkingService
+    + AMap.Riding 骑行路线规划服务：AmapRidingService
+
+2018.06.22: v2.1.1 & v1.3.3
   + Bugfix：[amapAutocomplete] 切换city时不起作用 [issue#23](https://github.com/xieziyu/ngx-amap/issues/23)
 
-2018.05.24: v2.1.0:
+2018.05.24: v2.1.0
   + 新增支持图层AMap.Heatmap指令：amap-heatmap
 
 2018.05.11: v2.0.0: 支持 Angular 6
@@ -47,43 +55,6 @@ Github branches:
   + [demo](https://xieziyu.github.io/ngx-amap/#/amap-ellipse/methods) AMap.EllipseEditor编辑功能：amap-ellipse `[editor]="true"`
   + [demo](https://xieziyu.github.io/ngx-amap/#/amap-rectangle/methods) AMap.RectangleEditor编辑功能：amap-rectangle `[editor]="true"`
   + 添加editor相关事件emitter，例如：`(editorAddnode)`, `(editorAdjust)`等，详见示例
-
-2018.03.26: v1.3.0: 覆盖物
-  + 新增支持覆盖物AMap.Polygon指令：amap-polygon
-  + 新增支持覆盖物AMap.Text指令：amap-text
-  + 新增支持覆盖物AMap.BezierCurve指令：amap-bezier-curve
-  + 新增支持覆盖物AMap.Ellipse指令：amap-ellipse
-  + 新增支持覆盖物AMap.Rectangle指令：amap-rectangle
-
-2018.03.21: v1.2.0
-  + 新增支持AMap.MouseTool鼠标工具插件：AmapMouseToolService (感谢: [noob9527](https://github.com/noob9527))
-
-2018.02.28: v1.1.2
-  + ngx-amap支持gridMapForeign选项，以显示国外的地图细节
-
-2018.02.05: v1.1.1
-  + 新增支持覆盖物AMap.CircleMarker的指令：amap-circle-marker (需要高德API-v1.4.3支持)
-
-2018.02.05: v1.1.0
-  + 新增支持覆盖物AMap.Circle的指令：amap-circle
-  + 默认高德API的baseUrl调整为https协议
-  + 默认高德API的版本调整为1.4.3
-
-2017.11.29: v1.0.1
-  + 修复 input[Autocomplete] 指令事件错误的问题
-
-2017.11.29: v1.0.0
-  + 新增支持AMap.PlaceSearch的搜索服务：AmapPlaceSearchService
-
-2017.11.28: v1.0.0-beta.4
-  + 新增支持AMap.Geocoder的地理服务：AmapGeocoderService
-  + 新增支持AMap.Autocomplete的搜索服务和指令：AmapAutocompleteService, AmapAutocompleteDirective
-  + 逻辑变更：marker在没有position的时候不再绘制于默认位置
-  + 逻辑变更：info-window现在会跟随它的hostMarker改变位置
-
-2017.11.24: 新增支持AMap.MakerClusterer点聚合：amap-marker-clusterer
-
-2017.11.23: 重写了各个组件，尽可能齐全地为每个组件提供了public方法和output事件，以适配高德原生API
 
 # 安装
 ```bash
@@ -152,8 +123,8 @@ $ yarn add ngx-amap
 ```typescript
 {
   apiKey: string;   // *必须， 高德地图的开发者license key
-  apiVersion: string;  // [可选]，默认是'1.4.1'
-  urlPath: string;  // [可选]， 默认是 'http://webapi.amap.com/maps', 可以用它设置HTTPS或者HTTP协议
+  apiVersion: string;  // [可选]，默认是'1.4.11'
+  urlPath: string;  // [可选]， 默认是 'https://webapi.amap.com/maps', 可以用它设置HTTPS或者HTTP协议
 }
 ```
 
@@ -179,6 +150,12 @@ $ yarn add ngx-amap
 |`AmapDistrictSearchService`| `Service`   | 行政区搜索服务 | **AMap.DistrictSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDistrictSearchService/simple) |
 |`AmapMouseToolService`     | `Service`   | 鼠标工具插件 | **AMap.MouseTool** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapMouseToolService/simple) |
 |`amap-heatmap`             | `Directive` | 图层：热力图 | **AMap.Heatmap** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-heatmap/simple) |
+|`AmapDrivingService`       | `Service`   | 驾车路线规划服务 | **AMap.Driving** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDrivingService/simple) |
+|`AmapTruckDrivingService`  | `Service`   | 货车路线规划服务 | **AMap.TruckDriving** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapTruckDrivingService/simple) |
+|`AmapTransferService`      | `Service`   | 换乘路线规划服务 | **AMap.Transfer** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapTransferService/simple) |
+|`AmapWalkingService`       | `Service`   | 步行路线规划服务 | **AMap.Walking** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapWalkingService/simple) |
+|`AmapRidingService`        | `Service`   | 骑行路线规划服务 | **AMap.Riding** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapRidingService/simple) |
+
 
 # 类型声明
 可以从`ngx-amap/types/class`中import对AMap类的声明：
@@ -206,3 +183,7 @@ npm run demo
 yarn
 yarn demo
 ```
+
+
+[npm-badge-url]: https://www.npmjs.com/package/ngx-amap
+[ci-url]: https://travis-ci.org/xieziyu/ngx-amap

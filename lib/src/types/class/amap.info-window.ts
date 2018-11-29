@@ -7,8 +7,7 @@ export interface CInfoWindow {
   new (opts: InfoWindowOptions): InfoWindow;
 }
 
-export declare class InfoWindow {
-  constructor(opts: InfoWindowOptions);
+export interface InfoWindow {
   open(map: Map, pos?: LngLat|number[]): void;
   close(): void;
   getIsOpen(): boolean;

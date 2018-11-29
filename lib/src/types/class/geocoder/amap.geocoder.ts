@@ -8,8 +8,7 @@ export interface CGeocoder {
   new (opts?: GeocoderOptions): Geocoder;
 }
 
-export declare class Geocoder {
-  constructor(opts?: GeocoderOptions);
+export interface Geocoder {
   getLocation(address: string, callback: callbackFn<GeocodeResult>);
   setCity(city: string);
   getAddress(location: ILngLat|ILngLat[], callback: callbackFn<ReGeocodeResult>);

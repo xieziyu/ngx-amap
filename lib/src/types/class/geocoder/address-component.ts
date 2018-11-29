@@ -1,6 +1,6 @@
 import { BusinessArea } from './business-area';
 
-export declare class AddressComponent {
+export interface AddressComponent {
   province: string;
   city: string;
   citycode: string;

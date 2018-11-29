@@ -1,6 +1,6 @@
 import { Tip } from './tip';
 
-export declare class AutocompleteResult {
+export interface AutocompleteResult {
   info: string;
   count: number;
   tips: Tip[];

@@ -1,6 +1,6 @@
 import { Photo } from './photo';
 
-export declare class Hotel {
+export interface Hotel {
   rating: string;
   star: string;
   intro: string;

@@ -4,7 +4,7 @@ import { ReGeocodePoi } from './re-geocode-poi';
 import { Road } from './road';
 import { Cross } from './cross';
 
-export declare class ReGeocode {
+export interface ReGeocode {
   addressComponent: AddressComponent;
   formattedAddress: string;
   roads: Road[];

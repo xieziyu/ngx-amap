@@ -1,6 +1,6 @@
 import { Photo } from './photo';
 
-export declare class Discount {
+export interface Discount {
   title: string;
   detail: string;
   start_time: string;

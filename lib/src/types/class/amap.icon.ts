@@ -2,8 +2,7 @@ import { Size } from './amap.size';
 import { IIcon } from '../interface/icon.interface';
 
 // AMap.Icon
-export declare class Icon {
-  constructor(opts: IIcon);
+export interface Icon {
   getImageSize(): Size;
   setImageSize(size: Size): void;
 }

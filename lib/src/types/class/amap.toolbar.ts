@@ -6,8 +6,7 @@ export interface CToolBar {
   new (opts?: ToolbarOptions): ToolBar;
 }
 
-export declare class ToolBar {
-  constructor(opts?: ToolbarOptions);
+export interface ToolBar {
   getOffset(): Pixel;
   setOffset(offset: Pixel): void;
   hideRuler(): void;

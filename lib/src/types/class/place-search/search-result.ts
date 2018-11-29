@@ -1,7 +1,7 @@
 import { PoiList } from './poi-list';
 import { CityInfo } from './city-info';
 
-export declare class SearchResult {
+export interface SearchResult {
   info: string;
   poiList: PoiList;
   keywordList: string[];

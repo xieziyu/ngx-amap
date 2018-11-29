@@ -1,12 +1,14 @@
 import { Map } from './amap.map';
-import { CircleOptions, MarkerOptions, PolygonOptions, PolylineOptions } from '../interface/index';
+import { CircleOptions } from '../interface/overlays/circle-options.interface';
+import { MarkerOptions } from '../interface/overlays/marker-options.interface';
+import { PolygonOptions } from '../interface/overlays/polygon-options.interface';
+import { PolylineOptions } from '../interface/overlays/polyline-options.interface';
 
 export interface CMouseTool {
   new (map: Map): MouseTool;
 }
 
-export declare class MouseTool {
-  constructor(map: Map)
+export interface MouseTool {
   marker(options: MarkerOptions);
   polyline(options: PolylineOptions);
   polygon(options: PolygonOptions);

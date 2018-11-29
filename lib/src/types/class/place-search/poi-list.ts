@@ -1,6 +1,6 @@
 import { Poi } from './poi';
 
-export declare class PoiList {
+export interface PoiList {
   pois: Poi[];
   pageIndex: number;
   pageSize: number;

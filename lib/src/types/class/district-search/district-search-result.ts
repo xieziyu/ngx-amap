@@ -1,7 +1,6 @@
 import { District } from './district';
 
-export declare class DistrictSearchResult {
+export interface DistrictSearchResult {
   info: string;
   districtList: District[];
 }
-

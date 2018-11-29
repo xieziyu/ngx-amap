@@ -11,7 +11,7 @@ export interface MarkerClustererOptions {
   zoomOnClick: boolean;
 }
 
-export declare class RenderObject {
+export interface RenderObject {
   count: number;
   markers: Marker[];
   marker: Marker;

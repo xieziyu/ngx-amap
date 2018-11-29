@@ -1,3 +1,36 @@
+## 2.2.0 & 1.4.0 (2018-11-29)
+
+#### New
++ 支持路径规划：
+  + AMap.Driving 驾车路线规划服务：AmapDrivingService
+  + AMap.TruckDriving 货车路线规划服务：AmapTruckDrivingService
+  + AMap.Transfer 公交换乘路线规划服务：AmapTransferService
+  + AMap.Walking 步行路线规划服务：AmapWalkingService
+  + AMap.Riding 骑行路线规划服务：AmapRidingService
+
+----
+
+## 2.1.1 & 1.3.3 (2018-06-22)
+
+#### Bugfix
++ [amapAutocomplete] 切换city时不起作用 [issue#23](https://github.com/xieziyu/ngx-amap/issues/23)
+
+----
+
+## 2.1.0 (2018-05-24)
+
+#### New
++ 新增支持图层AMap.Heatmap指令：amap-heatmap
+
+----
+
+## 2.0.0 (2018-05-11)
+
+#### New
++ 支持Angular 6
+
+----
+
 ## 1.3.2 (2018-04-17)
 
 #### New

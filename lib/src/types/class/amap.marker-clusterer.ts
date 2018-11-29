@@ -7,8 +7,7 @@ export interface CMarkerClusterer {
   new (map: Map, markers: Marker[], opts: MarkerClustererOptions): MarkerClusterer;
 }
 
-export declare class MarkerClusterer {
-  constructor(map: Map, markers: Marker[], opts: MarkerClustererOptions);
+export interface MarkerClusterer {
   addMarker(marker: Marker);
   removeMarker(marker: Marker);
   getClustersCount(): number;

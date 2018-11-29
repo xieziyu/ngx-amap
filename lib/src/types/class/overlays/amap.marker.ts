@@ -8,8 +8,7 @@ export interface CMarker {
   new (opts: MarkerOptions): Marker;
 }
 
-export declare class Marker {
-  constructor(opts: MarkerOptions);
+export interface Marker {
   getOffset(): Pixel;
   setOffset(offset: Pixel): void;
   setAnimation(animate: string): void;

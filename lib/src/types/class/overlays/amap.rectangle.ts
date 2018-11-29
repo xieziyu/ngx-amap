@@ -8,8 +8,7 @@ export interface CRectangle {
   new (opts: RectangleOptions): Rectangle;
 }
 
-export declare class Rectangle {
-  constructor(opts: RectangleOptions);
+export interface Rectangle {
   setOptions(opt: RectangleOptions): void;
   getOptions(): RectangleOptions;
   getBounds(): Bounds;

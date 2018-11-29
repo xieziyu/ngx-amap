@@ -1,6 +1,5 @@
 // AMap.LngLat
-export declare class LngLat extends Array<number> {
-  constructor(lng: number, lat: number);
+export interface LngLat extends Array<number> {
   offset(w: number, s: number): LngLat;
   distance(lnglat: LngLat|Array<LngLat>): number;
   getLng(): number;

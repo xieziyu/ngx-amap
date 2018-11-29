@@ -8,8 +8,7 @@ export interface CText {
   new (opts: TextOptions): Text;
 }
 
-export declare class Text {
-  constructor(opts: TextOptions);
+export interface Text {
   getText(): string;
   setText(text: string): void;
   setStyle(obj: any): void;

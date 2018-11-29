@@ -1,11 +1,10 @@
 import { LngLat } from './amap.lng-lat';
 
 // AMap.Bounds
-export declare class Bounds {
+export interface Bounds {
   southWest: LngLat;
   northEast: LngLat;
 
-  constructor(southWest: LngLat, northEast: LngLat);
   contains(point: LngLat): boolean;
   getCenter(): LngLat;
   getSouthWest(): LngLat;

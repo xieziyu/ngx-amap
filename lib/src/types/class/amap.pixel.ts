@@ -1,11 +1,7 @@
 import { IPixel } from '../interface/pixel.interface';
 
 // AMap.Pixel
-export declare class Pixel implements IPixel {
-  x: number;
-  y: number;
-
-  constructor(x: number, y: number);
+export interface Pixel extends IPixel {
   getX(): number;
   getY(): number;
   equals(point: Pixel): boolean;

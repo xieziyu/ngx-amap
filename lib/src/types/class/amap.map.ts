@@ -8,8 +8,7 @@ export interface CMap {
   new (container: string|HTMLDivElement, opts: MapOptions): Map;
 }
 
-export declare class Map {
-  constructor(container: string|HTMLDivElement, opts: MapOptions);
+export interface Map {
   getZoom(): number;
   getLayers(): Array<any>;  // TODO: TileLayer
   getCenter(): LngLat;

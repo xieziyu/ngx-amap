@@ -9,8 +9,7 @@ export interface CPlaceSearch {
   new (opts?: PlaceSearchOptions): PlaceSearch;
 }
 
-export declare class PlaceSearch {
-  constructor(opts?: PlaceSearchOptions);
+export interface PlaceSearch {
   search(keyword: string, callback: callbackFn<SearchResult>);
   searchNearBy(keyword: string, center: ILngLat, radius: number, callback: callbackFn<SearchResult>);
   searchInBounds(keyword: string, bounds: Bounds|Polygon, callback: callbackFn<SearchResult>);

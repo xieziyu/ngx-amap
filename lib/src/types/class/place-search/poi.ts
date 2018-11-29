@@ -6,7 +6,7 @@ import { Hotel } from './hotel';
 import { Cinema } from './cinema';
 import { Scenic } from './scenic';
 
-export declare class Poi {
+export interface Poi {
   // basic:
   id: string;
   name: string;

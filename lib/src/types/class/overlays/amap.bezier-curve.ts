@@ -6,8 +6,7 @@ export interface CBezierCurve {
   new (opts: BezierCurveOptions): BezierCurve;
 }
 
-export declare class BezierCurve {
-  constructor(opts: BezierCurveOptions);
+export interface BezierCurve {
   setPath(path: CurvePath);
   getPath();
   setOptions(opt: BezierCurveOptions);

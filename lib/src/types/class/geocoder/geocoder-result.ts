@@ -1,7 +1,7 @@
 import { Geocode } from './geocode';
 import { ReGeocode } from './re-geocode';
 
-export declare class GeocoderResult {
+export interface GeocoderResult {
   info: string;
   geocodes: Geocode[];
   resultNum: number;

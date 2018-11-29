@@ -1,6 +1,6 @@
 import { LngLat } from '../amap.lng-lat';
 
-export declare class ReGeocodePoi {
+export interface ReGeocodePoi {
   id: string;
   name: string;
   type: string;

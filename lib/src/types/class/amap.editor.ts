@@ -7,8 +7,7 @@ import { Ellipse } from './overlays/amap.ellipse';
 import { Rectangle } from './overlays/amap.rectangle';
 
 // general editor class
-export declare class Editor<T> {
-  constructor(map: Map, target: T);
+export interface Editor<T> {
   open(): void;
   close(): void;
   on(eventName: string, handler: any, context?: any): void;
@@ -20,8 +19,7 @@ export interface CEditor<T> {
 }
 
 // BezierCurve editor class
-export declare class BezierCurveEditor {
-  constructor(map: Map, target: BezierCurve, opt?: BezierCurveEditorOptions);
+export interface BezierCurveEditor {
   open(): void;
   close(): void;
   on(eventName: string, handler: any, context?: any): void;

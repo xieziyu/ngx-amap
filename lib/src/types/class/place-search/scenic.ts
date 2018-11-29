@@ -1,6 +1,6 @@
 import { Photo } from './photo';
 
-export declare class Scenic {
+export interface Scenic {
   intro: string;
   rating: string;
   deep_src: string;

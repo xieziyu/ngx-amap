@@ -1,6 +1,6 @@
 import { LngLat } from '../amap.lng-lat';
 
-export declare class District {
+export interface District {
   name: string;
   center: LngLat;
   citycode: string;

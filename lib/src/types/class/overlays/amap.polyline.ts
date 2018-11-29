@@ -6,8 +6,7 @@ export interface CPolyline {
   new (opts: PolylineOptions): Polyline;
 }
 
-export declare class Polyline {
-  constructor(opts: PolylineOptions);
+export interface Polyline {
   setPath(path: number[][]): void;
   getPath(): number[][];
   setOptions(opt: PolylineOptions): void;

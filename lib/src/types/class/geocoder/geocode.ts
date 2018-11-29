@@ -1,7 +1,7 @@
 import { LngLat } from '../amap.lng-lat';
 import { AddressComponent } from './address-component';
 
-export declare class Geocode {
+export interface Geocode {
   addressComponent: AddressComponent;
   formattedAddress: string;
   location: LngLat;

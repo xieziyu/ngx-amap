@@ -1,4 +1,4 @@
-export declare class AMapEvent {
+export interface AMapEvent {
   addDomListener(instance: any, eventName: string, handler: (event?: any) => void, context?: any): EventListener;
   addListener(instance: any, eventName: string, handler: (event?: any) => void, context?: any): EventListener;
   addListenerOnce(instance: any, eventName: string, handler: (event?: any) => void, context?: any): EventListener;

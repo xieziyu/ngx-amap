@@ -6,8 +6,7 @@ export interface CCircleMarker {
   new (opts: CircleMarkerOptions): CircleMarker;
 }
 
-export declare class CircleMarker {
-  constructor(opts: CircleMarkerOptions);
+export interface CircleMarker {
   setCenter(lnglat: LngLat|number[]): void;
   getCenter(): LngLat;
   setRadius(radius: number): void;

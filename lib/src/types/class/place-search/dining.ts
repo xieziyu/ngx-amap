@@ -1,6 +1,6 @@
 import { Photo } from './photo';
 
-export declare class Dining {
+export interface Dining {
   cuisines: string;
   tag: string;
   intro: string;

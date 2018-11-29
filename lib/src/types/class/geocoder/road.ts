@@ -1,6 +1,6 @@
 import { LngLat } from '../amap.lng-lat';
 
-export declare class Road {
+export interface Road {
   id: string;
   name: string;
   distance: number;

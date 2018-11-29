@@ -1,6 +1,6 @@
 import { LngLat } from '../amap.lng-lat';
 
-export declare class Cross {
+export interface Cross {
   distance: number;
   direction: string;
   location: LngLat;

@@ -1,6 +1,6 @@
 import { Photo } from './photo';
 
-export declare class Groupbuy {
+export interface Groupbuy {
   title: string;
   type_code: string;
   type: string;

@@ -7,8 +7,7 @@ export interface CCircle {
   new (opts: CircleOptions): Circle;
 }
 
-export declare class Circle {
-  constructor(opts: CircleOptions);
+export interface Circle {
   setCenter(lnglat: LngLat|number[]): void;
   getCenter(): LngLat;
   getBounds(): Bounds;
