@@ -1,8 +1,7 @@
 import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
-import { Map, LngLat, Bounds, PolyEditor } from '../../types/class';
+import { LngLat, Bounds, PolyEditor } from '../../types/class';
 import { Polygon, PolygonPath } from '../../types/class/overlays/amap.polygon';
 import { PolygonOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
@@ -82,7 +81,6 @@ export class AmapPolygonDirective implements OnChanges, OnDestroy {
   private _editor: PolyEditor;
 
   constructor(
-    private logger: LoggerService,
     private polygons: PolygonService
   ) {}
 

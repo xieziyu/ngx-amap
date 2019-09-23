@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TextOptions, IPixel } from '../../types/interface';
 import { AMapClass, Text, Map, Icon } from '../../types/class';
-import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { PixelService } from '../pixel/pixel.service';
 import { IconService } from '../icon/icon.service';
@@ -16,7 +15,6 @@ export class TextService extends EventBinder {
 
   constructor(
     private map: MapAPIService,
-    private logger: LoggerService,
     private pixel: PixelService,
     private icon: IconService
   ) {

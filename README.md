@@ -29,6 +29,9 @@ Github branches:
 
 
 # 最新进度
+2019.09.23: v2.2.1
+  + 修复 Icon issue[#40](https://github.com/xieziyu/ngx-amap/issues/40)
+
 2018.11.29: v2.2.0 & v1.4.0
   + 新增支持路径规划：
     + AMap.Driving 驾车路线规划服务：AmapDrivingService

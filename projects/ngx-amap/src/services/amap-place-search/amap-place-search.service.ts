@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AMapClass, PlaceSearch, Bounds, Polygon } from '../../types/class';
 import { PlaceSearchOptions, ILngLat } from '../../types/interface';
-import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
 import { EventBinder } from '../../utils/event-binder';
 
@@ -17,7 +16,7 @@ export class AmapPlaceSearchService {
 
   private _plugin: Promise<void>;
 
-  constructor(private logger: LoggerService, private plugins: PluginLoaderService) {}
+  constructor(private plugins: PluginLoaderService) {}
 
   of(opts?: PlaceSearchOptions): Promise<AmapPlaceSearchWrapper> {
     if (!this._plugin) {

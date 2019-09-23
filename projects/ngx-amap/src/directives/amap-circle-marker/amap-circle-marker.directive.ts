@@ -1,7 +1,6 @@
 import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
 import { CircleMarker, Map, LngLat } from '../../types/class';
 import { CircleMarkerOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
@@ -68,7 +67,6 @@ export class AmapCircleMarkerDirective implements OnChanges, OnDestroy {
   private _subscriptions: Subscription;
 
   constructor(
-    private logger: LoggerService,
     private cms: CircleMarkerService
   ) {}
 

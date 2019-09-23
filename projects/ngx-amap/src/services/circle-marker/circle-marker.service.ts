@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AMapClass, CircleMarker, Map } from '../../types/class';
-import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { EventBinder } from '../../utils/event-binder';
 import { CircleMarkerOptions } from '../../types/interface';
@@ -14,7 +13,6 @@ export class CircleMarkerService extends EventBinder {
 
   constructor(
     private map: MapAPIService,
-    private logger: LoggerService
   ) {
     super();
     this._map = map.map;

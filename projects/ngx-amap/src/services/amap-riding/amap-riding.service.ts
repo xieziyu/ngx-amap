@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AMapClass, Riding } from '../../types/class';
 import { RidingOptions, ILngLat } from '../../types/interface';
-import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
 import { EventBinder } from '../../utils/event-binder';
 import { RidingResult } from '../../types/class/riding/riding-result';
@@ -18,7 +17,7 @@ export class AmapRidingService {
 
   private _plugin: Promise<void>;
 
-  constructor(private logger: LoggerService, private plugins: PluginLoaderService) {
+  constructor(private plugins: PluginLoaderService) {
   }
 
   get loaded(): Promise<void> {

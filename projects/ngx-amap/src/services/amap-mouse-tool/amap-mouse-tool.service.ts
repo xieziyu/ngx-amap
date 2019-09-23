@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
 import { EventBinder } from '../../utils/event-binder';
-import { LoggerService } from '../logger/logger.service';
 import { AMapClass, Circle, Marker, MouseTool, Polyline, Polygon, Map } from '../../types/class';
 import { Observable } from 'rxjs';
 import { CircleOptions, MarkerOptions, PolygonOptions, PolylineOptions } from '../../types/interface';
@@ -15,7 +14,7 @@ export class AmapMouseToolService {
 
   private _plugin: Promise<void>;
 
-  constructor(private logger: LoggerService, private plugins: PluginLoaderService) {
+  constructor(private plugins: PluginLoaderService) {
   }
 
   of(map: Map) {

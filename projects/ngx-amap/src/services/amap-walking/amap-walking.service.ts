@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AMapClass, Walking } from '../../types/class';
 import { WalkingOptions, ILngLat } from '../../types/interface';
-import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
 import { EventBinder } from '../../utils/event-binder';
 import { WalkingResult } from '../../types/class/walking/walking-result';
@@ -18,7 +17,7 @@ export class AmapWalkingService {
 
   private _plugin: Promise<void>;
 
-  constructor(private logger: LoggerService, private plugins: PluginLoaderService) {
+  constructor(private plugins: PluginLoaderService) {
   }
 
   get loaded(): Promise<void> {

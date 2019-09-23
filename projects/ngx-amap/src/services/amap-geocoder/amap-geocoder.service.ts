@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AMapClass, Geocoder } from '../../types/class';
-import { LoggerService } from '../logger/logger.service';
 import { GeocoderOptions, ILngLat } from '../../types/interface';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
 import { EventBinder } from '../../utils/event-binder';
@@ -88,7 +87,7 @@ export class AmapGeocoderService {
 
   private _plugin: Promise<void>;
 
-  constructor(private logger: LoggerService, private plugins: PluginLoaderService) {}
+  constructor(private plugins: PluginLoaderService) {}
 
   of(opts?: GeocoderOptions): Promise<AmapGeocoderWrapper> {
     if (!this._plugin) {

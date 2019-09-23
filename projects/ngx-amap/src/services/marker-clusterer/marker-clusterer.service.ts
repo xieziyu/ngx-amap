@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MarkerClustererOptions, IPixel, ISize, IClusterStyle } from '../../types/interface';
 import { AMapClass, MarkerClusterer, Map, ClusterStyle } from '../../types/class';
-import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { PixelService } from '../pixel/pixel.service';
 import { SizeService } from '../size/size.service';
@@ -18,7 +17,6 @@ export class MarkerClustererService extends EventBinder {
 
   constructor(
     private map: MapAPIService,
-    private logger: LoggerService,
     private pixel: PixelService,
     private size: SizeService,
     private plugins: PluginLoaderService

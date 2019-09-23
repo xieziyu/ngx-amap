@@ -1,7 +1,6 @@
 import { Directive, Input, Output, OnDestroy, OnInit,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
 import { ToolBar, Marker, Pixel, LngLat } from '../../types/class';
 import { ToolbarOptions, IPixel } from '../../types/interface';
 import { Utils } from '../../utils/utils';
@@ -55,7 +54,6 @@ export class AmapToolBarDirective implements OnChanges, OnInit, OnDestroy {
   private _subscriptions: Subscription;
 
   constructor(
-    private logger: LoggerService,
     private toolbars: ToolBarService,
     private pixel: PixelService
   ) {}

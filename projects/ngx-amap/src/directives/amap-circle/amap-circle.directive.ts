@@ -1,8 +1,7 @@
 import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
-import { Circle, Map, LngLat, Bounds, CircleEditor } from '../../types/class';
+import { Circle, LngLat, Bounds, CircleEditor } from '../../types/class';
 import { CircleOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -80,7 +79,6 @@ export class AmapCircleDirective implements OnChanges, OnDestroy {
   private _editor: CircleEditor;
 
   constructor(
-    private logger: LoggerService,
     private circles: CircleService
   ) {}
 

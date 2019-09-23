@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AMapClass, Autocomplete } from '../../types/class';
 import { AutocompleteOptions } from '../../types/interface';
-import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
 import { EventBinder } from '../../utils/event-binder';
 
@@ -17,7 +16,7 @@ export class AmapAutocompleteService {
 
   private _plugin: Promise<void>;
 
-  constructor(private logger: LoggerService, private plugins: PluginLoaderService) {}
+  constructor(private plugins: PluginLoaderService) {}
 
   of(opts?: AutocompleteOptions): Promise<AmapAutocompleteWrapper> {
     if (!this._plugin) {

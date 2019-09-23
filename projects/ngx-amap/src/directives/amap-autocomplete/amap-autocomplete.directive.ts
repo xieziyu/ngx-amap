@@ -3,7 +3,6 @@ import {
   EventEmitter, OnChanges, SimpleChanges
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
 import { AutocompleteOptions } from '../../types/interface';
 import { AmapAutocompleteService, AmapAutocompleteWrapper } from '../../services/amap-autocomplete/amap-autocomplete.service';
 import { Utils } from '../../utils/utils';
@@ -46,7 +45,6 @@ export class AmapAutocompleteDirective implements OnChanges, OnInit, OnDestroy {
   private _plugin: Promise<AmapAutocompleteWrapper>;
 
   constructor(
-    private logger: LoggerService,
     private autos: AmapAutocompleteService,
     private el: ElementRef
   ) { }
