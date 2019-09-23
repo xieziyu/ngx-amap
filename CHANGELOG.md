@@ -1,3 +1,10 @@
+## 2.2.1 & 1.4.1 (2019-09-23)
+
+#### Bugfix
++ 修复 Icon imageSize [issue#40](https://github.com/xieziyu/ngx-amap/issues/40)
+
+----
+
 ## 2.2.0 & 1.4.0 (2018-11-29)
 
 #### New
