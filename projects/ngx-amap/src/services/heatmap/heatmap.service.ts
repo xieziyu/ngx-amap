@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AMapClass, Heatmap, Map } from '../../types/class';
-import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { EventBinder } from '../../utils/event-binder';
 import { HeatmapOptions } from '../../types/interface';
@@ -16,7 +15,6 @@ export class HeatmapService extends EventBinder {
 
   constructor(
     private map: MapAPIService,
-    private logger: LoggerService,
     private plugins: PluginLoaderService
   ) {
     super();

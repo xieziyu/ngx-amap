@@ -1,7 +1,6 @@
 import { Directive, OnInit, Input, AfterContentInit, ContentChildren, QueryList,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
 import { MarkerClustererOptions, IClusterStyle, RenderObject } from '../../types/interface';
 import { MarkerClusterer, Marker, ClusterStyle, Map } from '../../types/class';
 import { Utils } from '../../utils/utils';
@@ -64,7 +63,6 @@ export class AmapMarkerClustererDirective implements OnInit, OnChanges, OnDestro
   private _subscriptions: Subscription;
 
   constructor(
-    private logger: LoggerService,
     private clusters: MarkerClustererService
   ) { }
 

@@ -2,7 +2,7 @@ import { Directive, OnInit, Input, AfterContentInit, ContentChildren, QueryList,
   OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges, Optional } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoggerService } from '../../services/logger/logger.service';
-import { LngLat, Size, Marker, Icon, Pixel, Map } from '../../types/class';
+import { LngLat, Marker, Icon, Pixel, Map } from '../../types/class';
 import { ILngLat, IPixel, IIcon, ILabel, MarkerOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';

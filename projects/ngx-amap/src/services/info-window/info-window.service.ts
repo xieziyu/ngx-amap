@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InfoWindowOptions, IPixel, ILngLat } from '../../types/interface';
 import { AMapClass, InfoWindow, Map, Icon, LngLat } from '../../types/class';
-import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { PixelService } from '../pixel/pixel.service';
 import { SizeService } from '../size/size.service';
@@ -17,7 +16,6 @@ export class InfoWindowService extends EventBinder {
 
   constructor(
     private map: MapAPIService,
-    private logger: LoggerService,
     private pixel: PixelService,
     private size: SizeService
   ) {

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AMapClass, Polyline, Map, PolyEditor } from '../../types/class';
-import { LoggerService } from '../logger/logger.service';
 import { MapAPIService } from '../map-api/map-api.service';
 import { EventBinder } from '../../utils/event-binder';
 import { PolylineOptions } from '../../types/interface';
@@ -17,7 +16,6 @@ export class PolylineService extends EventBinder {
   constructor(
     private map: MapAPIService,
     private plugins: PluginLoaderService,
-    private logger: LoggerService
   ) {
     super();
     this._map = map.map;

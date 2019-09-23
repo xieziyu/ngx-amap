@@ -1,7 +1,6 @@
 import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
 import { BezierCurve, Map, Bounds } from '../../types/class';
 import { BezierCurveOptions } from '../../types/interface';
 import { CurvePath } from '../../types/interface/overlays/bezier-curve-options.interface';
@@ -85,7 +84,6 @@ export class AmapBezierCurveDirective implements OnChanges, OnDestroy {
   private _editor: BezierCurveEditor;
 
   constructor(
-    private logger: LoggerService,
     private bezierCurves: BezierCurveService
   ) {}
 

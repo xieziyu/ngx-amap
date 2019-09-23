@@ -1,8 +1,7 @@
 import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
-import { Map, LngLat, Bounds, RectangleEditor } from '../../types/class';
+import { LngLat, Bounds, RectangleEditor } from '../../types/class';
 import { Rectangle } from '../../types/class';
 import { RectangleOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
@@ -80,7 +79,6 @@ export class AmapRectangleDirective implements OnChanges, OnDestroy {
   private _editor: RectangleEditor;
 
   constructor(
-    private logger: LoggerService,
     private rectangles: RectangleService
   ) {}
 

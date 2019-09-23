@@ -1,8 +1,7 @@
 import { Directive, Input, Output, OnDestroy,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
-import { Ellipse, Map, LngLat, Bounds, EllipseEditor } from '../../types/class';
+import { Ellipse, LngLat, Bounds, EllipseEditor } from '../../types/class';
 import { EllipseOptions, ILngLat } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
@@ -80,7 +79,6 @@ export class AmapEllipseDirective implements OnChanges, OnDestroy {
   private _editor: EllipseEditor;
 
   constructor(
-    private logger: LoggerService,
     private ellipses: EllipseService
   ) {}
 

@@ -1,7 +1,6 @@
 import { Directive, Input, Output, OnDestroy, OnInit,
   EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
 import { Heatmap, Map, HeatmapData } from '../../types/class';
 import { HeatmapOptions } from '../../types/interface';
 import { Utils } from '../../utils/utils';
@@ -39,10 +38,8 @@ export class AmapHeatmapDirective implements OnChanges, OnInit, OnDestroy {
   @Output() ready = new EventEmitter();
 
   private _heatmap: Promise<Heatmap>;
-  private _subscriptions: Subscription;
 
   constructor(
-    private logger: LoggerService,
     private hms: HeatmapService
   ) {}
 

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AMapClass, DistrictSearch } from '../../types/class';
 import { DistrictSearchOptions } from '../../types/interface';
-import { LoggerService } from '../logger/logger.service';
 import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
 import { EventBinder } from '../../utils/event-binder';
 import { DistrictSearchResult } from '../../types/class/district-search/district-search-result';
@@ -18,7 +17,7 @@ export class AmapDistrictSearchService {
 
   private _plugin: Promise<void>;
 
-  constructor(private logger: LoggerService, private plugins: PluginLoaderService) {
+  constructor(private plugins: PluginLoaderService) {
   }
 
   of(opts?: DistrictSearchOptions): Promise<AmapDistrictSearchWrapper> {
