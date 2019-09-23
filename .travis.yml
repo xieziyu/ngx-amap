@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-    - "8"
-cache: yarn
-script: yarn release
+    - "12"
+script: npm run release
 deploy:
   provider: pages
   skip_cleanup: true
