@@ -652,8 +652,9 @@ acorn@^5.6.2:
   integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
 
 adm-zip@^0.4.7:
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.4.9.tgz#1a574627d3aa4ea6b8b4948e066cbd6fed4ae2f6"
+  version "0.4.13"
+  resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.4.13.tgz#597e2f8cc3672151e1307d3e95cddbc75672314a"
+  integrity sha512-fERNJX8sOXfel6qCBCMPvZLzENBEhZTzKqg6vrOW5pvoEaQuJhRU4ndTAh6lHOxn1I6jnz2NHra56ZODM751uw==
 
 after@0.8.2:
   version "0.8.2"
