@@ -36,7 +36,7 @@ export class IconService {
     }
 
     if (iconOption.imageSize) {
-      iconOption.imageSize = this.size.create(iconOption.size, `${name || 'icon'}.imageSize`);
+      iconOption.imageSize = this.size.create(iconOption.imageSize, `${name || 'icon'}.imageSize`);
     }
 
     if (iconOption.imageOffset) {
