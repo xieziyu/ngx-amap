@@ -9,31 +9,6 @@ import { DrivingResult } from '../../types/class/driving/driving-result';
 declare const AMap: AMapClass;
 
 /**
- * 货车路线规划服务
- */
-@Injectable()
-export class AmapTruckDrivingService {
-  TAG = 'amap-truck-driving';
-
-  private _plugin: Promise<void>;
-
-  constructor(private plugins: PluginLoaderService) {
-  }
-
-  get loaded(): Promise<void> {
-    if (!this._plugin) {
-      this._plugin = this.plugins.load('AMap.TruckDriving');
-    }
-
-    return this._plugin;
-  }
-
-  of(opts?: TruckDrivingOptions): Promise<AmapTruckDrivingWrapper> {
-    return this.loaded.then(() => new AmapTruckDrivingWrapper(opts));
-  }
-}
-
-/**
  * AmapTruckDrivingWrapper对象将高德原生的TruckDriving对象提供的方法封装成Promise的实现，更方便回调
  */
 export class AmapTruckDrivingWrapper extends EventBinder {
@@ -69,5 +44,30 @@ export class AmapTruckDrivingWrapper extends EventBinder {
 
   setProvinceAndNumber(province: string, number: string) {
     this._driving.setProvinceAndNumber(province, number);
+  }
+}
+
+/**
+ * 货车路线规划服务
+ */
+@Injectable()
+export class AmapTruckDrivingService {
+  TAG = 'amap-truck-driving';
+
+  private _plugin: Promise<void>;
+
+  constructor(private plugins: PluginLoaderService) {
+  }
+
+  get loaded(): Promise<void> {
+    if (!this._plugin) {
+      this._plugin = this.plugins.load('AMap.TruckDriving');
+    }
+
+    return this._plugin;
+  }
+
+  of(opts?: TruckDrivingOptions): Promise<AmapTruckDrivingWrapper> {
+    return this.loaded.then(() => new AmapTruckDrivingWrapper(opts));
   }
 }

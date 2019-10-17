@@ -9,31 +9,6 @@ import { WalkingResult } from '../../types/class/walking/walking-result';
 declare const AMap: AMapClass;
 
 /**
- * 步行路径规划服务
- */
-@Injectable()
-export class AmapWalkingService {
-  TAG = 'amap-walking';
-
-  private _plugin: Promise<void>;
-
-  constructor(private plugins: PluginLoaderService) {
-  }
-
-  get loaded(): Promise<void> {
-    if (!this._plugin) {
-      this._plugin = this.plugins.load('AMap.Walking');
-    }
-
-    return this._plugin;
-  }
-
-  of(opts?: WalkingOptions): Promise<AmapWalkingWrapper> {
-    return this.loaded.then(() => new AmapWalkingWrapper(opts));
-  }
-}
-
-/**
  * AmapWalkingWrapper对象将高德原生的Walking对象提供的方法封装成Promise的实现，更方便回调
  */
 export class AmapWalkingWrapper extends EventBinder {
@@ -75,5 +50,30 @@ export class AmapWalkingWrapper extends EventBinder {
 
   searchOnAMAP(obj: any) {
     this._walking.searchOnAMAP(obj);
+  }
+}
+
+/**
+ * 步行路径规划服务
+ */
+@Injectable()
+export class AmapWalkingService {
+  TAG = 'amap-walking';
+
+  private _plugin: Promise<void>;
+
+  constructor(private plugins: PluginLoaderService) {
+  }
+
+  get loaded(): Promise<void> {
+    if (!this._plugin) {
+      this._plugin = this.plugins.load('AMap.Walking');
+    }
+
+    return this._plugin;
+  }
+
+  of(opts?: WalkingOptions): Promise<AmapWalkingWrapper> {
+    return this.loaded.then(() => new AmapWalkingWrapper(opts));
   }
 }

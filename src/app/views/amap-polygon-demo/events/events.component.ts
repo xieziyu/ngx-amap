@@ -16,7 +16,7 @@ export class EventsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let polygonArr = [];
+    const polygonArr = [];
     polygonArr.push([116.403322, 39.920255]);
     polygonArr.push([116.410703, 39.897555]);
     polygonArr.push([116.402292, 39.892353]);

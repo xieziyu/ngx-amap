@@ -8,23 +8,6 @@ import { Subscription } from 'rxjs';
 
 declare const AMap: AMapClass;
 
-@Injectable()
-export class AmapMouseToolService {
-  TAG = 'amap-mouse-tool';
-
-  private _plugin: Promise<void>;
-
-  constructor(private plugins: PluginLoaderService) {
-  }
-
-  of(map: Map) {
-    if (!this._plugin) {
-      this._plugin = this.plugins.load('AMap.MouseTool');
-    }
-    return this._plugin.then(() => new AmapMouseToolWrapper(map));
-  }
-}
-
 export class AmapMouseToolWrapper extends EventBinder {
   private _mouseTool: MouseTool;
 
@@ -105,4 +88,20 @@ export class AmapMouseToolWrapper extends EventBinder {
 
 }
 
+@Injectable()
+export class AmapMouseToolService {
+  TAG = 'amap-mouse-tool';
+
+  private _plugin: Promise<void>;
+
+  constructor(private plugins: PluginLoaderService) {
+  }
+
+  of(map: Map) {
+    if (!this._plugin) {
+      this._plugin = this.plugins.load('AMap.MouseTool');
+    }
+    return this._plugin.then(() => new AmapMouseToolWrapper(map));
+  }
+}
 
