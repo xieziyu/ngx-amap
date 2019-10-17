@@ -9,27 +9,6 @@ import { DistrictSearchResult } from '../../types/class/district-search/district
 declare const AMap: AMapClass;
 
 /**
- * 行政区域搜索服务
- */
-@Injectable()
-export class AmapDistrictSearchService {
-  TAG = 'amap-district-search';
-
-  private _plugin: Promise<void>;
-
-  constructor(private plugins: PluginLoaderService) {
-  }
-
-  of(opts?: DistrictSearchOptions): Promise<AmapDistrictSearchWrapper> {
-    if (!this._plugin) {
-      this._plugin = this.plugins.load('AMap.DistrictSearch');
-    }
-
-    return this._plugin.then(() => new AmapDistrictSearchWrapper(opts));
-  }
-}
-
-/**
  * AmapDistrictSearchWrapper对象将高德原生的DistrictSearch对象提供的方法封装成Promise的实现，更方便回调
  */
 export class AmapDistrictSearchWrapper extends EventBinder {
@@ -65,5 +44,26 @@ export class AmapDistrictSearchWrapper extends EventBinder {
 
   setSubdistrict(district: number) {
     this._districtSearch.setSubdistrict(district);
+  }
+}
+
+/**
+ * 行政区域搜索服务
+ */
+@Injectable()
+export class AmapDistrictSearchService {
+  TAG = 'amap-district-search';
+
+  private _plugin: Promise<void>;
+
+  constructor(private plugins: PluginLoaderService) {
+  }
+
+  of(opts?: DistrictSearchOptions): Promise<AmapDistrictSearchWrapper> {
+    if (!this._plugin) {
+      this._plugin = this.plugins.load('AMap.DistrictSearch');
+    }
+
+    return this._plugin.then(() => new AmapDistrictSearchWrapper(opts));
   }
 }

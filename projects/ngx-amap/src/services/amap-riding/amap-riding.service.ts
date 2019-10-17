@@ -9,31 +9,6 @@ import { RidingResult } from '../../types/class/riding/riding-result';
 declare const AMap: AMapClass;
 
 /**
- * 骑行路径规划服务
- */
-@Injectable()
-export class AmapRidingService {
-  TAG = 'amap-riding';
-
-  private _plugin: Promise<void>;
-
-  constructor(private plugins: PluginLoaderService) {
-  }
-
-  get loaded(): Promise<void> {
-    if (!this._plugin) {
-      this._plugin = this.plugins.load('AMap.Riding');
-    }
-
-    return this._plugin;
-  }
-
-  of(opts?: RidingOptions): Promise<AmapRidingWrapper> {
-    return this.loaded.then(() => new AmapRidingWrapper(opts));
-  }
-}
-
-/**
  * AmapRidingWrapper对象将高德原生的Riding对象提供的方法封装成Promise的实现，更方便回调
  */
 export class AmapRidingWrapper extends EventBinder {
@@ -71,5 +46,30 @@ export class AmapRidingWrapper extends EventBinder {
 
   clear() {
     this._riding.clear();
+  }
+}
+
+/**
+ * 骑行路径规划服务
+ */
+@Injectable()
+export class AmapRidingService {
+  TAG = 'amap-riding';
+
+  private _plugin: Promise<void>;
+
+  constructor(private plugins: PluginLoaderService) {
+  }
+
+  get loaded(): Promise<void> {
+    if (!this._plugin) {
+      this._plugin = this.plugins.load('AMap.Riding');
+    }
+
+    return this._plugin;
+  }
+
+  of(opts?: RidingOptions): Promise<AmapRidingWrapper> {
+    return this.loaded.then(() => new AmapRidingWrapper(opts));
   }
 }

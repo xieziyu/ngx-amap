@@ -9,31 +9,6 @@ import { TransferResult } from '../../types/class/transfer/transfer-result';
 declare const AMap: AMapClass;
 
 /**
- * 公交换乘路径规划服务
- */
-@Injectable()
-export class AmapTransferService {
-  TAG = 'amap-transfer';
-
-  private _plugin: Promise<void>;
-
-  constructor(private plugins: PluginLoaderService) {
-  }
-
-  get loaded(): Promise<void> {
-    if (!this._plugin) {
-      this._plugin = this.plugins.load('AMap.Transfer');
-    }
-
-    return this._plugin;
-  }
-
-  of(opts?: TransferOptions): Promise<AmapTransferWrapper> {
-    return this.loaded.then(() => new AmapTransferWrapper(opts));
-  }
-}
-
-/**
  * AmapTransferWrapper对象将高德原生的Transfer对象提供的方法封装成Promise的实现，更方便回调
  */
 export class AmapTransferWrapper extends EventBinder {
@@ -91,5 +66,30 @@ export class AmapTransferWrapper extends EventBinder {
 
   searchOnAMAP(obj: any) {
     this._transfer.searchOnAMAP(obj);
+  }
+}
+
+/**
+ * 公交换乘路径规划服务
+ */
+@Injectable()
+export class AmapTransferService {
+  TAG = 'amap-transfer';
+
+  private _plugin: Promise<void>;
+
+  constructor(private plugins: PluginLoaderService) {
+  }
+
+  get loaded(): Promise<void> {
+    if (!this._plugin) {
+      this._plugin = this.plugins.load('AMap.Transfer');
+    }
+
+    return this._plugin;
+  }
+
+  of(opts?: TransferOptions): Promise<AmapTransferWrapper> {
+    return this.loaded.then(() => new AmapTransferWrapper(opts));
   }
 }

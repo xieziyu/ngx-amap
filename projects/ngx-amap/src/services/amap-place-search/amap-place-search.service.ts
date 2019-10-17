@@ -8,26 +8,6 @@ import { EventBinder } from '../../utils/event-binder';
 declare const AMap: AMapClass;
 
 /**
- * 地点搜索服务，提供某一特定地区的位置查询服务
- */
-@Injectable()
-export class AmapPlaceSearchService {
-  TAG = 'amap-place-search';
-
-  private _plugin: Promise<void>;
-
-  constructor(private plugins: PluginLoaderService) {}
-
-  of(opts?: PlaceSearchOptions): Promise<AmapPlaceSearchWrapper> {
-    if (!this._plugin) {
-      this._plugin = this.plugins.load('AMap.PlaceSearch');
-    }
-
-    return this._plugin.then(() => new AmapPlaceSearchWrapper(opts));
-  }
-}
-
-/**
  * AmapPlaceSearchWrapper对象将高德原生的PlaceSearch对象提供的方法封装成Promise的实现，更方便回调
  */
 export class AmapPlaceSearchWrapper extends EventBinder {
@@ -113,5 +93,25 @@ export class AmapPlaceSearchWrapper extends EventBinder {
 
   detailOnAMAP(obj: any) {
     this._placeSearch.poiOnAMAP(obj);
+  }
+}
+
+/**
+ * 地点搜索服务，提供某一特定地区的位置查询服务
+ */
+@Injectable()
+export class AmapPlaceSearchService {
+  TAG = 'amap-place-search';
+
+  private _plugin: Promise<void>;
+
+  constructor(private plugins: PluginLoaderService) {}
+
+  of(opts?: PlaceSearchOptions): Promise<AmapPlaceSearchWrapper> {
+    if (!this._plugin) {
+      this._plugin = this.plugins.load('AMap.PlaceSearch');
+    }
+
+    return this._plugin.then(() => new AmapPlaceSearchWrapper(opts));
   }
 }
