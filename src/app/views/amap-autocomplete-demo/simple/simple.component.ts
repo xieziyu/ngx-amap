@@ -5,7 +5,7 @@ declare const require: any;
 @Component({
   selector: 'app-simple',
   templateUrl: './simple.component.html',
-  styleUrls: ['./simple.component.scss']
+  styleUrls: ['./simple.component.scss'],
 })
 export class SimpleComponent implements OnInit {
   demo_html = require('!!html-loader!./simple.component.html');
@@ -13,9 +13,7 @@ export class SimpleComponent implements OnInit {
 
   myCity = '';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

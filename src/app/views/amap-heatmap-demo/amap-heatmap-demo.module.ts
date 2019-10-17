@@ -5,13 +5,7 @@ import { AmapHeatmapDemoRoutingModule } from './amap-heatmap-demo-routing.module
 import { SimpleComponent } from './simple/simple.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AmapHeatmapDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    SimpleComponent,
-  ]
+  imports: [CommonModule, AmapHeatmapDemoRoutingModule, SharedModule],
+  declarations: [SimpleComponent],
 })
-export class AmapHeatmapDemoModule { }
+export class AmapHeatmapDemoModule {}

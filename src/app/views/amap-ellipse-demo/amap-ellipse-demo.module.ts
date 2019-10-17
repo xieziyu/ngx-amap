@@ -6,14 +6,7 @@ import { MethodsComponent } from './methods/methods.component';
 import { EventsComponent } from './events/events.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AmapEllipseDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    MethodsComponent,
-    EventsComponent
-  ]
+  imports: [CommonModule, AmapEllipseDemoRoutingModule, SharedModule],
+  declarations: [MethodsComponent, EventsComponent],
 })
-export class AmapEllipseDemoModule { }
+export class AmapEllipseDemoModule {}

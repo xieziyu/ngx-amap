@@ -5,17 +5,8 @@ import { MarkdownModule } from 'ngx-markdown';
 import { NgxAmapModule } from 'ngx-amap';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgxAmapModule,
-    TabsModule,
-    MarkdownModule
-  ],
-  exports: [
-    NgxAmapModule,
-    TabsModule,
-    MarkdownModule
-  ],
-  declarations: []
+  imports: [CommonModule, NgxAmapModule, TabsModule, MarkdownModule],
+  exports: [NgxAmapModule, TabsModule, MarkdownModule],
+  declarations: [],
 })
-export class SharedModule { }
+export class SharedModule {}

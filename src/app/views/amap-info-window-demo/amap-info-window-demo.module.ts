@@ -8,11 +8,7 @@ import { EventsComponent } from './events/events.component';
 import { InsideMarkerComponent } from './inside-marker/inside-marker.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AmapInfoWindowDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [SimpleComponent, MethodsComponent, EventsComponent, InsideMarkerComponent]
+  imports: [CommonModule, AmapInfoWindowDemoRoutingModule, SharedModule],
+  declarations: [SimpleComponent, MethodsComponent, EventsComponent, InsideMarkerComponent],
 })
-export class AmapInfoWindowDemoModule { }
+export class AmapInfoWindowDemoModule {}

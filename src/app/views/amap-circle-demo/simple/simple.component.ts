@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CODE_HTML, CODE_TS } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-simple',
   templateUrl: './simple.component.html',
-  styleUrls: ['./simple.component.scss']
+  styleUrls: ['./simple.component.scss'],
 })
 export class SimpleComponent implements OnInit {
-  demo_md_html = CODE_HTML;
-  demo_md_ts = CODE_TS;
+  demo_md_html = require('!!html-loader!./simple.component.html');
+  demo_md_ts = require('!!raw-loader!./simple.component.ts');
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

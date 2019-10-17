@@ -7,7 +7,7 @@ declare const require: any;
 @Component({
   selector: 'app-simple',
   templateUrl: './simple.component.html',
-  styleUrls: ['./simple.component.scss']
+  styleUrls: ['./simple.component.scss'],
 })
 export class SimpleComponent implements OnInit, OnDestroy {
   demo_html = require('!!html-loader!./simple.component.html');
@@ -15,28 +15,31 @@ export class SimpleComponent implements OnInit, OnDestroy {
 
   private _subscription: Subscription;
 
-  constructor(private ts: AmapWalkingService) { }
+  constructor(private ts: AmapWalkingService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async onMapReady(map) {
     const walkingOpts: WalkingOptions = {
       map: map,
-      panel: 'panel'
+      panel: 'panel',
     };
 
     // 使用of方法构造AMap.Walking插件的Wrapper
     const walking = await this.ts.of(walkingOpts);
 
     // 使用on方法侦听事件：
-    this._subscription = walking.on('complete').subscribe(event => console.log('Walking event: "complete"', event));
-    this._subscription.add(walking.on('error').subscribe(event => console.log('Walking event: "error"', event)));
+    this._subscription = walking
+      .on('complete')
+      .subscribe(event => console.log('Walking event: "complete"', event));
+    this._subscription.add(
+      walking.on('error').subscribe(event => console.log('Walking event: "error"', event)),
+    );
 
     // 使用插件Wrapper搜索路径
     const { status, result } = await walking.search([
       { keyword: '北京市地震局(公交站)', city: '北京' },
-      { keyword: '亦庄文化园(地铁站)', city: '北京' }
+      { keyword: '亦庄文化园(地铁站)', city: '北京' },
     ]);
 
     map.setFitView();
@@ -47,5 +50,4 @@ export class SimpleComponent implements OnInit, OnDestroy {
       this._subscription.unsubscribe();
     }
   }
-
 }

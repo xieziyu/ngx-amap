@@ -7,15 +7,7 @@ import { SearchComponent } from './search/search.component';
 import { EventsComponent } from './events/events.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    AmapAutocompleteServiceDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    SearchComponent,
-    EventsComponent
-  ]
+  imports: [CommonModule, FormsModule, AmapAutocompleteServiceDemoRoutingModule, SharedModule],
+  declarations: [SearchComponent, EventsComponent],
 })
-export class AmapAutocompleteServiceDemoModule { }
+export class AmapAutocompleteServiceDemoModule {}

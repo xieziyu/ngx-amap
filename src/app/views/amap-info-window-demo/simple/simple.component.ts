@@ -1,26 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
+declare const require: any;
+
 @Component({
   selector: 'app-simple',
   templateUrl: './simple.component.html',
-  styleUrls: ['./simple.component.scss']
+  styleUrls: ['./simple.component.scss'],
 })
 export class SimpleComponent implements OnInit {
-  demo_md_html = `\
-<button class="btn btn-outline-primary" (click)="open = !open">显示/隐藏 信息窗体</button>
-<hr>
-<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]">
-  <amap-info-window [(isOpen)]="open" [position]="[116.397428, 39.90923]">
-    我是一个简单的信息窗体
-  </amap-info-window>
-</ngx-amap>
-`;
+  demo_md_html = require('!!html-loader!./simple.component.html');
+  demo_md_ts = require('!!raw-loader!./simple.component.ts');
 
   open = true;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,29 +1,27 @@
 import { Component, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { CODE_HTML, CODE_TS } from './code';
 import { AmapMouseToolService, AmapMouseToolWrapper, NgxAmapComponent } from 'ngx-amap';
 import { Map } from 'ngx-amap/types/class';
+
+declare const require: any;
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements AfterViewInit, OnDestroy {
-  demo_md_html = CODE_HTML;
-  demo_md_ts = CODE_TS;
-  private _subscription: Subscription;
+  demo_md_html = require('!!html-loader!./events.component.html');
+  demo_md_ts = require('!!raw-loader!./events.component.ts');
 
+  private _subscription: Subscription;
   private plugin: Promise<AmapMouseToolWrapper>;
 
-  @ViewChild(NgxAmapComponent)
+  @ViewChild(NgxAmapComponent, { static: true })
   private mapComponent: NgxAmapComponent;
 
-  constructor(
-    private mouseToolService: AmapMouseToolService
-  ) {
-  }
+  constructor(private mouseToolService: AmapMouseToolService) {}
 
   ngAfterViewInit() {
     this.plugin = this.mapComponent.ready
@@ -33,7 +31,8 @@ export class EventsComponent implements AfterViewInit, OnDestroy {
 
     // 绑定事件侦听：
     this.plugin.then(mouseTool => {
-      this._subscription = mouseTool.on('draw')
+      this._subscription = mouseTool
+        .on('draw')
         .subscribe(event => console.log('MouseTool event: "draw"', event));
     });
   }

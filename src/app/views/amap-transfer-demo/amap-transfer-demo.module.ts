@@ -5,13 +5,7 @@ import { AmapTransferDemoRoutingModule } from './amap-transfer-demo-routing.modu
 import { SimpleComponent } from './simple/simple.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule,
-    AmapTransferDemoRoutingModule
-  ],
-  declarations: [
-    SimpleComponent
-  ]
+  imports: [CommonModule, SharedModule, AmapTransferDemoRoutingModule],
+  declarations: [SimpleComponent],
 })
-export class AmapTransferDemoModule { }
+export class AmapTransferDemoModule {}

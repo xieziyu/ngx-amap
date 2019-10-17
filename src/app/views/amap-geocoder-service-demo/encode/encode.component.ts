@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AmapGeocoderService, AmapGeocoderWrapper } from 'ngx-amap';
-import { CODE_TS, CODE_HTML } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-encode',
   templateUrl: './encode.component.html',
-  styleUrls: ['./encode.component.scss']
+  styleUrls: ['./encode.component.scss'],
 })
 export class EncodeComponent implements OnInit {
-  demo_md_html = CODE_HTML;
-  demo_md_ts = CODE_TS;
+  demo_md_html = require('!!html-loader!./encode.component.html');
+  demo_md_ts = require('!!raw-loader!./encode.component.ts');
+
   address: string;
   point: any;
   locationInfo: string;
@@ -25,7 +27,8 @@ export class EncodeComponent implements OnInit {
   query() {
     if (this.address) {
       // 使用AMap.Geocoder.getLocation方法获取地理编码:
-      this.plugin.then(geocoder => geocoder.getLocation(this.address))
+      this.plugin
+        .then(geocoder => geocoder.getLocation(this.address))
         .then(data => {
           console.log('get location of address:', this.address);
           console.log('status:', data.status);

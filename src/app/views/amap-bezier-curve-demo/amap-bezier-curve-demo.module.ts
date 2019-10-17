@@ -6,14 +6,7 @@ import { EventsComponent } from './events/events.component';
 import { MethodsComponent } from './methods/methods.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AmapBezierCurveDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    EventsComponent,
-    MethodsComponent
-  ]
+  imports: [CommonModule, AmapBezierCurveDemoRoutingModule, SharedModule],
+  declarations: [EventsComponent, MethodsComponent],
 })
-export class AmapBezierCurveDemoModule { }
+export class AmapBezierCurveDemoModule {}

@@ -8,16 +8,7 @@ import { EventsComponent } from './events/events.component';
 import { CustomStyleComponent } from './custom-style/custom-style.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AmapMarkerClustererDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    SimpleComponent,
-    MethodsComponent,
-    EventsComponent,
-    CustomStyleComponent
-  ]
+  imports: [CommonModule, AmapMarkerClustererDemoRoutingModule, SharedModule],
+  declarations: [SimpleComponent, MethodsComponent, EventsComponent, CustomStyleComponent],
 })
-export class AmapMarkerClustererDemoModule { }
+export class AmapMarkerClustererDemoModule {}

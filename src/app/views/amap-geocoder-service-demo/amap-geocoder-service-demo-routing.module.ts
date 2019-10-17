@@ -13,20 +13,20 @@ const routes: Routes = [
     path: 'encode',
     component: EncodeComponent,
     data: {
-      title: '正地理编码'
+      title: '正地理编码',
     },
   },
   {
     path: 'decode',
     component: DecodeComponent,
     data: {
-      title: '逆地理编码'
+      title: '逆地理编码',
     },
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AmapGeocoderServiceDemoRoutingModule { }
+export class AmapGeocoderServiceDemoRoutingModule {}

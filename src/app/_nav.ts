@@ -6,7 +6,7 @@ export const navigation = [
   },
   {
     title: true,
-    name: '组件示例'
+    name: '组件示例',
   },
   {
     name: 'ngx-amap',
@@ -16,19 +16,19 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/ngx-amap/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/ngx-amap/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/ngx-amap/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-info-window',
@@ -38,28 +38,28 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-info-window/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '用在marker内部',
         url: '/amap-info-window/inside-marker',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/amap-info-window/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-info-window/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     title: true,
-    name: '指令示例'
+    name: '指令示例',
   },
   {
     name: 'amap-marker',
@@ -69,19 +69,19 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-marker/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/amap-marker/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-marker/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-text',
@@ -91,14 +91,14 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-text/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-text/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-polyline',
@@ -108,19 +108,19 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-polyline/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/amap-polyline/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-polyline/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-polygon',
@@ -130,19 +130,19 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-polygon/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/amap-polygon/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-polygon/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-bezier-curve',
@@ -152,14 +152,14 @@ export const navigation = [
       {
         name: '调用方法',
         url: '/amap-bezier-curve/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-bezier-curve/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-rectangle',
@@ -169,14 +169,14 @@ export const navigation = [
       {
         name: '调用方法',
         url: '/amap-rectangle/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-rectangle/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-circle',
@@ -186,19 +186,19 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-circle/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/amap-circle/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-circle/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-circle-marker',
@@ -208,19 +208,19 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-circle-marker/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/amap-circle-marker/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-circle-marker/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-ellipse',
@@ -230,14 +230,14 @@ export const navigation = [
       {
         name: '调用方法',
         url: '/amap-ellipse/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-ellipse/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-tool-bar',
@@ -247,19 +247,19 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-tool-bar/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/amap-tool-bar/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-tool-bar/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-marker-clusterer',
@@ -269,24 +269,24 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-marker-clusterer/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '自定义样式',
         url: '/amap-marker-clusterer/custom-style',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '调用方法',
         url: '/amap-marker-clusterer/methods',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-marker-clusterer/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'input [amapAutocomplete]',
@@ -296,14 +296,14 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-autocomplete/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/amap-autocomplete/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'amap-heatmap',
@@ -313,13 +313,13 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/amap-heatmap/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     title: true,
-    name: '服务示例'
+    name: '服务示例',
   },
   {
     name: '路径规划服务',
@@ -329,29 +329,29 @@ export const navigation = [
       {
         name: '驾车路线',
         url: '/AmapDrivingService/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '货车路线',
         url: '/AmapTruckDrivingService/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '公交换乘路线',
         url: '/AmapTransferService/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '步行路线',
         url: '/AmapWalkingService/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '骑行路线',
         url: '/AmapRidingService/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'AmapGeocoderService',
@@ -361,14 +361,14 @@ export const navigation = [
       {
         name: '正地理编码',
         url: '/AmapGeocoderService/encode',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '逆地理编码',
         url: '/AmapGeocoderService/decode',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'AmapAutocompleteService',
@@ -378,14 +378,14 @@ export const navigation = [
       {
         name: '搜索提示',
         url: '/AmapAutocompleteService/search',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/AmapAutocompleteService/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'AmapPlaceSearchService',
@@ -395,14 +395,14 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/AmapPlaceSearchService/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/AmapPlaceSearchService/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'AmapDistrictSearchService',
@@ -412,14 +412,14 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/AmapDistrictSearchService/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/AmapDistrictSearchService/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
   {
     name: 'AmapMouseToolService',
@@ -429,13 +429,13 @@ export const navigation = [
       {
         name: '简单示例',
         url: '/AmapMouseToolService/simple',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
       {
         name: '事件',
         url: '/AmapMouseToolService/events',
-        icon: 'fa fa-html5'
+        icon: 'fa fa-html5',
       },
-    ]
+    ],
   },
 ];

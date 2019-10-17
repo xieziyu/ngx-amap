@@ -13,20 +13,20 @@ const routes: Routes = [
     path: 'search',
     component: SearchComponent,
     data: {
-      title: '搜索提示'
+      title: '搜索提示',
     },
   },
   {
     path: 'events',
     component: EventsComponent,
     data: {
-      title: '事件'
+      title: '事件',
     },
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AmapAutocompleteServiceDemoRoutingModule { }
+export class AmapAutocompleteServiceDemoRoutingModule {}
