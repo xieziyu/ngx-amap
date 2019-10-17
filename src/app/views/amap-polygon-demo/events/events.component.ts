@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { TS, HTML } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  code_ts = TS;
-  code_html = HTML;
+  code_ts = require('!!raw-loader!./events.component.ts');
+  code_html = require('!!html-loader!./events.component.html');
 
   options = {};
   hide = false;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     const polygonArr = [];
@@ -22,12 +23,12 @@ export class EventsComponent implements OnInit {
     polygonArr.push([116.402292, 39.892353]);
     polygonArr.push([116.389846, 39.891365]);
     this.options = {
-        path: polygonArr,
-        strokeColor: '#FF33FF',
-        strokeOpacity: 0.2,
-        strokeWeight: 3,
-        fillColor: '#1791fc',
-        fillOpacity: 0.35
+      path: polygonArr,
+      strokeColor: '#FF33FF',
+      strokeOpacity: 0.2,
+      strokeWeight: 3,
+      fillColor: '#1791fc',
+      fillOpacity: 0.35,
     };
   }
 

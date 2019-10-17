@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AmapGeocoderService, AmapGeocoderWrapper } from 'ngx-amap';
-import { CODE_TS, CODE_HTML } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-decode',
   templateUrl: './decode.component.html',
-  styleUrls: ['./decode.component.scss']
+  styleUrls: ['./decode.component.scss'],
 })
 export class DecodeComponent implements OnInit {
-  demo_md_html = CODE_HTML;
-  demo_md_ts = CODE_TS;
+  demo_md_html = require('!!html-loader!./decode.component.html');
+  demo_md_ts = require('!!raw-loader!./decode.component.ts');
   address: string;
   point: any;
   locationInfo: string;
@@ -20,8 +21,7 @@ export class DecodeComponent implements OnInit {
     this.geoPromise = AmapGeocoder.of();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onMapClick(e) {
     this.point = e.lnglat;
@@ -29,7 +29,8 @@ export class DecodeComponent implements OnInit {
 
     if (this.point) {
       // 使用AMap.Geocoder.getAddress方法逆向地理编码:
-      this.geoPromise.then(geocoder => geocoder.getAddress(this.point))
+      this.geoPromise
+        .then(geocoder => geocoder.getAddress(this.point))
         .then(data => {
           console.log('get address of position:', this.point);
           console.log('status:', data.status);

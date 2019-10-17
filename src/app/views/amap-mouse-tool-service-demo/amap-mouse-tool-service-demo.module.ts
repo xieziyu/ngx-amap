@@ -6,15 +6,7 @@ import { AmapMouseToolServiceDemoRoutingModule } from './amap-mouse-tool-service
 import { EventsComponent } from './events/events.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule,
-    AmapMouseToolServiceDemoRoutingModule,
-  ],
-  declarations: [
-    SimpleComponent,
-    EventsComponent,
-  ]
+  imports: [CommonModule, SharedModule, AmapMouseToolServiceDemoRoutingModule],
+  declarations: [SimpleComponent, EventsComponent],
 })
-export class AmapMouseToolServiceDemoModule {
-}
+export class AmapMouseToolServiceDemoModule {}

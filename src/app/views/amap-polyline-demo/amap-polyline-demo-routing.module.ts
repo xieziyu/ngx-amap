@@ -14,27 +14,27 @@ const routes: Routes = [
     path: 'simple',
     component: SimpleComponent,
     data: {
-      title: '简单示例'
-    }
+      title: '简单示例',
+    },
   },
   {
     path: 'methods',
     component: MethodsComponent,
     data: {
-      title: '调用方法'
+      title: '调用方法',
     },
   },
   {
     path: 'events',
     component: EventsComponent,
     data: {
-      title: '事件'
+      title: '事件',
     },
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AmapPolylineDemoRoutingModule { }
+export class AmapPolylineDemoRoutingModule {}

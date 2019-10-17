@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { CODE_TS, CODE_HTML } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  demo_md_html = CODE_HTML;
-  demo_md_ts = CODE_TS;
+  demo_md_html = require('!!html-loader!./events.component.html');
+  demo_md_ts = require('!!raw-loader!./events.component.ts');
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onEvent(event: any, type: string) {
     console.log('autocomplete event:', type, event);

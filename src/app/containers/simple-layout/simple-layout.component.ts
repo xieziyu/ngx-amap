@@ -4,4 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-dashboard',
   template: '<router-outlet></router-outlet>',
 })
-export class SimpleLayoutComponent { }
+export class SimpleLayoutComponent {}

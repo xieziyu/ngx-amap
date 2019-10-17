@@ -1,22 +1,23 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AmapCircleMarkerDirective } from 'ngx-amap';
-import { CODE_HTML, CODE_TS } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-methods',
   templateUrl: './methods.component.html',
-  styleUrls: ['./methods.component.scss']
+  styleUrls: ['./methods.component.scss'],
 })
 export class MethodsComponent implements OnInit {
-  demo_md_html = CODE_HTML;
-  demo_md_ts = CODE_TS;
+  demo_md_html = require('!!html-loader!./methods.component.html');
+  demo_md_ts = require('!!raw-loader!./methods.component.ts');
 
-  @ViewChild(AmapCircleMarkerDirective) circle: AmapCircleMarkerDirective;
+  @ViewChild(AmapCircleMarkerDirective, { static: true })
+  circle: AmapCircleMarkerDirective;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getMethods() {
     if (this.circle) {
@@ -26,5 +27,4 @@ export class MethodsComponent implements OnInit {
       this.circle.getExtData().then(v => console.log('getExtData():', v));
     }
   }
-
 }

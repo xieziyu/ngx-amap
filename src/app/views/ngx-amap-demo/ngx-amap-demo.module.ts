@@ -7,15 +7,7 @@ import { MethodsComponent } from './methods/methods.component';
 import { EventsComponent } from './events/events.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgxAmapDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    SimpleComponent,
-    MethodsComponent,
-    EventsComponent
-  ]
+  imports: [CommonModule, NgxAmapDemoRoutingModule, SharedModule],
+  declarations: [SimpleComponent, MethodsComponent, EventsComponent],
 })
-export class NgxAmapDemoModule { }
+export class NgxAmapDemoModule {}

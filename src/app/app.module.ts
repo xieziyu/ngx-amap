@@ -6,15 +6,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 
 // Import containers
-import {
-  FullLayoutComponent,
-  SimpleLayoutComponent
-} from './containers';
+import { FullLayoutComponent, SimpleLayoutComponent } from './containers';
 
-const APP_CONTAINERS = [
-  FullLayoutComponent,
-  SimpleLayoutComponent
-];
+const APP_CONTAINERS = [FullLayoutComponent, SimpleLayoutComponent];
 
 // Import components
 import {
@@ -29,7 +23,7 @@ import {
   AppSidebarMinimizerComponent,
   APP_SIDEBAR_NAV,
   SearchBoxComponent,
-  SearchResultsComponent
+  SearchResultsComponent,
 } from './components';
 
 const APP_COMPONENTS = [
@@ -44,7 +38,7 @@ const APP_COMPONENTS = [
   AppSidebarMinimizerComponent,
   APP_SIDEBAR_NAV,
   SearchBoxComponent,
-  SearchResultsComponent
+  SearchResultsComponent,
 ];
 
 // Import directives
@@ -52,14 +46,14 @@ import {
   AsideToggleDirective,
   NAV_DROPDOWN_DIRECTIVES,
   ReplaceDirective,
-  SIDEBAR_TOGGLE_DIRECTIVES
+  SIDEBAR_TOGGLE_DIRECTIVES,
 } from './directives';
 
 const APP_DIRECTIVES = [
   AsideToggleDirective,
   NAV_DROPDOWN_DIRECTIVES,
   ReplaceDirective,
-  SIDEBAR_TOGGLE_DIRECTIVES
+  SIDEBAR_TOGGLE_DIRECTIVES,
 ];
 
 // Import routing module
@@ -82,7 +76,7 @@ import { NgxAmapModule } from 'ngx-amap';
     MarkdownModule.forRoot(),
     NgxAmapModule.forRoot({
       apiKey: '146f101e824accd6956eeec4937c1a05',
-      debug: false
+      debug: false,
     }),
   ],
   declarations: [
@@ -90,12 +84,14 @@ import { NgxAmapModule } from 'ngx-amap';
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
     ...APP_DIRECTIVES,
-    HomeComponent
+    HomeComponent,
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

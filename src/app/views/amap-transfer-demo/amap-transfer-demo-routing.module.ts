@@ -12,13 +12,13 @@ const routes: Routes = [
     path: 'simple',
     component: SimpleComponent,
     data: {
-      title: 'AmapTransferService'
+      title: 'AmapTransferService',
     },
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AmapTransferDemoRoutingModule { }
+export class AmapTransferDemoRoutingModule {}

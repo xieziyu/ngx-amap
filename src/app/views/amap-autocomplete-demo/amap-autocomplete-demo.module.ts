@@ -7,15 +7,7 @@ import { SimpleComponent } from './simple/simple.component';
 import { EventsComponent } from './events/events.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    SharedModule,
-    AmapAutocompleteDemoRoutingModule
-  ],
-  declarations: [
-    SimpleComponent,
-    EventsComponent
-  ]
+  imports: [CommonModule, FormsModule, SharedModule, AmapAutocompleteDemoRoutingModule],
+  declarations: [SimpleComponent, EventsComponent],
 })
-export class AmapAutocompleteDemoModule { }
+export class AmapAutocompleteDemoModule {}

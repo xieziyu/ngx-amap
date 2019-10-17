@@ -11,17 +11,17 @@ import { navigation } from './../../_nav';
         <ng-template ngFor let-navitem [ngForOf]="navigation">
           <li *ngIf="isDivider(navitem)" class="nav-divider"></li>
           <ng-template [ngIf]="isTitle(navitem)">
-            <app-sidebar-nav-title [title]='navitem'></app-sidebar-nav-title>
+            <app-sidebar-nav-title [title]="navitem"></app-sidebar-nav-title>
           </ng-template>
-          <ng-template [ngIf]="!isDivider(navitem)&&!isTitle(navitem)">
-            <app-sidebar-nav-item [item]='navitem'></app-sidebar-nav-item>
+          <ng-template [ngIf]="!isDivider(navitem) && !isTitle(navitem)">
+            <app-sidebar-nav-item [item]="navitem"></app-sidebar-nav-item>
           </ng-template>
         </ng-template>
       </ul>
-    </nav>`
+    </nav>
+  `,
 })
 export class AppSidebarNavComponent {
-
   public navigation = navigation;
 
   public isDivider(item) {
@@ -32,7 +32,7 @@ export class AppSidebarNavComponent {
     return item.title ? true : false;
   }
 
-  constructor() { }
+  constructor() {}
 }
 
 import { Router } from '@angular/router';
@@ -40,18 +40,23 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-sidebar-nav-item',
   template: `
-    <li *ngIf="!isDropdown(); else dropdown" [ngClass]="hasClass() ? 'nav-item ' + item.class : 'nav-item'">
-      <app-sidebar-nav-link [link]='item'></app-sidebar-nav-link>
+    <li
+      *ngIf="!isDropdown(); else dropdown"
+      [ngClass]="hasClass() ? 'nav-item ' + item.class : 'nav-item'"
+    >
+      <app-sidebar-nav-link [link]="item"></app-sidebar-nav-link>
     </li>
     <ng-template #dropdown>
-      <li [ngClass]="hasClass() ? 'nav-item nav-dropdown ' + item.class : 'nav-item nav-dropdown'"
-          [class.open]="isActive()"
-          routerLinkActive="open"
-          appNavDropdown>
-        <app-sidebar-nav-dropdown [link]='item'></app-sidebar-nav-dropdown>
+      <li
+        [ngClass]="hasClass() ? 'nav-item nav-dropdown ' + item.class : 'nav-item nav-dropdown'"
+        [class.open]="isActive()"
+        routerLinkActive="open"
+        appNavDropdown
+      >
+        <app-sidebar-nav-dropdown [link]="item"></app-sidebar-nav-dropdown>
       </li>
     </ng-template>
-    `
+  `,
 })
 export class AppSidebarNavItemComponent {
   @Input() item: any;
@@ -72,29 +77,37 @@ export class AppSidebarNavItemComponent {
     return this.router.isActive(this.thisUrl(), false);
   }
 
-  constructor( private router: Router )  { }
-
+  constructor(private router: Router) {}
 }
 
 @Component({
   selector: 'app-sidebar-nav-link',
   template: `
-    <a *ngIf="!isExternalLink(); else external"
+    <a
+      *ngIf="!isExternalLink(); else external"
       [ngClass]="hasVariant() ? 'nav-link nav-link-' + link.variant : 'nav-link'"
       routerLinkActive="active"
-      [routerLink]="[link.url]">
+      [routerLink]="[link.url]"
+    >
       <i *ngIf="isIcon()" class="{{ link.icon }}"></i>
       {{ link.name }}
-      <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{ link.badge.text }}</span>
+      <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{
+        link.badge.text
+      }}</span>
     </a>
     <ng-template #external>
-      <a [ngClass]="hasVariant() ? 'nav-link nav-link-' + link.variant : 'nav-link'" href="{{link.url}}">
+      <a
+        [ngClass]="hasVariant() ? 'nav-link nav-link-' + link.variant : 'nav-link'"
+        href="{{ link.url }}"
+      >
         <i *ngIf="isIcon()" class="{{ link.icon }}"></i>
         {{ link.name }}
-        <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{ link.badge.text }}</span>
+        <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{
+          link.badge.text
+        }}</span>
       </a>
     </ng-template>
-  `
+  `,
 })
 export class AppSidebarNavLinkComponent {
   @Input() link: any;
@@ -115,7 +128,7 @@ export class AppSidebarNavLinkComponent {
     return this.link.icon ? true : false;
   }
 
-  constructor() { }
+  constructor() {}
 }
 
 @Component({
@@ -124,14 +137,16 @@ export class AppSidebarNavLinkComponent {
     <a class="nav-link nav-dropdown-toggle" appNavDropdownToggle>
       <i *ngIf="isIcon()" class="{{ link.icon }}"></i>
       {{ link.name }}
-      <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{ link.badge.text }}</span>
+      <span *ngIf="isBadge()" [ngClass]="'badge badge-' + link.badge.variant">{{
+        link.badge.text
+      }}</span>
     </a>
     <ul class="nav-dropdown-items">
       <ng-template ngFor let-child [ngForOf]="link.children">
-        <app-sidebar-nav-item [item]='child'></app-sidebar-nav-item>
+        <app-sidebar-nav-item [item]="child"></app-sidebar-nav-item>
       </ng-template>
     </ul>
-  `
+  `,
 })
 export class AppSidebarNavDropdownComponent {
   @Input() link: any;
@@ -144,17 +159,17 @@ export class AppSidebarNavDropdownComponent {
     return this.link.icon ? true : false;
   }
 
-  constructor() { }
+  constructor() {}
 }
 
 @Component({
   selector: 'app-sidebar-nav-title',
-  template: ''
+  template: '',
 })
 export class AppSidebarNavTitleComponent implements OnInit {
   @Input() title: any;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     const nativeElement: HTMLElement = this.el.nativeElement;
@@ -163,12 +178,12 @@ export class AppSidebarNavTitleComponent implements OnInit {
 
     this.renderer.addClass(li, 'nav-title');
 
-    if ( this.title.class ) {
+    if (this.title.class) {
       const classes = this.title.class;
       this.renderer.addClass(li, classes);
     }
 
-    if ( this.title.wrapper ) {
+    if (this.title.wrapper) {
       const wrapper = this.renderer.createElement(this.title.wrapper.element);
 
       this.renderer.appendChild(wrapper, name);
@@ -185,5 +200,5 @@ export const APP_SIDEBAR_NAV = [
   AppSidebarNavDropdownComponent,
   AppSidebarNavItemComponent,
   AppSidebarNavLinkComponent,
-  AppSidebarNavTitleComponent
+  AppSidebarNavTitleComponent,
 ];

@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { HTML } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  code_html = HTML;
+  code_html = require('!!html-loader!./events.component.html');
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onEvent(event: any, type: string) {
     console.log('text event:', type, event);

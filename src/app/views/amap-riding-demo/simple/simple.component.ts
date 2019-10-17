@@ -7,7 +7,7 @@ declare const require: any;
 @Component({
   selector: 'app-simple',
   templateUrl: './simple.component.html',
-  styleUrls: ['./simple.component.scss']
+  styleUrls: ['./simple.component.scss'],
 })
 export class SimpleComponent implements OnInit, OnDestroy {
   demo_html = require('!!html-loader!./simple.component.html');
@@ -15,28 +15,31 @@ export class SimpleComponent implements OnInit, OnDestroy {
 
   private _subscription: Subscription;
 
-  constructor(private ts: AmapRidingService) { }
+  constructor(private ts: AmapRidingService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async onMapReady(map) {
     const ridingOpts: RidingOptions = {
       map: map,
-      panel: 'panel'
+      panel: 'panel',
     };
 
     // 使用of方法构造AMap.Riding插件的Wrapper
     const riding = await this.ts.of(ridingOpts);
 
     // 使用on方法侦听事件：
-    this._subscription = riding.on('complete').subscribe(event => console.log('Riding event: "complete"', event));
-    this._subscription.add(riding.on('error').subscribe(event => console.log('Riding event: "error"', event)));
+    this._subscription = riding
+      .on('complete')
+      .subscribe(event => console.log('Riding event: "complete"', event));
+    this._subscription.add(
+      riding.on('error').subscribe(event => console.log('Riding event: "error"', event)),
+    );
 
     // 使用插件Wrapper搜索路径
     const { status, result } = await riding.search([
       { keyword: '临泓路６号院', city: '北京' },
-      { keyword: '龙潭公园', city: '北京' }
+      { keyword: '龙潭公园', city: '北京' },
     ]);
 
     map.setFitView();
@@ -47,5 +50,4 @@ export class SimpleComponent implements OnInit, OnDestroy {
       this._subscription.unsubscribe();
     }
   }
-
 }

@@ -6,14 +6,7 @@ import { SimpleComponent } from './simple/simple.component';
 import { EventsComponent } from './events/events.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AmapTextDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    SimpleComponent,
-    EventsComponent
-  ]
+  imports: [CommonModule, AmapTextDemoRoutingModule, SharedModule],
+  declarations: [SimpleComponent, EventsComponent],
 })
-export class AmapTextDemoModule { }
+export class AmapTextDemoModule {}

@@ -13,20 +13,20 @@ const routes: Routes = [
     path: 'simple',
     component: SimpleComponent,
     data: {
-      title: '简单示例'
+      title: '简单示例',
     },
   },
   {
     path: 'events',
     component: EventsComponent,
     data: {
-      title: '事件'
+      title: '事件',
     },
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AmapPlaceSearchServiceDemoRoutingModule { }
+export class AmapPlaceSearchServiceDemoRoutingModule {}

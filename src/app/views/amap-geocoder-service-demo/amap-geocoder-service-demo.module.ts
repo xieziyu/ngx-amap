@@ -7,15 +7,7 @@ import { EncodeComponent } from './encode/encode.component';
 import { DecodeComponent } from './decode/decode.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    AmapGeocoderServiceDemoRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    EncodeComponent,
-    DecodeComponent
-  ]
+  imports: [CommonModule, FormsModule, AmapGeocoderServiceDemoRoutingModule, SharedModule],
+  declarations: [EncodeComponent, DecodeComponent],
 })
-export class AmapGeocoderServiceDemoModule { }
+export class AmapGeocoderServiceDemoModule {}

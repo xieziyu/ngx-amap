@@ -6,7 +6,7 @@ export class EventBinder {
 
   bindEvent<T>(target: Promise<T> | T, event: string): Observable<any> {
     if (target instanceof Promise) {
-      return Observable.create(observer => {
+      return new Observable(observer => {
         let listenerPromise = target.then(m => {
           return AMap.event.addListener(m, event, e => {
             setTimeout(() => observer.next(e));
@@ -21,7 +21,7 @@ export class EventBinder {
         };
       });
     } else {
-      return Observable.create(observer => {
+      return new Observable(observer => {
         let listener = AMap.event.addListener(target, event, e => {
           setTimeout(() => observer.next(e));
         }, this);

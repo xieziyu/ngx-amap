@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { AMapClass } from 'ngx-amap/types/class';
-import { TS, HTML } from './code';
 
+declare const require: any;
 declare const AMap: AMapClass;
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  code_ts = TS;
-  code_html = HTML;
+  code_ts = require('!!raw-loader!./events.component.ts');
+  code_html = require('!!html-loader!./events.component.html');
 
   hide = false;
   options = {};
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onMapReady() {
     const southWest = new AMap.LngLat(116.376533, 39.907878);
@@ -35,7 +34,7 @@ export class EventsComponent implements OnInit {
       fillColor: 'blue',
       fillOpacity: 0.5,
       zIndex: 10,
-      bubble: true
+      bubble: true,
     };
   }
 

@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, of } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  switchMap
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { SEARCH_ITEMS } from '../search-items';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './app-header.component.html'
+  templateUrl: './app-header.component.html',
 })
 export class AppHeaderComponent implements OnInit {
   searchResults$: Observable<any>;
@@ -37,19 +33,32 @@ export class AppHeaderComponent implements OnInit {
 
       // switch to new search observable each time the term changes
       switchMap((term: string) => {
-        const regx = new RegExp(term.toLowerCase().trim().split('').join('.*'));
-        const regxCN = new RegExp(term.trim().split(' ').join('.*'));
+        const regx = new RegExp(
+          term
+            .toLowerCase()
+            .trim()
+            .split('')
+            .join('.*'),
+        );
+        const regxCN = new RegExp(
+          term
+            .trim()
+            .split(' ')
+            .join('.*'),
+        );
         const result = {
           component: [],
           directive: [],
-          service: []
+          service: [],
         };
 
         // tslint:disable-next-line:prefer-const
         for (let item of SEARCH_ITEMS) {
-          if (regx.test(item.name.toLowerCase())
-            || regx.test(item.name.toUpperCase())
-            || regxCN.test(item.zhCN)) {
+          if (
+            regx.test(item.name.toLowerCase()) ||
+            regx.test(item.name.toUpperCase()) ||
+            regxCN.test(item.zhCN)
+          ) {
             result[item.type].push(item);
           }
         }

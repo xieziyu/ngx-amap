@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
+declare const require: any;
+
 @Component({
   selector: 'app-simple',
   templateUrl: './simple.component.html',
-  styleUrls: ['./simple.component.scss']
+  styleUrls: ['./simple.component.scss'],
 })
 export class SimpleComponent implements OnInit {
-  demo1_md_html = '<ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13"></ngx-amap>';
+  demo_md_html = require('!!html-loader!./simple.component.html');
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

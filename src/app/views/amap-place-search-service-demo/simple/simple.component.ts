@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { AmapPlaceSearchService, AmapPlaceSearchWrapper } from 'ngx-amap';
-import { CODE_HTML, CODE_TS } from './code';
+
+declare const require: any;
 
 @Component({
   selector: 'app-simple',
   templateUrl: './simple.component.html',
-  styleUrls: ['./simple.component.scss']
+  styleUrls: ['./simple.component.scss'],
 })
 export class SimpleComponent implements OnInit {
-  demo_md_html = CODE_HTML;
-  demo_md_ts = CODE_TS;
+  demo_md_html = require('!!html-loader!./simple.component.html');
+  demo_md_ts = require('!!raw-loader!./simple.component.ts');
+
   private plugin: Promise<AmapPlaceSearchWrapper>;
 
-  constructor(private amapPlaceSearch: AmapPlaceSearchService) { }
+  constructor(private amapPlaceSearch: AmapPlaceSearchService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onMapReady(map) {
     // 构造地点查询 wrapper promise:
@@ -24,14 +25,15 @@ export class SimpleComponent implements OnInit {
       pageIndex: 1,
       city: '010', // 城市
       map: map,
-      panel: 'panel'
+      panel: 'panel',
     });
 
-    this.plugin.then(placeSearch => placeSearch.search('北京大学'))
-        .then(data => {
-          console.log('place search for 北京大学');
-          console.log('status:', data.status);
-          console.log('result:', data.result);
-        });
+    this.plugin
+      .then(placeSearch => placeSearch.search('北京大学'))
+      .then(data => {
+        console.log('place search for 北京大学');
+        console.log('status:', data.status);
+        console.log('result:', data.result);
+      });
   }
 }

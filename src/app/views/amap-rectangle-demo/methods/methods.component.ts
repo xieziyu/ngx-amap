@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AMapClass, Bounds } from 'ngx-amap/types/class';
-import { TS, HTML } from './code';
 
+declare const require: any;
 declare const AMap: AMapClass;
 
 @Component({
   selector: 'app-methods',
   templateUrl: './methods.component.html',
-  styleUrls: ['./methods.component.scss']
+  styleUrls: ['./methods.component.scss'],
 })
 export class MethodsComponent implements OnInit {
-  code_ts = TS;
-  code_html = HTML;
+  code_ts = require('!!raw-loader!./methods.component.ts');
+  code_html = require('!!html-loader!./methods.component.html');
 
   bounds: Bounds;
 
@@ -20,10 +20,9 @@ export class MethodsComponent implements OnInit {
 
   editor = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onMapReady() {
     const southWest = new AMap.LngLat(116.376533, 39.907878);

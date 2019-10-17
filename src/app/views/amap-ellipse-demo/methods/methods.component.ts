@@ -1,23 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { TS, HTML } from './code';
+import { Component, OnInit } from '@angular/core';
+
+declare const require: any;
 
 @Component({
   selector: 'app-methods',
   templateUrl: './methods.component.html',
-  styleUrls: ['./methods.component.scss']
+  styleUrls: ['./methods.component.scss'],
 })
 export class MethodsComponent implements OnInit {
-  code_ts = TS;
-  code_html = HTML;
+  code_ts = require('!!raw-loader!./methods.component.ts');
+  code_html = require('!!html-loader!./methods.component.html');
 
   marker1 = [116.403322, 39.920255];
   marker2 = [116.382122, 39.901176];
   editor = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getMethods(ellipse) {
     if (ellipse) {
