@@ -13,7 +13,7 @@ import { CPlaceSearch, PlaceSearch } from './place-search/amap.place-search';
 import { CDistrictSearch, DistrictSearch } from './district-search/amap.district-search';
 import { CMouseTool, MouseTool } from './amap.mouse-tool';
 import { Bounds, CBounds } from './amap.bounds';
-import { CMarker, Marker } from './overlays/amap.marker';
+import { CMarker, Marker, MarkerType } from './overlays/amap.marker';
 import { CPolyline, Polyline } from './overlays/amap.polyline';
 import { CPolygon, Polygon } from './overlays/amap.polygon';
 import { CCircle, Circle } from './overlays/amap.circle';
@@ -73,10 +73,11 @@ export interface AMapClass {
   TruckDriving: CTruckDriving;
 
   plugin(name: string | string[], callback: (result: any) => void): void;
+  loadUI(name: string | string[], callback: (result: any) => void): void;
 }
 
 export {
-  Map, LngLat, Pixel, Size, Marker, Icon,
+  Map, LngLat, Pixel, Size, Marker, MarkerType, Icon,
   InfoWindow, Polyline, Polygon, ToolBar, MarkerClusterer,
   ClusterStyle, Geocoder, Autocomplete, PlaceSearch, DistrictSearch,
   Circle, CircleMarker, MouseTool, Bounds, Text, BezierCurve,

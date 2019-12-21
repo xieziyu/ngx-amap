@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { MapAPILoaderService } from '../map-api-loader/map-api-loader.service';
+import { MapAPILoaderService, MAP_API_CONFIG, IMapAPILoaderConfig } from '../map-api-loader/map-api-loader.service';
 import { MapOptions } from '../../types/interface';
 import { AMapClass, Map } from '../../types/class';
 import { LoggerService } from '../logger/logger.service';
@@ -12,11 +12,13 @@ declare const AMap: AMapClass;
 export class MapAPIService extends EventBinder {
   TAG = 'map-api';
   private _map: Map;
+  private _config: IMapAPILoaderConfig;
   private _mapPromise: Promise<Map>;
   private _mapResolver: (map?: Map) => void;
 
-  constructor(private loader: MapAPILoaderService, private logger: LoggerService) {
+  constructor(@Inject(MAP_API_CONFIG) config: any, private loader: MapAPILoaderService, private logger: LoggerService) {
     super();
+    this._config = config;
     this._mapPromise = new Promise(resolve => this._mapResolver = resolve);
   }
 
@@ -25,6 +27,9 @@ export class MapAPIService extends EventBinder {
       this._map = new AMap.Map(el, options);
       this._mapResolver(this._map);
       this.logger.d(this.TAG, 'new map created');
+      if (this._config.uiApiVersion) {
+        this.loader.loadUI().then(() => { });
+      }
       return this._map;
     });
   }
