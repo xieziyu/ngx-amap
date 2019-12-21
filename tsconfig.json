@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -8,12 +9,24 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "types": [ "node" ],
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-amap": [
+        "lib/src/public_api"
+      ],
+      "ngx-amap/types/class": [
+        "lib/src/types/class"
+      ],
+      "ngx-amap/types/interface": [
+        "lib/src/types/interface"
+      ]
+    }
   }
 }
