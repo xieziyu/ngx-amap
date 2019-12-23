@@ -99,7 +99,7 @@ export class MapAPILoaderService {
       v: isUI ? (this._config.uiApiVersion || this._defaultUIAPIVersion) : (this._config.apiVersion || this._defaultVersion),
       callback: callbackName
     };
-    if (isUI) {
+    if (!isUI) {
       queryParams.key = this._config.apiKey;
     }
 

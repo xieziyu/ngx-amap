@@ -1,9 +1,9 @@
-import { ILabel } from '../label.interface';
+import { ILabel, IconLabel } from '../label.interface';
 import { Map } from '../../class/amap.map';
 import { LngLat } from '../../class/amap.lng-lat';
 import { Icon } from '../../class/amap.icon';
 import { Pixel } from '../../class/amap.pixel';
-import { MarkerType } from 'ngx-amap/types/class';
+import { MarkerType } from '../../class/overlays/amap.marker';
 
 export interface MarkerOptions {
   map?: Map;
@@ -26,5 +26,7 @@ export interface MarkerOptions {
   shape?: any;  // TODO: MarkerShape
   extData?: any;
   label?: ILabel;
+  iconLabel?: string | IconLabel;
   type?: MarkerType;
+  iconStyle?: any;
 }

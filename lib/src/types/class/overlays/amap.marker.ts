@@ -23,11 +23,13 @@ export interface Marker {
   setPosition(lnglat: LngLat | number[]): void;
   setAngle(angle: number): void;
   setLabel(label: any): void;
+  setIconLabel(label: any): void;
   getLabel(): any;
   getAngle(): number;
   setzIndex(index: number): void;
   getzIndex(): number;
   setIcon(content: string | Icon): void;
+  setIconStyle(content: any): void;
   getIcon(): string | Icon;
   setDraggable(draggable: boolean): void;
   getDraggable(): boolean;

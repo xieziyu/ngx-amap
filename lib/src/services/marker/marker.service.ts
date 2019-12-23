@@ -34,7 +34,7 @@ export class MarkerService extends EventBinder {
         options.offset = this.pixel.create(options.offset, 'offset');
       }
 
-      if (options.icon) {
+      if (options.icon && options.type === 'default') {
         options.icon = this.icon.create(options.icon);
       }
 
@@ -60,8 +60,14 @@ export class MarkerService extends EventBinder {
       if (options.type === 'svg') {
         const SvgMarker = await this.plugins.loadUI('overlay/SvgMarker');
         const shape = options.shape || {};
-        return new SvgMarker(new SvgMarker.Shape.WaterDrop({ // TODO: MarkerShape
-          width: shape.width || 16,
+
+        // https://lbs.amap.com/api/amap-ui/demos/amap-ui-svgmarker/all-shapes
+        if (!shape.shapeType) {
+          shape.shapeType = 'WaterDrop';
+        }
+        delete options.shape;
+        return new SvgMarker(new SvgMarker.Shape[shape.shapeType]({ // TODO: MarkerShape
+          width: shape.width || 24,
           height: shape.keepAspectRatio ? false : shape.height || false,
           fillColor: shape && shape.fillColor,
           strokeColor: shape.strokeColor || '#000000',
@@ -70,6 +76,7 @@ export class MarkerService extends EventBinder {
       }
       if (options.type === 'simple') {
         const SimpleMarker = await this.plugins.loadUI('overlay/SimpleMarker');
+        options.iconStyle = options.icon;
         return new SimpleMarker(options);
       }
       if (options.type === 'awesome') {

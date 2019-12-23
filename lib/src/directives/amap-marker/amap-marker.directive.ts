@@ -5,7 +5,7 @@ import {
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
 import { LngLat, MarkerType, Marker, Icon, Pixel, Map } from '../../types/class';
-import { ILngLat, IPixel, IIcon, ILabel, MarkerOptions } from '../../types/interface';
+import { ILngLat, IPixel, IIcon, ILabel, MarkerOptions, IconLabel } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
 import { MarkerService } from '../../services/marker/marker.service';
@@ -34,6 +34,7 @@ const ALL_OPTIONS = [
   'shape',
   'extData',
   'label',
+  'iconLabel',
   'type'
 ];
 
@@ -65,6 +66,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   @Input() shape: any;  // TODO: MarkerShape
   @Input() extData: any;
   @Input() label: ILabel;
+  @Input() iconLabel: IconLabel;
 
   // Extra property:
   @Input() isTop: boolean;
@@ -124,6 +126,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
       filter.has<string | IIcon>('icon').subscribe(v => this.setIcon(v));
       filter.has<IIcon>('shadow').subscribe(v => this.setShadow(v));
       filter.has<ILabel>('label').subscribe(v => this.setLabel(v));
+      filter.has<IconLabel>('iconLabel').subscribe(v => this.setIconLabel(v));
       filter.has<string>('title').subscribe(v => this.setTitle(v));
       filter.has<any>('content').subscribe(v => this.setContent(v));
       filter.has<any>('extData').subscribe(v => this.setExtData(v));
@@ -251,6 +254,10 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
 
   setIcon(icon: string | IIcon): Promise<void> {
     return this._marker.then(marker => {
+      if (marker.constructor.name === 'SimpleMarker') {
+        marker.setIconStyle(icon);
+        return;
+      }
       const value = this.icons.create(icon, 'icon');
       marker.setIcon(value);
     });
@@ -267,6 +274,12 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
     return this._marker.then(marker => {
       const value = this.labels.create(label, 'label');
       marker.setLabel(value);
+    });
+  }
+
+  setIconLabel(label: IconLabel | string): Promise<void> {
+    return this._marker.then(marker => {
+      marker.setIconLabel(label);
     });
   }
 
@@ -314,7 +327,9 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   setShape(shape: any): Promise<void> {
-    return this._marker.then(marker => marker.setShape(shape));
+    return this._marker.then(marker => {
+      marker.setShape(shape);
+    });
   }
 
   setAnimation(animation: string): Promise<void> {

@@ -17,7 +17,7 @@ export class SimpleComponent implements OnInit {
 <button class="btn btn-outline-primary" (click)="toggleLabel()">切换自定义文本标签</button>
 <hr>
 <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
-  <amap-marker [position]="[116.397428, 39.90923]" [hidden]="hidden" [icon]="icon" [label]="label" type="svg"></amap-marker>
+  <amap-marker [position]="[116.397428, 39.90923]" [hidden]="hidden" [icon]="icon" [label]="label"></amap-marker>
 </ngx-amap>
 `;
 
