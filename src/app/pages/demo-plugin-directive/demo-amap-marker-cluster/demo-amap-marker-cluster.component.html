@@ -1,0 +1,40 @@
+<nz-page-header nzTitle="amap-marker-clusterer 点聚合">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>首页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a>插件指令</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>amap-marker-clusterer</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <a href="api-doc/directives/AmapMarkerClustererDirective.html" target="_blank">
+      API 文档
+    </a>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<nz-divider></nz-divider>
+
+<nz-tabset style="margin-top: 8px;" [nzTabPosition]="'left'">
+  <nz-tab nzTitle="简单示例">
+    <ng-template nz-tab>
+      <demo-amap-marker-cluster-simple></demo-amap-marker-cluster-simple>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="自定义样式">
+    <ng-template nz-tab>
+      <demo-amap-marker-cluster-styles></demo-amap-marker-cluster-styles>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="事件示例">
+    <ng-template nz-tab>
+      <demo-amap-marker-cluster-events></demo-amap-marker-cluster-events>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="调用方法">
+    <ng-template nz-tab>
+      <demo-amap-marker-cluster-methods></demo-amap-marker-cluster-methods>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>

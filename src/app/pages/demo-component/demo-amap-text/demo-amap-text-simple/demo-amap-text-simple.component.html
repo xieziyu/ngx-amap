@@ -1,0 +1,20 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="hidden = !hidden" nz-button nzType="default">显示/隐藏</button>
+</div>
+<ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-text
+    cursor="pointer"
+    [position]="[116.396923, 39.918203]"
+    [draggable]="true"
+    [angle]="10"
+    [hidden]="hidden"
+    [style]="style"
+  >纯文本标记</amap-text>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

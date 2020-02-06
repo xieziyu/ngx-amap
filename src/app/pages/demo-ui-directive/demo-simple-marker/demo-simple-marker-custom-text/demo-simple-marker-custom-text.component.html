@@ -1,0 +1,14 @@
+<!-- DEMO START -->
+<ngx-amap class="demo-map" [zoom]="4" (naReady)="onMapReady($event)">
+  <ui-simple-marker [iconLabel]="'A'" [position]="p1"></ui-simple-marker>
+  <ui-simple-marker [iconLabel]="'BC'" [iconStyle]="'green'" [containerClassNames]="'my-marker'" [position]="p2"></ui-simple-marker>
+  <ui-simple-marker [iconLabel]="p3Label" [iconStyle]="'red'" [position]="p3"></ui-simple-marker>
+  <ui-simple-marker [iconLabel]="p4Label" [iconStyle]="'black'" [position]="p4"></ui-simple-marker>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component"
+  [scss]="scss">
+</code-block>

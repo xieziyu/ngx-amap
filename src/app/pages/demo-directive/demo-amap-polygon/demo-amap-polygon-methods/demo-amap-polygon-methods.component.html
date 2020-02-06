@@ -1,0 +1,23 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="getMethods(myPolygone)" nz-button nzType="default">调用原生方法</button>
+  <button (click)="editor = !editor" nz-button nzType="default">开/关编辑功能</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-polygon #myPolygone="polygon"
+    [editor]="editor"
+    [path]="polygonArr"
+    [strokeColor]="'#FF33FF'"
+    [strokeOpacity]="0.2"
+    [strokeWeight]="3"
+    [fillColor]="'#1791fc'"
+    [fillOpacity]="0.35">
+  </amap-polygon>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

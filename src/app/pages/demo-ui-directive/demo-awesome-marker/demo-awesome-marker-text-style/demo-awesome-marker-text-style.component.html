@@ -1,0 +1,15 @@
+<!-- DEMO START -->
+<ngx-amap class="demo-map" [zoom]="4" (naReady)="onMapReady($event)">
+  <ui-awesome-marker *ngFor="let option of options"
+    [awesomeIcon]="option.awesomeIcon"
+    [iconLabel]="option.iconLabel"
+    [iconStyle]="option.iconStyle"
+    [position]="option.position"
+  ></ui-awesome-marker>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component"
+></code-block>

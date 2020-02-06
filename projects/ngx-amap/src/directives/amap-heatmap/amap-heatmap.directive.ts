@@ -1,106 +1,102 @@
-import { Directive, Input, Output, OnDestroy, OnInit,
-  EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Heatmap, Map, HeatmapData } from '../../types/class';
-import { HeatmapOptions } from '../../types/interface';
-import { Utils } from '../../utils/utils';
-import { ChangeFilter } from '../../utils/change-filter';
-import { HeatmapService } from '../../services/heatmap/heatmap.service';
+import {
+  Input,
+  Output,
+  EventEmitter,
+  Directive,
+  OnDestroy,
+  SimpleChanges,
+  OnChanges,
+  NgZone,
+} from '@angular/core';
+import { zip } from 'rxjs';
+import { AmapHeatmapService } from './amap-heatmap.service';
+import { LoggerService } from '../../shared/logger';
+import { getOptions, ChangeFilter } from '../../utils';
 
-const ALL_OPTIONS = [
-  'radius',
-  'gradient',
-  'opacity',
-  'zooms'
-];
+const TAG = 'amap-heatmap';
+const HeatmapOptions = ['radius', 'gradient', 'opacity', 'zooms'];
 
 @Directive({
   selector: 'amap-heatmap',
-  exportAs: 'heatmap'
+  exportAs: 'heatmap',
+  providers: [AmapHeatmapService],
 })
-export class AmapHeatmapDirective implements OnChanges, OnInit, OnDestroy {
-  TAG = 'amap-heatmap';
-
-  // These properties are supported in HeatmapOptions:
+export class AmapHeatmapDirective implements OnChanges, OnDestroy {
+  // ---- Options ----
+  /**
+   * 热力图中单个点的半径，默认：30，单位：pixel
+   */
   @Input() radius: number;
-  @Input() gradient: any;
-  @Input() opacity: number[];
-  @Input() zooms: number[];
-
-  // This options property will override other property:
-  @Input() options: HeatmapOptions;
-  @Input() dataset: HeatmapData;
-
-  // Extra property:
+  /**
+   * 热力图的渐变区间
+   */
+  @Input() gradient: { [key: string]: string };
+  /**
+   * 热力图透明度数组，取值范围[0,1]，0表示完全透明，1表示不透明
+   * 默认：[0,1]
+   */
+  @Input() opacity: [number, number];
+  /**
+   * 支持的缩放级别范围，取值范围[3-18]
+   * 默认：[3,18]
+   */
+  @Input() zooms: [number, number];
+  /**
+   * 额外: 是否隐藏
+   */
   @Input() hidden = false;
+  /**
+   * 额外: 会覆盖其他属性的配置方式
+   */
+  @Input() options: AMap.Heatmap.Options;
+  /**
+   * 额外: 坐标数据集
+   */
+  @Input() dataset: AMap.Heatmap.DataSet;
 
-  // amap-tool-bar events:
-  @Output() ready = new EventEmitter();
+  // ---- Events ----
+  @Output() naReady = new EventEmitter();
 
-  private _heatmap: Promise<Heatmap>;
+  private inited = false;
 
   constructor(
-    private hms: HeatmapService
+    protected os: AmapHeatmapService,
+    private logger: LoggerService,
+    private ngZone: NgZone,
   ) {}
 
-  ngOnInit() { }
+  ngOnDestroy() {
+    this.os.destroy();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     const filter = ChangeFilter.of(changes);
-
-    if (!this._heatmap) {
-      const options = this.options || Utils.getOptionsFor<HeatmapOptions>(this, ALL_OPTIONS);
-      this._heatmap = this.hms.create(options);
-      this.bindEvents();
-      this._heatmap.then(t => this.ready.emit(t));
-      this.hidden ? this.hide() : this.show();
+    const heatmap = this.get();
+    if (!this.inited) {
+      this.logger.d(TAG, 'initializing ...');
+      const options = this.options || getOptions<AMap.Heatmap.Options>(this, HeatmapOptions);
+      this.logger.d(TAG, 'options:', options);
+      this.os.create(options).subscribe(m => {
+        this.ngZone.run(() => this.naReady.emit(m));
+        this.logger.d(TAG, 'heatmap is ready.');
+      });
+      this.inited = true;
     } else {
-      filter.has<HeatmapOptions>('options').subscribe(v => this.setOptions(v || {}));
+      zip(filter.has<AMap.Heatmap.Options>('options'), heatmap).subscribe(([v, p]) =>
+        p.setOptions(v || {}),
+      );
     }
 
-    filter.notEmpty<HeatmapData>('dataset').subscribe(v => this.setDataSet(v));
-    filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
+    zip(filter.notEmpty<AMap.Heatmap.DataSet>('dataset'), heatmap).subscribe(([v, p]) => {
+      p.setDataSet(v);
+    });
+    zip(filter.has<boolean>('hidden'), heatmap).subscribe(([v, p]) => (v ? p.hide() : p.show()));
   }
 
-  ngOnDestroy() {
-    this.unbindEvents();
-    this.hms.destroy(this._heatmap);
-  }
-
-  private bindEvents() {
-  }
-
-  private bindHeatmapEvent(event: string) {
-    return this.hms.bindEvent(this._heatmap, event);
-  }
-
-  private unbindEvents() {
-  }
-
-  // Public methods:
-  show(): Promise<void> {
-    return this._heatmap.then(t => t.show());
-  }
-
-  hide(): Promise<void> {
-    return this._heatmap.then(t => t.hide());
-  }
-
-  // Setters:
-  setOptions(opt: HeatmapOptions): Promise<void> {
-    return this._heatmap.then(p => p.setOptions(opt));
-  }
-
-  setDataSet(data: HeatmapData): Promise<void> {
-    return this._heatmap.then(p => p.setDataSet(data));
-  }
-
-  // Getters:
-  getDataSet(): Promise<any> {
-    return this._heatmap.then(t => t.getDataSet());
-  }
-
-  getMap(): Promise<Map> {
-    return this._heatmap.then(t => t.getMap());
+  /**
+   * 获取已创建的 AMap.Heatmap 对象
+   */
+  get() {
+    return this.os.get();
   }
 }

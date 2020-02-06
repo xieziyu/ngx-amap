@@ -9,61 +9,39 @@
 ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高德地图**Javascript API而构建的组件集合
 
 ## 目录
-1. [版本信息](#版本信息)
-2. [最新进度](#最新进度)
-3. [安装](#安装)
-4. [使用](#使用)
-5. [配置](#配置)
-6. [指令和服务](#指令和服务)
-7. [类型声明](#类型声明)
+1. [最新进度](#最新进度)
+2. [安装](#安装)
+3. [使用](#使用)
+4. [配置](#配置)
+5. [加载插件](#加载插件)
+6. [加载UI库](#加载UI库)
+7. [指令和服务](#指令和服务)
 8. [本地演示](#本地演示)
 
-# 版本信息
-@npm:
-+ `v2.x` for Angular >= 6
-+ `v1.x` for Angular < 6
-
-Github branches:
-+ `master` for Angular >= 6
-+ `v1.x` for Angular < 6
-
-
 # 最新进度
-2019.09.23: v2.2.1 & v1.4.1
-  + 修复 Icon issue[#40](https://github.com/xieziyu/ngx-amap/issues/40)
+2020.02.06: v3.0.0
+- NEW:
+  - 支持 `AMapUI` 库，可通过 `AmapUILoaderService` 服务加载使用，部分 UI 组件也封装成了指令，如：`ui-awesome-marker`
+  - 提供加载插件服务：`AmapPluginLoaderService`，部分常用插件已封装成了指令，如：`amap-tool-bar`
 
-2018.11.29: v2.2.0 & v1.4.0
-  + 新增支持路径规划：
-    + AMap.Driving 驾车路线规划服务：AmapDrivingService
-    + AMap.TruckDriving 货车路线规划服务：AmapTruckDrivingService
-    + AMap.Transfer 公交换乘路线规划服务：AmapTransferService
-    + AMap.Walking 步行路线规划服务：AmapWalkingService
-    + AMap.Riding 骑行路线规划服务：AmapRidingService
-
-2018.06.22: v2.1.1 & v1.3.3
-  + Bugfix：[amapAutocomplete] 切换city时不起作用 [issue#23](https://github.com/xieziyu/ngx-amap/issues/23)
-
-2018.05.24: v2.1.0
-  + 新增支持图层AMap.Heatmap指令：amap-heatmap
-
-2018.05.11: v2.0.0: 支持 Angular 6
-
-2018.04.17: v1.3.2：行政区查询
-  + 新增支持AMap.DistrictSearch行政区查询服务：AmapDistrictSearchService (感谢: [noob9527](https://github.com/noob9527))
-
-2018.03.27: v1.3.1：覆盖物编辑功能 ([传送门：高德开放平台API](https://lbs.amap.com/api/javascript-api/reference/plugin))
-  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle/methods) AMap.CircleEditor编辑功能：amap-circle `[editor]="true"`
-  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-polyline/methods) AMap.PolyEditor编辑功能：amap-polyline, amap-polygon `[editor]="true"`
-  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-bezier-curve/methods) AMap.BezierCurveEditor编辑功能：amap-bezier-curve `[editor]="true" [editorOptions]="editorOptions"`
-  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-ellipse/methods) AMap.EllipseEditor编辑功能：amap-ellipse `[editor]="true"`
-  + [demo](https://xieziyu.github.io/ngx-amap/#/amap-rectangle/methods) AMap.RectangleEditor编辑功能：amap-rectangle `[editor]="true"`
-  + 添加editor相关事件emitter，例如：`(editorAddnode)`, `(editorAdjust)`等，详见示例
+- BREAKING CHANGES:
+  - 重写了整体的封装架构，不再使用 Promise 封装，全部使用 Observable
+  - `@Output` 事件命名统一调整为: 包含`na`前缀
+  - 不再提供 Getter 和 Setter 的 Wrapper，建议直接调用 `amap` 原生对象的方法
+  - 移除 amap 相关的类型定义，引入 `@types/amap-js-api`
 
 # 安装
 ```bash
-$ npm install ngx-amap --save
-# or
-$ yarn add ngx-amap
+npm install -S ngx-amap
+npm install -D @types/amap-js-api
+# 地图插件类型定义可按需安装：
+npm install -D @types/amap-js-api-tool-bar
+npm install -D @types/amap-js-api-heatmap
+npm install -D @types/amap-js-api-autocomplete
+npm install -D @types/amap-js-api-place-search
+npm install -D @types/amap-js-api-driving
+npm install -D @types/amap-js-api-transfer
+# ...
 ```
 
 # 使用
@@ -122,58 +100,54 @@ $ yarn add ngx-amap
 更多用法和事件，请参看演示和文档。
 
 # 配置
-你可以通过`NgxAmapModule`的`forRoot()`方法设置`ngx-amap`. 它可以接受以下参数传入：
+我们可以通过`NgxAmapModule`的`forRoot()`方法设置`ngx-amap`。它可以接受以下参数传入：
 ```typescript
 {
-  apiKey: string;   // *必须， 高德地图的开发者license key
-  apiVersion: string;  // [可选]，默认是'1.4.11'
-  urlPath: string;  // [可选]， 默认是 'https://webapi.amap.com/maps', 可以用它设置HTTPS或者HTTP协议
+  apiKey: string;   // 高德地图的开发者license key
+  apiVersion?: string;  // [可选], api 版本, 默认是 '1.4.15'
+  uiVersion?: string;   // [可选], ui 库版本, 默认是 '1.0.11'
+  protocol?: 'http' | 'https'; // [可选], api 路径协议类型
+  debug?: boolean; // [可选], 是否开启调试模式
+  debugTags?: string; // [可选], 开启调试的 TAG, '*' 为全部
 }
 ```
+
+# 加载插件
+部分常用插件如: `AMap.ToolBar` 已封装成指令，可直接使用。
+
+插件可通过服务：`AmapPluginLoaderService` 加载后使用。若插件需要 mapObject，可配合 `ngx-amap` 的 `(naReady)` 事件一起使用。
+
+[查看示例](https://xieziyu.github.io/ngx-amap/#/services/amap-plugin-loader)
+
+# 加载UI库
+部分常用 UI 库如: `AMapUI.SimpleMarker` 已封装成指令，可直接使用。
+
+UI 库可通过服务：`AmapUILoaderService` 加载后使用。若 UI 需要使用 mapObject，可配合 `ngx-amap` 的 `(naReady)` 事件一起使用。
+
+[查看示例](https://xieziyu.github.io/ngx-amap/#/services/amap-ui-loader)
 
 # 指令和服务
 | NGX-AMAP | 类型 | 高德地图 | 类 | 演示示例 |
 | -------- | --- |------- | -- | -------- |
-|`ngx-amap`                 | `Component` | 地图 | **AMap.Map** | [demo](https://xieziyu.github.io/ngx-amap/#/ngx-amap/simple) |
-|`amap-marker`              | `Directive` | 覆盖物：点标记 | **AMap.Marker** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-marker/simple) |
-|`amap-text`                | `Directive` | 覆盖物：文本标记 | **AMap.Text** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-text/simple) |
-|`amap-polyline`            | `Directive` | 覆盖物：折线 | **AMap.Polyline** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-polyline/simple) |
-|`amap-polygon`             | `Directive` | 覆盖物：多边线 | **AMap.Polygon** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-polygon/simple) |
-|`amap-bezier-curve`        | `Directive` | 覆盖物：贝塞尔曲线 | **AMap.BezierCurve** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-bezier-curve/methods) |
-|`amap-ellipse`             | `Directive` | 覆盖物：椭圆 | **AMap.Ellipse** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-ellipse/methods) |
-|`amap-circle`              | `Directive` | 覆盖物：圆 | **AMap.Circle** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle/simple) |
-|`amap-circle-marker`       | `Directive` | 覆盖物：圆点标记 | **AMap.CircleMarker** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-circle-marker/simple) |
-|`amap-rectangle`           | `Directive` | 覆盖物：矩形 | **AMap.Rectangle** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-rectangle/methods) |
-|`amap-info-window`         | `Component` | 信息窗体 | **AMap.InfoWindow** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-info-window/simple) |
-|`amap-tool-bar`            | `Directive` | 工具条插件 | **AMap.ToolBar** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-tool-bar/simple) |
-|`amap-marker-clusterer`    | `Directive` | 点聚合插件 | **AMap.MarkerClusterer** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-marker-clusterer/simple) |
-|`AmapGeocoderService`      | `Service`   | 地理编码服务 | **AMap.Geocoder** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapGeocoderService/encode) |
-|`AmapAutocompleteService`  | `Service`   | 关键字提示服务 | **AMap.Autocomplete** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapAutocompleteService/search) |
-|`AmapPlaceSearchService`   | `Service`   | 地点搜索服务 | **AMap.PlaceSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapPlaceSearchService/simple) |
-|`AmapDistrictSearchService`| `Service`   | 行政区搜索服务 | **AMap.DistrictSearch** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDistrictSearchService/simple) |
-|`AmapMouseToolService`     | `Service`   | 鼠标工具插件 | **AMap.MouseTool** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapMouseToolService/simple) |
-|`amap-heatmap`             | `Directive` | 图层：热力图 | **AMap.Heatmap** | [demo](https://xieziyu.github.io/ngx-amap/#/amap-heatmap/simple) |
-|`AmapDrivingService`       | `Service`   | 驾车路线规划服务 | **AMap.Driving** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapDrivingService/simple) |
-|`AmapTruckDrivingService`  | `Service`   | 货车路线规划服务 | **AMap.TruckDriving** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapTruckDrivingService/simple) |
-|`AmapTransferService`      | `Service`   | 换乘路线规划服务 | **AMap.Transfer** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapTransferService/simple) |
-|`AmapWalkingService`       | `Service`   | 步行路线规划服务 | **AMap.Walking** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapWalkingService/simple) |
-|`AmapRidingService`        | `Service`   | 骑行路线规划服务 | **AMap.Riding** | [demo](https://xieziyu.github.io/ngx-amap/#/AmapRidingService/simple) |
-
-
-# 类型声明
-可以从`ngx-amap/types/class`中import对AMap类的声明：
-
-```typescript
-  import { Map, Marker, LngLat, Icon } from 'ngx-amap/types/class';
-```
-
-可以从`ngx-amap/types/interface`中import对`ngx-amap`所使用的Input类型需要的声明：
-
-```typescript
-  import { MarkerOptions, IPixel, IIcon } from 'ngx-amap/types/interface';
-```
-
-更多类型，请参看[在线文档](https://xieziyu.github.io/ngx-amap/api-doc)
+|`ngx-amap`                 | `Component` | 地图 | **AMap.Map** | [demo](https://xieziyu.github.io/ngx-amap/#/components/ngx-amap) |
+|`amap-text`                | `Component` | 覆盖物：文本标记 | **AMap.Text** | [demo](https://xieziyu.github.io/ngx-amap/#/components/amap-text) |
+|`amap-info-window`         | `Component` | 信息窗体 | **AMap.InfoWindow** | [demo](https://xieziyu.github.io/ngx-amap/#/components/amap-info-window) |
+|`amap-marker`              | `Directive` | 覆盖物：点标记 | **AMap.Marker** | [demo](https://xieziyu.github.io/ngx-amap/#/directives/amap-marker) |
+|`amap-polyline`            | `Directive` | 覆盖物：折线 | **AMap.Polyline** | [demo](https://xieziyu.github.io/ngx-amap/#/directives/amap-polyline) |
+|`amap-polygon`             | `Directive` | 覆盖物：多边线 | **AMap.Polygon** | [demo](https://xieziyu.github.io/ngx-amap/#/directives/amap-polygon) |
+|`amap-bezier-curve`        | `Directive` | 覆盖物：贝塞尔曲线 | **AMap.BezierCurve** | [demo](https://xieziyu.github.io/ngx-amap/#/directives/amap-bezier-curve) |
+|`amap-ellipse`             | `Directive` | 覆盖物：椭圆 | **AMap.Ellipse** | [demo](https://xieziyu.github.io/ngx-amap/#/directives/amap-ellipse) |
+|`amap-circle`              | `Directive` | 覆盖物：圆 | **AMap.Circle** | [demo](https://xieziyu.github.io/ngx-amap/#/directives/amap-circle) |
+|`amap-circle-marker`       | `Directive` | 覆盖物：圆点标记 | **AMap.CircleMarker** | [demo](https://xieziyu.github.io/ngx-amap/#/directives/amap-circle-marker) |
+|`amap-rectangle`           | `Directive` | 覆盖物：矩形 | **AMap.Rectangle** | [demo](https://xieziyu.github.io/ngx-amap/#/directives/amap-rectangle) |
+|`amap-tool-bar`            | `Directive` | 工具条插件 | **AMap.ToolBar** | [demo](https://xieziyu.github.io/ngx-amap/#/plugins/amap-tool-bar) |
+|`amap-marker-clusterer`    | `Directive` | 点聚合插件 | **AMap.MarkerClusterer** | [demo](https://xieziyu.github.io/ngx-amap/#/plugins/amap-marker-cluster) |
+|`amap-heatmap`             | `Directive` | 图层：热力图 | **AMap.Heatmap** | [demo](https://xieziyu.github.io/ngx-amap/#/plugins/amap-heatmap) |
+|`ui-simple-marker`         | `Directive` | UI 简单标记 | **AMapUI.SimpleMarker** | [demo](https://xieziyu.github.io/ngx-amap/#/ui-directives/ui-simple-marker) |
+|`ui-awesome-marker`        | `Directive` | UI 字体图标标注 | **AMapUI.AwesomeMarker** | [demo](https://xieziyu.github.io/ngx-amap/#/ui-directives/ui-awesome-marker) |
+|`AmapPluginLoaderService`  | `Service`   | 插件加载 | **AMap.plugin** | [demo](https://xieziyu.github.io/ngx-amap/#/services/amap-amap-plugin-loader) |
+|`AmapUILoaderService`      | `Service`   | UI 库加载服务 | **AMapUI.loadUI** | [demo](https://xieziyu.github.io/ngx-amap/#/services/amap-ui-loader) |
+|`AmapAutocompleteService`  | `Service`   | 关键字提示服务 | **AMap.Autocomplete** | [demo](https://xieziyu.github.io/ngx-amap/#/services/amap-autocomplete) |
 
 # 本地演示
 1. clone 当前 repo 到本地

@@ -1,0 +1,20 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="open = !open" nz-button nzType="default">开关窗体</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]">
+  <amap-info-window [(isOpen)]="open" [position]="[116.397428, 39.90923]"
+    (naOpen)="onEvent($event, 'naOpen')"
+    (naClose)="onEvent($event, 'naClose')"
+    (naChange)="onEvent($event, 'naChange')"
+  >
+    我还是一个简单的信息窗体
+  </amap-info-window>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

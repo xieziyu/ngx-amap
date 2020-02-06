@@ -1,0 +1,30 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="getMethods(myBezierCurve)" nz-button nzType="default">调用原生方法</button>
+  <button (click)="editor = !editor" nz-button nzType="default">开/关曲线编辑功能</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-bezier-curve #myBezierCurve="bezier-curve"
+    [editor]="editor"
+    [path]="path"
+    [isOutline]="true"
+    [borderWeight]="3"
+    [strokeOpacity]="1"
+    [strokeWeight]="6"
+    [strokeDasharray]="[10, 10]"
+    [zIndex]="50"
+    outlineColor="#ffeeff"
+    strokeColor="#3366FF"
+    strokeStyle="solid"
+    lineJoin="round"
+    lineCap="round"
+  >
+  </amap-bezier-curve>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

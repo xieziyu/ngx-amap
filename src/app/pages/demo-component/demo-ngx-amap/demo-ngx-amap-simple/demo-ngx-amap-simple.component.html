@@ -1,0 +1,17 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="city = '北京'" nz-button nzType="default">北京</button>
+  <button (click)="city = '上海'" nz-button nzType="default">上海</button>
+</div>
+
+<ngx-amap class="demo-map"
+  [city]="city"
+  [resizeEnable]="true"
+  [zoom]="13"
+></ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

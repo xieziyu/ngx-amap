@@ -1,158 +1,205 @@
-import { Component, ElementRef, OnInit, Input,
-  OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
-import { LngLat, InfoWindow, Marker, Size, Text } from '../../types/class';
-import { ILngLat, ISize, IPixel, InfoWindowOptions } from '../../types/interface';
-import { Utils } from '../../utils/utils';
-import { ChangeFilter } from '../../utils/change-filter';
-import { InfoWindowService } from '../../services/info-window/info-window.service';
-import { SizeService } from '../../services/size/size.service';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  OnChanges,
+  ElementRef,
+  NgZone,
+} from '@angular/core';
+import { zip, Subscription, Observable } from 'rxjs';
+import { LoggerService } from '../../shared/logger';
+import { EventBinderService } from '../../shared/event-binder.service';
+import { getOptions, ChangeFilter } from '../../utils';
+import { AmapInfoWindowService } from './amap-info-window.service';
+import { IPixel, ISize } from '../../interfaces';
+import { PixelService } from '../../shared/pixel.service';
+import { SizeService } from '../../shared/size.service';
+import { AMapService } from '../../shared/amap.service';
 
+const TAG = 'amap-info-window';
 const ALL_OPTIONS = [
   'isCustom',
   'autoMove',
   'closeWhenClickMap',
   'content',
   'size',
+  'anchor',
   'offset',
   'position',
-  'showShadow'
+  'showShadow',
 ];
 
 @Component({
   selector: 'amap-info-window',
-  templateUrl: 'amap-info-window.component.html',
-  styleUrls: ['amap-info-window.component.scss'],
-  exportAs: 'info-window'
+  templateUrl: './amap-info-window.component.html',
+  styleUrls: ['./amap-info-window.component.scss'],
+  providers: [AmapInfoWindowService],
 })
-export class AmapInfoWindowComponent implements OnInit, OnDestroy, OnChanges {
-  TAG = 'amap-info-window';
-
-  // These properties are supported in InfoWindowOptions:
+export class AmapInfoWindowComponent implements OnChanges, OnDestroy {
+  // ---- Options ----
+  /**
+   * 是否自定义窗体
+   */
   @Input() isCustom: boolean;
+  /**
+   * 是否自动调整窗体到视野内
+   */
   @Input() autoMove: boolean;
+  /**
+   * 控制是否在鼠标点击地图后关闭信息窗体
+   */
   @Input() closeWhenClickMap: boolean;
-  @Input() size: ISize;
-  @Input() offset: IPixel;
-  @Input() position: ILngLat;
+  /**
+   * 显示内容
+   */
+  @Input() content: string | HTMLElement;
+  /**
+   * 信息窗体尺寸
+   */
+  @Input() size: AMap.SizeValue | ISize;
+  /**
+   * 信息窗体锚点
+   */
+  @Input() anchor: AMap.InfoWindow.Anchor;
+  /**
+   * 信息窗体显示位置偏移量
+   */
+  @Input() offset: AMap.Pixel | IPixel;
+  /**
+   * 信息窗体显示基点位置
+   */
+  @Input() position: AMap.LocationValue;
+  /**
+   * 是否显示信息窗体阴影
+   */
   @Input() showShadow: boolean;
-
-  // Extra property:
+  /**
+   * 额外：是否开启
+   */
   @Input() isOpen = false;
+  // ---- Events ----
+  @Output() naReady = new EventEmitter();
+  @Output() naOpen: EventEmitter<any>;
+  @Output() naClose: EventEmitter<any>;
+  @Output() naChange: EventEmitter<any>;
+  @Output() isOpenChange = new EventEmitter<boolean>();
 
-  // amap-info-window events:
-  @Output() isOpenChange = new EventEmitter();
-  @Output() windowOpen = new EventEmitter();
-  @Output() windowClose = new EventEmitter();
-  @Output() windowChange = new EventEmitter();
-
-  content: any;
-  hostMarker: Promise<Marker|Text>;
-  private _infoWindow: Promise<InfoWindow>;
-  private _subscriptions: Subscription;
+  hostMarker: Observable<AMap.Marker | AMap.Text>;
+  private inited = false;
+  private subscriptions: Subscription;
 
   constructor(
+    protected os: AmapInfoWindowService,
+    protected binder: EventBinderService,
+    private amaps: AMapService,
     private el: ElementRef,
     private logger: LoggerService,
-    private infoWindows: InfoWindowService,
-    private sizes: SizeService
-  ) {}
-
-  ngOnInit() {
-    this.content = this.el.nativeElement.querySelector('.amap-info-window-content');
-    const options = Utils.getOptionsFor<InfoWindowOptions>(this, ALL_OPTIONS);
-    this.logger.d(this.TAG, 'info window options:', options);
-    this._infoWindow = this.infoWindows.create(options);
-    this.bindEvents();
-    this.toggleOpen();
+    private pixels: PixelService,
+    private sizes: SizeService,
+    private ngZone: NgZone,
+  ) {
+    const w = this.os.get();
+    this.naOpen = this.binder.bindEvent(w, 'open');
+    this.naClose = this.binder.bindEvent(w, 'close');
+    this.naChange = this.binder.bindEvent(w, 'change');
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this._infoWindow) { return; }
-
     const filter = ChangeFilter.of(changes);
-    filter.has<any>('content').subscribe(v => this.setContent(v));
-    filter.has<boolean>('isOpen').subscribe(v => this.toggleOpen());
-    filter.notEmpty<ILngLat>('position').subscribe(v => this.setPosition(v));
-    filter.notEmpty<ISize>('size').subscribe(v => this.setSize(v));
+    const iw = this.get();
+    if (!this.inited) {
+      this.amaps.get().subscribe(() => {
+        this.logger.d(TAG, 'initializing ...');
+        // bind isOpenChange events:
+        this.subscriptions = this.binder.bindEvent(iw, 'open').subscribe(() => {
+          if (!this.isOpen) {
+            this.isOpen = true;
+            this.isOpenChange.emit(true);
+          }
+        });
+        this.subscriptions.add(
+          this.binder.bindEvent(iw, 'close').subscribe(() => {
+            if (this.isOpen) {
+              this.isOpen = false;
+              this.isOpenChange.emit(false);
+            }
+          }),
+        );
+        this.content = this.content
+          ? this.content
+          : this.el.nativeElement.querySelector('.amap-info-window-content');
+        const options = getOptions<AMap.InfoWindow.Options>(this, ALL_OPTIONS);
+        if (this.offset) {
+          options.offset = this.pixels.create(this.offset);
+        }
+        if (this.size) {
+          options.size = this.sizes.create(this.size);
+        }
+        this.logger.d(TAG, 'options:', options);
+        this.os.create(options).subscribe(m => {
+          this.ngZone.run(() => {
+            this.toggleOpen();
+            this.naReady.emit(m);
+          });
+          this.logger.d(TAG, 'InfoWindow is ready.');
+        });
+        this.inited = true;
+      });
+    } else {
+      filter.has<boolean>('isOpen').subscribe(() => this.toggleOpen());
+      zip(filter.has<any>('content'), iw).subscribe(([v, w]) => w.setContent(v));
+      zip(filter.notEmpty<AMap.LocationValue>('position'), iw).subscribe(([v, w]) =>
+        w.setPosition(v),
+      );
+      zip(filter.notEmpty<AMap.SizeValue | ISize>('size'), iw).subscribe(([v, w]) =>
+        w.setSize(this.sizes.create(v)),
+      );
+      zip(filter.notEmpty<AMap.InfoWindow.Anchor>('anchor'), iw).subscribe(([v, w]) =>
+        w.setAnchor(v),
+      );
+    }
   }
 
   ngOnDestroy() {
-    this._subscriptions.unsubscribe();
-    this.infoWindows.destroy(this._infoWindow);
+    if (this.subscriptions) {
+      this.subscriptions.unsubscribe();
+    }
+    this.os.destroy();
   }
 
-  private bindEvents() {
-    this._subscriptions = this.infoWindows.bindEvent(this._infoWindow, 'change').subscribe(e => this.windowChange.emit(e));
-    this._subscriptions.add(this.infoWindows.bindEvent(this._infoWindow, 'open').subscribe(e => {
-      this.windowOpen.emit(e);
-      if (!this.isOpen) {
-        this.isOpenChange.emit(true);
-      }
-    }));
-    this._subscriptions.add(this.infoWindows.bindEvent(this._infoWindow, 'close').subscribe(e => {
-      this.windowClose.emit(e);
-      if (this.isOpen) {
-        this.isOpenChange.emit(false);
-      }
-    }));
+  /**
+   * 获取已创建的 AMap.InfoWindow 对象
+   */
+  get() {
+    return this.os.get();
   }
 
-  // public methods:
+  /**
+   * 开关窗体
+   */
   toggleOpen() {
-    this.logger.d(this.TAG, 'toggle open');
+    this.logger.d(TAG, 'toggle open');
     this.isOpen ? this.open() : this.close();
   }
 
-  open(position?: ILngLat): Promise<void> {
-    return this._infoWindow.then(infoWindow => {
-      if (this.hostMarker) {
-        return this.hostMarker.then(marker => this.infoWindows.open(infoWindow, marker.getPosition()));
-      } else if (position) {
-        return this.infoWindows.open(infoWindow, position);
-      } else if (this.position) {
-        return this.infoWindows.open(infoWindow, this.position);
-      } else {
-        return this.infoWindows.open(infoWindow);
-      }
-    });
+  /**
+   * 打开窗体
+   */
+  open() {
+    if (this.hostMarker) {
+      this.os.openOnMark(this.hostMarker);
+    } else {
+      this.os.open();
+    }
   }
 
-  close(): Promise<void> {
-    return this._infoWindow.then(infoWindow => infoWindow.close());
-  }
-
-  // Setters:
-  setContent(content: any): Promise<void> {
-    return this._infoWindow.then(infoWindow => infoWindow.setContent(content));
-  }
-
-  setPosition(position: ILngLat): Promise<void> {
-    return this._infoWindow.then(infoWindow => infoWindow.setPosition(position));
-  }
-
-  setSize(size: ISize): Promise<void> {
-    return this._infoWindow.then(infoWindow => {
-      const value = this.sizes.create(size, 'size');
-      infoWindow.setSize(value);
-    });
-  }
-
-  // Getters:
-  getIsOpen(): Promise<boolean> {
-    return this._infoWindow.then(infoWindow => infoWindow.getIsOpen());
-  }
-
-  getContent(): Promise<string> {
-    return this._infoWindow.then(infoWindow => infoWindow.getContent());
-  }
-
-  getPosition(): Promise<LngLat> {
-    return this._infoWindow.then(infoWindow => infoWindow.getPosition());
-  }
-
-  getSize(): Promise<Size> {
-    return this._infoWindow.then(infoWindow => infoWindow.getSize());
+  /**
+   * 关闭窗体
+   */
+  close() {
+    this.os.close();
   }
 }

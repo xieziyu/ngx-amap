@@ -1,0 +1,15 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="getMethods(myToolBar)" nz-button nzType="default">调用原生方法</button>
+  <button (click)="myToolBar.doLocation()" nz-button nzType="default">调用定位方法</button>
+</div>
+
+<ngx-amap class="demo-map">
+  <amap-tool-bar #myToolBar="tool-bar"></amap-tool-bar>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

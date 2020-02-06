@@ -1,0 +1,20 @@
+<svg width="249.99999999999997" height="249.99999999999997" xmlns="http://www.w3.org/2000/svg">
+ <style type="text/css">.st0{fill:#00a4db;}
+	.st1{fill:#007ac1;}
+	.st2{fill:#FFFFFF;}</style>
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="252" height="252" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <polygon stroke="null" class="st0" points="125,30 125,30 125,30 31.9,63.2 46.1,186.3 125,230 125,230 125,230 203.9,186.3 218.1,63.2  " id="svg_2"/>
+   <polygon stroke="null" class="st1" points="125,30 125,52.2 125,52.1 125,153.4 125,153.4 125,230 125,230 203.9,186.3 218.1,63.2 125,30  " id="svg_3"/>
+  </g>
+  <text stroke="#000" transform="matrix(6.188205405738302,0,0,3.218181848526001,-486.9894479631505,-253.11534437164664) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_4" y="119.951183" x="93.410448" stroke-width="0" fill="#000000"/>
+  <text stroke="#000" transform="matrix(7.06315803527832,0,0,3.0633485317230225,-682.105278968811,-191.92365327104926) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_5" y="115.109375" x="112.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="130" id="svg_6" y="172.65944" x="70.75" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff">M</text>
+ </g>
+</svg>

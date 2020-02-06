@@ -1,0 +1,31 @@
+<nz-page-header nzTitle="AmapPluginLoaderService 插件加载服务">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>首页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a>服务</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>插件加载服务</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <a href="api-doc/services/AmapPluginLoaderService.html" target="_blank">
+      API 文档
+    </a>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<nz-divider></nz-divider>
+
+<nz-tabset style="margin-top: 8px;" [nzTabPosition]="'left'">
+  <nz-tab nzTitle="驾车路线规划">
+    <ng-template nz-tab>
+      <demo-plugin-driving></demo-plugin-driving>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="公交路线规划">
+    <ng-template nz-tab>
+      <demo-plugin-transfer></demo-plugin-transfer>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>
+

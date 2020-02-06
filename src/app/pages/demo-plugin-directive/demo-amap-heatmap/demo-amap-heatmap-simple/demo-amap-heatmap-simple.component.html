@@ -1,0 +1,15 @@
+<!-- DEMO START -->
+<ngx-amap class="demo-map" [center]="[116.418261, 39.921984]" [zoom]="11">
+  <amap-heatmap #myHeatmap="heatmap"
+    [options]="options"
+    [dataset]="dataset"
+    (naReady)="onHeatmapReady($event)">
+  </amap-heatmap>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component"
+  [data]="data"
+></code-block>

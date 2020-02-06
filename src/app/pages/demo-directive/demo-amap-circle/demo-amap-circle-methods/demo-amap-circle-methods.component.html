@@ -1,0 +1,26 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="getMethods(myCircle)" nz-button nzType="default">调用原生方法</button>
+  <button (click)="checkContains(myCircle)" nz-button nzType="default">调用 contains 方法</button>
+  <button (click)="editor = !editor" nz-button nzType="default">开/关编辑功能</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-circle #myCircle="circle"
+    [center]="[116.403322, 39.920255]"
+    [radius]="1000"
+    [strokeColor]="'#F33'"
+    [strokeOpacity]="1"
+    [strokeWeight]="3"
+    [fillColor]="'#ee2200'"
+    [fillOpacity]="0.35">
+  </amap-circle>
+  <amap-marker [position]="marker1" title="marker1" [label]="{offset: {x: 20, y: 20}, content: 'marker1'}"></amap-marker>
+  <amap-marker [position]="marker2" title="marker2" [label]="{offset: {x: 20, y: 20}, content: 'marker2'}"></amap-marker>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

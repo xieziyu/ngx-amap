@@ -1,0 +1,25 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="getMethods(myMarker)" nz-button nzType="default">调用原生方法</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.407394, 39.904211]" [zoom]="8">
+  <amap-circle-marker #myMarker="circle-marker"
+    [center]="[116.407394, 39.904211]"
+    [radius]="12"
+    [strokeColor]="'white'"
+    [strokeOpacity]="0.5"
+    [strokeWeight]="2"
+    [fillColor]="'rgba(0,0,255,1)'"
+    [fillOpacity]="0.5"
+    [zIndex]="10"
+    [bubble]="true"
+    [cursor]="'pointer'"
+  ></amap-circle-marker>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

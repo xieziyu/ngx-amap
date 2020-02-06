@@ -1,0 +1,27 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="getMethods(myRectangle)" nz-button nzType="default">调用原生方法</button>
+  <button (click)="editor = !editor" nz-button nzType="default">开/关编辑功能</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.387175, 39.876405]" [zoom]="13" (naReady)="onChartReady()">
+  <amap-rectangle #myRectangle="rectangle"
+    [bounds]="bounds"
+    [editor]="editor"
+    [strokeColor]="'red'"
+    [strokeOpacity]="0.5"
+    [strokeWeight]="6"
+    [strokeDasharray]="[30,10]"
+    [strokeStyle]="'dashed'"
+    [fillColor]="'blue'"
+    [fillOpacity]="0.5"
+    [cursor]="'pointer'"
+    [zIndex]="50"
+  ></amap-rectangle>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

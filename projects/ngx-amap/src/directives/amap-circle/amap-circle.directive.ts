@@ -1,209 +1,82 @@
-import { Directive, Input, Output, OnDestroy,
-  EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Circle, LngLat, Bounds, CircleEditor } from '../../types/class';
-import { CircleOptions, ILngLat } from '../../types/interface';
-import { Utils } from '../../utils/utils';
-import { ChangeFilter } from '../../utils/change-filter';
-import { CircleService } from '../../services/circle/circle.service';
+import {
+  Output,
+  EventEmitter,
+  Directive,
+  OnDestroy,
+  SimpleChanges,
+  OnChanges,
+  NgZone,
+} from '@angular/core';
+import { zip } from 'rxjs';
+import { AMapCircle, CircleOptions } from '../../base/amap-circle';
+import { AmapCircleService } from './amap-circle.service';
+import { LoggerService } from '../../shared/logger';
+import { EventBinderService } from '../../shared/event-binder.service';
+import { getOptions, ChangeFilter } from '../../utils';
 
-const ALL_OPTIONS = [
-  'zIndex',
-  'center',
-  'bubble',
-  'cursor',
-  'radius',
-  'strokeColor',
-  'strokeOpacity',
-  'strokeWeight',
-  'fillColor',
-  'fillOpacity',
-  'strokeStyle',
-  'strokeDasharray',
-  'extData'
-];
+const TAG = 'amap-circle';
 
 @Directive({
   selector: 'amap-circle',
-  exportAs: 'circle'
+  exportAs: 'circle',
+  providers: [AmapCircleService],
 })
-export class AmapCircleDirective implements OnChanges, OnDestroy {
-  TAG = 'amap-circle';
-
-  // These properties are supported in CircleOptions:
-  @Input() zIndex: number;
-  @Input() center: ILngLat;
-  @Input() bubble: boolean;
-  @Input() cursor: string;
-  @Input() radius: number;
-  @Input() strokeColor: string;
-  @Input() strokeOpacity: number;
-  @Input() strokeWeight: number;
-  @Input() fillColor: string;
-  @Input() fillOpacity: number;
-  @Input() strokeStyle: string;
-  @Input() strokeDasharray: number[];
-  @Input() extData: any;
-
-  // This options property will override other property:
-  @Input() options: CircleOptions;
-
-  // Extra property:
-  @Input() hidden = false;
-  @Input() editor = false;
-
-  // amap-circle events:
-  @Output() circleClick = new EventEmitter();
-  @Output() ready = new EventEmitter();
-  @Output() dblClick = new EventEmitter();
-  @Output() rightClick = new EventEmitter();
-  @Output() circleHide = new EventEmitter();
-  @Output() circleShow = new EventEmitter();
-  @Output() mouseDown = new EventEmitter();
-  @Output() mouseUp = new EventEmitter();
-  @Output() mouseOver = new EventEmitter();
-  @Output() mouseOut = new EventEmitter();
-  @Output() change = new EventEmitter();
-  @Output() touchStart = new EventEmitter();
-  @Output() touchMove = new EventEmitter();
-  @Output() touchEnd = new EventEmitter();
-
+export class AmapCircleDirective extends AMapCircle<AMap.Circle> implements OnChanges, OnDestroy {
   // editor events:
-  @Output() editorMove = new EventEmitter();
-  @Output() editorAdjust = new EventEmitter();
-  @Output() editorEnd = new EventEmitter();
+  @Output() naEditorAddNode: EventEmitter<any>;
+  @Output() naEditorRemoveNode: EventEmitter<any>;
+  @Output() naEditorAdjust: EventEmitter<any>;
+  @Output() naEditorEnd: EventEmitter<any>;
 
-  private _circle: Promise<Circle>;
-  private _subscriptions: Subscription;
-
-  private _editor: CircleEditor;
+  private inited = false;
 
   constructor(
-    private circles: CircleService
-  ) {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    const filter = ChangeFilter.of(changes);
-
-    if (!this._circle) {
-      const options = this.options || Utils.getOptionsFor<CircleOptions>(this, ALL_OPTIONS);
-      this._circle = this.circles.create(options);
-      this.bindEvents();
-      this._circle.then(p => this.ready.emit(p));
-    } else {
-      filter.has<CircleOptions>('options').subscribe(v => this.setOptions(v || {}));
-      filter.has<any>('extData').subscribe(v => this.setExtData(v));
-      filter.has<number>('radius').subscribe(v => this.setRadius(v));
-      filter.notEmpty<LngLat>('center').subscribe(v => this.setCenter(v));
-    }
-
-    filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
-    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
+    protected os: AmapCircleService,
+    protected binder: EventBinderService,
+    private logger: LoggerService,
+    private ngZone: NgZone,
+  ) {
+    super(os, binder);
+    const editor = this.os.getEditor();
+    this.naEditorAddNode = this.binder.bindEvent(editor, 'addnode');
+    this.naEditorRemoveNode = this.binder.bindEvent(editor, 'removenode');
+    this.naEditorAdjust = this.binder.bindEvent(editor, 'adjust');
+    this.naEditorEnd = this.binder.bindEvent(editor, 'end');
   }
 
   ngOnDestroy() {
-    this._subscriptions.unsubscribe();
-    this.circles.destroy(this._circle);
+    this.os.destroy();
   }
 
-  private bindEvents() {
-    this._subscriptions = this.bindEvent('click').subscribe(e => this.circleClick.emit(e));
-    this._subscriptions.add(this.bindEvent('dblclick').subscribe(e => this.dblClick.emit(e)));
-    this._subscriptions.add(this.bindEvent('rightclick').subscribe(e => this.rightClick.emit(e)));
-    this._subscriptions.add(this.bindEvent('hide').subscribe(e => this.circleHide.emit(e)));
-    this._subscriptions.add(this.bindEvent('show').subscribe(e => this.circleShow.emit(e)));
-    this._subscriptions.add(this.bindEvent('mousedown').subscribe(e => this.mouseDown.emit(e)));
-    this._subscriptions.add(this.bindEvent('mouseup').subscribe(e => this.mouseUp.emit(e)));
-    this._subscriptions.add(this.bindEvent('mouseover').subscribe(e => this.mouseOver.emit(e)));
-    this._subscriptions.add(this.bindEvent('mouseout').subscribe(e => this.mouseOut.emit(e)));
-    this._subscriptions.add(this.bindEvent('change').subscribe(e => this.change.emit(e)));
-    this._subscriptions.add(this.bindEvent('touchstart').subscribe(e => this.touchStart.emit(e)));
-    this._subscriptions.add(this.bindEvent('touchmove').subscribe(e => this.touchMove.emit(e)));
-    this._subscriptions.add(this.bindEvent('touchend').subscribe(e => this.touchEnd.emit(e)));
-  }
-
-  private bindEvent(event: string) {
-    return this.circles.bindEvent(this._circle, event);
-  }
-
-  private bindEditorEvents(event: string) {
-    return this.circles.bindEvent(this._editor, event);
-  }
-
-  // Public methods:
-  toggleEditor(v: boolean): Promise<void> {
-    if (v && !this._editor) {
-      return this.circles.loadEditor()
-        .then(() => this._circle)
-        .then(c => this.circles.createEditor(c))
-        .then(editor => {
-          this._editor = editor;
-          // Bind events:
-          this._subscriptions.add(this.bindEditorEvents('move').subscribe(e => this.editorMove.emit(e)));
-          this._subscriptions.add(this.bindEditorEvents('adjust').subscribe(e => this.editorAdjust.emit(e)));
-          this._subscriptions.add(this.bindEditorEvents('end').subscribe(e => this.editorEnd.emit(e)));
-          editor.open();
-        });
+  ngOnChanges(changes: SimpleChanges) {
+    const filter = ChangeFilter.of(changes);
+    const circle = this.get();
+    if (!this.inited) {
+      this.logger.d(TAG, 'initializing ...');
+      const options = this.options || getOptions<AMap.Circle.Options>(this, CircleOptions);
+      this.logger.d(TAG, 'options:', options);
+      this.os.create(options).subscribe(m => {
+        this.ngZone.run(() => this.naReady.emit(m));
+        this.logger.d(TAG, 'circle is ready.');
+      });
+      this.inited = true;
+    } else {
+      zip(filter.has<AMap.LocationValue>('center'), circle).subscribe(([v, p]) => p.setCenter(v));
+      zip(filter.has<AMap.Circle.Options>('options'), circle).subscribe(([v, p]) =>
+        p.setOptions(v || {}),
+      );
+      zip(filter.has<number>('radius'), circle).subscribe(([v, p]) => p.setRadius(v));
+      zip(filter.has<any>('extData'), circle).subscribe(([v, p]) => p.setExtData(v));
     }
 
-    if (this._editor) {
-      if (v) {
-        this._editor.open();
-      } else {
-        this._editor.close();
-      }
-    }
-
-    return Promise.resolve();
+    zip(filter.has<boolean>('hidden'), circle).subscribe(([v, p]) => (v ? p.hide() : p.show()));
+    filter.has<boolean>('editor').subscribe(v => this.os.toggleEditor(v));
   }
 
-  show(): Promise<void> {
-    return this._circle.then(c => c.show());
-  }
-
-  hide(): Promise<void> {
-    return this._circle.then(c => c.hide());
-  }
-
-  contains(point: LngLat|ILngLat): Promise<boolean> {
-    return this._circle.then(c => c.contains(point));
-  }
-
-  // Setters:
-  setCenter(lnglat: LngLat|ILngLat): Promise<void> {
-    return this._circle.then(c => c.setCenter(lnglat));
-  }
-
-  setRadius(radius: number): Promise<void> {
-    return this._circle.then(c => c.setRadius(radius));
-  }
-
-  setOptions(opt: CircleOptions): Promise<void> {
-    return this._circle.then(c => c.setOptions(opt));
-  }
-
-  setExtData(ext: any): Promise<void> {
-    return this._circle.then(c => c.setExtData(ext));
-  }
-
-  // Getters:
-  getCenter(): Promise<LngLat> {
-    return this._circle.then(c => c.getCenter());
-  }
-
-  getRadius(): Promise<number> {
-    return this._circle.then(c => c.getRadius());
-  }
-
-  getOptions(): Promise<CircleOptions> {
-    return this._circle.then(c => c.getOptions());
-  }
-
-  getBounds(): Promise<Bounds> {
-    return this._circle.then(c => c.getBounds());
-  }
-
-  getExtData(): Promise<any> {
-    return this._circle.then(c => c.getExtData());
+  /**
+   * 获取已创建的 AMap.Circle 对象
+   */
+  get() {
+    return this.os.get();
   }
 }

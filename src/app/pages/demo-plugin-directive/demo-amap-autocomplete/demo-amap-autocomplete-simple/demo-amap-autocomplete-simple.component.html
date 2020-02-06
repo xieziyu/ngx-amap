@@ -1,0 +1,23 @@
+<!-- DEMO START -->
+<input nz-input placeholder="请输入地址...." autocomplete="off"
+  amapAutocomplete
+  [city]="myCity"
+  [citylimit]="!!myCity"
+  (naReady)="onEvent($event, 'naReady')"
+  (naComplete)="onEvent($event, 'naComplete')"
+  (naChoose)="onEvent($event, 'naChoose')"
+  (naSelect)="onEvent($event, 'naSelect')"
+>
+<nz-alert nzType="info" [nzMessage]="'限制城市: ' + myCity || '无'" style="margin-top: 8px;"></nz-alert>
+<nz-radio-group [(ngModel)]="myCity" style="margin-top: 8px;">
+  <label nz-radio nzValue="">无限制</label>
+  <label nz-radio nzValue="北京">北京</label>
+  <label nz-radio nzValue="上海">上海</label>
+  <label nz-radio nzValue="杭州">杭州</label>
+</nz-radio-group>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

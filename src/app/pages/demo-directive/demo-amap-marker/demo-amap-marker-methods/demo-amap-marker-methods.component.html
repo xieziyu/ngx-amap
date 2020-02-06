@@ -1,0 +1,36 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="startMove()" nz-button nzType="default">开始动画</button>
+  <button (click)="pauseMove()" nz-button nzType="default">暂停动画</button>
+  <button (click)="resumeMove()" nz-button nzType="default">继续动画</button>
+  <button (click)="stopMove()" nz-button nzType="default">停止动画</button>
+</div>
+
+<ngx-amap #map class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="17">
+  <amap-polyline
+    [path]="lineArr"
+    [showDir]="true"
+    [strokeColor]="'#28F'"
+    [strokeWeight]="6">
+  </amap-polyline>
+  <amap-polyline
+    [path]="passedPath"
+    [strokeColor]="'#AF5'"
+    [strokeWeight]="6">
+  </amap-polyline>
+  <amap-marker
+    [position]="[116.478935, 39.997761]"
+    [icon]="'http://webapi.amap.com/images/car.png'"
+    [angle]="-90"
+    [offset]="{x:-26, y:-13}"
+    [autoRotation]="true"
+    (naMoving)="onMoving($event)"
+    (naReady)="onMarkerReady(map, $event)">
+  </amap-marker>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

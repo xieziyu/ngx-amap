@@ -1,0 +1,34 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="hide = !hide" nz-button nzType="default">显示/隐藏</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-bezier-curve [options]="options" [hidden]="hide"
+    [editor]="true"
+    (naReady)="onBezierCurveEvent($event, 'naReady')"
+    (naClick)="onBezierCurveEvent($event, 'naClick')"
+    (naDblClick)="onBezierCurveEvent($event, 'naDblClick')"
+    (naRightClick)="onBezierCurveEvent($event, 'naRightClick')"
+    (naMouseOver)="onBezierCurveEvent($event, 'naMouseOver')"
+    (naMouseUp)="onBezierCurveEvent($event, 'naMouseUp')"
+    (naMouseOut)="onBezierCurveEvent($event, 'naMouseOut')"
+    (naMouseDown)="onBezierCurveEvent($event, 'naMouseDown')"
+    (naHide)="onBezierCurveEvent($event, 'naHide')"
+    (naShow)="onBezierCurveEvent($event, 'naShow')"
+    (naChange)="onBezierCurveEvent($event, 'naChange')"
+    (naTouchStart)="onBezierCurveEvent($event, 'naTouchStart')"
+    (naTouchMove)="onBezierCurveEvent($event, 'naTouchMove')"
+    (naTouchEnd)="onBezierCurveEvent($event, 'naTouchEnd')"
+    (naEditorAddNode)="onEditorEvent($event, 'naEditorAddNode')"
+    (naEditorRemoveNode)="onEditorEvent($event, 'naEditorRemoveNode')"
+    (naEditorAdjust)="onEditorEvent($event, 'naEditorAdjust')"
+    (naEditorEnd)="onEditorEvent($event, 'naEditorEnd')"
+  ></amap-bezier-curve>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>
