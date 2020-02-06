@@ -170,6 +170,11 @@
           "options": {
             "tsConfig": "projects/ngx-amap/tsconfig.lib.json",
             "project": "projects/ngx-amap/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ngx-amap/ng-package.prod.json"
+            }
           }
         },
         "test": {
