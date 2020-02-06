@@ -3,7 +3,7 @@ import { ReplaySubject, Observable, Subscriber } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { AmapPluginLoaderService } from '../../shared/amap-plugin-loader.service';
 import { EventBinderService } from '../../shared/event-binder.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { Getter } from '../../base/interfaces';
 
 const TAG = 'AmapAutocomplete';

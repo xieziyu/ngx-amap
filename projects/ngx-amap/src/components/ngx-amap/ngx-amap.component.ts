@@ -14,7 +14,7 @@ import { zip } from 'rxjs';
 import { AMapService } from '../../shared/amap.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { PluginLoaderService } from '../../shared/plugin-loader.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { getOptions, ChangeFilter } from '../../utils';
 
 const TAG = 'ngx-amap';

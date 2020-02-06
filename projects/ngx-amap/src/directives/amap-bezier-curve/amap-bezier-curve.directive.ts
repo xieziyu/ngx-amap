@@ -11,7 +11,7 @@ import {
 import { zip } from 'rxjs';
 import { PathOverlayOptions, AMapPathOverlay } from '../../base/amap-path-overlay';
 import { AmapBezierCurveService } from './amap-bezier-curve.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
 

@@ -3,7 +3,7 @@ import { ReplaySubject, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AMapService } from '../../shared/amap.service';
 import { PluginLoaderService } from '../../shared/plugin-loader.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { Getter } from '../../base/interfaces';
 
 const TAG = 'AmapHeatmap';

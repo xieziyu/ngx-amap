@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { zip } from 'rxjs';
 import { AmapHeatmapService } from './amap-heatmap.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { getOptions, ChangeFilter } from '../../utils';
 
 const TAG = 'amap-heatmap';

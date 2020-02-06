@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { zip } from 'rxjs';
 import { AmapAutocompleteService } from '../../services/amap-autocomplete/amap-autocomplete.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
 

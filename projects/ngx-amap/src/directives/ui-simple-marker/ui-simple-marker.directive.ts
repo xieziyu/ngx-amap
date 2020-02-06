@@ -6,7 +6,7 @@ import { AMapService } from '../../shared/amap.service';
 import { PixelService } from '../../shared/pixel.service';
 import { IconService } from '../../shared/icon.service';
 import { MarkerLabelService } from '../../shared/marker-label.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 
 @Directive({
   selector: 'ui-simple-marker',

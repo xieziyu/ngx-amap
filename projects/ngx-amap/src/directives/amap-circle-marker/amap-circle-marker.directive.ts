@@ -10,7 +10,7 @@ import {
 import { zip } from 'rxjs';
 import { AMapCircle, CircleOptions } from '../../base/amap-circle';
 import { AmapCircleMarkerService } from './amap-circle-marker.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
 

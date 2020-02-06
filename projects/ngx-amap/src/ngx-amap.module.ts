@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { NgxAmapConfig, NGX_AMAP_CONFIG } from './shared/ngx-amap-config';
-import { LoggerService, DebugLoggerService } from './shared/logger';
+import { LoggerService } from './shared/logger/logger.service';
+import { DebugLoggerService } from './shared/logger/debug-logger.service';
 import { NgxAmapComponent } from './components/ngx-amap/ngx-amap.component';
 import { AmapMarkerDirective } from './directives/amap-marker/amap-marker.directive';
 import { AmapPolylineDirective } from './directives/amap-polyline/amap-polyline.directive';

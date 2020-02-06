@@ -17,7 +17,7 @@ import { IPixel, IIcon, IMarkerLabel } from '../../interfaces';
 import { AmapInfoWindowComponent } from '../../components/amap-info-window/amap-info-window.component';
 import { AMapService } from '../../shared/amap.service';
 import { WithCreate } from '../../base/interfaces';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { getOptions, ChangeFilter } from '../../utils';
 import { PixelService } from '../../shared/pixel.service';
 import { IconService } from '../../shared/icon.service';

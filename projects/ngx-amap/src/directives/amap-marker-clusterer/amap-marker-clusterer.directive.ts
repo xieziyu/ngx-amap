@@ -17,7 +17,7 @@ import {
 import { zip, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AmapMarkerClustererService } from './amap-marker-clusterer.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
 import { PixelService } from '../../shared/pixel.service';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { switchMap, switchMapTo } from 'rxjs/operators';
-import { LoggerService } from './logger';
+import { LoggerService } from './logger/logger.service';
 import { AMapLoaderService } from './amap-loader.service';
 
 declare const AMapUI: any;

@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { zip, Subscription } from 'rxjs';
 import { AmapTextService } from './amap-text.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { AMapOverlay, OverlayOptions } from '../../base/amap-overlay';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';

@@ -5,7 +5,7 @@ import { ReplaySubject, zip, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AMapService } from '../../shared/amap.service';
 import { AmapUILoaderService } from '../../shared/amap-ui-loader.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { Getter } from '../../base/interfaces';
 
 const TAG = 'UISimpleMarker';

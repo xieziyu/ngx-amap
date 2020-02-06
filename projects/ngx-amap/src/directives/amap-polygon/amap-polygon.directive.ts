@@ -2,7 +2,7 @@ import { Directive, OnDestroy, SimpleChanges, OnChanges, NgZone } from '@angular
 import { zip } from 'rxjs';
 import { AMapPolygon, PolygonOptions } from '../../base/amap-polygon';
 import { AmapPolygonService } from './amap-polygon.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
 

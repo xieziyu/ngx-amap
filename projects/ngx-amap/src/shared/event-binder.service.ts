@@ -1,7 +1,7 @@
 import { Injectable, NgZone, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { LoggerService } from './logger';
+import { LoggerService } from './logger/logger.service';
 
 const TAG = 'EventBinder';
 

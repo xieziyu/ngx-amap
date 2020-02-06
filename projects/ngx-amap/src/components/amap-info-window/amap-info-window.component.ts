@@ -10,7 +10,7 @@ import {
   NgZone,
 } from '@angular/core';
 import { zip, Subscription, Observable } from 'rxjs';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
 import { AmapInfoWindowService } from './amap-info-window.service';

@@ -28,8 +28,8 @@ registerLocaleData(zh);
     MarkdownModule.forRoot(),
     NgxAmapModule.forRoot({
       apiKey: '146f101e824accd6956eeec4937c1a05',
-      // debug: true,
-      // debugTags: '*',
+      debug: true,
+      debugTags: '*',
     }),
   ],
   bootstrap: [AppComponent],

@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AMapLoaderService } from './amap-loader.service';
-import { LoggerService } from './logger';
+import { LoggerService } from './logger/logger.service';
 import { Getter } from '../base/interfaces';
 
 const TAG = 'AMap';

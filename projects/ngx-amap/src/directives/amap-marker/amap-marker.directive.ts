@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { zip, Subscription } from 'rxjs';
 import { AmapMarkerService } from './amap-marker.service';
-import { LoggerService } from '../../shared/logger';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { AMapOverlay, OverlayOptions } from '../../base/amap-overlay';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
