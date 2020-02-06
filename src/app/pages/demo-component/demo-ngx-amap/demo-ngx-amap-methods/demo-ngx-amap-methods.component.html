@@ -1,0 +1,19 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="zoomIn()" nz-button nzType="default">
+    <i nz-icon nzType="zoom-in" nzTheme="outline"></i>
+    放大
+  </button>
+  <button (click)="zoomOut()" nz-button nzType="default">
+    <i nz-icon nzType="zoom-out" nzTheme="outline"></i>
+    缩小
+  </button>
+</div>
+
+<ngx-amap class="demo-map" (naReady)="onMapReady($event)" [center]="[116.397428, 39.90923]"></ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

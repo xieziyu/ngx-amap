@@ -1,0 +1,19 @@
+<!-- DEMO START -->
+<ngx-amap class="demo-map-lg" [resizeEnable]="true" [center]="[105, 34]" [zoom]="4">
+  <amap-marker-clusterer [gridSize]="80"
+    (naReady)="onClusterEvent($event, 'naReady')"
+    (naClick)="onClusterEvent($event, 'naClick')"
+  >
+    <amap-marker *ngFor="let marker of markers"
+      [inCluster]="true"
+      [position]="marker"
+      [offset]="{x:-15, y:-15}">
+    </amap-marker>
+  </amap-marker-clusterer>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

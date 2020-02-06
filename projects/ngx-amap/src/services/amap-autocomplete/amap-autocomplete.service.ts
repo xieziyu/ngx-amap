@@ -1,70 +1,75 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AMapClass, Autocomplete } from '../../types/class';
-import { AutocompleteOptions } from '../../types/interface';
-import { PluginLoaderService } from '../plugin-loader/plugin-loader.service';
-import { EventBinder } from '../../utils/event-binder';
+import { Injectable, NgZone } from '@angular/core';
+import { ReplaySubject, Observable, Subscriber } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { AmapPluginLoaderService } from '../../shared/amap-plugin-loader.service';
+import { EventBinderService } from '../../shared/event-binder.service';
+import { LoggerService } from '../../shared/logger';
+import { Getter } from '../../base/interfaces';
 
-declare const AMap: AMapClass;
+const TAG = 'AmapAutocomplete';
 
-/**
- * AmapAutocompleteWrapper对象将高德原生的Autocomplete对象提供的方法封装成Promise的实现，更方便回调
- */
-export class AmapAutocompleteWrapper extends EventBinder {
-  private _autocomplete: Autocomplete;
+export interface SearchResult {
+  status: AMap.Autocomplete.SearchStatus;
+  result: string | AMap.Autocomplete.SearchResult;
+}
 
-  constructor(opts?: AutocompleteOptions) {
-    super();
-    this._autocomplete = new AMap.Autocomplete(opts);
-  }
+@Injectable({
+  providedIn: 'root',
+})
+export class AmapAutocompleteService implements Getter<AMap.Autocomplete> {
+  private ac: AMap.Autocomplete;
+  private ac$ = new ReplaySubject<AMap.Autocomplete>(1);
 
-  get native(): Autocomplete {
-    return this._autocomplete;
+  constructor(
+    private plugin: AmapPluginLoaderService,
+    private binder: EventBinderService,
+    private logger: LoggerService,
+    private ngZone: NgZone,
+  ) {}
+
+  /**
+   * 获取插件
+   */
+  get() {
+    return this.ac$.asObservable();
   }
 
   /**
-   * 用于侦听Autocomplete事件，返回可以被subscribe的Observable对象
-   * @param event
-   * @returns
+   * 侦听事件
    */
-  on(event: string): Observable<any> {
-    return this.bindEvent<Autocomplete>(this._autocomplete, event);
+  on(event: string) {
+    return this.binder.bindEvent(this.get(), event);
   }
 
-  search(address: string): Promise<{status: string, result: any}> {
-    return new Promise(resolve => this._autocomplete.search(address, (status, result) => {
-      resolve({status, result});
-    }));
+  /**
+   * 创建插件
+   */
+  create(options: AMap.Autocomplete.Options) {
+    return this.plugin.load('AMap.Autocomplete').pipe(
+      map(() => {
+        this.ac = this.ngZone.runOutsideAngular(() => new AMap.Autocomplete(options));
+        this.logger.d(TAG, 'new autocomplete created.');
+        this.ac$.next(this.ac);
+        this.ac$.complete();
+        return this.ac;
+      }),
+    );
   }
 
-  setCity(city: string) {
-    this._autocomplete.setCity(city);
-  }
-
-  setType(type: string) {
-    this._autocomplete.setType(type);
-  }
-
-  setCityLimit(limit: boolean) {
-    this._autocomplete.setCityLimit(limit);
-  }
-}
-/**
- * 根据输入关键字提示匹配信息，可将Poi类型和城市作为输入提示的限制条件
- */
-@Injectable()
-export class AmapAutocompleteService {
-  TAG = 'amap-autocomplete';
-
-  private _plugin: Promise<void>;
-
-  constructor(private plugins: PluginLoaderService) {}
-
-  of(opts?: AutocompleteOptions): Promise<AmapAutocompleteWrapper> {
-    if (!this._plugin) {
-      this._plugin = this.plugins.load('AMap.Autocomplete');
-    }
-
-    return this._plugin.then(() => new AmapAutocompleteWrapper(opts));
+  /**
+   * 搜索
+   */
+  search(address: string) {
+    return this.get().pipe(
+      switchMap(
+        ac =>
+          new Observable((observer: Subscriber<SearchResult>) => {
+            ac.search(address, (status, result) => {
+              observer.next({ status, result });
+              observer.complete();
+            });
+          }),
+      ),
+    );
   }
 }

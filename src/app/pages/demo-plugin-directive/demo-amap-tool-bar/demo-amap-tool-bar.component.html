@@ -1,0 +1,36 @@
+<nz-page-header nzTitle="amap-tool-bar 地图工具条">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>首页</nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a>插件指令</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>amap-tool-bar</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <a href="api-doc/directives/AmapToolBarDirective.html" target="_blank">
+      API 文档
+    </a>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<nz-divider></nz-divider>
+
+<nz-tabset style="margin-top: 8px;" [nzTabPosition]="'left'">
+  <nz-tab nzTitle="简单示例">
+    <ng-template nz-tab>
+      <demo-amap-tool-bar-simple></demo-amap-tool-bar-simple>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="事件示例">
+    <ng-template nz-tab>
+      <demo-amap-tool-bar-events></demo-amap-tool-bar-events>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="调用方法">
+    <ng-template nz-tab>
+      <demo-amap-tool-bar-methods></demo-amap-tool-bar-methods>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>
+

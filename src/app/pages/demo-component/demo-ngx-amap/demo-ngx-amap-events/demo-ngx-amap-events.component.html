@@ -1,0 +1,36 @@
+<!-- DEMO START -->
+<ngx-amap class="demo-map" [resizeEnable]="true"
+  (naReady)="onMapEvent($event, 'naReady')"
+  (naClick)="onMapEvent($event, 'naClick')"
+  (naComplete)="onMapEvent($event, 'naComplete')"
+  (naDblClick)="onMapEvent($event, 'naDblClick')"
+  (naRightClick)="onMapEvent($event, 'naRightClick')"
+  (naMouseMove)="onMapEvent($event, 'naMouseMove')"
+  (naMouseOver)="onMapEvent($event, 'naMouseOver')"
+  (naMouseWheel)="onMapEvent($event, 'naMouseWheel')"
+  (naMouseUp)="onMapEvent($event, 'naMouseUp')"
+  (naMouseOut)="onMapEvent($event, 'naMouseOut')"
+  (naMouseDown)="onMapEvent($event, 'naMouseDown')"
+  (naTouchStart)="onMapEvent($event, 'naTouchStart')"
+  (naTouchMove)="onMapEvent($event, 'naTouchMove')"
+  (naTouchEnd)="onMapEvent($event, 'naTouchEnd')"
+  (naHotspotClick)="onMapEvent($event, 'naHotspotClick')"
+  (naHotspotOver)="onMapEvent($event, 'naHotspotOver')"
+  (naHotspotOut)="onMapEvent($event, 'naHotspotOut')"
+  (naDragStart)="onMapEvent($event, 'naDragStart')"
+  (naDragging)="onMapEvent($event, 'naDragging')"
+  (naDragEnd)="onMapEvent($event, 'naDragEnd')"
+  (naResize)="onMapEvent($event, 'naResize')"
+  (naZoomStart)="onMapEvent($event, 'naZoomStart')"
+  (naZoomEnd)="onMapEvent($event, 'naZoomEnd')"
+  (naZoomChange)="onMapEvent($event, 'naZoomChange')"
+  (naMoveStart)="onMapEvent($event, 'naMoveStart')"
+  (naMoveEnd)="onMapEvent($event, 'naMoveEnd')"
+  (naMove)="onMapEvent($event, 'naMove')"
+></ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

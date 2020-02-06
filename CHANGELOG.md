@@ -1,3 +1,17 @@
+## 3.0.0 (2020-02-06)
+
+#### New:
+  - 支持 `AMapUI` 库，可通过 `AmapUILoaderService` 服务加载使用，部分 UI 组件也封装成了指令，如：`ui-awesome-marker`
+  - 提供加载插件服务：`AmapPluginLoaderService`，部分常用插件已封装成了指令，如：`amap-tool-bar`
+
+#### BREAKING CHANGES:
+  - 重写了整体的封装架构，不再使用 Promise 封装，全部使用 Observable
+  - `@Output` 事件命名统一调整为: 包含`na`前缀
+  - 不再提供 Getter 和 Setter 的 Wrapper，建议直接调用 `amap` 原生对象的方法
+  - 移除 amap 相关的类型定义，引入 `@types/amap-js-api`
+
+----
+
 ## 2.2.1 & 1.4.1 (2019-09-23)
 
 #### Bugfix

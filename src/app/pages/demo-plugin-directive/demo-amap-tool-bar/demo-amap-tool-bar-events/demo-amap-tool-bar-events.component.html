@@ -1,0 +1,20 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="hide = !hide" nz-button nzType="default">显示/隐藏</button>
+</div>
+
+<ngx-amap class="demo-map">
+  <amap-tool-bar [hidden]="hide"
+    (naReady)="onEvent($event, 'naReady')"
+    (naShow)="onEvent($event, 'naShow')"
+    (naHide)="onEvent($event, 'naHide')"
+    (naLocation)="onEvent($event, 'naLocation')"
+    (naZoomChanged)="onEvent($event, 'naZoomChanged')"
+  ></amap-tool-bar>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

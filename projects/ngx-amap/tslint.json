@@ -1,17 +1,18 @@
 {
-    "extends": "../../tslint.json",
-    "rules": {
-        "directive-selector": [
-            false,
-            "attribute",
-            "lib",
-            "camelCase"
-        ],
-        "component-selector": [
-            false,
-            "element",
-            "lib",
-            "kebab-case"
-        ]
-    }
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      false,
+      "attribute",
+      "amap",
+      "camelCase"
+    ],
+    "component-selector": [
+      false,
+      "element",
+      "amap",
+      "kebab-case"
+    ],
+    "no-namespace": false
+  }
 }

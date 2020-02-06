@@ -1,0 +1,21 @@
+<!-- DEMO START -->
+<ngx-amap class="demo-map" [center]="[116.387175, 39.876405]" [zoom]="13" (naReady)="onChartReady()">
+  <amap-rectangle
+    [bounds]="bounds"
+    [strokeColor]="'red'"
+    [strokeOpacity]="0.5"
+    [strokeWeight]="6"
+    [strokeDasharray]="[30,10]"
+    [strokeStyle]="'dashed'"
+    [fillColor]="'blue'"
+    [fillOpacity]="0.5"
+    [cursor]="'pointer'"
+    [zIndex]="50"
+  ></amap-rectangle>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

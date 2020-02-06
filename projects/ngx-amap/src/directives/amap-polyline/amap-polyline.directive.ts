@@ -1,206 +1,138 @@
-import { Directive, Input, Output, OnDestroy,
-  EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Polyline, Bounds, PolyEditor } from '../../types/class';
-import { PolylineOptions } from '../../types/interface';
-import { Utils } from '../../utils/utils';
-import { ChangeFilter } from '../../utils/change-filter';
-import { PolylineService } from '../../services/polyline/polyline.service';
+import {
+  Directive,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  OnChanges,
+  NgZone,
+} from '@angular/core';
+import { zip } from 'rxjs';
+import { PathOverlayOptions, AMapPathOverlay } from '../../base/amap-path-overlay';
+import { AmapPolylineService } from './amap-polyline.service';
+import { LoggerService } from '../../shared/logger';
+import { EventBinderService } from '../../shared/event-binder.service';
+import { getOptions, ChangeFilter } from '../../utils';
 
-const ALL_OPTIONS = [
-  'zIndex',
-  'bubble',
-  'geodesic',
+const TAG = 'amap-polyline';
+const PolylineOptions = [
+  ...PathOverlayOptions,
   'isOutline',
-  'borderWeight',
   'outlineColor',
+  'geodesic',
+  'dirColor',
+  'borderWeight',
+  'showDir',
   'path',
-  'strokeColor',
-  'strokeOpacity',
-  'strokeWeight',
-  'strokeStyle',
-  'strokeDasharray',
-  'lineJoin',
-  'extData',
-  'showDir'
 ];
 
 @Directive({
   selector: 'amap-polyline',
-  exportAs: 'polyline'
+  exportAs: 'polyline',
+  providers: [AmapPolylineService],
 })
-export class AmapPolylineDirective implements OnChanges, OnDestroy {
-  TAG = 'amap-polyline';
-
-  // These properties are supported in PolylineOptions:
-  @Input() zIndex: number;
-  @Input() bubble: boolean;
-  @Input() geodesic: boolean;
+export class AmapPolylineDirective extends AMapPathOverlay<AMap.Polyline>
+  implements OnChanges, OnDestroy {
+  // ---- Options ----
+  /**
+   * 线条是否带描边
+   */
   @Input() isOutline: boolean;
-  @Input() borderWeight: number;
+  /**
+   * 线条描边颜色
+   */
   @Input() outlineColor: string;
-  @Input() path: number[][];
-  @Input() strokeColor: string;
-  @Input() strokeOpacity: number;
-  @Input() strokeWeight: number;
-  @Input() strokeStyle: string;
-  @Input() strokeDasharray: number[];
-  @Input() lineJoin: string;
-  @Input() extData: any;
+  /**
+   * 是否绘制成大地线
+   */
+  @Input() geodesic: boolean;
+  /**
+   * 方向箭头颜色
+   */
+  @Input() dirColor: string;
+  /**
+   * 描边的宽度
+   */
+  @Input() borderWeight: number;
+  /**
+   * 是否延路径显示方向箭头
+   */
   @Input() showDir: boolean;
-
-  // This options property will override other property:
-  @Input() options: PolylineOptions;
-
-  // Extra property:
+  /**
+   * 折线的节点数组
+   */
+  @Input() path: AMap.LocationValue[];
+  /**
+   * 额外: 是否隐藏
+   */
   @Input() hidden = false;
+  /**
+   * 额外: 是否开启编辑器
+   */
   @Input() editor = false;
+  /**
+   * 额外: 会覆盖其他属性的配置方式
+   */
+  @Input() options: AMap.Polyline.Options;
 
-  // amap-polyline events:
-  @Output() polylineClick = new EventEmitter();
-  @Output() ready = new EventEmitter();
-  @Output() dblClick = new EventEmitter();
-  @Output() rightClick = new EventEmitter();
-  @Output() polylineHide = new EventEmitter();
-  @Output() polylineShow = new EventEmitter();
-  @Output() mouseDown = new EventEmitter();
-  @Output() mouseUp = new EventEmitter();
-  @Output() mouseOver = new EventEmitter();
-  @Output() mouseOut = new EventEmitter();
-  @Output() change = new EventEmitter();
-  @Output() touchStart = new EventEmitter();
-  @Output() touchMove = new EventEmitter();
-  @Output() touchEnd = new EventEmitter();
+  // directive events:
+  @Output() naReady = new EventEmitter();
 
   // editor events:
-  @Output() editorAddnode = new EventEmitter();
-  @Output() editorRemovenode = new EventEmitter();
-  @Output() editorAdjust = new EventEmitter();
-  @Output() editorEnd = new EventEmitter();
+  @Output() naEditorAddNode: EventEmitter<any>;
+  @Output() naEditorRemoveNode: EventEmitter<any>;
+  @Output() naEditorAdjust: EventEmitter<any>;
+  @Output() naEditorEnd: EventEmitter<any>;
 
-  private _polyline: Promise<Polyline>;
-  private _subscriptions: Subscription;
-
-  private _editor: PolyEditor;
+  private inited = false;
 
   constructor(
-    private polylines: PolylineService
-  ) {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    const filter = ChangeFilter.of(changes);
-
-    if (!this._polyline) {
-      const options = this.options || Utils.getOptionsFor<PolylineOptions>(this, ALL_OPTIONS);
-      this._polyline = this.polylines.create(options);
-      this.bindEvents();
-      this._polyline.then(p => this.ready.emit(p));
-    } else {
-      filter.has<number[][]>('path').subscribe(v => this.setPath(v));
-      filter.has<PolylineOptions>('options').subscribe(v => this.setOptions(v || {}));
-      filter.has<any>('extData').subscribe(v => this.setExtData(v));
-    }
-
-    filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
-    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
+    protected os: AmapPolylineService,
+    protected binder: EventBinderService,
+    private logger: LoggerService,
+    private ngZone: NgZone,
+  ) {
+    super(os, binder);
+    const editor = this.os.getEditor();
+    this.naEditorAddNode = this.binder.bindEvent(editor, 'addnode');
+    this.naEditorRemoveNode = this.binder.bindEvent(editor, 'removenode');
+    this.naEditorAdjust = this.binder.bindEvent(editor, 'adjust');
+    this.naEditorEnd = this.binder.bindEvent(editor, 'end');
   }
 
   ngOnDestroy() {
-    this._subscriptions.unsubscribe();
-    this.polylines.destroy(this._polyline);
+    this.os.destroy();
   }
 
-  private bindEvents() {
-    this._subscriptions = this.bindPolylineEvent('click').subscribe(e => this.polylineClick.emit(e));
-    this._subscriptions.add(this.bindPolylineEvent('dblclick').subscribe(e => this.dblClick.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('rightclick').subscribe(e => this.rightClick.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('hide').subscribe(e => this.polylineHide.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('show').subscribe(e => this.polylineShow.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('mousedown').subscribe(e => this.mouseDown.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('mouseup').subscribe(e => this.mouseUp.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('mouseover').subscribe(e => this.mouseOver.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('mouseout').subscribe(e => this.mouseOut.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('change').subscribe(e => this.change.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('touchstart').subscribe(e => this.touchStart.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('touchmove').subscribe(e => this.touchMove.emit(e)));
-    this._subscriptions.add(this.bindPolylineEvent('touchend').subscribe(e => this.touchEnd.emit(e)));
-  }
-
-  private bindPolylineEvent(event: string) {
-    return this.polylines.bindEvent(this._polyline, event);
-  }
-
-  private bindEditorEvents(event: string) {
-    return this.polylines.bindEvent(this._editor, event);
-  }
-
-  // Public methods:
-  toggleEditor(v: boolean): Promise<void> {
-    if (v && !this._editor) {
-      return this.polylines.loadEditor()
-        .then(() => this._polyline)
-        .then(c => this.polylines.createEditor(c))
-        .then(editor => {
-          this._editor = editor;
-          // Bind events:
-          this._subscriptions.add(this.bindEditorEvents('addnode').subscribe(e => this.editorAddnode.emit(e)));
-          this._subscriptions.add(this.bindEditorEvents('adjust').subscribe(e => this.editorAdjust.emit(e)));
-          this._subscriptions.add(this.bindEditorEvents('removenode').subscribe(e => this.editorRemovenode.emit(e)));
-          this._subscriptions.add(this.bindEditorEvents('end').subscribe(e => this.editorEnd.emit(e)));
-          editor.open();
-        });
+  ngOnChanges(changes: SimpleChanges) {
+    const filter = ChangeFilter.of(changes);
+    const polyline = this.get();
+    if (!this.inited) {
+      this.logger.d(TAG, 'initializing ...');
+      const options = this.options || getOptions<AMap.Polyline.Options>(this, PolylineOptions);
+      this.logger.d(TAG, 'options:', options);
+      this.os.create(options).subscribe(m => {
+        this.ngZone.run(() => this.naReady.emit(m));
+        this.logger.d(TAG, 'polyline is ready.');
+      });
+      this.inited = true;
+    } else {
+      zip(filter.has<AMap.LocationValue[]>('path'), polyline).subscribe(([v, p]) => p.setPath(v));
+      zip(filter.has<AMap.Polyline.Options>('options'), polyline).subscribe(([v, p]) =>
+        p.setOptions(v || {}),
+      );
+      zip(filter.has<any>('extData'), polyline).subscribe(([v, p]) => p.setExtData(v));
     }
 
-    if (this._editor) {
-      if (v) {
-        this._editor.open();
-      } else {
-        this._editor.close();
-      }
-    }
-
-    return Promise.resolve();
+    zip(filter.has<boolean>('hidden'), polyline).subscribe(([v, p]) => (v ? p.hide() : p.show()));
+    filter.has<boolean>('editor').subscribe(v => this.os.toggleEditor(v));
   }
 
-  show(): Promise<void> {
-    return this._polyline.then(p => p.show());
-  }
-
-  hide(): Promise<void> {
-    return this._polyline.then(p => p.hide());
-  }
-
-  // Setters:
-  setPath(path: number[][]): Promise<void> {
-    return this._polyline.then(p => p.setPath(path));
-  }
-
-  setOptions(opt: PolylineOptions): Promise<void> {
-    return this._polyline.then(p => p.setOptions(opt));
-  }
-
-  setExtData(ext: any): Promise<void> {
-    return this._polyline.then(p => p.setExtData(ext));
-  }
-
-  // Getters:
-  getPath(): Promise<number[][]> {
-    return this._polyline.then(p => p.getPath());
-  }
-
-  getOptions(): Promise<PolylineOptions> {
-    return this._polyline.then(p => p.getOptions());
-  }
-
-  getLength(): Promise<number> {
-    return this._polyline.then(p => p.getLength());
-  }
-
-  getBounds(): Promise<Bounds> {
-    return this._polyline.then(p => p.getBounds());
-  }
-
-  getExtData(): Promise<any> {
-    return this._polyline.then(p => p.getExtData());
+  /**
+   * 获取已创建的 AMap.Polyline 对象
+   */
+  get() {
+    return this.os.get();
   }
 }

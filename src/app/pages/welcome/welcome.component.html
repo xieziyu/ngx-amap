@@ -1,0 +1,60 @@
+<div class="text-center">
+  <h1>
+    <img src="assets/img/ngx-amap-logo.png" alt="version" width="40px">
+    ngx-amap
+  </h1>
+  <p>
+    <img src="https://img.shields.io/npm/v/ngx-amap.svg" alt="version" class="mr-2">
+    <img src="https://img.shields.io/npm/dm/ngx-amap.svg" alt="downloads">
+  </p>
+  <p class="lead text-muted">ngx-amap 是为在 <strong class="text-danger">Angular</strong> 项目中便捷、高效地使用<strong class="text-danger">高德地图</strong> Javascript API 而构建的组件集合</p>
+  <p>
+    <img src="assets/img/angular.svg" width="32px" height="32px">
+    <strong><i nz-icon nzType="plus" nzTheme="outline" style="margin: 0 24px;"></i></strong>
+    <img src="assets/img/amap_logo.png" width="24px" height="24px">
+  </p>
+  <p>
+    <a href="https://github.com/xieziyu/ngx-amap" target="blank" nz-button nzType="primary"  class="mr-2"><i nz-icon nzType="github" nzTheme="outline"></i> GitHub</a>
+    <a href="https://xieziyu.github.io/ngx-amap/api-doc" target="blank" nz-button nzType="default"><i nz-icon nzType="read" nzTheme="outline"></i> 查看文档</a>
+  </p>
+</div>
+
+<div class="container">
+  <div nz-row nzGutter="16">
+    <div nz-col nzSpan="12">
+      <markdown ngPreserveWhitespaces>
+        ## 安装
+        ```bash
+        npm install -S ngx-amap
+        npm install -D @types/amap-js-api
+        # 地图插件类型定义可按需安装：
+        npm install -D @types/amap-js-api-tool-bar
+        npm install -D @types/amap-js-api-heatmap
+        npm install -D @types/amap-js-api-autocomplete
+        npm install -D @types/amap-js-api-place-search
+        npm install -D @types/amap-js-api-driving
+        npm install -D @types/amap-js-api-transfer
+        ```
+      </markdown>
+    </div>
+    <div nz-col nzSpan="12">
+      <markdown ngPreserveWhitespaces>
+        ## 导入
+        ```typescript
+        import {{'{'}} NgxAmapModule } from 'ngx-amap';
+
+        @NgModule({{'{'}}
+          imports: [
+            ...,
+            NgxAmapModule.forRoot({{'{'}}
+              apiKey: '你申请的key'
+            })
+          ],
+          ...
+        })
+        export class AppModule {{'{'}} }
+        ```
+      </markdown>
+    </div>
+  </div>
+</div>

@@ -1,147 +1,254 @@
-import { Directive, OnInit, Input, AfterContentInit, ContentChildren, QueryList,
-  OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges, Optional } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { LoggerService } from '../../services/logger/logger.service';
-import { LngLat, Marker, Icon, Pixel, Map } from '../../types/class';
-import { ILngLat, IPixel, IIcon, ILabel, MarkerOptions } from '../../types/interface';
-import { Utils } from '../../utils/utils';
-import { ChangeFilter } from '../../utils/change-filter';
-import { MarkerService } from '../../services/marker/marker.service';
-import { PixelService } from '../../services/pixel/pixel.service';
-import { IconService } from '../../services/icon/icon.service';
-import { LabelService } from '../../services/label/label.service';
+import {
+  Directive,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  OnChanges,
+  ContentChildren,
+  QueryList,
+  AfterContentInit,
+  NgZone,
+} from '@angular/core';
+import { zip, Subscription } from 'rxjs';
+import { AmapMarkerService } from './amap-marker.service';
+import { LoggerService } from '../../shared/logger';
+import { AMapOverlay, OverlayOptions } from '../../base/amap-overlay';
+import { EventBinderService } from '../../shared/event-binder.service';
+import { getOptions, ChangeFilter } from '../../utils';
+import { IPixel, IIcon, IMarkerLabel } from '../../interfaces';
+import { PixelService } from '../../shared/pixel.service';
+import { IconService } from '../../shared/icon.service';
+import { MarkerLabelService } from '../../shared/marker-label.service';
 import { AmapInfoWindowComponent } from '../../components/amap-info-window/amap-info-window.component';
+import { AMapService } from '../../shared/amap.service';
 
+const TAG = 'amap-marker';
 const ALL_OPTIONS = [
+  ...OverlayOptions,
   'position',
+  'anchor',
   'offset',
   'icon',
   'content',
   'topWhenClick',
-  'bubble',
-  'draggable',
   'raiseOnDrag',
-  'cursor',
   'visible',
   'zIndex',
   'angle',
   'autoRotation',
+  'animation',
   'shadow',
   'title',
-  'clickable',
   'shape',
-  'extData',
-  'label'
+  'label',
 ];
 
 @Directive({
   selector: 'amap-marker',
-  exportAs: 'marker'
+  exportAs: 'marker',
+  providers: [AmapMarkerService],
 })
-export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentInit {
-  TAG = 'amap-marker';
-
-  // These properties are supported in MarkerOptions:
-  @Input() position: ILngLat;
-  @Input() offset: IPixel;
-  @Input() icon: string|IIcon;
-  @Input() content: any;
+export class AmapMarkerDirective extends AMapOverlay<AMap.Marker>
+  implements OnChanges, OnDestroy, AfterContentInit {
+  // ---- Marker Options ----
+  /**
+   * 点标记在地图上显示的位置
+   */
+  @Input() position: AMap.LocationValue;
+  /**
+   * 标记锚点
+   */
+  @Input() anchor: AMap.Marker.Anchor;
+  /**
+   * 点标记显示位置偏移量
+   */
+  @Input() offset: AMap.Pixel | IPixel;
+  /**
+   * 需在点标记中显示的图标
+   */
+  @Input() icon: string | AMap.Icon | IIcon;
+  /**
+   * 点标记显示内容
+   */
+  @Input() content: string | HTMLElement;
+  /**
+   * 鼠标点击时marker是否置顶
+   */
   @Input() topWhenClick: boolean;
-  @Input() bubble: boolean;
-  @Input() draggable: boolean;
+  /**
+   * 拖拽点标记时是否开启点标记离开地图的效果
+   */
   @Input() raiseOnDrag: boolean;
-  @Input() cursor: string;
+  /**
+   * 点标记是否可见
+   */
   @Input() visible: boolean;
+  /**
+   * 点标记的叠加顺序
+   */
   @Input() zIndex: number;
+  /**
+   * 点标记的旋转角度
+   */
   @Input() angle: number;
+  /**
+   * 是否自动旋转
+   */
   @Input() autoRotation: boolean;
-  @Input() shadow: IIcon;
+  /**
+   * 点标记的动画效果
+   */
+  @Input() animation: AMap.AnimationName;
+  /**
+   * 点标记阴影
+   */
+  @Input() shadow: AMap.Icon | string | IIcon;
+  /**
+   * 鼠标滑过点标记时的文字提示
+   */
   @Input() title: string;
-  @Input() clickable: boolean;
-  @Input() shape: any;  // TODO: MarkerShape
-  @Input() extData: any;
-  @Input() label: ILabel;
-
-  // Extra property:
+  /**
+   * 可点击区域
+   */
+  @Input() shape: AMap.MarkerShape;
+  /**
+   * 文本标注
+   */
+  @Input() label: AMap.Marker.Label | IMarkerLabel;
+  /**
+   * 额外: 是否置顶
+   */
   @Input() isTop: boolean;
-  @Input() animation: string;
+  /**
+   * 额外: 是否隐藏
+   */
   @Input() hidden = false;
-  @Input() openInfoWindow = true;
+  /**
+   * 额外: 是否包含在点聚合中
+   */
   @Input() inCluster = false;
+  /**
+   * 额外: 点击时是否显示信息窗体
+   */
+  @Input() openInfoWindow = true;
 
   // amap-marker events:
-  @Output() ready = new EventEmitter();
-  @Output() markerClick = new EventEmitter();
-  @Output() dblClick = new EventEmitter();
-  @Output() rightClick = new EventEmitter();
-  @Output() mouseMove = new EventEmitter();
-  @Output() mouseOver = new EventEmitter();
-  @Output() mouseOut = new EventEmitter();
-  @Output() mouseDown = new EventEmitter();
-  @Output() mouseUp = new EventEmitter();
-  @Output() dragStart = new EventEmitter();
-  @Output() dragging = new EventEmitter();
-  @Output() dragEnd = new EventEmitter();
-  @Output() touchStart = new EventEmitter();
-  @Output() touchMove = new EventEmitter();
-  @Output() touchEnd = new EventEmitter();
-  @Output() moving = new EventEmitter();
-  @Output() moveend = new EventEmitter();
-  @Output() movealong = new EventEmitter();
+  @Output() naReady = new EventEmitter();
+  @Output() naMouseOut: EventEmitter<any>;
+  @Output() naDragStart: EventEmitter<any>;
+  @Output() naDragging: EventEmitter<any>;
+  @Output() naDragEnd: EventEmitter<any>;
+  @Output() naMoving: EventEmitter<any>;
+  @Output() naMoveEnd: EventEmitter<any>;
+  @Output() naMoveAlong: EventEmitter<any>;
 
-  // amap-info-window:
-  @ContentChildren(AmapInfoWindowComponent) infoWindowComponent = new QueryList<AmapInfoWindowComponent>();
+  // amap info window:
+  @ContentChildren(AmapInfoWindowComponent)
+  infoWindowComponent = new QueryList<AmapInfoWindowComponent>();
 
-  private _marker: Promise<Marker>;
-  private _subscriptions: Subscription;
+  private inited = false;
+  private subscription: Subscription;
 
   constructor(
-    private logger: LoggerService,
-    private markers: MarkerService,
-    private pixel: PixelService,
+    protected os: AmapMarkerService,
+    protected binder: EventBinderService,
+    private amaps: AMapService,
+    private pixels: PixelService,
     private icons: IconService,
-    private labels: LabelService
-  ) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    const filter = ChangeFilter.of(changes);
-
-    if (!this._marker) {
-      // do not draw marker when no poistion defined.
-      if (!this.position) { return; }
-      const options = Utils.getOptionsFor<MarkerOptions>(this, ALL_OPTIONS);
-      this._marker = this.markers.create(options, !this.inCluster);
-      this.bindEvents();
-      this._marker.then(marker => this.ready.emit(marker));
-      this.updateInfoWindow();
-      this.updateInfoWindowPosition();
-    } else {
-      filter.has<string|IIcon>('icon').subscribe(v => this.setIcon(v));
-      filter.has<IIcon>('shadow').subscribe(v => this.setShadow(v));
-      filter.has<ILabel>('label').subscribe(v => this.setLabel(v));
-      filter.has<string>('title').subscribe(v => this.setTitle(v));
-      filter.has<any>('content').subscribe(v => this.setContent(v));
-      filter.has<any>('extData').subscribe(v => this.setExtData(v));
-      filter.has<boolean>('clickable').subscribe(v => this.setClickable(!!v));
-      filter.has<boolean>('draggable').subscribe(v => this.setDraggable(!!v));
-      filter.has<any>('visible').subscribe(v => v ? this.show() : this.hide());
-      filter.has<string>('cursor').subscribe(v => this.setCursor(v));
-      filter.has<string>('animation').subscribe(v => this.setAnimation(v));
-      filter.has<number>('angle').subscribe(v => this.setAngle(v));
-      filter.has<number>('zIndex').subscribe(v => this.setzIndex(v));
-      filter.has<any>('shape').subscribe(v => this.setShape(v));
-      filter.notEmpty<IPixel>('offset').subscribe(v => this.setOffset(v));
-      filter.notEmpty<LngLat>('position').subscribe(v => this.setPosition(v));
-    }
-    filter.has<boolean>('isTop').subscribe(v => this.setTop(!!v));
-    filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
+    private mlabels: MarkerLabelService,
+    private logger: LoggerService,
+    private ngZone: NgZone,
+  ) {
+    super(os, binder);
+    const target = this.os.get();
+    this.naMouseOut = this.binder.bindEvent(target, 'mouseout');
+    this.naDragStart = this.binder.bindEvent(target, 'dragstart');
+    this.naDragging = this.binder.bindEvent(target, 'dragging');
+    this.naDragEnd = this.binder.bindEvent(target, 'dragend');
+    this.naMoving = this.binder.bindEvent(target, 'moving');
+    this.naMoveEnd = this.binder.bindEvent(target, 'moveend');
+    this.naMoveAlong = this.binder.bindEvent(target, 'movealong');
   }
 
   ngOnDestroy() {
-    if (this._marker) {
-      this._subscriptions.unsubscribe();
-      this.markers.destroy(this._marker);
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
+    this.os.destroy();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const filter = ChangeFilter.of(changes);
+    const marker = this.get();
+    if (!this.inited) {
+      // do not draw marker when no poistion defined.
+      if (!this.position) {
+        return;
+      }
+      this.amaps.get().subscribe(() => {
+        this.logger.d(TAG, 'initializing ...');
+        // bind info window events:
+        this.subscription = this.binder.bindEvent(marker, 'click').subscribe(() => {
+          if (this.openInfoWindow) {
+            this.infoWindowComponent.forEach(w => w.open());
+          }
+        });
+        const options = getOptions<AMap.Marker.Options>(this, ALL_OPTIONS);
+        if (this.icon) {
+          options.icon = this.icons.create(this.icon);
+        }
+        if (this.shadow) {
+          options.shadow = this.icons.create(this.shadow);
+        }
+        if (this.label) {
+          options.label = this.mlabels.create(this.label);
+        }
+        if (this.offset) {
+          options.offset = this.pixels.create(this.offset);
+        }
+        this.logger.d(TAG, 'options:', options);
+        this.os.create(options, !this.inCluster).subscribe(m => {
+          this.ngZone.run(() => this.naReady.emit(m));
+          this.logger.d(TAG, 'marker is ready.');
+        });
+        this.inited = true;
+        this.updateInfoWindow();
+        this.updateInfoWindowPosition();
+      });
+    } else {
+      zip(filter.has<string | AMap.Icon | IIcon>('icon'), marker).subscribe(([v, m]) =>
+        m.setIcon(this.icons.create(v)),
+      );
+      zip(filter.has<string | AMap.Icon>('shadow'), marker).subscribe(([v, m]) =>
+        m.setShadow(this.icons.create(v)),
+      );
+      zip(filter.has<AMap.Marker.Label | IMarkerLabel>('label'), marker).subscribe(([v, m]) =>
+        m.setLabel(this.mlabels.create(v)),
+      );
+      zip(filter.has<string>('title'), marker).subscribe(([v, m]) => m.setTitle(v));
+      zip(filter.has<any>('content'), marker).subscribe(([v, m]) => m.setContent(v));
+      zip(filter.has<any>('extData'), marker).subscribe(([v, m]) => m.setExtData(v));
+      zip(filter.has<boolean>('clickable'), marker).subscribe(([v, m]) => m.setClickable(!!v));
+      zip(filter.has<boolean>('draggable'), marker).subscribe(([v, m]) => m.setDraggable(!!v));
+      zip(filter.has<boolean>('visible'), marker).subscribe(([v, m]) => (v ? m.show() : m.hide()));
+      zip(filter.has<string>('cursor'), marker).subscribe(([v, m]) => m.setCursor(v));
+      zip(filter.has<AMap.AnimationName>('animation'), marker).subscribe(([v, m]) =>
+        m.setAnimation(v),
+      );
+      zip(filter.has<number>('angle'), marker).subscribe(([v, m]) => m.setAngle(v));
+      zip(filter.has<number>('zIndex'), marker).subscribe(([v, m]) => m.setzIndex(v));
+      zip(filter.has<AMap.MarkerShape>('shape'), marker).subscribe(([v, m]) => m.setShape(v));
+      zip(filter.notEmpty<AMap.Pixel | IPixel>('offset'), marker).subscribe(([v, m]) =>
+        m.setOffset(this.pixels.create(v)),
+      );
+      zip(filter.notEmpty<AMap.LocationValue>('position'), marker).subscribe(([v, m]) =>
+        m.setPosition(v),
+      );
+    }
+    zip(filter.has<boolean>('isTop'), marker).subscribe(([v, m]) => m.setTop(!!v));
+    zip(filter.has<boolean>('hidden'), marker).subscribe(([v, m]) => (v ? m.hide() : m.show()));
   }
 
   ngAfterContentInit() {
@@ -150,234 +257,31 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   private updateInfoWindow() {
-    if (this.infoWindowComponent && this._marker) {
+    if (this.infoWindowComponent && this.inited) {
       if (this.infoWindowComponent.length > 1) {
-        this.logger.e(this.TAG, 'Expected no more than 1 info window.');
+        this.logger.e(TAG, 'Expected no more than 1 info window.');
         return;
       }
 
+      const marker = this.os.get();
       this.infoWindowComponent.forEach(component => {
-        component.hostMarker = this._marker;
+        component.hostMarker = marker;
       });
     }
   }
 
   private updateInfoWindowPosition() {
-    if (this.infoWindowComponent && this._marker) {
+    if (this.infoWindowComponent && this.inited) {
       this.infoWindowComponent.forEach(component => {
         component.toggleOpen();
       });
     }
   }
 
-  private bindEvents() {
-    this._subscriptions = this.bindMarkerEvent('click').subscribe(e => {
-      if (this.openInfoWindow) {
-        this.infoWindowComponent.forEach(component => {
-          component.open();
-        });
-      }
-      this.markerClick.emit(e);
-    });
-    this._subscriptions.add(this.bindMarkerEvent('dblclick').subscribe(e => this.dblClick.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('rightclick').subscribe(e => this.rightClick.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('mousemove').subscribe(e => this.mouseMove.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('mouseover').subscribe(e => this.mouseOver.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('mouseout').subscribe(e => this.mouseOut.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('mousedown').subscribe(e => this.mouseDown.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('mouseup').subscribe(e => this.mouseUp.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('dragstart').subscribe(e => this.dragStart.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('dragging').subscribe(e => this.dragging.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('dragend').subscribe(e => this.dragEnd.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('touchstart').subscribe(e => this.touchStart.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('touchmove').subscribe(e => this.touchMove.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('touchend').subscribe(e => this.touchEnd.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('moving').subscribe(e => this.moving.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('moveend').subscribe(e => this.moveend.emit(e)));
-    this._subscriptions.add(this.bindMarkerEvent('movealong').subscribe(e => this.movealong.emit(e)));
-  }
-
-  private bindMarkerEvent(event: string) {
-    return this.markers.bindEvent(this._marker, event);
-  }
-
-  get marker(): Promise<Marker> {
-    return this._marker;
-  }
-
-  show(): Promise<void> {
-    return this._marker.then(m => m.show());
-  }
-
-  hide(): Promise<void> {
-    return this._marker.then(m => m.hide());
-  }
-
-  // Animations
-  moveTo(position: ILngLat, speed: number, f?: (k: any) => any): Promise<void> {
-    return this._marker.then(marker => marker.moveTo(position, speed, f));
-  }
-
-  moveAlong(path: ILngLat[], speed: number, f?: (k: any) => any): Promise<void> {
-    return this._marker.then(marker => marker.moveAlong(path, speed, f));
-  }
-
-  stopMove(): Promise<void> {
-    return this._marker.then(marker => marker.stopMove());
-  }
-
-  pauseMove(): Promise<void> {
-    return this._marker.then(marker => marker.pauseMove());
-  }
-
-  resumeMove(): Promise<void> {
-    return this._marker.then(marker => marker.resumeMove());
-  }
-
-  // Setters
-  setOffset(offset: IPixel): Promise<void> {
-    return this._marker.then(marker => {
-      const value = this.pixel.create(offset, 'offset');
-      if (value) {
-        marker.setOffset(value);
-      }
-    });
-  }
-
-  setIcon(icon: string|IIcon): Promise<void> {
-    return this._marker.then(marker => {
-      const value = this.icons.create(icon, 'icon');
-      marker.setIcon(value);
-    });
-  }
-
-  setShadow(shadow: IIcon): Promise<void> {
-    return this._marker.then(marker => {
-      const value = <Icon>this.icons.create(shadow, 'shadow');
-      marker.setShadow(value);
-    });
-  }
-
-  setLabel(label: ILabel): Promise<void> {
-    return this._marker.then(marker => {
-      const value = this.labels.create(label, 'label');
-      marker.setLabel(value);
-    });
-  }
-
-  setDraggable(draggable: boolean): Promise<void> {
-    return this._marker.then(marker => marker.setDraggable(draggable));
-  }
-
-  setClickable(clickable: boolean): Promise<void> {
-    return this._marker.then(marker => marker.setClickable(clickable));
-  }
-
-  setPosition(position: LngLat): Promise<void> {
-    return this._marker.then(marker => {
-      marker.setPosition(position);
-      this.updateInfoWindowPosition();
-    });
-  }
-
-  setAngle(angle: number): Promise<void> {
-    return this._marker.then(marker => marker.setAngle(angle));
-  }
-
-  setzIndex(zIndex: number): Promise<void> {
-    return this._marker.then(marker => marker.setzIndex(zIndex));
-  }
-
-  setContent(content: any): Promise<void> {
-    return this._marker.then(marker => marker.setContent(content));
-  }
-
-  setTitle(title: string): Promise<void> {
-    return this._marker.then(marker => marker.setTitle(title));
-  }
-
-  setCursor(cursor: string): Promise<void> {
-    return this._marker.then(marker => marker.setCursor(cursor));
-  }
-
-  setTop(isTop: boolean): Promise<void> {
-    return this._marker.then(marker => marker.setTop(isTop));
-  }
-
-  setExtData(data: any): Promise<void> {
-    return this._marker.then(marker => marker.setExtData(data));
-  }
-
-  setShape(shape: any): Promise<void> {
-    return this._marker.then(marker => marker.setShape(shape));
-  }
-
-  setAnimation(animation: string): Promise<void> {
-    return this._marker.then(marker => marker.setAnimation(animation));
-  }
-
-  // Getters
-  getOffset(): Promise<Pixel> {
-    return this._marker.then(marker => marker.getOffset());
-  }
-
-  getPosition(): Promise<LngLat> {
-    return this._marker.then(marker => marker.getPosition());
-  }
-
-  getLabel(): Promise<any> {
-    return this._marker.then(marker => marker.getLabel());
-  }
-
-  getAngle(): Promise<number> {
-    return this._marker.then(marker => marker.getAngle());
-  }
-
-  getzIndex(): Promise<number> {
-    return this._marker.then(marker => marker.getzIndex());
-  }
-
-  getIcon(): Promise<string|Icon> {
-    return this._marker.then(marker => marker.getIcon());
-  }
-
-  getContent(): Promise<any> {
-    return this._marker.then(marker => marker.getContent());
-  }
-
-  getTitle(): Promise<string> {
-    return this._marker.then(marker => marker.getTitle());
-  }
-
-  getTop(): Promise<boolean> {
-    return this._marker.then(marker => marker.getTop());
-  }
-
-  getShadow(): Promise<Icon> {
-    return this._marker.then(marker => marker.getShadow());
-  }
-
-  getShape(): Promise<any> {
-    return this._marker.then(marker => marker.getShape());
-  }
-
-  getExtData(): Promise<any> {
-    return this._marker.then(marker => marker.getExtData());
-  }
-
-  getMap(): Promise<Map> {
-    return this._marker.then(marker => marker.getMap());
-  }
-
-  getAnimation(): Promise<string> {
-    return this._marker.then(marker => marker.getAnimation());
-  }
-
-  getClickable(): Promise<boolean> {
-    return this._marker.then(marker => marker.getClickable());
-  }
-
-  getDraggable(): Promise<boolean> {
-    return this._marker.then(marker => marker.getDraggable());
+  /**
+   * 获取已创建的 AMap.Marker 对象
+   */
+  get() {
+    return this.os.get();
   }
 }

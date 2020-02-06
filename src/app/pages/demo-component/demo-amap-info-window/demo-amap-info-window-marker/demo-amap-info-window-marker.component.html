@@ -1,0 +1,16 @@
+<nz-alert nzType="info" nzMessage="请点击标记"></nz-alert>
+
+<!-- DEMO START -->
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-marker *ngFor="let marker of markers; index as i" [position]="marker">
+    <amap-info-window [offset]="infoWindowOffset">
+      我是第 {{i+1}} 个marker
+    </amap-info-window>
+  </amap-marker>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

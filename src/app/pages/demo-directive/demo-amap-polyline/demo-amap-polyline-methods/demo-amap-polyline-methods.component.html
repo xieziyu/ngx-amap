@@ -1,0 +1,23 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="getMethods(myPolyline)" nz-button nzType="default">调用原生方法</button>
+  <button (click)="editor = !editor" nz-button nzType="default">开/关编辑功能</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-polyline #myPolyline="polyline"
+    [editor]="editor"
+    [path]="lineArr"
+    [strokeColor]="'#3366FF'"
+    [strokeOpacity]="1"
+    [strokeWeight]="5"
+    [strokeStyle]="'solid'"
+    [strokeDasharray]="[10, 5]">
+  </amap-polyline>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

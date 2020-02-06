@@ -1,0 +1,33 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="hide = !hide" nz-button nzType="default">显示/隐藏</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-circle [options]="options" [hidden]="hide" [editor]="true"
+    (naReady)="onEvent($event, 'naReady')"
+    (naClick)="onEvent($event, 'naClick')"
+    (naDblClick)="onEvent($event, 'naDblClick')"
+    (naRightClick)="onEvent($event, 'naRightClick')"
+    (naMouseOver)="onEvent($event, 'naMouseOver')"
+    (naMouseUp)="onEvent($event, 'naMouseUp')"
+    (naMouseOut)="onEvent($event, 'naMouseOut')"
+    (naMouseDown)="onEvent($event, 'naMouseDown')"
+    (naHide)="onEvent($event, 'naHide')"
+    (naShow)="onEvent($event, 'naShow')"
+    (naChange)="onEvent($event, 'naChange')"
+    (naTouchStart)="onEvent($event, 'naTouchStart')"
+    (naTouchMove)="onEvent($event, 'naTouchMove')"
+    (naTouchEnd)="onEvent($event, 'naTouchEnd')"
+    (naEditorAddNode)="onEditorEvent($event, 'naEditorAddNode')"
+    (naEditorRemoveNode)="onEditorEvent($event, 'naEditorRemoveNode')"
+    (naEditorAdjust)="onEditorEvent($event, 'naEditorAdjust')"
+    (naEditorEnd)="onEditorEvent($event, 'naEditorEnd')">
+  </amap-circle>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

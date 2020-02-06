@@ -1,0 +1,33 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="hide = !hide" nz-button nzType="default">显示/隐藏</button>
+</div>
+
+<ngx-amap class="demo-map" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-polyline [options]="lineOptions" [hidden]="hide" [editor]="true"
+    (naReady)="onPolylineEvent($event, 'naReady')"
+    (naClick)="onPolylineEvent($event, 'naClick')"
+    (naDblClick)="onPolylineEvent($event, 'naDblClick')"
+    (naRightClick)="onPolylineEvent($event, 'naRightClick')"
+    (naMouseOver)="onPolylineEvent($event, 'naMouseOver')"
+    (naMouseUp)="onPolylineEvent($event, 'naMouseUp')"
+    (naMouseOut)="onPolylineEvent($event, 'naMouseOut')"
+    (naMouseDown)="onPolylineEvent($event, 'naMouseDown')"
+    (naHide)="onPolylineEvent($event, 'naHide')"
+    (naShow)="onPolylineEvent($event, 'naShow')"
+    (naChange)="onPolylineEvent($event, 'naChange')"
+    (naTouchStart)="onPolylineEvent($event, 'naTouchStart')"
+    (naTouchMove)="onPolylineEvent($event, 'naTouchMove')"
+    (naTouchEnd)="onPolylineEvent($event, 'naTouchEnd')"
+    (naEditorAddNode)="onEditorEvent($event, 'naEditorAddNode')"
+    (naEditorRemoveNode)="onEditorEvent($event, 'naEditorRemoveNode')"
+    (naEditorAdjust)="onEditorEvent($event, 'naEditorAdjust')"
+    (naEditorEnd)="onEditorEvent($event, 'naEditorEnd')"
+  ></amap-polyline>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

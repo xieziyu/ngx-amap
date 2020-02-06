@@ -1,200 +1,78 @@
-import { Directive, Input, Output, OnDestroy,
-  EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Ellipse, LngLat, Bounds, EllipseEditor } from '../../types/class';
-import { EllipseOptions, ILngLat } from '../../types/interface';
-import { Utils } from '../../utils/utils';
-import { ChangeFilter } from '../../utils/change-filter';
-import { EllipseService } from '../../services/ellipse/ellipse.service';
+import { Input, Directive, OnDestroy, SimpleChanges, OnChanges, NgZone } from '@angular/core';
+import { zip } from 'rxjs';
+import { AMapPolygon, PolygonOptions } from '../../base/amap-polygon';
+import { AmapEllipseService } from './amap-ellipse.service';
+import { LoggerService } from '../../shared/logger';
+import { EventBinderService } from '../../shared/event-binder.service';
+import { getOptions, ChangeFilter } from '../../utils';
 
-const ALL_OPTIONS = [
-  'zIndex',
-  'center',
-  'bubble',
-  'cursor',
-  'radius',
-  'strokeColor',
-  'strokeOpacity',
-  'strokeWeight',
-  'fillColor',
-  'fillOpacity',
-  'strokeStyle',
-  'strokeDasharray',
-  'extData'
-];
+const TAG = 'amap-ellipse';
+const EllipseOptions = [...PolygonOptions, 'center', 'radius'];
 
 @Directive({
   selector: 'amap-ellipse',
-  exportAs: 'ellipse'
+  exportAs: 'ellipse',
+  providers: [AmapEllipseService],
 })
-export class AmapEllipseDirective implements OnChanges, OnDestroy {
-  TAG = 'amap-ellipse';
+export class AmapEllipseDirective extends AMapPolygon<AMap.Ellipse, AMap.EllipseEditor>
+  implements OnChanges, OnDestroy {
+  // ---- Options ----
+  /**
+   * 椭圆的中心
+   */
+  @Input() center: AMap.LocationValue;
+  /**
+   * 椭圆半径
+   */
+  @Input() radius: [number, number];
+  /**
+   * 额外: 会覆盖其他属性的配置方式
+   */
+  @Input() options: AMap.Ellipse.Options;
 
-  // These properties are supported in EllipseOptions:
-  @Input() zIndex: number;
-  @Input() center: ILngLat;
-  @Input() bubble: boolean;
-  @Input() cursor: string;
-  @Input() radius: number;
-  @Input() strokeColor: string;
-  @Input() strokeOpacity: number;
-  @Input() strokeWeight: number;
-  @Input() fillColor: string;
-  @Input() fillOpacity: number;
-  @Input() strokeStyle: string;
-  @Input() strokeDasharray: number[];
-  @Input() extData: any;
-
-  // This options property will override other property:
-  @Input() options: EllipseOptions;
-
-  // Extra property:
-  @Input() hidden = false;
-  @Input() editor = false;
-
-  // amap-ellipse events:
-  @Output() ellipseClick = new EventEmitter();
-  @Output() ready = new EventEmitter();
-  @Output() dblClick = new EventEmitter();
-  @Output() rightClick = new EventEmitter();
-  @Output() ellipseHide = new EventEmitter();
-  @Output() ellipseShow = new EventEmitter();
-  @Output() mouseDown = new EventEmitter();
-  @Output() mouseUp = new EventEmitter();
-  @Output() mouseOver = new EventEmitter();
-  @Output() mouseOut = new EventEmitter();
-  @Output() change = new EventEmitter();
-  @Output() touchStart = new EventEmitter();
-  @Output() touchMove = new EventEmitter();
-  @Output() touchEnd = new EventEmitter();
-
-  // editor events:
-  @Output() editorMove = new EventEmitter();
-  @Output() editorAdjust = new EventEmitter();
-  @Output() editorEnd = new EventEmitter();
-
-  private _ellipse: Promise<Ellipse>;
-  private _subscriptions: Subscription;
-
-  private _editor: EllipseEditor;
+  private inited = false;
 
   constructor(
-    private ellipses: EllipseService
-  ) {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    const filter = ChangeFilter.of(changes);
-
-    if (!this._ellipse) {
-      const options = this.options || Utils.getOptionsFor<EllipseOptions>(this, ALL_OPTIONS);
-      this._ellipse = this.ellipses.create(options);
-      this.bindEvents();
-      this._ellipse.then(p => this.ready.emit(p));
-    } else {
-      filter.has<EllipseOptions>('options').subscribe(v => this.setOptions(v || {}));
-      filter.has<any>('extData').subscribe(v => this.setExtData(v));
-      filter.notEmpty<LngLat>('center').subscribe(v => this.setCenter(v));
-    }
-
-    filter.has<boolean>('hidden').subscribe(v => v ? this.hide() : this.show());
-    filter.has<boolean>('editor').subscribe(v => this.toggleEditor(v));
+    protected os: AmapEllipseService,
+    protected binder: EventBinderService,
+    private logger: LoggerService,
+    private ngZone: NgZone,
+  ) {
+    super(os, binder);
   }
 
   ngOnDestroy() {
-    this._subscriptions.unsubscribe();
-    this.ellipses.destroy(this._ellipse);
+    this.os.destroy();
   }
 
-  private bindEvents() {
-    this._subscriptions = this.bindEvent('click').subscribe(e => this.ellipseClick.emit(e));
-    this._subscriptions.add(this.bindEvent('dblclick').subscribe(e => this.dblClick.emit(e)));
-    this._subscriptions.add(this.bindEvent('rightclick').subscribe(e => this.rightClick.emit(e)));
-    this._subscriptions.add(this.bindEvent('hide').subscribe(e => this.ellipseHide.emit(e)));
-    this._subscriptions.add(this.bindEvent('show').subscribe(e => this.ellipseShow.emit(e)));
-    this._subscriptions.add(this.bindEvent('mousedown').subscribe(e => this.mouseDown.emit(e)));
-    this._subscriptions.add(this.bindEvent('mouseup').subscribe(e => this.mouseUp.emit(e)));
-    this._subscriptions.add(this.bindEvent('mouseover').subscribe(e => this.mouseOver.emit(e)));
-    this._subscriptions.add(this.bindEvent('mouseout').subscribe(e => this.mouseOut.emit(e)));
-    this._subscriptions.add(this.bindEvent('change').subscribe(e => this.change.emit(e)));
-    this._subscriptions.add(this.bindEvent('touchstart').subscribe(e => this.touchStart.emit(e)));
-    this._subscriptions.add(this.bindEvent('touchmove').subscribe(e => this.touchMove.emit(e)));
-    this._subscriptions.add(this.bindEvent('touchend').subscribe(e => this.touchEnd.emit(e)));
-  }
-
-  private bindEvent(event: string) {
-    return this.ellipses.bindEvent(this._ellipse, event);
-  }
-
-  private bindEditorEvents(event: string) {
-    return this.ellipses.bindEvent(this._editor, event);
-  }
-
-  // Public methods:
-  toggleEditor(v: boolean): Promise<void> {
-    if (v && !this._editor) {
-      return this.ellipses.loadEditor()
-        .then(() => this._ellipse)
-        .then(c => this.ellipses.createEditor(c))
-        .then(editor => {
-          this._editor = editor;
-          // Bind events:
-          this._subscriptions.add(this.bindEditorEvents('move').subscribe(e => this.editorMove.emit(e)));
-          this._subscriptions.add(this.bindEditorEvents('adjust').subscribe(e => this.editorAdjust.emit(e)));
-          this._subscriptions.add(this.bindEditorEvents('end').subscribe(e => this.editorEnd.emit(e)));
-          editor.open();
-        });
+  ngOnChanges(changes: SimpleChanges) {
+    const filter = ChangeFilter.of(changes);
+    const ellipse = this.get();
+    if (!this.inited) {
+      this.logger.d(TAG, 'initializing ...');
+      const options = this.options || getOptions<AMap.Ellipse.Options>(this, EllipseOptions);
+      this.logger.d(TAG, 'options:', options);
+      this.os.create(options).subscribe(m => {
+        this.ngZone.run(() => this.naReady.emit(m));
+        this.logger.d(TAG, 'ellipse is ready.');
+      });
+      this.inited = true;
+    } else {
+      zip(filter.has<AMap.LocationValue>('center'), ellipse).subscribe(([v, p]) => p.setCenter(v));
+      zip(filter.has<AMap.Ellipse.Options>('options'), ellipse).subscribe(([v, p]) =>
+        p.setOptions(v || {}),
+      );
+      zip(filter.has<any>('extData'), ellipse).subscribe(([v, p]) => p.setExtData(v));
     }
 
-    if (this._editor) {
-      if (v) {
-        this._editor.open();
-      } else {
-        this._editor.close();
-      }
-    }
-
-    return Promise.resolve();
+    zip(filter.has<boolean>('hidden'), ellipse).subscribe(([v, p]) => (v ? p.hide() : p.show()));
+    filter.has<boolean>('editor').subscribe(v => this.os.toggleEditor(v));
   }
 
-  show(): Promise<void> {
-    return this._ellipse.then(c => c.show());
-  }
-
-  hide(): Promise<void> {
-    return this._ellipse.then(c => c.hide());
-  }
-
-  contains(point: LngLat|ILngLat): Promise<boolean> {
-    return this._ellipse.then(c => c.contains(point));
-  }
-
-  // Setters:
-  setCenter(lnglat: LngLat|ILngLat): Promise<void> {
-    return this._ellipse.then(c => c.setCenter(lnglat));
-  }
-
-  setOptions(opt: EllipseOptions): Promise<void> {
-    return this._ellipse.then(c => c.setOptions(opt));
-  }
-
-  setExtData(ext: any): Promise<void> {
-    return this._ellipse.then(c => c.setExtData(ext));
-  }
-
-  // Getters:
-  getCenter(): Promise<LngLat> {
-    return this._ellipse.then(c => c.getCenter());
-  }
-
-  getOptions(): Promise<EllipseOptions> {
-    return this._ellipse.then(c => c.getOptions());
-  }
-
-  getBounds(): Promise<Bounds> {
-    return this._ellipse.then(c => c.getBounds());
-  }
-
-  getExtData(): Promise<any> {
-    return this._ellipse.then(c => c.getExtData());
+  /**
+   * 获取已创建的 AMap.Ellipse 对象
+   */
+  get() {
+    return this.os.get();
   }
 }

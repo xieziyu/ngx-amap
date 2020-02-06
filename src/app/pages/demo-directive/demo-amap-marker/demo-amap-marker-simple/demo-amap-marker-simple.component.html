@@ -1,0 +1,16 @@
+<!-- DEMO START -->
+<div class="button-groups">
+  <button (click)="hidden = !hidden" nz-button nzType="default">显示/隐藏 点标记</button>
+  <button (click)="toggleIcon()" nz-button nzType="default">切换自定义图标</button>
+  <button (click)="toggleLabel()" nz-button nzType="default">切换自定义文本标签</button>
+</div>
+
+<ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-marker [position]="[116.397428, 39.90923]" [hidden]="hidden" [icon]="icon" [label]="label"></amap-marker>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

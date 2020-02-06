@@ -1,0 +1,30 @@
+<!-- DEMO START -->
+<ngx-amap class="demo-map" [resizeEnable]="true" [center]="[116.397428, 39.90923]" [zoom]="13">
+  <amap-text [position]="[116.396923, 39.918203]" [style]="style" [draggable]="true"
+    [text]="'纯文本标记'"
+    (naReady)="onEvent($event, 'naReady')"
+    (naClick)="onEvent($event, 'naClick')"
+    (naDblClick)="onEvent($event, 'naDblClick')"
+    (naRightClick)="onEvent($event, 'naRightClick')"
+    (naMouseMove)="onEvent($event, 'naMouseMove')"
+    (naMouseOver)="onEvent($event, 'naMouseOver')"
+    (naMouseUp)="onEvent($event, 'naMouseUp')"
+    (naMouseOut)="onEvent($event, 'naMouseOut')"
+    (naMouseDown)="onEvent($event, 'naMouseDown')"
+    (naTouchStart)="onEvent($event, 'naTouchStart')"
+    (naTouchMove)="onEvent($event, 'naTouchMove')"
+    (naTouchEnd)="onEvent($event, 'naTouchEnd')"
+    (naDragStart)="onEvent($event, 'naDragStart')"
+    (naDragging)="onEvent($event, 'naDragging')"
+    (naDragEnd)="onEvent($event, 'naDragEnd')"
+    (naMoving)="onEvent($event, 'naMoving')"
+    (naMoveEnd)="onEvent($event, 'naMoveEnd')"
+    (naMoveAlong)="onEvent($event, 'naMoveAlong')"
+  ></amap-text>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

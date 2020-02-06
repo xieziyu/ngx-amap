@@ -1,0 +1,21 @@
+<!-- DEMO START -->
+<ngx-amap class="demo-map" [center]="[108, 34]" [zoom]="4">
+  <amap-circle-marker *ngFor="let marker of markers"
+    [center]="marker.center"
+    [radius]="marker.radius"
+    [strokeColor]="'white'"
+    [strokeOpacity]="0.5"
+    [strokeWeight]="2"
+    [fillColor]="'rgba(0,0,255,1)'"
+    [fillOpacity]="0.5"
+    [zIndex]="10"
+    [bubble]="true"
+    [cursor]="'pointer'"
+  ></amap-circle-marker>
+</ngx-amap>
+<!-- DEMO END -->
+
+<code-block
+  [html]="html"
+  [component]="component">
+</code-block>

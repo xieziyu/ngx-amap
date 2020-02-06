@@ -1,97 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
-import { AppComponent } from './app.component';
-
-// Import containers
-import { FullLayoutComponent, SimpleLayoutComponent } from './containers';
-
-const APP_CONTAINERS = [FullLayoutComponent, SimpleLayoutComponent];
-
-// Import components
-import {
-  AppAsideComponent,
-  AppBreadcrumbsComponent,
-  AppFooterComponent,
-  AppHeaderComponent,
-  AppSidebarComponent,
-  AppSidebarFooterComponent,
-  AppSidebarFormComponent,
-  AppSidebarHeaderComponent,
-  AppSidebarMinimizerComponent,
-  APP_SIDEBAR_NAV,
-  SearchBoxComponent,
-  SearchResultsComponent,
-} from './components';
-
-const APP_COMPONENTS = [
-  AppAsideComponent,
-  AppBreadcrumbsComponent,
-  AppFooterComponent,
-  AppHeaderComponent,
-  AppSidebarComponent,
-  AppSidebarFooterComponent,
-  AppSidebarFormComponent,
-  AppSidebarHeaderComponent,
-  AppSidebarMinimizerComponent,
-  APP_SIDEBAR_NAV,
-  SearchBoxComponent,
-  SearchResultsComponent,
-];
-
-// Import directives
-import {
-  AsideToggleDirective,
-  NAV_DROPDOWN_DIRECTIVES,
-  ReplaceDirective,
-  SIDEBAR_TOGGLE_DIRECTIVES,
-} from './directives';
-
-const APP_DIRECTIVES = [
-  AsideToggleDirective,
-  NAV_DROPDOWN_DIRECTIVES,
-  ReplaceDirective,
-  SIDEBAR_TOGGLE_DIRECTIVES,
-];
-
-// Import routing module
-import { AppRoutingModule } from './app.routing';
-
-// Import 3rd party components
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MarkdownModule } from 'ngx-markdown';
-import { HomeComponent } from './views/home/home.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { registerLocaleData, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { LayoutModule } from './layout/layout.module';
 import { NgxAmapModule } from 'ngx-amap';
 
+registerLocaleData(zh);
+
 @NgModule({
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    LayoutModule,
     FormsModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
+    NgZorroAntdModule,
     MarkdownModule.forRoot(),
     NgxAmapModule.forRoot({
       apiKey: '146f101e824accd6956eeec4937c1a05',
-      debug: false,
+      // debug: true,
+      // debugTags: '*',
     }),
   ],
-  declarations: [
-    AppComponent,
-    ...APP_CONTAINERS,
-    ...APP_COMPONENTS,
-    ...APP_DIRECTIVES,
-    HomeComponent,
-  ],
+  bootstrap: [AppComponent],
   providers: [
+    { provide: NZ_I18N, useValue: zh_CN },
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
