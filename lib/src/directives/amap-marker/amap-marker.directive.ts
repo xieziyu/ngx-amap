@@ -1,9 +1,11 @@
-import { Directive, OnInit, Input, AfterContentInit, ContentChildren, QueryList,
-  OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges, Optional } from '@angular/core';
+import {
+  Directive, OnInit, Input, AfterContentInit, ContentChildren, QueryList,
+  OnDestroy, Output, EventEmitter, OnChanges, SimpleChanges, Optional
+} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../services/logger/logger.service';
-import { LngLat, Size, Marker, Icon, Pixel, Map } from '../../types/class';
-import { ILngLat, IPixel, IIcon, ILabel, MarkerOptions } from '../../types/interface';
+import { LngLat, MarkerType, Marker, Icon, Pixel, Map } from '../../types/class';
+import { ILngLat, IPixel, IIcon, ILabel, MarkerOptions, IconLabel } from '../../types/interface';
 import { Utils } from '../../utils/utils';
 import { ChangeFilter } from '../../utils/change-filter';
 import { MarkerService } from '../../services/marker/marker.service';
@@ -31,8 +33,11 @@ const ALL_OPTIONS = [
   'clickable',
   'shape',
   'extData',
-  'label'
+  'label',
+  'iconLabel',
+  'type'
 ];
+
 
 @Directive({
   selector: 'amap-marker',
@@ -44,7 +49,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   // These properties are supported in MarkerOptions:
   @Input() position: ILngLat;
   @Input() offset: IPixel;
-  @Input() icon: string|IIcon;
+  @Input() icon: string | IIcon;
   @Input() content: any;
   @Input() topWhenClick: boolean;
   @Input() bubble: boolean;
@@ -61,6 +66,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   @Input() shape: any;  // TODO: MarkerShape
   @Input() extData: any;
   @Input() label: ILabel;
+  @Input() iconLabel: IconLabel;
 
   // Extra property:
   @Input() isTop: boolean;
@@ -68,6 +74,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   @Input() hidden = false;
   @Input() openInfoWindow = true;
   @Input() inCluster = false;
+  @Input() type: MarkerType = 'default';
 
   // amap-marker events:
   @Output() ready = new EventEmitter();
@@ -116,9 +123,10 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
       this.updateInfoWindow();
       this.updateInfoWindowPosition();
     } else {
-      filter.has<string|IIcon>('icon').subscribe(v => this.setIcon(v));
+      filter.has<string | IIcon>('icon').subscribe(v => this.setIcon(v));
       filter.has<IIcon>('shadow').subscribe(v => this.setShadow(v));
       filter.has<ILabel>('label').subscribe(v => this.setLabel(v));
+      filter.has<IconLabel>('iconLabel').subscribe(v => this.setIconLabel(v));
       filter.has<string>('title').subscribe(v => this.setTitle(v));
       filter.has<any>('content').subscribe(v => this.setContent(v));
       filter.has<any>('extData').subscribe(v => this.setExtData(v));
@@ -244,8 +252,12 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
     });
   }
 
-  setIcon(icon: string|IIcon): Promise<void> {
+  setIcon(icon: string | IIcon): Promise<void> {
     return this._marker.then(marker => {
+      if (marker.constructor.name === 'SimpleMarker') {
+        marker.setIconStyle(icon);
+        return;
+      }
       const value = this.icons.create(icon, 'icon');
       marker.setIcon(value);
     });
@@ -262,6 +274,12 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
     return this._marker.then(marker => {
       const value = this.labels.create(label, 'label');
       marker.setLabel(value);
+    });
+  }
+
+  setIconLabel(label: IconLabel | string): Promise<void> {
+    return this._marker.then(marker => {
+      marker.setIconLabel(label);
     });
   }
 
@@ -309,7 +327,9 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
   }
 
   setShape(shape: any): Promise<void> {
-    return this._marker.then(marker => marker.setShape(shape));
+    return this._marker.then(marker => {
+      marker.setShape(shape);
+    });
   }
 
   setAnimation(animation: string): Promise<void> {
@@ -337,7 +357,7 @@ export class AmapMarkerDirective implements OnChanges, OnDestroy, AfterContentIn
     return this._marker.then(marker => marker.getzIndex());
   }
 
-  getIcon(): Promise<string|Icon> {
+  getIcon(): Promise<string | Icon> {
     return this._marker.then(marker => marker.getIcon());
   }
 

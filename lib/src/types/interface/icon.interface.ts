@@ -6,4 +6,6 @@ export interface IIcon {
   imageOffset?: IPixel;
   image?: string;
   imageSize?: ISize;
+  src?: string;
+  style?: any;
 }

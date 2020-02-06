@@ -1,14 +1,15 @@
-import { ILabel } from '../label.interface';
+import { ILabel, IconLabel } from '../label.interface';
 import { Map } from '../../class/amap.map';
 import { LngLat } from '../../class/amap.lng-lat';
 import { Icon } from '../../class/amap.icon';
 import { Pixel } from '../../class/amap.pixel';
+import { MarkerType } from '../../class/overlays/amap.marker';
 
 export interface MarkerOptions {
   map?: Map;
   position?: LngLat;
   offset?: Pixel;
-  icon?: string|Icon;
+  icon?: string | Icon;
   content?: any;
   topWhenClick?: boolean;
   bubble?: boolean;
@@ -25,4 +26,7 @@ export interface MarkerOptions {
   shape?: any;  // TODO: MarkerShape
   extData?: any;
   label?: ILabel;
+  iconLabel?: string | IconLabel;
+  type?: MarkerType;
+  iconStyle?: any;
 }

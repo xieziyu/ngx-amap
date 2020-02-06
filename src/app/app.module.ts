@@ -82,7 +82,8 @@ import { NgxAmapModule } from 'ngx-amap';
     MarkdownModule.forRoot(),
     NgxAmapModule.forRoot({
       apiKey: '146f101e824accd6956eeec4937c1a05',
-      debug: false
+      uiApiVersion: '1.0.11',
+      debug: true
     }),
   ],
   declarations: [

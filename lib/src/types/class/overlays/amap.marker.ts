@@ -4,11 +4,15 @@ import { Pixel } from '../amap.pixel';
 import { Icon } from '../amap.icon';
 import { MarkerOptions } from '../../interface/overlays/marker-options.interface';
 
+// Default AMAP.Marker & UI Component Marker: SvgMarker、SimpleMarker、AwesomeMarker
+export type MarkerType = 'default' | 'simple' | 'svg' | 'awesome';
+
 export interface CMarker {
-  new (opts: MarkerOptions): Marker;
+  new(opts: MarkerOptions): Marker;
 }
 
 export interface Marker {
+  type: MarkerType;
   getOffset(): Pixel;
   setOffset(offset: Pixel): void;
   setAnimation(animate: string): void;
@@ -16,24 +20,26 @@ export interface Marker {
   setClickable(clickable: boolean): void;
   getClickable(): boolean;
   getPosition(): LngLat;
-  setPosition(lnglat: LngLat|number[]): void;
+  setPosition(lnglat: LngLat | number[]): void;
   setAngle(angle: number): void;
   setLabel(label: any): void;
+  setIconLabel(label: any): void;
   getLabel(): any;
   getAngle(): number;
   setzIndex(index: number): void;
   getzIndex(): number;
-  setIcon(content: string|Icon): void;
-  getIcon(): string|Icon;
+  setIcon(content: string | Icon): void;
+  setIconStyle(content: any): void;
+  getIcon(): string | Icon;
   setDraggable(draggable: boolean): void;
   getDraggable(): boolean;
   hide(): void;
   show(): void;
   setCursor(cursor: string): void;
-  setContent(html: string|HTMLElement): void;
+  setContent(html: string | HTMLElement): void;
   getContent(): string;
-  moveAlong(path: number[][]|LngLat[], speed: number, f?: (k: any) => any, circlable?: boolean): void;
-  moveTo(lnglat: LngLat|number[], speed: number, f?: (k: any) => any): void;
+  moveAlong(path: number[][] | LngLat[], speed: number, f?: (k: any) => any, circlable?: boolean): void;
+  moveTo(lnglat: LngLat | number[], speed: number, f?: (k: any) => any): void;
   stopMove(): void;
   pauseMove(): void;
   resumeMove(): void;

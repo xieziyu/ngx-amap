@@ -81,6 +81,16 @@ export const navigation = [
         url: '/amap-marker/events',
         icon: 'fa fa-html5'
       },
+      {
+        name: 'SimpleMarker',
+        url: '/amap-marker/simple-marker',
+        icon: 'fa fa-html5'
+      },
+      {
+        name: 'SvgMarker',
+        url: '/amap-marker/svg-marker',
+        icon: 'fa fa-html5'
+      },
     ]
   },
   {

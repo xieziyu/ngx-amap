@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { SimpleComponent } from './simple/simple.component';
-import { MethodsComponent } from './methods/methods.component';
+import { RouterModule, Routes } from '@angular/router';
 import { EventsComponent } from './events/events.component';
+import { MethodsComponent } from './methods/methods.component';
+import { SimpleMarkerComponent } from './simple-marker/simple-marker.component';
+import { SimpleComponent } from './simple/simple.component';
+import { SvgMarkerComponent } from './svg-marker/svg-marker.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,20 @@ const routes: Routes = [
     component: EventsComponent,
     data: {
       title: '事件'
+    }
+  },
+  {
+    path: 'svg-marker',
+    component: SvgMarkerComponent,
+    data: {
+      title: 'SvgMarker'
+    }
+  },
+  {
+    path: 'simple-marker',
+    component: SimpleMarkerComponent,
+    data: {
+      title: 'SimpleMarker'
     }
   },
 ];
