@@ -97,6 +97,28 @@ npm install -D @types/amap-js-api-transfer
       </ngx-amap>
       ```
 
+5. 由于采用了懒加载高德 JS 库，所以如果需要直接使用全局 `AMap` 对象的方法，需要等加载完成后使用。
+  - 可以在组件 `<ngx-amap>` `(naReady)` 事件之后使用 `AMap`
+  - 也可以使用 `AMapLoaderService` 的 `load` 方法
+  ```ts
+  import { AMapLoaderService } from  'ngx-amap';
+
+  @Component({
+    ...
+  })
+  export class MyComponent implements OnInit {
+    constructor(private loader: AMapLoaderService) {}
+
+    ngOnInit() {
+      this.loader.load().subscribe(() => {
+        // 高德 JS SDK 加载完毕
+        const dis = AMap.GeometryUtil.distance([123, 456], [123, 456]);
+        console.log(dis: ${dis});
+      })
+    }
+  }
+  ```
+
 更多用法和事件，请参看演示和文档。
 
 # 配置

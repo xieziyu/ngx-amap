@@ -19,6 +19,7 @@ import { AmapHeatmapDirective } from './directives/amap-heatmap/amap-heatmap.dir
 import { InputAmapAutocompleteDirective } from './directives/input-amap-autocomplete/input-amap-autocomplete.directive';
 import { AmapPluginLoaderService } from './shared/amap-plugin-loader.service';
 import { AmapUILoaderService } from './shared/amap-ui-loader.service';
+import { AMapLoaderService } from './shared/amap-loader.service';
 import { AmapAutocompleteService } from './services/amap-autocomplete/amap-autocomplete.service';
 import { UISimpleMarkerDirective } from './directives/ui-simple-marker/ui-simple-marker.directive';
 import { UIAwesomeMarkerDirective } from './directives/ui-awesome-marker/ui-awesome-marker.directive';
@@ -97,6 +98,7 @@ export {
   InputAmapAutocompleteDirective,
   AmapPluginLoaderService,
   AmapUILoaderService,
+  AMapLoaderService,
   AmapAutocompleteService,
   UISimpleMarkerDirective,
   UIAwesomeMarkerDirective,
