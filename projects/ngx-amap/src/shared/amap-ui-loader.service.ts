@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { switchMap, switchMapTo } from 'rxjs/operators';
 import { LoggerService } from './logger/logger.service';
 import { AMapLoaderService } from './amap-loader.service';
 
@@ -27,18 +26,21 @@ export class AmapUILoaderService {
     }
 
     this.logger.d(TAG, 'loading ui:', pKey, '...');
-    return this.amap.load().pipe(
-      switchMapTo(this.amap.loadUI()),
-      switchMap(() => {
-        const loading$ = new ReplaySubject(1);
-        AMapUI.loadUI(Array.isArray(name) ? name : [name], u => {
-          this.logger.d(TAG, 'loading ui:', pKey, 'COMPLETE');
-          loading$.next(u);
-          loading$.complete();
+    const loading$ = new ReplaySubject(1);
+    this.amap.load().subscribe({
+      next: () => {
+        this.amap.loadUI().subscribe({
+          next: () => {
+            AMapUI.loadUI(Array.isArray(name) ? name : [name], u => {
+              this.logger.d(TAG, 'loading ui:', pKey, 'COMPLETE');
+              loading$.next(u);
+              loading$.complete();
+            });
+            this.state.set(pKey, loading$);
+          },
         });
-        this.state.set(pKey, loading$);
-        return loading$.asObservable();
-      }),
-    );
+      },
+    });
+    return loading$.asObservable();
   }
 }
