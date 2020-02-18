@@ -5,6 +5,7 @@
 
 + [在线演示](https://xieziyu.github.io/ngx-amap)
 + [模块文档](https://xieziyu.github.io/ngx-amap/api-doc)
++ [CHANGELOG](https://github.com/xieziyu/ngx-amap/blob/master/CHANGELOG.md)
 
 ngx-amap 是为在**Angular**(ver >= 2.x)项目中便捷、高效地使用**高德地图**Javascript API而构建的组件集合
 
