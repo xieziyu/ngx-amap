@@ -1,5 +1,3 @@
-/// <reference types="../../types/editor" />
-
 import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject, zip } from 'rxjs';
 import { map, switchMapTo } from 'rxjs/operators';
@@ -7,15 +5,16 @@ import { AMapService } from '../../shared/amap.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { PluginLoaderService } from '../../shared/plugin-loader.service';
 import { Getter } from '../../base/interfaces';
+declare const AMap: any;
 
 const TAG = 'AmapCircle';
 
 @Injectable()
 export class AmapCircleService implements Getter<AMap.Circle> {
-  private circle: AMap.Circle;
-  private circle$ = new ReplaySubject<AMap.Circle>(1);
-  private editor: AMap.CircleEditor;
-  private editor$ = new ReplaySubject<AMap.CircleEditor>(1);
+  private circle: any;
+  private circle$ = new ReplaySubject<any>(1);
+  private editor: any;
+  private editor$ = new ReplaySubject<any>(1);
 
   constructor(
     private amaps: AMapService,

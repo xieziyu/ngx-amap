@@ -1,5 +1,3 @@
-/// <reference types="../../types/editor" />
-
 import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject, zip } from 'rxjs';
 import { map, switchMapTo } from 'rxjs/operators';
@@ -7,15 +5,16 @@ import { AMapService } from '../../shared/amap.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { PluginLoaderService } from '../../shared/plugin-loader.service';
 import { WithEditor } from '../../base/interfaces';
+declare const AMap: any;
 
 const TAG = 'AmapPolygon';
 
 @Injectable()
-export class AmapPolygonService implements WithEditor<AMap.Polygon, AMap.PolyEditor> {
-  private polygon: AMap.Polygon;
-  private polygon$ = new ReplaySubject<AMap.Polygon>(1);
-  private editor: AMap.PolyEditor;
-  private editor$ = new ReplaySubject<AMap.PolyEditor>(1);
+export class AmapPolygonService implements WithEditor<AMap.Polygon, any> {
+  private polygon: any;
+  private polygon$ = new ReplaySubject<any>(1);
+  private editor: any;
+  private editor$ = new ReplaySubject<any>(1);
 
   constructor(
     private amaps: AMapService,

@@ -10,10 +10,7 @@
       "es2018"
     ],
     "types": [
-      "@types/amap-js-api",
-      "@types/amap-js-api-tool-bar",
-      "@types/amap-js-api-heatmap",
-      "@types/amap-js-api-autocomplete",
+      "@types/amap-js-api"
     ]
   },
   "angularCompilerOptions": {

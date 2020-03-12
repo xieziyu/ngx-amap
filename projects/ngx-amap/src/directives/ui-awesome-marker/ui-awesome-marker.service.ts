@@ -1,5 +1,3 @@
-/// <reference types="../../types/awesome-marker" />
-
 import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject, zip, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,14 +5,28 @@ import { AMapService } from '../../shared/amap.service';
 import { AmapUILoaderService } from '../../shared/amap-ui-loader.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { Getter } from '../../base/interfaces';
+import { AMapUISimpleMarker } from '../ui-simple-marker/ui-simple-marker.service';
+
+export namespace AMapUIAwesomeMarker {
+  export interface Options<ExtraData = any> extends AMapUISimpleMarker.Options<ExtraData> {
+    /**
+     * icon 的名称，可用的 icons 参见 Font Awesome 官网
+     */
+    awesomeIcon?: string;
+    /**
+     * 返回字体节点上的 classNames
+     */
+    getClassnamesOfAwesomeIcon?: (awesomeIcon: string) => string;
+  }
+}
 
 const TAG = 'UIAwesomeMarker';
 
 @Injectable()
-export class UIAwesomeMarkerService implements Getter<AMapUI.AwesomeMarker> {
-  private marker: AMapUI.AwesomeMarker;
-  private marker$ = new ReplaySubject<AMapUI.AwesomeMarker>(1);
-  private ui = this.uiLoader.load('overlay/AwesomeMarker') as Observable<AMapUI.AwesomeMarker>;
+export class UIAwesomeMarkerService implements Getter<any> {
+  private marker: any;
+  private marker$ = new ReplaySubject<any>(1);
+  private ui = this.uiLoader.load('overlay/AwesomeMarker') as Observable<any>;
 
   constructor(
     private amaps: AMapService,
@@ -35,7 +47,7 @@ export class UIAwesomeMarkerService implements Getter<AMapUI.AwesomeMarker> {
    * @param options 选项
    * @param addToMap 是否直接加进地图
    */
-  create(options: AMapUI.AwesomeMarker.Options, addToMap = true) {
+  create(options: AMapUIAwesomeMarker.Options, addToMap = true) {
     return zip(this.ui, this.amaps.get()).pipe(
       map(([AwesomeMarker, m]) => {
         if (addToMap) {

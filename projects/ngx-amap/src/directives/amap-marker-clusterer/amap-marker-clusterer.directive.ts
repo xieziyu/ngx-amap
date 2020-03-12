@@ -1,5 +1,3 @@
-/// <reference types="../../types/marker-cluster" />
-
 import {
   Directive,
   Input,
@@ -16,7 +14,7 @@ import {
 } from '@angular/core';
 import { zip, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AmapMarkerClustererService } from './amap-marker-clusterer.service';
+import { AmapMarkerClustererService, AMapMarkerClusterer } from './amap-marker-clusterer.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
@@ -63,7 +61,7 @@ export class AmapMarkerClustererDirective
   /**
    * 指定聚合后的点标记的图标样式，可缺省，缺省时为默认样式
    */
-  @Input() styles: AMap.MarkerClusterer.StyleObject[];
+  @Input() styles: AMapMarkerClusterer.StyleObject[];
   /**
    * 该方法用来实现聚合点的自定义绘制
    */
@@ -106,7 +104,7 @@ export class AmapMarkerClustererDirective
   ngOnInit() {
     this.amaps.get().subscribe(() => {
       this.logger.d(TAG, 'initializing ...');
-      const options = getOptions<AMap.MarkerClusterer.Options>(this, MarkerClusterOptions);
+      const options = getOptions<AMapMarkerClusterer.Options>(this, MarkerClusterOptions);
       if (options.styles) {
         options.styles = options.styles.map(style => {
           if (style.size) {
@@ -139,7 +137,7 @@ export class AmapMarkerClustererDirective
     );
     zip(filter.has<number>('maxZoom'), cluster).subscribe(([v, c]) => c.setMaxZoom(v));
     zip(filter.has<boolean>('averageCenter'), cluster).subscribe(([v, c]) => c.setAverageCenter(v));
-    zip(filter.has<AMap.MarkerClusterer.StyleObject[]>('styles'), cluster).subscribe(([v, c]) =>
+    zip(filter.has<AMapMarkerClusterer.StyleObject[]>('styles'), cluster).subscribe(([v, c]) =>
       c.setStyles(v),
     );
   }

@@ -9,7 +9,7 @@ import {
   NgZone,
 } from '@angular/core';
 import { zip } from 'rxjs';
-import { AmapHeatmapService } from './amap-heatmap.service';
+import { AmapHeatmapService, AMapHeatmap } from './amap-heatmap.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { getOptions, ChangeFilter } from '../../utils';
 
@@ -48,11 +48,11 @@ export class AmapHeatmapDirective implements OnChanges, OnDestroy {
   /**
    * 额外: 会覆盖其他属性的配置方式
    */
-  @Input() options: AMap.Heatmap.Options;
+  @Input() options: AMapHeatmap.Options;
   /**
    * 额外: 坐标数据集
    */
-  @Input() dataset: AMap.Heatmap.DataSet;
+  @Input() dataset: AMapHeatmap.DataSet;
 
   // ---- Events ----
   @Output() naReady = new EventEmitter();
@@ -74,7 +74,7 @@ export class AmapHeatmapDirective implements OnChanges, OnDestroy {
     const heatmap = this.get();
     if (!this.inited) {
       this.logger.d(TAG, 'initializing ...');
-      const options = this.options || getOptions<AMap.Heatmap.Options>(this, HeatmapOptions);
+      const options = this.options || getOptions<AMapHeatmap.Options>(this, HeatmapOptions);
       this.logger.d(TAG, 'options:', options);
       this.os.create(options).subscribe(m => {
         this.ngZone.run(() => this.naReady.emit(m));
@@ -82,12 +82,12 @@ export class AmapHeatmapDirective implements OnChanges, OnDestroy {
       });
       this.inited = true;
     } else {
-      zip(filter.has<AMap.Heatmap.Options>('options'), heatmap).subscribe(([v, p]) =>
+      zip(filter.has<AMapHeatmap.Options>('options'), heatmap).subscribe(([v, p]) =>
         p.setOptions(v || {}),
       );
     }
 
-    zip(filter.notEmpty<AMap.Heatmap.DataSet>('dataset'), heatmap).subscribe(([v, p]) => {
+    zip(filter.notEmpty<AMapHeatmap.DataSet>('dataset'), heatmap).subscribe(([v, p]) => {
       p.setDataSet(v);
     });
     zip(filter.has<boolean>('hidden'), heatmap).subscribe(([v, p]) => (v ? p.hide() : p.show()));

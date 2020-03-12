@@ -22,6 +22,7 @@ import { getOptions, ChangeFilter } from '../../utils';
 import { PixelService } from '../../shared/pixel.service';
 import { IconService } from '../../shared/icon.service';
 import { MarkerLabelService } from '../../shared/marker-label.service';
+import { AMapUISimpleMarker } from './ui-simple-marker.service';
 
 export const SimpleMarkerOptions = [
   ...OverlayOptions,
@@ -49,7 +50,7 @@ export const SimpleMarkerOptions = [
   'containerClassNames',
 ];
 
-export class UISimpleMarker<T extends AMapUI.SimpleMarker> extends AMapOverlay<AMapUI.SimpleMarker>
+export class UISimpleMarker extends AMapOverlay<any>
   implements OnDestroy, OnChanges, AfterContentInit {
   TAG = 'ui-simple-marker';
   // ---- Options ----
@@ -168,7 +169,7 @@ export class UISimpleMarker<T extends AMapUI.SimpleMarker> extends AMapOverlay<A
   protected subscription: Subscription;
 
   constructor(
-    protected os: WithCreate<T>,
+    protected os: WithCreate<any>,
     protected binder: EventBinderService,
     protected amaps: AMapService,
     protected pixels: PixelService,
@@ -314,7 +315,7 @@ export class UISimpleMarker<T extends AMapUI.SimpleMarker> extends AMapOverlay<A
   }
 
   getOptions() {
-    return getOptions<AMapUI.SimpleMarker.Options>(this, SimpleMarkerOptions);
+    return getOptions<AMapUISimpleMarker.Options>(this, SimpleMarkerOptions);
   }
 
   /**

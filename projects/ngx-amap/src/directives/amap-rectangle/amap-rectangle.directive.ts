@@ -14,7 +14,7 @@ const RectangleOptions = [...PolygonOptions, 'bounds'];
   exportAs: 'rectangle',
   providers: [AmapRectangleService],
 })
-export class AmapRectangleDirective extends AMapPolygon<AMap.Rectangle, AMap.RectangleEditor>
+export class AmapRectangleDirective extends AMapPolygon<AMap.Rectangle, any>
   implements OnChanges, OnDestroy {
   // ---- Options ----
   /**

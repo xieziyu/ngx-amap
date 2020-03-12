@@ -9,7 +9,10 @@ import {
   NgZone,
 } from '@angular/core';
 import { zip } from 'rxjs';
-import { AmapAutocompleteService } from '../../services/amap-autocomplete/amap-autocomplete.service';
+import {
+  AmapAutocompleteService,
+  AMapAutocomplete,
+} from '../../services/amap-autocomplete/amap-autocomplete.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
@@ -33,7 +36,7 @@ export class InputAmapAutocompleteDirective implements OnChanges {
   /**
    * 返回的数据类型
    */
-  @Input() datatype: AMap.Autocomplete.DataType;
+  @Input() datatype: AMapAutocomplete.DataType;
   /**
    * 是否强制限制在设置的城市内搜索
    */
@@ -66,7 +69,7 @@ export class InputAmapAutocompleteDirective implements OnChanges {
     const plugin = this.os.get();
     if (!this.inited) {
       this.logger.d(TAG, 'initializing ...');
-      const options = getOptions<AMap.Autocomplete.Options>(this, AutocompleteOptions);
+      const options = getOptions<AMapAutocomplete.Options>(this, AutocompleteOptions);
       options.input = this.el.nativeElement;
       this.logger.d(TAG, 'options:', options);
       this.os.create(options).subscribe(m => {
