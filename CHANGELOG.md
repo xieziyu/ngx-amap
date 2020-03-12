@@ -1,3 +1,10 @@
+## 3.0.3 (2020-03-12)
+
+#### Bugfix:
+  - [issue#63](https://github.com/xieziyu/ngx-amap/issues/63) AMap has no exported member XXX
+  - [issue#58](https://github.com/xieziyu/ngx-amap/issues/58) No provider for InjectionToken NGX_AMAP_CONFIG
+
+
 ## 3.0.2 (2020-02-18)
 
 #### Bugfix:
