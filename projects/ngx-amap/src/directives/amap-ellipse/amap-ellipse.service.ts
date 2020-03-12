@@ -1,5 +1,3 @@
-/// <reference types="../../types/editor" />
-
 import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject, zip } from 'rxjs';
 import { map, switchMapTo } from 'rxjs/operators';
@@ -7,15 +5,16 @@ import { AMapService } from '../../shared/amap.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { PluginLoaderService } from '../../shared/plugin-loader.service';
 import { WithEditor } from '../../base/interfaces';
+declare const AMap: any;
 
 const TAG = 'AmapEllipse';
 
 @Injectable()
-export class AmapEllipseService implements WithEditor<AMap.Ellipse, AMap.EllipseEditor> {
-  private ellipse: AMap.Ellipse;
-  private ellipse$ = new ReplaySubject<AMap.Ellipse>(1);
-  private editor: AMap.EllipseEditor;
-  private editor$ = new ReplaySubject<AMap.EllipseEditor>(1);
+export class AmapEllipseService implements WithEditor<AMap.Ellipse, any> {
+  private ellipse: any;
+  private ellipse$ = new ReplaySubject<any>(1);
+  private editor: any;
+  private editor$ = new ReplaySubject<any>(1);
 
   constructor(
     private amaps: AMapService,

@@ -1,6 +1,6 @@
 import { Directive, Input, OnChanges, SimpleChanges, NgZone } from '@angular/core';
 import { zip } from 'rxjs';
-import { UIAwesomeMarkerService } from './ui-awesome-marker.service';
+import { UIAwesomeMarkerService, AMapUIAwesomeMarker } from './ui-awesome-marker.service';
 import { UISimpleMarker, SimpleMarkerOptions } from '../ui-simple-marker/ui-simple-marker';
 import { getOptions, ChangeFilter } from '../../utils';
 import { EventBinderService } from '../../shared/event-binder.service';
@@ -17,8 +17,7 @@ const AwesomeMarkerOptions = [...SimpleMarkerOptions, 'awesomeIcon', 'getClassna
   exportAs: 'awesomeMarker',
   providers: [UIAwesomeMarkerService],
 })
-export class UIAwesomeMarkerDirective extends UISimpleMarker<AMapUI.AwesomeMarker>
-  implements OnChanges {
+export class UIAwesomeMarkerDirective extends UISimpleMarker implements OnChanges {
   TAG = 'ui-awesome-marker';
   // ---- Options ----
   /**
@@ -53,6 +52,6 @@ export class UIAwesomeMarkerDirective extends UISimpleMarker<AMapUI.AwesomeMarke
   }
 
   getOptions() {
-    return getOptions<AMapUI.AwesomeMarker.Options>(this, AwesomeMarkerOptions);
+    return getOptions<AMapUIAwesomeMarker.Options>(this, AwesomeMarkerOptions);
   }
 }

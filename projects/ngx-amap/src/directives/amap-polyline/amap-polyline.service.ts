@@ -1,5 +1,3 @@
-/// <reference types="../../types/editor" />
-
 import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject, zip } from 'rxjs';
 import { map, switchMapTo } from 'rxjs/operators';
@@ -7,15 +5,16 @@ import { AMapService } from '../../shared/amap.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { PluginLoaderService } from '../../shared/plugin-loader.service';
 import { Getter } from '../../base/interfaces';
+declare const AMap: any;
 
 const TAG = 'AmapPolyline';
 
 @Injectable()
 export class AmapPolylineService implements Getter<AMap.Polyline> {
-  private polyline: AMap.Polyline;
-  private polyline$ = new ReplaySubject<AMap.Polyline>(1);
-  private editor: AMap.PolyEditor;
-  private editor$ = new ReplaySubject<AMap.PolyEditor>(1);
+  private polyline: any;
+  private polyline$ = new ReplaySubject<any>(1);
+  private editor: any;
+  private editor$ = new ReplaySubject<any>(1);
 
   constructor(
     private amaps: AMapService,

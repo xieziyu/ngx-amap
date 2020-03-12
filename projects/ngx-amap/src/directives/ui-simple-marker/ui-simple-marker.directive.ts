@@ -13,7 +13,7 @@ import { LoggerService } from '../../shared/logger/logger.service';
   exportAs: 'simpleMarker',
   providers: [UISimpleMarkerService],
 })
-export class UISimpleMarkerDirective extends UISimpleMarker<AMapUI.SimpleMarker> {
+export class UISimpleMarkerDirective extends UISimpleMarker {
   constructor(
     protected os: UISimpleMarkerService,
     protected binder: EventBinderService,

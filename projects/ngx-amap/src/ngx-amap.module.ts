@@ -23,6 +23,7 @@ import { AMapLoaderService } from './shared/amap-loader.service';
 import { AmapAutocompleteService } from './services/amap-autocomplete/amap-autocomplete.service';
 import { UISimpleMarkerDirective } from './directives/ui-simple-marker/ui-simple-marker.directive';
 import { UIAwesomeMarkerDirective } from './directives/ui-awesome-marker/ui-awesome-marker.directive';
+import { EventBinderService } from './shared/event-binder.service';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,10 @@ export class NgxAmapModule {
           provide: LoggerService,
           useClass: mapConfig && mapConfig.debug ? DebugLoggerService : LoggerService,
         },
+        AMapLoaderService,
+        AmapPluginLoaderService,
+        AmapUILoaderService,
+        EventBinderService,
       ],
     };
   }
@@ -102,4 +107,5 @@ export {
   AmapAutocompleteService,
   UISimpleMarkerDirective,
   UIAwesomeMarkerDirective,
+  EventBinderService,
 };

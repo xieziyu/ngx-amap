@@ -1,5 +1,3 @@
-/// <reference types="../../types/editor" />
-
 import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject, zip } from 'rxjs';
 import { map, switchMapTo } from 'rxjs/operators';
@@ -7,15 +5,16 @@ import { AMapService } from '../../shared/amap.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { PluginLoaderService } from '../../shared/plugin-loader.service';
 import { Getter } from '../../base/interfaces';
+declare const AMap: any;
 
 const TAG = 'AmapRectangle';
 
 @Injectable()
 export class AmapRectangleService implements Getter<AMap.Rectangle> {
-  private rectangle: AMap.Rectangle;
-  private rectangle$ = new ReplaySubject<AMap.Rectangle>(1);
-  private editor: AMap.RectangleEditor;
-  private editor$ = new ReplaySubject<AMap.RectangleEditor>(1);
+  private rectangle: any;
+  private rectangle$ = new ReplaySubject<any>(1);
+  private editor: any;
+  private editor$ = new ReplaySubject<any>(1);
 
   constructor(
     private amaps: AMapService,

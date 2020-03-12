@@ -13,7 +13,7 @@ const TAG = 'amap-polygon';
   exportAs: 'polygon',
   providers: [AmapPolygonService],
 })
-export class AmapPolygonDirective extends AMapPolygon<AMap.Polygon, AMap.PolyEditor>
+export class AmapPolygonDirective extends AMapPolygon<AMap.Polygon, any>
   implements OnChanges, OnDestroy {
   private inited = false;
 
@@ -43,9 +43,10 @@ export class AmapPolygonDirective extends AMapPolygon<AMap.Polygon, AMap.PolyEdi
       });
       this.inited = true;
     } else {
-      zip(filter.has<AMap.LocationValue[] | AMap.LocationValue[][]>('path'), polygon).subscribe(
-        ([v, p]) => p.setPath(v),
-      );
+      zip(
+        filter.has<AMap.LocationValue[] | AMap.LocationValue[][]>('path'),
+        polygon,
+      ).subscribe(([v, p]) => p.setPath(v));
       zip(filter.has<AMap.Polygon.Options>('options'), polygon).subscribe(([v, p]) =>
         p.setOptions(v || {}),
       );

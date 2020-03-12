@@ -10,7 +10,7 @@ import {
   NgZone,
 } from '@angular/core';
 import { zip } from 'rxjs';
-import { AmapToolBarService } from './amap-tool-bar.service';
+import { AmapToolBarService, AMapToolBar } from './amap-tool-bar.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { EventBinderService } from '../../shared/event-binder.service';
 import { getOptions, ChangeFilter } from '../../utils';
@@ -50,7 +50,7 @@ export class AmapToolBarDirective implements OnInit, OnChanges, OnDestroy {
    * LB: 左下角
    * RB: 右下角
    */
-  @Input() position: AMap.ToolBar.Position;
+  @Input() position: AMapToolBar.Position;
   /**
    * 标尺键盘是否可见
    */
@@ -119,7 +119,7 @@ export class AmapToolBarDirective implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.amaps.get().subscribe(() => {
       this.logger.d(TAG, 'initializing ...');
-      const options = getOptions<AMap.ToolBar.Options>(this, ToolBarOptions);
+      const options = getOptions<AMapToolBar.Options>(this, ToolBarOptions);
       if (this.offset) {
         options.offset = this.pixels.create(this.offset);
       }

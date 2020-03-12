@@ -1,5 +1,3 @@
-/// <reference types="../../types/editor" />
-
 import { Injectable, NgZone } from '@angular/core';
 import { ReplaySubject, zip } from 'rxjs';
 import { map, switchMapTo } from 'rxjs/operators';
@@ -7,17 +5,18 @@ import { AMapService } from '../../shared/amap.service';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { PluginLoaderService } from '../../shared/plugin-loader.service';
 import { Getter } from '../../base/interfaces';
+declare const AMap: any;
 
 const TAG = 'AmapBezierCurve';
 
 @Injectable()
 export class AmapBezierCurveService implements Getter<AMap.BezierCurve> {
-  private bezierCurve: AMap.BezierCurve;
-  private bezierCurve$ = new ReplaySubject<AMap.BezierCurve>(1);
-  private editor: AMap.BezierCurveEditor;
-  private editor$ = new ReplaySubject<AMap.BezierCurveEditor>(1);
-  private polyEditor: AMap.PolyEditor;
-  private polyEditor$ = new ReplaySubject<AMap.PolyEditor>(1);
+  private bezierCurve: any;
+  private bezierCurve$ = new ReplaySubject<any>(1);
+  private editor: any;
+  private editor$ = new ReplaySubject<any>(1);
+  private polyEditor: any;
+  private polyEditor$ = new ReplaySubject<any>(1);
 
   constructor(
     private amaps: AMapService,

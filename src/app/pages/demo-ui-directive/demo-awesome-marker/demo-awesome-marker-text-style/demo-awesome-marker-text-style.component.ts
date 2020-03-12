@@ -10,7 +10,7 @@ declare const require: any; // DEMO IGNORE
 export class DemoAwesomeMarkerTextStyleComponent {
   html = require('!!html-loader!./demo-awesome-marker-text-style.component.html'); // DEMO IGNORE
   component = require('!!raw-loader!./demo-awesome-marker-text-style.component.ts').default; // DEMO IGNORE
-  options: AMapUI.AwesomeMarker.Options[] = [];
+  options: any[] = [];
 
   onMapReady(map: AMap.Map) {
     const colors = [

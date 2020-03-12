@@ -18,7 +18,7 @@ export class DemoAmapAutocompleteSimpleComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // 创建插件：
-    this.autocomplete.create({ input: 'address' }).subscribe(plugin => {
+    this.autocomplete.create({ input: 'address', output: 'result' }).subscribe(plugin => {
       this.plugin = plugin;
     });
 

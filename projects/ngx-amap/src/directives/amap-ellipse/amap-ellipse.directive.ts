@@ -14,7 +14,7 @@ const EllipseOptions = [...PolygonOptions, 'center', 'radius'];
   exportAs: 'ellipse',
   providers: [AmapEllipseService],
 })
-export class AmapEllipseDirective extends AMapPolygon<AMap.Ellipse, AMap.EllipseEditor>
+export class AmapEllipseDirective extends AMapPolygon<AMap.Ellipse, any>
   implements OnChanges, OnDestroy {
   // ---- Options ----
   /**

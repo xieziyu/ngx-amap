@@ -5,9 +5,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 
 const TAG = 'AMapLoader';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AMapLoaderService {
   private defaultProtocol = 'https';
   private defaultVersion = '1.4.15';

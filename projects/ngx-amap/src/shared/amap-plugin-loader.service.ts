@@ -6,9 +6,7 @@ import { AMapLoaderService } from './amap-loader.service';
 
 const TAG = 'PluginLoader';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AmapPluginLoaderService {
   private state = new Map<string, ReplaySubject<void>>();
 

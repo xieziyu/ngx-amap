@@ -5,9 +5,7 @@ import { LoggerService } from './logger/logger.service';
 
 const TAG = 'EventBinder';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class EventBinderService {
   constructor(private logger: LoggerService, private ngZone: NgZone) {}
 
