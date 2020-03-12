@@ -6,9 +6,7 @@ import { AMapLoaderService } from './amap-loader.service';
 declare const AMapUI: any;
 const TAG = 'AMapUILoader';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AmapUILoaderService {
   private state = new Map<string, ReplaySubject<any>>();
 
