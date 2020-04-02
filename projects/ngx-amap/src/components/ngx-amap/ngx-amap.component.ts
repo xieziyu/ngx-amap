@@ -57,6 +57,7 @@ const ALL_OPTIONS = [
   'maxPitch',
   'rotation',
   'forceVector',
+  'gridMapForeign',
 ];
 
 @Component({
@@ -211,6 +212,7 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() maxPitch: number;
   @Input() rotation: number;
   @Input() forceVector: boolean;
+  @Input() gridMapForeign: boolean;
 
   /**
    * 额外: 设置城市
