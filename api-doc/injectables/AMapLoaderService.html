@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngx-amap-demo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ngx-amap-demo documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>AMapLoaderService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>projects/ngx-amap/src/shared/amap-loader.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#defaultProtocol">defaultProtocol</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#defaultUIVersion">defaultUIVersion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#defaultVersion">defaultVersion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loading$">loading$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#uiLoading$">uiLoading$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getSrcFromConfig">getSrcFromConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getUISrcFromConfig">getUISrcFromConfig</a>
+                            </li>
+                            <li>
+                                <a href="#load">load</a>
+                            </li>
+                            <li>
+                                <a href="#loadUI">loadUI</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(config: <a href="../interfaces/NgxAmapConfig.html">NgxAmapConfig</a>, logger: <a href="../injectables/LoggerService.html">LoggerService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>config</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/NgxAmapConfig.html" target="_self" >NgxAmapConfig</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logger</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LoggerService.html" target="_self" >LoggerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSrcFromConfig"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getSrcFromConfig
+                        </b>
+                        <a href="#getSrcFromConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSrcFromConfig(callbackName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>callbackName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUISrcFromConfig"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getUISrcFromConfig
+                        </b>
+                        <a href="#getUISrcFromConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUISrcFromConfig()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="load"></a>
+                    <span class="name">
+                        <b>
+                            load
+                        </b>
+                        <a href="#load"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>load()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:23</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadUI"></a>
+                    <span class="name">
+                        <b>
+                            loadUI
+                        </b>
+                        <a href="#loadUI"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadUI()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="defaultProtocol"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            defaultProtocol</b>
+                            <a href="#defaultProtocol"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;https&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:10</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="defaultUIVersion"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            defaultUIVersion</b>
+                            <a href="#defaultUIVersion"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;1.0.11&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="defaultVersion"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            defaultVersion</b>
+                            <a href="#defaultVersion"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;1.4.15&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:11</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loading$"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            loading$</b>
+                            <a href="#loading$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>ReplaySubject&lt;void&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uiLoading$"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            uiLoading$</b>
+                            <a href="#uiLoading$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>ReplaySubject&lt;void&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/ngx-amap/src/shared/amap-loader.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@angular/core&#x27;;
+import { LoggerService } from &#x27;./logger/logger.service&#x27;;
+import { NgxAmapConfig, NGX_AMAP_CONFIG } from &#x27;./ngx-amap-config&#x27;;
+import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;
+
+const TAG &#x3D; &#x27;AMapLoader&#x27;;
+
+@Injectable()
+export class AMapLoaderService {
+  private defaultProtocol &#x3D; &#x27;https&#x27;;
+  private defaultVersion &#x3D; &#x27;1.4.15&#x27;;
+  private defaultUIVersion &#x3D; &#x27;1.0.11&#x27;;
+  private loading$: ReplaySubject&lt;void&gt;;
+  private uiLoading$: ReplaySubject&lt;void&gt;;
+
+  constructor(
+    @Inject(NGX_AMAP_CONFIG) private config: NgxAmapConfig &#x3D; {},
+    private logger: LoggerService,
+  ) {
+    this.config &#x3D; config || {};
+  }
+
+  load(): Observable&lt;void&gt; {
+    if (this.loading$) {
+      return this.loading$.asObservable();
+    }
+    this.logger.d(TAG, &#x27;loading AMap API ...&#x27;);
+    this.loading$ &#x3D; new ReplaySubject();
+    const callbackName &#x3D; &#x27;_NgxAmapAPILoader&#x27;;
+    const script &#x3D; document.createElement(&#x27;script&#x27;);
+    script.type &#x3D; &#x27;text/javascript&#x27;;
+    script.async &#x3D; true;
+    script.defer &#x3D; true;
+    script.src &#x3D; this.getSrcFromConfig(callbackName);
+    script.onerror &#x3D; (err: Event) &#x3D;&gt; {
+      this.logger.e(&#x27;failed to load AMap API.&#x27;);
+      this.loading$.error(err);
+    };
+    window[callbackName] &#x3D; () &#x3D;&gt; {
+      this.logger.d(TAG, &#x27;loading AMap API COMPLETE&#x27;);
+      this.loading$.next();
+      this.loading$.complete();
+    };
+    document.body.appendChild(script);
+    return this.loading$.asObservable();
+  }
+
+  loadUI(): Observable&lt;void&gt; {
+    if (this.uiLoading$) {
+      return this.uiLoading$.asObservable();
+    }
+    this.logger.d(TAG, &#x27;loading AMap UI ...&#x27;);
+    this.uiLoading$ &#x3D; new ReplaySubject();
+    const uiScript &#x3D; document.createElement(&#x27;script&#x27;);
+    uiScript.type &#x3D; &#x27;text/javascript&#x27;;
+    uiScript.async &#x3D; true;
+    uiScript.defer &#x3D; true;
+    uiScript.src &#x3D; this.getUISrcFromConfig();
+    uiScript.onerror &#x3D; (err: Event) &#x3D;&gt; {
+      this.logger.e(&#x27;failed to load AMap API.&#x27;);
+    };
+    uiScript.onload &#x3D; () &#x3D;&gt; {
+      // tslint:disable-next-line: no-string-literal
+      window[&#x27;initAMapUI&#x27;]();
+      this.logger.d(TAG, &#x27;loading AMap UI COMPLETE&#x27;);
+      this.uiLoading$.next();
+      this.uiLoading$.complete();
+    };
+    document.body.appendChild(uiScript);
+    return this.uiLoading$.asObservable();
+  }
+
+  private getSrcFromConfig(callbackName: string) {
+    const urlBase &#x3D; &#x60;${this.config.protocol || this.defaultProtocol}://webapi.amap.com/maps&#x60;;
+    const queryParams: { [key: string]: string | Array&lt;string&gt; } &#x3D; {
+      v: this.config.apiVersion || this.defaultVersion,
+      callback: callbackName,
+      key: this.config.apiKey,
+    };
+    const params &#x3D; Object.keys(queryParams)
+      .filter((k: string) &#x3D;&gt; queryParams[k] !&#x3D; null)
+      .filter((k: string) &#x3D;&gt; {
+        // remove empty arrays
+        return (
+          !Array.isArray(queryParams[k]) ||
+          (Array.isArray(queryParams[k]) &amp;&amp; queryParams[k].length &gt; 0)
+        );
+      })
+      .map((k: string) &#x3D;&gt; {
+        // join arrays as comma seperated strings
+        const i &#x3D; queryParams[k];
+        if (Array.isArray(i)) {
+          return { key: k, value: i.join(&#x27;,&#x27;) };
+        }
+        return { key: k, value: queryParams[k] };
+      })
+      .map((entry: { key: string; value: string }) &#x3D;&gt; &#x60;${entry.key}&#x3D;${entry.value}&#x60;)
+      .join(&#x27;&amp;&#x27;);
+
+    return &#x60;${urlBase}?${params}&#x60;;
+  }
+
+  private getUISrcFromConfig() {
+    // tslint:disable-next-line: max-line-length
+    const urlBase &#x3D; &#x60;${this.config.protocol ||
+      this.defaultProtocol}://webapi.amap.com/ui/1.0/main-async.js?v&#x3D;${this.config.uiVersion ||
+      this.defaultUIVersion}&#x60;;
+    return urlBase;
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AMapLoaderService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

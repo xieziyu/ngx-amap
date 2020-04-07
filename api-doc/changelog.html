@@ -1,0 +1,242 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngx-amap-demo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">ngx-amap-demo documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h2 id="305-2020-04-07">3.0.5 (2020-04-07)</h2>
+<h4 id="bugfix">Bugfix:</h4>
+<ul>
+<li><a href="https://github.com/xieziyu/ngx-amap/issues/65">issue#65</a> support <code>gridMapForeign</code> and <code>vectorMapForeign</code></li>
+</ul>
+<h2 id="303-2020-03-12">3.0.3 (2020-03-12)</h2>
+<h4 id="bugfix-1">Bugfix:</h4>
+<ul>
+<li><a href="https://github.com/xieziyu/ngx-amap/issues/63">issue#63</a> AMap has no exported member XXX</li>
+<li><a href="https://github.com/xieziyu/ngx-amap/issues/58">issue#58</a> No provider for InjectionToken NGX_AMAP_CONFIG</li>
+</ul>
+<h2 id="302-2020-02-18">3.0.2 (2020-02-18)</h2>
+<h4 id="bugfix-2">Bugfix:</h4>
+<ul>
+<li><code>AmapUILoaderService</code>: 确保 UI 库在 main-async.js 加载完毕后才进行加载</li>
+</ul>
+<h2 id="301-2020-02-13">3.0.1 (2020-02-13)</h2>
+<h4 id="patch">Patch:</h4>
+<ul>
+<li>导出 <code>AMapLoaderService</code></li>
+</ul>
+<h2 id="300-2020-02-06">3.0.0 (2020-02-06)</h2>
+<h4 id="new">New:</h4>
+<ul>
+<li>支持 <code>AMapUI</code> 库，可通过 <code>AmapUILoaderService</code> 服务加载使用，部分 UI 组件也封装成了指令，如：<code>ui-awesome-marker</code></li>
+<li>提供加载插件服务：<code>AmapPluginLoaderService</code>，部分常用插件已封装成了指令，如：<code>amap-tool-bar</code></li>
+</ul>
+<h4 id="breaking-changes">BREAKING CHANGES:</h4>
+<ul>
+<li>重写了整体的封装架构，不再使用 Promise 封装，全部使用 Observable</li>
+<li><code>@Output</code> 事件命名统一调整为: 包含<code>na</code>前缀</li>
+<li>不再提供 Getter 和 Setter 的 Wrapper，建议直接调用 <code>amap</code> 原生对象的方法</li>
+<li>移除 amap 相关的类型定义，引入 <code>@types/amap-js-api</code></li>
+</ul>
+<h2 id="221--141-2019-09-23">2.2.1 &amp; 1.4.1 (2019-09-23)</h2>
+<h4 id="bugfix-3">Bugfix</h4>
+<ul>
+<li>修复 Icon imageSize <a href="https://github.com/xieziyu/ngx-amap/issues/40">issue#40</a></li>
+</ul>
+<h2 id="220--140-2018-11-29">2.2.0 &amp; 1.4.0 (2018-11-29)</h2>
+<h4 id="new-1">New</h4>
+<ul>
+<li>支持路径规划：<ul>
+<li>AMap.Driving 驾车路线规划服务：AmapDrivingService</li>
+<li>AMap.TruckDriving 货车路线规划服务：AmapTruckDrivingService</li>
+<li>AMap.Transfer 公交换乘路线规划服务：AmapTransferService</li>
+<li>AMap.Walking 步行路线规划服务：AmapWalkingService</li>
+<li>AMap.Riding 骑行路线规划服务：AmapRidingService</li>
+</ul>
+</li>
+</ul>
+<h2 id="211--133-2018-06-22">2.1.1 &amp; 1.3.3 (2018-06-22)</h2>
+<h4 id="bugfix-4">Bugfix</h4>
+<ul>
+<li>[amapAutocomplete] 切换 city 时不起作用 <a href="https://github.com/xieziyu/ngx-amap/issues/23">issue#23</a></li>
+</ul>
+<h2 id="210-2018-05-24">2.1.0 (2018-05-24)</h2>
+<h4 id="new-2">New</h4>
+<ul>
+<li>新增支持图层 AMap.Heatmap 指令：amap-heatmap</li>
+</ul>
+<h2 id="200-2018-05-11">2.0.0 (2018-05-11)</h2>
+<h4 id="new-3">New</h4>
+<ul>
+<li>支持 Angular 6</li>
+</ul>
+<h2 id="132-2018-04-17">1.3.2 (2018-04-17)</h2>
+<h4 id="new-4">New</h4>
+<ul>
+<li>新增支持 AMap.DistrictSearch 行政区查询服务：AmapDistrictSearchService (感谢: <a href="https://github.com/noob9527">noob9527</a>)</li>
+</ul>
+<h2 id="131-2018-03-27">1.3.1 (2018-03-27)</h2>
+<h4 id="new-5">New</h4>
+<ul>
+<li><a href="https://xieziyu.github.io/ngx-amap/#/amap-circle/methods">demo</a> AMap.CircleEditor 编辑功能：amap-circle <code>[editor]=&quot;true&quot;</code></li>
+<li><a href="https://xieziyu.github.io/ngx-amap/#/amap-polyline/methods">demo</a> AMap.PolyEditor 编辑功能：amap-polyline, amap-polygon <code>[editor]=&quot;true&quot;</code></li>
+<li><a href="https://xieziyu.github.io/ngx-amap/#/amap-bezier-curve/methods">demo</a> AMap.BezierCurveEditor 编辑功能：amap-bezier-curve <code>[editor]=&quot;true&quot; [editorOptions]=&quot;editorOptions&quot;</code></li>
+<li><a href="https://xieziyu.github.io/ngx-amap/#/amap-ellipse/methods">demo</a> AMap.EllipseEditor 编辑功能：amap-ellipse <code>[editor]=&quot;true&quot;</code></li>
+<li><a href="https://xieziyu.github.io/ngx-amap/#/amap-rectangle/methods">demo</a> AMap.RectangleEditor 编辑功能：amap-rectangle <code>[editor]=&quot;true&quot;</code></li>
+<li>添加 editor 相关事件 emitter，例如：<code>(editorAddnode)</code>, <code>(editorAdjust)</code>等，详见各 demo</li>
+</ul>
+<h2 id="130-2018-03-26">1.3.0 (2018-03-26)</h2>
+<h4 id="new-6">New</h4>
+<ul>
+<li>新增支持覆盖物 AMap.Polygon 指令：amap-polygon</li>
+<li>新增支持覆盖物 AMap.Text 指令：amap-text</li>
+<li>新增支持覆盖物 AMap.BezierCurve 指令：amap-bezier-curve</li>
+<li>新增支持覆盖物 AMap.Ellipse 指令：amap-ellipse</li>
+<li>新增支持覆盖物 AMap.Rectangle 指令：amap-rectangle</li>
+</ul>
+<h4 id="changes">Changes</h4>
+<ul>
+<li>对大部分指令和组件增加 exportAs，方便在模板中引用指令实例</li>
+</ul>
+<h2 id="120-2018-03-21">1.2.0 (2018-03-21)</h2>
+<h4 id="new-7">New</h4>
+<ul>
+<li>新增支持 AMap.MouseTool 鼠标工具插件：AmapMouseToolService (感谢: <a href="https://github.com/noob9527">noob9527</a>)</li>
+</ul>
+<h2 id="112-2018-02-28">1.1.2 (2018-02-28)</h2>
+<h4 id="new-8">New</h4>
+<ul>
+<li>ngx-amap 支持 gridMapForeign 选项，以显示国外的地图细节</li>
+</ul>
+<h2 id="111-2018-02-05">1.1.1 (2018-02-05)</h2>
+<h4 id="new-9">New</h4>
+<ul>
+<li>新增支持覆盖物 AMap.CircleMarker 的指令：amap-circle-marker (需要高德 API-v1.4.3 支持)</li>
+</ul>
+<h2 id="110-2018-02-05">1.1.0 (2018-02-05)</h2>
+<h4 id="new-10">New</h4>
+<ul>
+<li>新增支持覆盖物 AMap.Circle 的指令：amap-circle</li>
+</ul>
+<h4 id="changes-1">Changes</h4>
+<ul>
+<li>默认高德 API 的 baseUrl 调整为 https 协议</li>
+<li>默认高德 API 的版本调整为 1.4.3</li>
+</ul>
+<h2 id="101-2017-11-29">1.0.1 (2017-11-29)</h2>
+<h4 id="bugfix-5">Bugfix</h4>
+<ul>
+<li>修复 input[Autocomplete] 指令事件错误的问题</li>
+</ul>
+<h2 id="100-2017-11-29">1.0.0 (2017-11-29)</h2>
+<h4 id="new-11">New</h4>
+<ul>
+<li>新增支持 AMap.PlaceSearch 的搜索服务：AmapPlaceSearchService</li>
+</ul>
+<h2 id="100-beta4-2017-11-28">1.0.0-beta.4 (2017-11-28)</h2>
+<h4 id="new-12">New</h4>
+<ul>
+<li>新增支持 AMap.Geocoder 的地理服务：AmapGeocoderService</li>
+<li>新增支持 AMap.Autocomplete 的搜索服务和指令：AmapAutocompleteService, AmapAutocompleteDirective</li>
+</ul>
+<h4 id="changes-2">Changes</h4>
+<ul>
+<li>逻辑变更：marker 在没有 position 的时候不再绘制于默认位置</li>
+<li>逻辑变更：info-window 现在会跟随它的 hostMarker 改变位置</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'changelog.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

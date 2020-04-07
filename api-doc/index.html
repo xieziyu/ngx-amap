@@ -1,0 +1,405 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngx-amap-demo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">ngx-amap-demo documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="ngx-amap">ngx-amap</h1>
+<p><a href="https://www.npmjs.com/package/ngx-amap"><img src="https://img.shields.io/npm/v/ngx-amap.svg" alt="npm" class="img-responsive"></a>
+<a href="https://www.npmjs.com/package/ngx-amap"><img src="https://img.shields.io/npm/dm/ngx-amap.svg" alt="npm" class="img-responsive"></a>
+<a href="https://travis-ci.org/xieziyu/ngx-amap"><img src="https://travis-ci.org/xieziyu/ngx-amap.svg?branch=master" alt="Build Status" class="img-responsive"></a></p>
+<ul>
+<li><a href="https://xieziyu.github.io/ngx-amap">在线演示</a></li>
+<li><a href="https://xieziyu.github.io/ngx-amap/api-doc">模块文档</a></li>
+<li><a href="https://github.com/xieziyu/ngx-amap/blob/master/CHANGELOG.md">CHANGELOG</a></li>
+</ul>
+<p>ngx-amap 是为在<strong>Angular</strong>(ver &gt;= 2.x)项目中便捷、高效地使用<strong>高德地图</strong>Javascript API而构建的组件集合</p>
+<h2 id="目录">目录</h2>
+<ol>
+<li><a href="#%E6%9C%80%E6%96%B0%E8%BF%9B%E5%BA%A6">最新进度</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a></li>
+<li><a href="#%E5%8A%A0%E8%BD%BD%E6%8F%92%E4%BB%B6">加载插件</a></li>
+<li><a href="#%E5%8A%A0%E8%BD%BDUI%E5%BA%93">加载UI库</a></li>
+<li><a href="#%E6%8C%87%E4%BB%A4%E5%92%8C%E6%9C%8D%E5%8A%A1">指令和服务</a></li>
+<li><a href="#%E6%9C%AC%E5%9C%B0%E6%BC%94%E7%A4%BA">本地演示</a></li>
+</ol>
+<h1 id="最新进度">最新进度</h1>
+<p>2020.02.06: v3.0.0</p>
+<ul>
+<li><p>NEW:</p>
+<ul>
+<li>支持 <code>AMapUI</code> 库，可通过 <code>AmapUILoaderService</code> 服务加载使用，部分 UI 组件也封装成了指令，如：<code>ui-awesome-marker</code></li>
+<li>提供加载插件服务：<code>AmapPluginLoaderService</code>，部分常用插件已封装成了指令，如：<code>amap-tool-bar</code></li>
+</ul>
+</li>
+<li><p>BREAKING CHANGES:</p>
+<ul>
+<li>重写了整体的封装架构，不再使用 Promise 封装，全部使用 Observable</li>
+<li><code>@Output</code> 事件命名统一调整为: 包含<code>na</code>前缀</li>
+<li>不再提供 Getter 和 Setter 的 Wrapper，建议直接调用 <code>amap</code> 原生对象的方法</li>
+<li>移除 amap 相关的类型定义，引入 <code>@types/amap-js-api</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="安装">安装</h1>
+<div><pre class="line-numbers"><code class="language-bash">npm install -S ngx-amap
+npm install -D &#64;types/amap-js-api
+# 地图插件类型定义可按需安装：
+npm install -D &#64;types/amap-js-api-tool-bar
+npm install -D &#64;types/amap-js-api-heatmap
+npm install -D &#64;types/amap-js-api-autocomplete
+npm install -D &#64;types/amap-js-api-place-search
+npm install -D &#64;types/amap-js-api-driving
+npm install -D &#64;types/amap-js-api-transfer
+# ...</code></pre></div><h1 id="使用">使用</h1>
+<ol>
+<li><p>import <code>NgxAmapModule</code></p>
+<ul>
+<li><p>Example:</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { NgxAmapModule } from &#39;ngx-amap&#39;;
+
+&#64;NgModule({
+  imports: [
+    ...,
+    NgxAmapModule.forRoot({
+      apiKey: &#39;你申请的key&#39;
+    })
+  ],
+  ...
+})
+export class AppModule { }</code></pre></div></li>
+</ul>
+</li>
+<li><p>使用 <code>ngx-amap</code> 组件时必须<strong>给定高度</strong>.</p>
+<ul>
+<li><p>简单示例:</p>
+<ul>
+<li><p>html:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;ngx-amap class=&quot;demo-map&quot;&gt;&lt;/ngx-amap&gt;</code></pre></div></li>
+<li><p>css:</p>
+<div><pre class="line-numbers"><code class="language-css">.demo-map {
+height: 400px;
+}</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可以配合使用其他指令和组件。例如 <code>amap-marker</code> 可以在地图中画覆盖物：点标记。</p>
+<ul>
+<li><p>简单示例:</p>
+<ul>
+<li>html:<div><pre class="line-numbers"><code class="language-html">&lt;ngx-amap class=&quot;demo-map&quot; [center]=&quot;[116.397428, 39.90923]&quot;&gt;
+&lt;amap-marker [position]=&quot;[116.397428, 39.90923]&quot; (markerClick)=&quot;onMarkerClick($event)&quot;&gt;&lt;/amap-marker&gt;
+&lt;/ngx-amap&gt;</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>加入地图控件的方法也很简单，例如：<code>amap-tool-bar</code></p>
+<ul>
+<li><p>简单示例:</p>
+<ul>
+<li>html:<div><pre class="line-numbers"><code class="language-html">&lt;ngx-amap class=&quot;demo-map&quot;&gt;
+&lt;amap-tool-bar&gt;&lt;/amap-tool-bar&gt;
+&lt;/ngx-amap&gt;</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>由于采用了懒加载高德 JS 库，所以如果需要直接使用全局 <code>AMap</code> 对象的方法，需要等加载完成后使用。</p>
+<ul>
+<li><p>可以在组件 <code>&lt;ngx-amap&gt;</code> <code>(naReady)</code> 事件之后使用 <code>AMap</code></p>
+</li>
+<li><p>也可以使用 <code>AMapLoaderService</code> 的 <code>load</code> 方法</p>
+<div><pre class="line-numbers"><code class="language-ts">import { AMapLoaderService } from  &#39;ngx-amap&#39;;
+
+&#64;Component({
+...
+})
+export class MyComponent implements OnInit {
+constructor(private loader: AMapLoaderService) {}
+
+ngOnInit() {
+  this.loader.load().subscribe(() =&gt; {
+    // 高德 JS SDK 加载完毕
+    const dis = AMap.GeometryUtil.distance([123, 456], [123, 456]);
+    console.log(dis: ${dis});
+  })
+}
+}</code></pre></div></li>
+</ul>
+</li>
+</ol>
+<p>更多用法和事件，请参看演示和文档。</p>
+<h1 id="配置">配置</h1>
+<p>我们可以通过<code>NgxAmapModule</code>的<code>forRoot()</code>方法设置<code>ngx-amap</code>。它可以接受以下参数传入：</p>
+<div><pre class="line-numbers"><code class="language-typescript">{
+  apiKey: string;   // 高德地图的开发者license key
+  apiVersion?: string;  // [可选], api 版本, 默认是 &#39;1.4.15&#39;
+  uiVersion?: string;   // [可选], ui 库版本, 默认是 &#39;1.0.11&#39;
+  protocol?: &#39;http&#39; | &#39;https&#39;; // [可选], api 路径协议类型
+  debug?: boolean; // [可选], 是否开启调试模式
+  debugTags?: string; // [可选], 开启调试的 TAG, &#39;*&#39; 为全部
+}</code></pre></div><h1 id="加载插件">加载插件</h1>
+<p>部分常用插件如: <code>AMap.ToolBar</code> 已封装成指令，可直接使用。</p>
+<p>插件可通过服务：<code>AmapPluginLoaderService</code> 加载后使用。若插件需要 mapObject，可配合 <code>ngx-amap</code> 的 <code>(naReady)</code> 事件一起使用。</p>
+<p><a href="https://xieziyu.github.io/ngx-amap/#/services/amap-plugin-loader">查看示例</a></p>
+<h1 id="加载ui库">加载UI库</h1>
+<p>部分常用 UI 库如: <code>AMapUI.SimpleMarker</code> 已封装成指令，可直接使用。</p>
+<p>UI 库可通过服务：<code>AmapUILoaderService</code> 加载后使用。若 UI 需要使用 mapObject，可配合 <code>ngx-amap</code> 的 <code>(naReady)</code> 事件一起使用。</p>
+<p><a href="https://xieziyu.github.io/ngx-amap/#/services/amap-ui-loader">查看示例</a></p>
+<h1 id="指令和服务">指令和服务</h1>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>NGX-AMAP</th>
+<th>类型</th>
+<th>高德地图</th>
+<th>类</th>
+<th>演示示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ngx-amap</code></td>
+<td><code>Component</code></td>
+<td>地图</td>
+<td><strong>AMap.Map</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/components/ngx-amap">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-text</code></td>
+<td><code>Component</code></td>
+<td>覆盖物：文本标记</td>
+<td><strong>AMap.Text</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/components/amap-text">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-info-window</code></td>
+<td><code>Component</code></td>
+<td>信息窗体</td>
+<td><strong>AMap.InfoWindow</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/components/amap-info-window">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-marker</code></td>
+<td><code>Directive</code></td>
+<td>覆盖物：点标记</td>
+<td><strong>AMap.Marker</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/directives/amap-marker">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-polyline</code></td>
+<td><code>Directive</code></td>
+<td>覆盖物：折线</td>
+<td><strong>AMap.Polyline</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/directives/amap-polyline">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-polygon</code></td>
+<td><code>Directive</code></td>
+<td>覆盖物：多边线</td>
+<td><strong>AMap.Polygon</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/directives/amap-polygon">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-bezier-curve</code></td>
+<td><code>Directive</code></td>
+<td>覆盖物：贝塞尔曲线</td>
+<td><strong>AMap.BezierCurve</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/directives/amap-bezier-curve">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-ellipse</code></td>
+<td><code>Directive</code></td>
+<td>覆盖物：椭圆</td>
+<td><strong>AMap.Ellipse</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/directives/amap-ellipse">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-circle</code></td>
+<td><code>Directive</code></td>
+<td>覆盖物：圆</td>
+<td><strong>AMap.Circle</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/directives/amap-circle">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-circle-marker</code></td>
+<td><code>Directive</code></td>
+<td>覆盖物：圆点标记</td>
+<td><strong>AMap.CircleMarker</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/directives/amap-circle-marker">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-rectangle</code></td>
+<td><code>Directive</code></td>
+<td>覆盖物：矩形</td>
+<td><strong>AMap.Rectangle</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/directives/amap-rectangle">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-tool-bar</code></td>
+<td><code>Directive</code></td>
+<td>工具条插件</td>
+<td><strong>AMap.ToolBar</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/plugins/amap-tool-bar">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-marker-clusterer</code></td>
+<td><code>Directive</code></td>
+<td>点聚合插件</td>
+<td><strong>AMap.MarkerClusterer</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/plugins/amap-marker-cluster">demo</a></td>
+</tr>
+<tr>
+<td><code>amap-heatmap</code></td>
+<td><code>Directive</code></td>
+<td>图层：热力图</td>
+<td><strong>AMap.Heatmap</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/plugins/amap-heatmap">demo</a></td>
+</tr>
+<tr>
+<td><code>ui-simple-marker</code></td>
+<td><code>Directive</code></td>
+<td>UI 简单标记</td>
+<td><strong>AMapUI.SimpleMarker</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/ui-directives/ui-simple-marker">demo</a></td>
+</tr>
+<tr>
+<td><code>ui-awesome-marker</code></td>
+<td><code>Directive</code></td>
+<td>UI 字体图标标注</td>
+<td><strong>AMapUI.AwesomeMarker</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/ui-directives/ui-awesome-marker">demo</a></td>
+</tr>
+<tr>
+<td><code>AmapPluginLoaderService</code></td>
+<td><code>Service</code></td>
+<td>插件加载</td>
+<td><strong>AMap.plugin</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/services/amap-amap-plugin-loader">demo</a></td>
+</tr>
+<tr>
+<td><code>AmapUILoaderService</code></td>
+<td><code>Service</code></td>
+<td>UI 库加载服务</td>
+<td><strong>AMapUI.loadUI</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/services/amap-ui-loader">demo</a></td>
+</tr>
+<tr>
+<td><code>AmapAutocompleteService</code></td>
+<td><code>Service</code></td>
+<td>关键字提示服务</td>
+<td><strong>AMap.Autocomplete</strong></td>
+<td><a href="https://xieziyu.github.io/ngx-amap/#/services/amap-autocomplete">demo</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="本地演示">本地演示</h1>
+<ol>
+<li>clone 当前 repo 到本地</li>
+<li>修改 <code>src/app/app.module.ts</code> 以使用自己的的高德API key</li>
+<li>启动demo，浏览器打开: <code>localhost:8080</code><div><pre class="line-numbers"><code class="language-bash">npm install
+npm run demo
+# or
+yarn
+yarn demo</code></pre></div></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
