@@ -58,6 +58,7 @@ const ALL_OPTIONS = [
   'rotation',
   'forceVector',
   'gridMapForeign',
+  'vectorMapForeign',
 ];
 
 @Component({
@@ -213,6 +214,10 @@ export class NgxAmapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() rotation: number;
   @Input() forceVector: boolean;
   @Input() gridMapForeign: boolean;
+  /**
+   * 额外: 海外⽮量地图样式
+   */
+  @Input() vectorMapForeign: string;
 
   /**
    * 额外: 设置城市
