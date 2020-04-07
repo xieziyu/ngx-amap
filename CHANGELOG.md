@@ -1,8 +1,8 @@
-## 3.0.4 (2020-04-02)
+## 3.0.5 (2020-04-07)
 
 #### Bugfix:
 
-- [issue#65](https://github.com/xieziyu/ngx-amap/issues/65) support `gridMapForeign`
+- [issue#65](https://github.com/xieziyu/ngx-amap/issues/65) support `gridMapForeign` and `vectorMapForeign`
 
 ## 3.0.3 (2020-03-12)
 
