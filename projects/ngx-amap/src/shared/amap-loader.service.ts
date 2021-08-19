@@ -103,7 +103,7 @@ export class AMapLoaderService {
   private getUISrcFromConfig() {
     // tslint:disable-next-line: max-line-length
     const urlBase = `${this.config.protocol ||
-      this.defaultProtocol}://webapi.amap.com/ui/1.0/main-async.js?v=${this.config.uiVersion ||
+      this.defaultProtocol}://webapi.amap.com/ui/1.1/main-async.js?v=${this.config.uiVersion ||
       this.defaultUIVersion}`;
     return urlBase;
   }
