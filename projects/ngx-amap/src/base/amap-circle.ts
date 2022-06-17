@@ -1,7 +1,8 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Directive } from '@angular/core';
 import { Getter } from './interfaces';
 import { AMapShapeOverlay } from './amap-shape-overlay';
 import { EventBinderService } from '../shared/event-binder.service';
+
 
 export const CircleOptions = [
   'zIndex',
@@ -19,6 +20,7 @@ export const CircleOptions = [
   'strokeDasharray',
 ];
 
+@Directive()
 export class AMapCircle<T extends AMap.EventEmitter> extends AMapShapeOverlay<T> {
   // ---- Options ----
   /**

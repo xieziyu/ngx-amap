@@ -1,13 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+
 import { MarkdownModule } from 'ngx-markdown';
-import { IconsProviderModule } from './icons-provider.module';
 import { CodeBlockComponent } from './code-block/code-block.component';
+import { NgZorroPublicModule } from './ng-zorro-public.module';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+
+
 
 @NgModule({
   declarations: [CodeBlockComponent],
-  imports: [CommonModule, IconsProviderModule, NgZorroAntdModule, MarkdownModule.forChild()],
-  exports: [IconsProviderModule, NgZorroAntdModule, MarkdownModule, CodeBlockComponent],
+  imports: [
+    CommonModule,
+    NgZorroPublicModule,
+    MarkdownModule.forChild()
+  ],
+  exports: [
+    NgZorroPublicModule,
+    MarkdownModule,
+    CodeBlockComponent
+  ],
 })
-export class SharedModule {}
+export class SharedModule { }

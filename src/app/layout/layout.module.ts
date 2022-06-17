@@ -9,4 +9,4 @@ import { AppMenuComponent } from './app-menu/app-menu.component';
   imports: [CommonModule, SharedModule, RouterModule],
   exports: [AppMenuComponent],
 })
-export class LayoutModule {}
+export class LayoutModule { }

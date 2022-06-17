@@ -60,7 +60,7 @@ export class AMapLoaderService {
       this.logger.e('failed to load AMap API.');
     };
     uiScript.onload = () => {
-      // tslint:disable-next-line: no-string-literal
+      // eslint-disable-next-line @typescript-eslint/dot-notation
       window['initAMapUI']();
       this.logger.d(TAG, 'loading AMap UI COMPLETE');
       this.uiLoading$.next();
@@ -101,7 +101,7 @@ export class AMapLoaderService {
   }
 
   private getUISrcFromConfig() {
-    // tslint:disable-next-line: max-line-length
+    // eslint-disable-next-line max-len
     const urlBase = `${this.config.protocol ||
       this.defaultProtocol}://webapi.amap.com/ui/1.0/main-async.js?v=${this.config.uiVersion ||
       this.defaultUIVersion}`;

@@ -1,9 +1,10 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Directive } from '@angular/core';
 import { Getter } from './interfaces';
 import { EventBinderService } from '../shared/event-binder.service';
 
 export const OverlayOptions = ['cursor', 'extData', 'bubble', 'clickable', 'draggable'];
 
+@Directive()
 export class AMapOverlay<T extends AMap.EventEmitter> {
   // ---- Options ----
   /**

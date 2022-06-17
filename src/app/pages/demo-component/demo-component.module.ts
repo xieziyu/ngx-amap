@@ -1,4 +1,4 @@
-// tslint:disable max-line-length
+// eslint-disable  max-len
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxAmapModule } from 'ngx-amap';
