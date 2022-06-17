@@ -67,7 +67,7 @@ import { EventBinderService } from './shared/event-binder.service';
   ],
 })
 export class NgxAmapModule {
-  static forRoot(mapConfig?: NgxAmapConfig): ModuleWithProviders {
+  static forRoot(mapConfig?: NgxAmapConfig): ModuleWithProviders<NgxAmapModule> {
     return {
       ngModule: NgxAmapModule,
       providers: [

@@ -1,8 +1,8 @@
-import { Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter, Directive } from '@angular/core';
 import { Getter } from './interfaces';
 import { AMapOverlay } from './amap-overlay';
 import { EventBinderService } from '../shared/event-binder.service';
-
+@Directive()
 export class AMapShapeOverlay<T extends AMap.EventEmitter> extends AMapOverlay<T> {
   // ---- Events ----
   @Output() naShow: EventEmitter<any>;

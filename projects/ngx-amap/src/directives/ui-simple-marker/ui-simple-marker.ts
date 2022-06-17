@@ -9,6 +9,7 @@ import {
   QueryList,
   AfterContentInit,
   NgZone,
+  Directive,
 } from '@angular/core';
 import { zip, Subscription } from 'rxjs';
 import { AMapOverlay, OverlayOptions } from '../../base/amap-overlay';
@@ -50,6 +51,7 @@ export const SimpleMarkerOptions = [
   'containerClassNames',
 ];
 
+@Directive()
 export class UISimpleMarker extends AMapOverlay<any>
   implements OnDestroy, OnChanges, AfterContentInit {
   TAG = 'ui-simple-marker';

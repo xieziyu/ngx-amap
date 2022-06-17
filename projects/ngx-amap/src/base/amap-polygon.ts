@@ -1,14 +1,15 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Directive } from '@angular/core';
 import { WithEditor } from './interfaces';
 import { AMapPathOverlay, PathOverlayOptions } from './amap-path-overlay';
 import { EventBinderService } from '../shared/event-binder.service';
 
 export const PolygonOptions = [...PathOverlayOptions, 'fillColor', 'fillOpacity', 'path'];
 
+@Directive()
 export class AMapPolygon<
   T extends AMap.EventEmitter,
   E extends AMap.EventEmitter
-> extends AMapPathOverlay<T> {
+  > extends AMapPathOverlay<T> {
   // ---- Options ----
   /**
    * 多边形轮廓线的节点坐标数组

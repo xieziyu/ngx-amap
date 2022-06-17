@@ -8,10 +8,10 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:service": {
-          "spec": false
+          "skipTests": true
         }
       },
       "root": "",
@@ -26,7 +26,6 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -37,16 +36,15 @@
               }
             ],
             "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.scss",
-              "src/prism-material-dark.css"
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "node_modules/prismjs/themes/prism-okaidia.min.css"
             ],
             "scripts": [
-              "node_modules/marked/lib/marked.js",
+              "node_modules/marked/marked.min.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-markup.min.js",
               "node_modules/prismjs/components/prism-css.min.js",
-              "node_modules/prismjs/components/prism-scss.min.js",
               "node_modules/prismjs/components/prism-typescript.min.js",
               "node_modules/prismjs/components/prism-javascript.min.js",
               "node_modules/prismjs/components/prism-bash.min.js",
@@ -54,6 +52,14 @@
             ]
           },
           "configurations": {
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -61,15 +67,13 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+              "aot": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
+              "optimization": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -88,13 +92,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-amap-demo:build"
+            "browserTarget": "ngx-amap-demo:build",
+            "port": 8080,
+            "open": true
           },
           "configurations": {
+            "development": {
+              "browserTarget": "ngx-amap-demo:build:development"
+            },
             "production": {
               "browserTarget": "ngx-amap-demo:build:production"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -121,15 +131,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         },
@@ -152,13 +158,13 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:service": {
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:directive": {
-          "spec": false
+          "skipTests": true
         }
       },
       "root": "projects/ngx-amap",
@@ -186,19 +192,19 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-amap/tsconfig.lib.json",
-              "projects/ngx-amap/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-amap/**/*.ts",
+              "projects/ngx-amap/**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-amap-demo"
+  "defaultProject": "ngx-amap-demo",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

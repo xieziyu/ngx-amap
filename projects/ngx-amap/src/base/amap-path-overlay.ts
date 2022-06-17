@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { Getter } from './interfaces';
 import { OverlayOptions } from './amap-overlay';
 import { AMapShapeOverlay } from './amap-shape-overlay';
@@ -17,6 +17,7 @@ export const PathOverlayOptions = [
   'lineCap',
 ];
 
+@Directive()
 export class AMapPathOverlay<T extends AMap.EventEmitter> extends AMapShapeOverlay<T> {
   // ---- Options ----
   /**
